@@ -1,0 +1,90 @@
+{
+  "contractVersion": 1,
+  "synthetic": true,
+  "expectedVersion": 0,
+  "artifacts": [],
+  "artifactPermission": {
+    "granted": false,
+    "quote": ""
+  },
+  "foundation": {
+    "name": "Synthetic Agency Invoices",
+    "stage": "building",
+    "contactState": "none_reported",
+    "targetUser": {
+      "value": "Owner-operators of small B2B agencies",
+      "basis": "founder_statement",
+      "source": "Synthetic founder opening message"
+    },
+    "buyer": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "problem": {
+      "value": "Choosing which overdue invoice needs attention may take too long",
+      "basis": "assumption",
+      "source": null
+    },
+    "trigger": {
+      "value": "Weekly receivables review",
+      "basis": "founder_statement",
+      "source": "Synthetic founder opening message"
+    },
+    "workaround": {
+      "value": "A small unfinished local JavaScript invoice tracker",
+      "basis": "founder_statement",
+      "source": "Synthetic founder opening message"
+    },
+    "desiredOutcome": {
+      "value": "See the oldest unpaid overdue invoices first",
+      "basis": "founder_statement",
+      "source": "Synthetic founder opening message"
+    },
+    "solution": {
+      "value": "The existing application totals unpaid invoices",
+      "basis": "artifact_observation",
+      "source": "app.mjs"
+    },
+    "constraints": [
+      "Preserve existing JavaScript modules, manifest and instructions",
+      "Local synthetic records only; no reminders or email"
+    ],
+    "unknowns": [
+      "Whether this ordering helps the owner decide the next manual follow-up",
+      "Buyer and willingness to pay are unknown"
+    ]
+  },
+  "proposal": {
+    "title": "Show the oldest overdue unpaid invoices for one weekly review.",
+    "method": "build",
+    "journey": "Agency owner reads an existing invoice file and sees the overdue unpaid items in date order.",
+    "criticalUnknown": "Does oldest-first ordering help the owner choose a useful next follow-up?",
+    "why": "Reuse the working invoice data and add only the selection needed for a manual review.",
+    "nextAction": "After approval, add an overdue view beside the existing total function.",
+    "capabilities": [
+      "Select unpaid invoices overdue at an explicit review date",
+      "Print them oldest first"
+    ],
+    "keep": [
+      "Existing app.mjs total function",
+      "JavaScript ESM and existing package scripts",
+      "README and AGENTS.md"
+    ],
+    "park": [
+      "Email reminders",
+      "CRM",
+      "Payments and dashboards"
+    ],
+    "technicalAcceptance": [
+      "Paid, future and due-today invoices are excluded",
+      "Overdue invoices sort oldest first without mutating inputs",
+      "Existing total test still passes"
+    ],
+    "learningAcceptance": [
+      "Later, an agency owner can choose the next manual follow-up; confusion or no useful decision is valid negative evidence"
+    ],
+    "observationWindow": "Review after one synthetic demo, then arrange real exposure separately",
+    "cashSpend": 0
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "contractVersion": 2,
+  "synthetic": true,
+  "expectedVersion": 0,
+  "artifacts": [],
+  "artifactPermission": {
+    "granted": false,
+    "quote": ""
+  },
+  "foundation": {
+    "name": "Synthetic Client Checklist",
+    "stage": "idea",
+    "contactState": "none_reported",
+    "targetUser": {
+      "value": "Agency project managers",
+      "basis": "assumption",
+      "source": null
+    },
+    "buyer": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "problem": {
+      "value": "Chasing missing client files",
+      "basis": "founder_statement",
+      "source": "Synthetic opening message"
+    },
+    "trigger": {
+      "value": "Starting a client project",
+      "basis": "assumption",
+      "source": null
+    },
+    "workaround": {
+      "value": "Email and spreadsheets",
+      "basis": "assumption",
+      "source": null
+    },
+    "desiredOutcome": {
+      "value": "See missing material at a glance",
+      "basis": "founder_statement",
+      "source": "Synthetic opening message"
+    },
+    "solution": {
+      "value": "No code yet",
+      "basis": "founder_statement",
+      "source": "Synthetic opening message"
+    },
+    "constraints": [
+      "Use local JavaScript with no dependencies",
+      "Synthetic data only; no deployment or messages"
+    ],
+    "unknowns": [
+      "Who buys this and how often delays matter",
+      "Whether a checklist reduces chasing"
+    ]
+  },
+  "proposal": {
+    "title": "See which client files are missing",
+    "method": "build",
+    "journey": "Enter required and received items, then read what is missing.",
+    "criticalUnknown": "Does seeing missing items reduce chasing?",
+    "why": "A local example tests clarity before accounts or reminders.",
+    "nextAction": "Build a local checklist from synthetic required and received items.",
+    "capabilities": [
+      "Accept required and received item lists",
+      "Show missing items"
+    ],
+    "keep": [
+      "Local JavaScript, no dependencies"
+    ],
+    "park": [
+      "Accounts",
+      "Automatic reminders",
+      "Integrations"
+    ],
+    "technicalAcceptance": [
+      "Missing items are shown in required order",
+      "Matching trims whitespace and ignores letter case",
+      "Input arrays stay unchanged; malformed inputs fail"
+    ],
+    "learningAcceptance": [
+      "Later observe whether an agency worker can identify the next file to request without help"
+    ],
+    "observationWindow": "After a synthetic demo, arrange real observation separately",
+    "cashSpend": 0
+  },
+  "ideal": {
+    "intention": {
+      "goal": "solo_profit",
+      "statement": "I want a profitable solo business."
+    },
+    "consequence": {
+      "value": "Delays may consume time that could be spent on paid work",
+      "basis": "assumption",
+      "source": null
+    },
+    "feedback": [],
+    "evaluation": {
+      "state": "not_run",
+      "question": null,
+      "unavailableReason": null,
+      "findings": []
+    }
+  },
+  "brief": {
+    "summary": "You want a profitable solo business helping agencies collect client files. Project managers and email workarounds are assumptions; the buyer and pain frequency remain unknown.",
+    "nextAction": "Build a tiny missing-items checklist."
+  }
+}

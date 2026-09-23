@@ -1,0 +1,93 @@
+{
+  "contractVersion": 3,
+  "synthetic": true,
+  "expectedVersion": 0,
+  "artifacts": [],
+  "artifactPermission": {
+    "granted": false,
+    "quote": ""
+  },
+  "foundation": {
+    "name": "Synthetic Agency Invoices",
+    "stage": "building",
+    "contactState": "none_reported",
+    "targetUser": {
+      "value": "Owner-operators of small B2B agencies",
+      "basis": "founder_statement",
+      "source": "Synthetic founder opening message"
+    },
+    "buyer": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "problem": {
+      "value": "Choosing which overdue invoice needs attention may take too long",
+      "basis": "assumption",
+      "source": null
+    },
+    "trigger": {
+      "value": "Weekly receivables review",
+      "basis": "founder_statement",
+      "source": "Synthetic founder opening message"
+    },
+    "workaround": {
+      "value": "A small unfinished local JavaScript invoice tracker",
+      "basis": "founder_statement",
+      "source": "Synthetic founder opening message"
+    },
+    "desiredOutcome": {
+      "value": "See the oldest unpaid overdue invoices first",
+      "basis": "assumption",
+      "source": null
+    },
+    "solution": {
+      "value": "The founder reports that the tracker totals unpaid invoices",
+      "basis": "founder_statement",
+      "source": "Synthetic founder input"
+    },
+    "constraints": [
+      "Preserve existing JavaScript modules, manifest and instructions",
+      "Local synthetic records only; no reminders or email"
+    ],
+    "unknowns": [
+      "Whether this ordering helps the owner decide the next manual follow-up",
+      "Buyer and willingness to pay are unknown"
+    ]
+  },
+  "proposal": null,
+  "ideal": {
+    "intention": {
+      "goal": "solo_profit",
+      "statement": "A profitable solo business; keep the JavaScript application.",
+      "status": "provided"
+    },
+    "consequence": {
+      "value": "Delays may consume time that could be spent on paid work",
+      "basis": "assumption",
+      "source": null
+    },
+    "feedback": [],
+    "evaluation": {
+      "state": "not_run",
+      "question": null,
+      "unavailableReason": null,
+      "findings": []
+    },
+    "assessment": {
+      "promising": "The reported weekly workflow gives us a specific decision to examine.",
+      "weak": "No customer contact or willingness to pay has been established.",
+      "criticalUnknown": "What makes choosing the next follow-up difficult?",
+      "cheapestCheck": "Walk through one recent receivables review."
+    }
+  },
+  "brief": {
+    "summary": "Your tracker already totals unpaid invoices. My hypothesis is that choosing the next follow-up during a weekly review may be the missing value; customer demand remains unknown.",
+    "nextAction": "Correct the problem understanding.",
+    "questions": [
+      "Is deciding which invoice needs attention the problem you want to solve?"
+    ]
+  },
+  "phase": "orientation",
+  "decision": null
+}

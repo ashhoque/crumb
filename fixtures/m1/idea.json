@@ -1,0 +1,87 @@
+{
+  "contractVersion": 1,
+  "synthetic": true,
+  "expectedVersion": 0,
+  "artifacts": [],
+  "artifactPermission": {
+    "granted": false,
+    "quote": ""
+  },
+  "foundation": {
+    "name": "Synthetic Shift Note",
+    "stage": "idea",
+    "contactState": "none_reported",
+    "targetUser": {
+      "value": "Shift supervisors at small manufacturers",
+      "basis": "founder_statement",
+      "source": "Synthetic founder opening message"
+    },
+    "buyer": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "problem": {
+      "value": "The next shift may not know the next action after a machine stoppage",
+      "basis": "assumption",
+      "source": null
+    },
+    "trigger": {
+      "value": "A machine stops near a shift change",
+      "basis": "founder_statement",
+      "source": "Synthetic founder opening message"
+    },
+    "workaround": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "desiredOutcome": {
+      "value": "The next supervisor can understand what to do without a separate explanation",
+      "basis": "founder_statement",
+      "source": "Synthetic founder opening message"
+    },
+    "solution": {
+      "value": "No code yet",
+      "basis": "founder_statement",
+      "source": "Synthetic founder opening message"
+    },
+    "constraints": [
+      "Local Python standard library only",
+      "Synthetic examples; no messaging, deployment or spend"
+    ],
+    "unknowns": [
+      "Whether supervisors actually lose next-action context",
+      "Current workaround and buyer are unknown"
+    ]
+  },
+  "proposal": {
+    "title": "Turn one machine-stoppage note into a clear next-shift handoff.",
+    "method": "build",
+    "journey": "Supervisor enters one stoppage note and reads a clear next action.",
+    "criticalUnknown": "Can a supervisor act on a short handoff without the author explaining it?",
+    "why": "A local example can expose unclear wording before building integrations; demand is still unknown.",
+    "nextAction": "After approval, build a local text formatter using one synthetic note.",
+    "capabilities": [
+      "Validate machine, problem and next action",
+      "Render one concise handoff"
+    ],
+    "keep": [
+      "Dependency-free local Python"
+    ],
+    "park": [
+      "Accounts",
+      "Messaging and integrations",
+      "Dashboards"
+    ],
+    "technicalAcceptance": [
+      "A complete note renders its machine, problem and next action",
+      "Missing required fields fail clearly"
+    ],
+    "learningAcceptance": [
+      "Later, a relevant supervisor can explain the next action without coaching; difficulty is a valid negative result"
+    ],
+    "observationWindow": "Review after one supervised demonstration; no customer exposure has occurred",
+    "cashSpend": 0
+  }
+}

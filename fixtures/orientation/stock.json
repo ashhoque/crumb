@@ -1,0 +1,87 @@
+{
+  "contractVersion": 3,
+  "synthetic": true,
+  "expectedVersion": 0,
+  "artifacts": [],
+  "artifactPermission": {
+    "granted": false,
+    "quote": ""
+  },
+  "foundation": {
+    "name": "Synthetic Stock Comparison",
+    "stage": "idea",
+    "contactState": "none_reported",
+    "constraints": [
+      "Synthetic notes only; no live data, stock recommendations or deployment"
+    ],
+    "unknowns": [
+      "Personal or commercial intention",
+      "Where comparison becomes difficult"
+    ],
+    "targetUser": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "buyer": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "problem": {
+      "value": "Comparing promising stocks using sector tailwinds, growth, volume, insider buying, technical setup, catalysts and risk/reward",
+      "basis": "founder_statement",
+      "source": "Synthetic founder input"
+    },
+    "trigger": {
+      "value": "Several candidates look promising",
+      "basis": "founder_statement",
+      "source": "Synthetic founder input"
+    },
+    "workaround": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "desiredOutcome": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "solution": {
+      "value": "Starting fresh with no code",
+      "basis": "founder_statement",
+      "source": "Synthetic founder input"
+    }
+  },
+  "proposal": null,
+  "ideal": {
+    "intention": {
+      "goal": "unknown",
+      "statement": null,
+      "status": "asked"
+    },
+    "consequence": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "feedback": [],
+    "evaluation": {
+      "state": "not_run",
+      "question": null,
+      "unavailableReason": null,
+      "findings": []
+    },
+    "assessment": null
+  },
+  "brief": {
+    "summary": "I think the difficulty is making a consistent comparison when several candidates look promising. We should clarify what that decision needs to achieve before choosing features.",
+    "nextAction": "Clarify whether this is personal or commercial.",
+    "questions": [
+      "Is this mainly a tool for your own trading, or something you want to sell?"
+    ]
+  },
+  "phase": "orientation",
+  "decision": null
+}

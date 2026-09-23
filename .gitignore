@@ -1,0 +1,12 @@
+# Local private workspace: protect before any content is written.
+/.customer-evidence/
+/node_modules/
+/dist/
+/.m0-local/
+.env
+.env.*
+
+# Machine-specific groundwork artifacts remain local and unchanged.
+/ENVIRONMENT_SNAPSHOT.json
+/GROUNDWORK_REPORT.md
+/Enter-CECEnvironment.ps1

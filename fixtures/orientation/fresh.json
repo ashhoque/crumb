@@ -1,0 +1,88 @@
+{
+  "contractVersion": 3,
+  "synthetic": true,
+  "expectedVersion": 0,
+  "artifacts": [],
+  "artifactPermission": {
+    "granted": false,
+    "quote": ""
+  },
+  "foundation": {
+    "name": "Synthetic Client Checklist",
+    "stage": "idea",
+    "contactState": "none_reported",
+    "targetUser": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "buyer": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "problem": {
+      "value": "Chasing missing client files",
+      "basis": "founder_statement",
+      "source": "Synthetic opening message"
+    },
+    "trigger": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "workaround": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "desiredOutcome": {
+      "value": null,
+      "basis": "unknown",
+      "source": null
+    },
+    "solution": {
+      "value": "No code yet",
+      "basis": "founder_statement",
+      "source": "Synthetic opening message"
+    },
+    "constraints": [
+      "Use local JavaScript with no dependencies",
+      "Synthetic data only; no deployment or messages"
+    ],
+    "unknowns": [
+      "Who buys this and how often delays matter",
+      "Whether a checklist reduces chasing"
+    ]
+  },
+  "proposal": null,
+  "ideal": {
+    "intention": {
+      "goal": "unknown",
+      "statement": null,
+      "status": "asked"
+    },
+    "consequence": {
+      "value": "Delays may consume time that could be spent on paid work",
+      "basis": "assumption",
+      "source": null
+    },
+    "feedback": [],
+    "evaluation": {
+      "state": "not_run",
+      "question": null,
+      "unavailableReason": null,
+      "findings": []
+    },
+    "assessment": null
+  },
+  "brief": {
+    "summary": "I think the problem may be stalled client work, with file chasing as the symptom. That is a hypothesis we can sharpen without planning a whole product.",
+    "nextAction": "Clarify what you want this to become.",
+    "questions": [
+      "What are you hoping this becomes?"
+    ]
+  },
+  "phase": "orientation",
+  "decision": null
+}
