@@ -1,6 +1,6 @@
 /** Display identity only. Never derive persisted identifiers or paths from this. */
 export const brand = {
-  name: 'Pruvello',
-  tagline: 'the business copilot for AI builders',
-  skill: 'pruvello',
+  name: 'Crumb',
+  tagline: 'The business copilot for AI builders',
+  skill: 'crumb',
 } as const;

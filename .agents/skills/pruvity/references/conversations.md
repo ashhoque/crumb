@@ -1,3 +1,3 @@
 # Compatibility reference
 
-See the maintained [conversation guide](../../pruvello/references/conversations.md).
+Follow the current [Crumb conversations](../../crumb/references/conversations.md). Historical schema and state remain supported.

@@ -1,0 +1,646 @@
+{
+  "contractVersion": 1,
+  "expectedVersion": 0,
+  "synthetic": true,
+  "stage": "evaluate",
+  "project": {
+    "name": "Personal stock comparison",
+    "entry": "fresh",
+    "artifacts": [],
+    "permissionQuote": null
+  },
+  "preferredName": null,
+  "intention": {
+    "status": "provided",
+    "goal": "personal",
+    "statement": "For myself first; perhaps a business later.",
+    "advice": "Prioritize recurring personal usefulness and whether existing tools suffice."
+  },
+  "definition": {
+    "user": {
+      "text": "Self-directed investor comparing a shortlist.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "inferred"
+    },
+    "buyer": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "problem": {
+      "text": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "trigger": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "job": {
+      "text": "Compare criteria consistently and recover the reasoning later.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "inferred"
+    },
+    "workaround": {
+      "text": "Notes with changing criteria.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "pain": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "consequence": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "frequency": {
+      "text": "Most weekends, as reported by the example founder.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "reason_for_belief": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    }
+  },
+  "feedbackClaimIds": [],
+  "sources": [
+    {
+      "id": "founder-input",
+      "title": "founder-input",
+      "url": null,
+      "kind": "founder",
+      "provenance": "synthetic_fixture",
+      "access": "provided",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+      "limitation": "Constructed synthetic research fixture; not a real market finding.",
+      "archived": false,
+      "independenceKey": "founder-input",
+      "affiliation": "independent"
+    },
+    {
+      "id": "comparison-vendor",
+      "title": "comparison-vendor",
+      "url": "https://research.example.invalid/comparison",
+      "kind": "vendor",
+      "provenance": "synthetic_fixture",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "This fictional product provides custom comparison tables and saved notes. A subscription is offered at a fictional price; purchase volume is unknown.",
+      "limitation": "Constructed synthetic research fixture; not a real market finding.",
+      "archived": false,
+      "independenceKey": "comparison-vendor",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "user-discussion",
+      "title": "user-discussion",
+      "url": "https://research.example.invalid/discussion",
+      "kind": "discussion",
+      "provenance": "synthetic_fixture",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "A fictional investor describes difficulty reconstructing why one shortlisted candidate was preferred. Another fictional contributor finds an existing spreadsheet sufficient.",
+      "limitation": "Constructed synthetic research fixture; not a real market finding.",
+      "archived": false,
+      "independenceKey": "user-discussion",
+      "affiliation": "independent"
+    },
+    {
+      "id": "investor-group",
+      "title": "investor-group",
+      "url": "https://research.example.invalid/group",
+      "kind": "association",
+      "provenance": "synthetic_fixture",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "This fictional investor group hosts discussions about research workflows. No recruitment policy or interest has been verified.",
+      "limitation": "Constructed synthetic research fixture; not a real market finding.",
+      "archived": false,
+      "independenceKey": "investor-group",
+      "affiliation": "independent"
+    }
+  ],
+  "claims": [
+    {
+      "id": "founder-context",
+      "statement": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+      "basis": "founder_reported",
+      "sourceIds": [
+        "founder-input"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Synthetic scenario; no customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "existing-comparison",
+      "statement": "A fictional alternative already compares candidates and saves notes.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "comparison-vendor"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Synthetic scenario; no customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "reasoning-friction",
+      "statement": "A synthetic public discussion describes reconstructing a decision rationale.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "user-discussion"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Synthetic scenario; no customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "spreadsheet-sufficient",
+      "statement": "A synthetic contributor considers a spreadsheet adequate.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "user-discussion"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Synthetic scenario; no customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "habitat-observed",
+      "statement": "A fictional investor group discusses research workflows.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "investor-group"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Synthetic scenario; no customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "rationale-hypothesis",
+      "statement": "A simpler rationale history might help this founder, but an existing tool may already suffice.",
+      "basis": "inference",
+      "sourceIds": [
+        "founder-input"
+      ],
+      "supports": [
+        "reasoning-friction"
+      ],
+      "challenges": [
+        "existing-comparison",
+        "spreadsheet-sufficient"
+      ],
+      "limitation": "Synthetic scenario; no customer validation.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    }
+  ],
+  "research": [
+    {
+      "id": "bounded-research",
+      "question": "How do existing alternatives and investor workflows change the personal comparison idea?",
+      "capability": "synthetic_fixture",
+      "queryBudget": 12,
+      "pageBudget": 24,
+      "budgetReason": null,
+      "queries": [
+        {
+          "text": "Synthetic comparison and journal alternatives",
+          "materialFinding": true
+        },
+        {
+          "text": "Synthetic investor comparison workflow pain and workarounds",
+          "materialFinding": true
+        },
+        {
+          "text": "Synthetic investor communities and participation routes",
+          "materialFinding": true
+        }
+      ],
+      "inspectedSourceIds": [
+        "comparison-vendor",
+        "user-discussion",
+        "investor-group"
+      ],
+      "stopReason": "coverage_sufficient",
+      "limitation": "Synthetic bounded dossier; category-wide prevalence, payment and outcome effects remain unknown."
+    }
+  ],
+  "competitors": [
+    {
+      "id": "fictional-comparison",
+      "name": "Fictional comparison product",
+      "categories": [
+        "direct",
+        "incumbent"
+      ],
+      "fields": {
+        "target": {
+          "text": "Fictional research tool supporting shortlist comparison and notes.",
+          "claimIds": [
+            "existing-comparison"
+          ],
+          "basis": "observed"
+        },
+        "workflow": {
+          "text": "Fictional research tool supporting shortlist comparison and notes.",
+          "claimIds": [
+            "existing-comparison"
+          ],
+          "basis": "observed"
+        },
+        "positioning": {
+          "text": "Fictional research tool supporting shortlist comparison and notes.",
+          "claimIds": [
+            "existing-comparison"
+          ],
+          "basis": "observed"
+        },
+        "pricing": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "capabilities": {
+          "text": "Fictional research tool supporting shortlist comparison and notes.",
+          "claimIds": [
+            "existing-comparison"
+          ],
+          "basis": "observed"
+        },
+        "love": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "hate": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": "A simpler rationale workflow is a hypothesis, not an established unmet need.",
+          "claimIds": [
+            "rationale-hypothesis"
+          ],
+          "basis": "inferred"
+        }
+      },
+      "tractionClaimIds": []
+    }
+  ],
+  "adjacent": [],
+  "habitats": [
+    {
+      "id": "investor-habitat",
+      "kind": "online",
+      "place": "Fictional investor workflow group",
+      "observedClaimIds": [
+        "habitat-observed"
+      ],
+      "likelyUsers": "Self-directed investors; inferred from the discussion topic.",
+      "relevance": "They discuss the work being investigated; individual interest is unknown.",
+      "participation": {
+        "route": "Inspect current rules before any founder participation.",
+        "verified": false,
+        "sourceIds": [
+          "investor-group"
+        ]
+      },
+      "limitation": "Synthetic habitat; no actual group, participant or permission is established."
+    }
+  ],
+  "firstUserAvenues": [
+    "investor-habitat"
+  ],
+  "redTeam": [
+    {
+      "claimId": "rationale-hypothesis",
+      "evidence": "The example founder reports forgetting; a synthetic discussion describes related friction.",
+      "inference": "A simpler rationale history may help.",
+      "assumption": "The extra recording effort is worthwhile.",
+      "contradiction": "A spreadsheet and existing saved notes may already suffice.",
+      "disproof": "A consistent existing note template removes the difficulty.",
+      "cheapestLearning": "After Evaluate, compare the current note process with one recent decision or interview about actual behavior."
+    }
+  ],
+  "master": {
+    "thesis": "Improve a personal comparison workflow before assuming a business.",
+    "interviewPlan": "Explore a recent comparison, its hardest part, attempted workarounds and remaining friction.",
+    "mvpHypothesis": "A small rationale record may make criteria consistent across revisits.",
+    "nonGoals": [
+      "Return prediction",
+      "Live trading",
+      "Broad market screening"
+    ],
+    "technicalStrategy": "Preserve the target stack; begin with local fictional examples if the founder chooses a build.",
+    "businessModel": "Not required for personal usefulness; payment is an untested later hypothesis.",
+    "economics": "No economics established. Data licensing and support costs need research if the scope becomes commercial.",
+    "validationPlan": "Observe the actual comparison process; technical correctness and useful behavior remain separate.",
+    "risks": [
+      "Existing tools may suffice.",
+      "Data confidence and maintenance effort may dominate the problem."
+    ]
+  },
+  "buildRequest": null,
+  "evaluation": {
+    "status": "ready",
+    "coverage": [
+      {
+        "topic": "frequency",
+        "status": "findings",
+        "claimIds": [
+          "founder-context"
+        ],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "Considered frequency using the linked scenario evidence; commercial interpretation remains conditional."
+      },
+      {
+        "topic": "urgency",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "The bounded synthetic search did not establish urgency; this remains an explicit limit."
+      },
+      {
+        "topic": "pain",
+        "status": "findings",
+        "claimIds": [
+          "reasoning-friction"
+        ],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "Considered pain using the linked scenario evidence; commercial interpretation remains conditional."
+      },
+      {
+        "topic": "necessity",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "The bounded synthetic search did not establish necessity; this remains an explicit limit."
+      },
+      {
+        "topic": "prevalence",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "The bounded synthetic search did not establish prevalence; this remains an explicit limit."
+      },
+      {
+        "topic": "category_direction",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "The bounded synthetic search did not establish category direction; this remains an explicit limit."
+      },
+      {
+        "topic": "buyer",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "The bounded synthetic search did not establish buyer; this remains an explicit limit."
+      },
+      {
+        "topic": "existing_spend",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "The bounded synthetic search did not establish existing spend; this remains an explicit limit."
+      },
+      {
+        "topic": "reachability",
+        "status": "findings",
+        "claimIds": [
+          "habitat-observed"
+        ],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "Considered reachability using the linked scenario evidence; commercial interpretation remains conditional."
+      },
+      {
+        "topic": "founder_fit",
+        "status": "findings",
+        "claimIds": [
+          "founder-context"
+        ],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "Considered founder fit using the linked scenario evidence; commercial interpretation remains conditional."
+      },
+      {
+        "topic": "ai_substitutes",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "The bounded synthetic search did not establish ai substitutes; this remains an explicit limit."
+      },
+      {
+        "topic": "dedicated_value",
+        "status": "findings",
+        "claimIds": [
+          "rationale-hypothesis"
+        ],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "Considered dedicated value using the linked scenario evidence; commercial interpretation remains conditional."
+      },
+      {
+        "topic": "competitors",
+        "status": "findings",
+        "claimIds": [
+          "existing-comparison"
+        ],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "Considered competitors using the linked scenario evidence; commercial interpretation remains conditional."
+      },
+      {
+        "topic": "user_language",
+        "status": "findings",
+        "claimIds": [
+          "reasoning-friction"
+        ],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "Considered user language using the linked scenario evidence; commercial interpretation remains conditional."
+      },
+      {
+        "topic": "traction",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "The bounded synthetic search did not establish traction; this remains an explicit limit."
+      },
+      {
+        "topic": "gaps",
+        "status": "findings",
+        "claimIds": [
+          "rationale-hypothesis"
+        ],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "Considered gaps using the linked scenario evidence; commercial interpretation remains conditional."
+      },
+      {
+        "topic": "adjacency",
+        "status": "findings",
+        "claimIds": [
+          "rationale-hypothesis"
+        ],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "Considered adjacency using the linked scenario evidence; commercial interpretation remains conditional."
+      },
+      {
+        "topic": "habitats",
+        "status": "findings",
+        "claimIds": [
+          "habitat-observed"
+        ],
+        "runIds": [
+          "bounded-research"
+        ],
+        "reason": "Considered habitats using the linked scenario evidence; commercial interpretation remains conditional."
+      }
+    ],
+    "promising": [
+      "A recurring personal workflow and direct access to its user."
+    ],
+    "weak": [
+      "Comparison and notes are already available in substitutes."
+    ],
+    "unknowns": [
+      "Whether dedicated software improves on a consistent note template.",
+      "Whether others would switch or pay."
+    ],
+    "contradictions": [
+      "The initial assumption that comparison is missing conflicts with existing alternatives."
+    ],
+    "conclusion": "Personal rationale continuity is worth understanding; a differentiated commercial opportunity is not established."
+  },
+  "brief": {
+    "kind": "research",
+    "summary": "The clearer opportunity is preserving a consistent decision rationale, rather than adding another comparison table. Existing alternatives challenge the original gap, and a spreadsheet may already be enough. For your personal goal, usefulness matters before a commercial case.",
+    "seeing": [
+      "The example founder reports recurring friction.",
+      "The dossier includes opposing evidence and a plausible user habitat."
+    ],
+    "matters": [
+      "Payment and prevalence remain unknown."
+    ],
+    "next": "Choose what would help you decide.",
+    "questions": [],
+    "choices": [
+      {
+        "label": "Interview likely users",
+        "action": "interview"
+      },
+      {
+        "label": "Shape the smallest MVP",
+        "action": "shape_mvp"
+      },
+      {
+        "label": "Open research",
+        "action": "research"
+      }
+    ]
+  }
+}

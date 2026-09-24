@@ -7,7 +7,7 @@ $OutputEncoding = $cecUtf8
 [Console]::OutputEncoding = $cecUtf8
 # Capture request input before probing native executables: PowerShell can forward
 # and consume redirected stdin even when a version-probe process never reads it.
-$cecHasInput = $Arguments.Count -gt 1 -and $Arguments[0] -eq 'internal' -and $Arguments[1] -in @('draft','approve','inspect','receipt')
+$cecHasInput = $Arguments.Count -gt 1 -and $Arguments[0] -eq 'internal' -and $Arguments[1] -in @('draft','approve','inspect','receipt','prebuild','restore-context')
 $cecInputText = $null
 if ($cecHasInput -and $MyInvocation.ExpectingInput) { $cecInputText = @($input) -join "`n" }
 elseif ($cecHasInput -and [Console]::IsInputRedirected) { $cecInputText = [Console]::In.ReadToEnd() }

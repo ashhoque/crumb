@@ -8,6 +8,7 @@ import { inspectPath, PRIVATE_DIRECTORY, resolveProjectRoot } from '../privacy/s
 import { inspectArtifacts, selectedFileHash, sha256 } from '../privacy/artifacts.js';
 import { claimFields, isActionable, validate, type Approval, type ConversationDraft, type Draft, type Receipt } from '../domain/contracts.js';
 import { validateConversation } from '../domain/conversation.js';
+import { assertPrebuildReference, storedPrebuild, readPrebuild, compactPrebuild } from './prebuild.js';
 
 export interface SavedDraft { version: number; hash: string; draft: ConversationDraft }
 export interface Cycle { id: string; foundationId: string; revision: 1; basis: 'HYPOTHESIS-LED'; draftHash: string; draft: Draft; approvedAt: string; approvalQuote: string }
@@ -62,6 +63,8 @@ export function saveDraft(target: string, input: unknown): SavedDraft {
   verifyArtifacts(resolveProjectRoot(target), input);
   return withStore(target, db => db.transaction(() => {
     if (storedCycle(db)) throw new Error('M1 already has an approved cycle. It is immutable; additional cycles are deferred.');
+    if (input.contractVersion === 4) assertPrebuildReference(db, input);
+    else if (storedPrebuild(db)) throw new Error('Use a v4 action linked to the current evaluation; a legacy preview does not establish readiness.');
     const old = storedDraft(db);
     if ((old?.version ?? 0) !== input.expectedVersion) throw new Error('The draft changed in another session. Read current context, then review your revision.');
     const version = (old?.version ?? 0) + 1;
@@ -83,6 +86,8 @@ export function approveDraft(target: string, input: unknown): Cycle {
     const draft = storedDraft(db);
     if (!draft || draft.hash !== input.draftHash) throw new Error('Approval does not match the current draft. Show the current scope and obtain its approval.');
     if (!isActionable(draft.draft)) throw new Error('This is problem context, not a build scope. Show a small proposal before requesting approval.');
+    if (draft.draft.contractVersion === 4) assertPrebuildReference(db, draft.draft);
+    else if (storedPrebuild(db)) throw new Error('This legacy proposal predates the current evaluation. Review a v4 scope linked to the latest context.');
     verifyArtifacts(root, draft.draft);
     const approvedAt = new Date().toISOString();
     const foundationId = randomUUID();
@@ -146,5 +151,6 @@ export function recordReceipt(target: string, input: unknown): BuildReceipt {
 export function compactContext(target: string): object {
   const state = readWorkflow(target);
   const { latestReceipt, ...current } = state;
-  return { ...current, draft: state.cycle ? null : state.draft, latestReceipt: latestReceipt ? { id: latestReceipt.id, implementation: latestReceipt.implementation, changedPaths: latestReceipt.changes, checks: latestReceipt.checks.map(({ label, result }) => ({ label, result })), gaps: latestReceipt.gaps, runInstructions: latestReceipt.runInstructions, release: latestReceipt.release, customerExposure: latestReceipt.customerExposure, customerValidation: latestReceipt.customerValidation } : null };
+  const prebuild = readPrebuild(target);
+  return { ...current, ...(prebuild ? { prebuild: compactPrebuild(prebuild) } : {}), draft: state.cycle ? null : state.draft, latestReceipt: latestReceipt ? { id: latestReceipt.id, implementation: latestReceipt.implementation, changedPaths: latestReceipt.changes, checks: latestReceipt.checks.map(({ label, result }) => ({ label, result })), gaps: latestReceipt.gaps, runInstructions: latestReceipt.runInstructions, release: latestReceipt.release, customerExposure: latestReceipt.customerExposure, customerValidation: latestReceipt.customerValidation } : null };
 }

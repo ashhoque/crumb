@@ -1,35 +1,43 @@
-# Pruvello status
+# Crumb status
 
-**M1-R correction implemented — PASS WITH WARNINGS.**
-23 September 2026. The user approved the proposal and implementation.
-M2 has not started. See M1_R_REPORT.md for actual results and limits.
+**M1-R2 implemented — verified with limitations. Founder UX acceptance pending.**
+23 September 2026. Revised M2 has not started.
 
-- Pre-proposal orientation persists and resumes without inventing features.
-- Intention, problem reframe and brief evaluation guide the default conversation.
-- Build now bypasses business homework; only a reviewed action scope can be approved.
-- Responses remain concise with optional detail and normally one question.
-- Corrected feedback can change the proposed test; stale approvals remain invalid.
-- Pruvello display branding is separate from durable IDs; both legacy aliases work.
-- The working storage/privacy/approval/receipt/backup foundation is preserved.
+The founder approved Complete pre-build IDE experience and requested GitHub first.
+The existing 83-test baseline and proposal were pushed to main at a601e85 before
+implementation. Git is installed and authenticated; no terminal setup remains.
 
-| Verification | Result |
-| --- | --- |
-| Pinned-runtime build and suite | 83 passed, 0 failed, 0 skipped |
-| Existing baseline tests | All 71 retained and passed |
-| Four orientation/save/resume paths | PASS |
-| v3 approved action, actual check, receipt and backup | PASS |
-| Skill validation and installed scanner discovery | PASS for Pruvello and both aliases |
-| Four independent agent conversation rehearsals | Completed; includes corrected feedback and stock Build now |
-| Dependency lock, old contracts and historical reports | Unchanged |
-| Fresh authenticated nested-host invocation | Not verified; home-directory startup limitation |
-| Independent founder UX acceptance | Pending a real trial; not inferred from tests |
+Crumb now retains Intention/Define/Evaluate independently of a build proposal,
+with bounded host research, source/claim continuity, competitor and substitute
+learning, user language, metrics/proxies, gaps/adjacent comparisons, habitats,
+interview preparation and an optional startup master/red team. The normal path
+requires meaningful evaluation. An explicit build request preserves the existing
+small-scope approval, implementation, check, receipt and backup path.
 
-PRODUCT_SPEC.md is the active v0.6 master. CEC_MASTER_SPEC_v0.5.md,
-M0_REPORT.md, M1_REPORT.md and M1-R_REPORT.md remain historical evidence.
-Use M1-R_TEST_GUIDE.md to try the updated skill.
+| Verification | Executed result |
+|---|---|
+| Pinned-runtime build and offline suite | 140 passed, 0 failed/skipped; all 83 baseline tests retained |
+| Independent conversation rehearsal | Six synthetic paths saved/resumed; corrected feedback retained; explicit build completed |
+| Source-backed stock rehearsal | Actual public sources, qualified evaluation, master, reviewed normal action; 3 local build checks passed |
+| Backups and context recovery | Integrity-checked snapshots and non-overwriting logical recovery exercised |
+| Skill validation/scanner | Crumb plus three compatibility aliases passed |
+| Nested authenticated host invocation | Unverified: home-directory startup failure |
+| Old contracts, lockfile and historical reports | Unchanged |
+| Actual founder acceptance | Pending; not inferred from the above |
 
-Remaining boundaries: synthetic data, one approved cycle, Windows/pinned runtime,
-host-reported decisions/checks and same-disk backup. No live research, customer-source
-import or later milestone was added. The host uses direct pinned Node for JSON input
-because one launcher-pipeline route lost input during rehearsal. No runtime/profile
-replacement or global installation is needed. No commit or push was made.
+See [M1_R2_REPORT.md](M1_R2_REPORT.md) for the complete acceptance matrix and
+disclosed limits, and [M1_R2_TEST_GUIDE.md](M1_R2_TEST_GUIDE.md) for the founder trial.
+The active authority is PRODUCT_SPEC.md v0.7. Display branding is separate from
+stable package/storage/schema identity.
+
+The core validates host-reported context; it does not independently establish
+research truth, consent, customer demand or the quality of business reasoning.
+Raw confidential customer-source import, automated outreach, spending, deployment,
+automatic outcome ingestion and a second tracked build cycle remain outside scope.
+Backups on the same disk do not protect against disk loss. Broader recovery/data
+rights and distribution gates remain future work.
+
+Historical evidence remains in M0_REPORT.md, M1_REPORT.md, M1-R_REPORT.md and
+M1_R_REPORT.md. The latter's 83-test result is preserved, alongside the founder's
+subsequent rejection of its early move to testing/building. It is not acceptance
+of the current milestone. Stop before the revised M2 Act/staged builder.

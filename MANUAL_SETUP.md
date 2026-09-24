@@ -1,7 +1,9 @@
-# Setup status after M1-R
+# Setup status after M1-R2
 
-No prerequisite installation is required to try the synthetic Pruvello M1-R workflow.
-M1's UX was rejected and its revision flows approved. M2 has not begun.
+Git is installed and authenticated, main tracks origin/main, and the existing
+project is published at https://github.com/ashhoque/crumb. No download or terminal
+setup remains for this machine. Crumb M1-R2 is implemented; use M1_R2_TEST_GUIDE.md.
+Revised M2 has not begun. The M0 history below remains historical evidence.
 
 ## M0 host verification history
 
@@ -22,19 +24,20 @@ receipts. Those are scripted developer rehearsals, not an independent usability 
 
 ## Current supported entry
 
-Open CEC as a Codex project and say `$pruvello Let's try a synthetic example.`
+Open CEC as a Codex project and say `$crumb Let's try a synthetic example.`
 The host prepares a unique temporary example and handles the internal commands.
 The first response asks whether you are starting fresh or have a project in progress.
-Choose either path; use Build now after reviewing the small scope, or request
-optional detail. There are no forms or founder-facing setup commands.
+Known context prevents repeated onboarding. Normal action follows meaningful
+evaluation; an explicit build request can bypass it after scope review. There
+are no forms or founder-facing setup commands.
 
 From a task outside this repository, explicitly load:
-`C:\Users\Ash\Documents\Codex\CEC\.agents\skills\pruvello\SKILL.md`.
+`C:\Users\Ash\Documents\Codex\CEC\.agents\skills\crumb\SKILL.md`.
 The new skill is verified by the installed repository scanner. Its fresh interactive
 invocation still needs your own trial; automated nested authenticated host startup
 remains limited by the sandbox. This is a verification warning, not a required
 machine configuration change. Do not weaken protections or copy credentials.
-For another repository, explicitly load the Pruvello skill and identify the target;
+For another repository, explicitly load the Crumb skill and identify the target;
 packaged skill installation is deferred. Do not copy secrets or host credentials.
 
 On this machine `cec.ps1` selects verified Node 24 for CEC without replacing the

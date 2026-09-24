@@ -1,9 +1,8 @@
 ---
 name: customer-evidence
-description: Compatibility entry point for the legacy customer-evidence invocation. Use the current Pruvello synthetic founder workflow.
+description: Compatibility entry for the previous customer-evidence invocation. Use Crumb to clarify and investigate a builder's idea or existing project before choosing an action. Not for developing Crumb itself.
 ---
 
-Read [Pruvello](../pruvello/SKILL.md) and follow its conversation and local-tool references.
-Keep existing state and approval; this alias does not migrate data.
-For an explicit legacy M0 discovery probe only, reply `CEC_M0_SKILL_LOADED` and
-explain the Pruvello synthetic workflow is now available. Do not initialize project data.
+Read [Crumb](../crumb/SKILL.md) and follow its focused references. Preserve the existing project, history and approvals; this alias changes no persistent identifiers.
+
+For an explicit legacy discovery probe only, reply `CEC_M0_SKILL_LOADED` and explain that the Crumb pre-build workflow is available. Do not inspect or initialize project data.

@@ -2,7 +2,7 @@
   "name": "pruvity",
   "version": "0.1.0-m1r",
   "private": true,
-  "description": "Pruvello: the business copilot for AI builders; synthetic M1-R prototype",
+  "description": "Crumb: The business copilot for AI builders; pre-build M1-R2 prototype",
   "type": "module",
   "engines": {
     "node": "24.19.0",

@@ -5,7 +5,7 @@ import type { SqliteConnection } from './sqlite.js';
 export function migrateWorkflow(db: SqliteConnection): void {
   db.transaction(() => {
     const version = db.get('PRAGMA user_version')?.['user_version'];
-    if (version === 1) {
+    if (version === 1 || version === 2) {
       if (db.get('SELECT format FROM cec_meta WHERE singleton = 1')?.['format'] !== 1) throw new Error('Unsupported CEC workflow schema.');
       return;
     }

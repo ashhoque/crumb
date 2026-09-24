@@ -1,0 +1,277 @@
+{
+  "contractVersion": 1,
+  "expectedVersion": 0,
+  "synthetic": true,
+  "stage": "define",
+  "project": {
+    "name": "Personal stock comparison",
+    "entry": "fresh",
+    "artifacts": [],
+    "permissionQuote": null
+  },
+  "preferredName": null,
+  "intention": {
+    "status": "skipped",
+    "goal": "unknown",
+    "statement": null,
+    "advice": null
+  },
+  "definition": {
+    "user": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "buyer": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "problem": {
+      "text": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "trigger": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "job": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "workaround": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "pain": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "consequence": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "frequency": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "reason_for_belief": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    }
+  },
+  "feedbackClaimIds": [],
+  "sources": [
+    {
+      "id": "founder-input",
+      "title": "founder-input",
+      "url": null,
+      "kind": "founder",
+      "provenance": "synthetic_fixture",
+      "access": "provided",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+      "limitation": "Constructed synthetic research fixture; not a real market finding.",
+      "archived": false,
+      "independenceKey": "founder-input",
+      "affiliation": "independent"
+    }
+  ],
+  "claims": [
+    {
+      "id": "founder-context",
+      "statement": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+      "basis": "founder_reported",
+      "sourceIds": [
+        "founder-input"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Synthetic scenario; no customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    }
+  ],
+  "research": [],
+  "competitors": [],
+  "adjacent": [],
+  "habitats": [],
+  "firstUserAvenues": [],
+  "redTeam": [],
+  "master": null,
+  "buildRequest": {
+    "quote": "I just want to build now; skip research."
+  },
+  "evaluation": {
+    "status": "not_started",
+    "coverage": [
+      {
+        "topic": "frequency",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "urgency",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "pain",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "necessity",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "prevalence",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "category_direction",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "buyer",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "existing_spend",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "reachability",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "founder_fit",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "ai_substitutes",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "dedicated_value",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "competitors",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "user_language",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "traction",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "gaps",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "adjacency",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "habitats",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      }
+    ],
+    "promising": [],
+    "weak": [],
+    "unknowns": [],
+    "contradictions": [],
+    "conclusion": null
+  },
+  "brief": {
+    "kind": "conversation",
+    "summary": "We can build now. The opportunity has not been evaluated, so keep the first scope extremely small.",
+    "seeing": [
+      "Compare two fictional candidates without predicting returns."
+    ],
+    "matters": [
+      "Usefulness beyond this example is unknown."
+    ],
+    "next": "Review a local comparison and saved rationale before implementation.",
+    "questions": [],
+    "choices": [
+      {
+        "label": "Shape this requested build",
+        "action": "build_requested"
+      },
+      {
+        "label": "Adjust the scope",
+        "action": "correct"
+      }
+    ]
+  }
+}

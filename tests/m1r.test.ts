@@ -54,7 +54,7 @@ for (const name of ['fresh', 'existing', 'feedback']) test(`${name}: concise rev
   const summary = renderSummary(saved);
   assert.ok(words(summary) <= 120, `${words(summary)} words`);
   assert.ok(summary.startsWith('Executive Summary\n'));
-  assert.match(summary,/Build now/);
+  assert.match(summary,/Build this scope|Prepare this conversation/);
   for (const capability of draft.proposal.capabilities) assert.ok(summary.includes(capability));
   assert.ok(!summary.includes(draft.proposal.why));
   assert.throws(()=>approvedHandoff(root),/No approved scope/);
@@ -110,7 +110,7 @@ test('evaluation states never gate build and distinguish proxy from disclosed me
     draft.ideal.evaluation={state,question:state==='requested'?'Which manual substitutes exist?':null,unavailableReason:state==='unavailable'?'Research is not available in this prototype.':null,findings:state==='available'?[finding()]:[]};
     const saved=saveDraft(root,draft);
     const detail=renderDetail(saved,'research');
-    assert.match(detail,/Build now/);
+    assert.doesNotMatch(detail,/Build now/);
     if(state==='available') assert.match(detail,/public proxy; synthetic fixture/);
     assert.equal(approve(root,saved.hash).basis,'HYPOTHESIS-LED');
   }
@@ -179,7 +179,7 @@ test('real CLI optional-detail actions return to the same unapproved scope', t =
   const root=temporaryProject(t),saved=saveDraft(root,fixture());
   for(const section of ['research','competitors','evidence','sources']) {
     const result=spawnSync(process.execPath,[cli,'internal','detail',root,'--section',section],{encoding:'utf8',windowsHide:true});
-    assert.equal(result.status,0,result.stderr);assert.match(result.stdout,/Build now/);
+    assert.equal(result.status,0,result.stderr);assert.match(result.stdout,/Back/);assert.doesNotMatch(result.stdout,/Build now/);
   }
   const invalid=spawnSync(process.execPath,[cli,'internal','detail',root,'--page','NaN'],{encoding:'utf8',windowsHide:true});
   assert.equal(invalid.status,1);

@@ -1,0 +1,103 @@
+{
+  "recordedOn": "2026-09-23",
+  "baselineCommit": "a601e85dd1a7968ca72849a08cb7b1c2c4be198d",
+  "core": {
+    "tests": 140,
+    "passed": 140,
+    "failed": 0,
+    "skipped": 0,
+    "node": "24.19.0",
+    "network": "Node transport guard, not OS isolation"
+  },
+  "skillEntries": [
+    "crumb",
+    "pruvello",
+    "pruvity",
+    "customer-evidence"
+  ],
+  "skillValidation": "four passed",
+  "scanner": {
+    "passed": true,
+    "aliases": [
+      {
+        "name": "pruvello",
+        "enabled": true
+      },
+      {
+        "name": "pruvity",
+        "enabled": true
+      },
+      {
+        "name": "customer-evidence",
+        "enabled": true
+      }
+    ],
+    "isolatedProfile": true
+  },
+  "nestedInvocation": {
+    "verified": false,
+    "error": "Codex app-server exited before responding.",
+    "homeDirectoryUnavailable": true
+  },
+  "independentConversations": [
+    {
+      "name": "01-agencies",
+      "contextVersion": 4,
+      "evaluation": "ready",
+      "cycleId": null,
+      "receiptId": null,
+      "operatorFailures": 1
+    },
+    {
+      "name": "02-compliance",
+      "contextVersion": 4,
+      "evaluation": "limited",
+      "cycleId": null,
+      "receiptId": null,
+      "operatorFailures": 1
+    },
+    {
+      "name": "03-invoices",
+      "contextVersion": 4,
+      "evaluation": "limited",
+      "cycleId": null,
+      "receiptId": null,
+      "operatorFailures": 2
+    },
+    {
+      "name": "04-receipts",
+      "contextVersion": 4,
+      "evaluation": "limited",
+      "cycleId": null,
+      "receiptId": null,
+      "operatorFailures": 1
+    },
+    {
+      "name": "05-stocks",
+      "contextVersion": 4,
+      "evaluation": "limited",
+      "cycleId": null,
+      "receiptId": null,
+      "operatorFailures": 1
+    },
+    {
+      "name": "06-build-now",
+      "contextVersion": 1,
+      "evaluation": "not_started",
+      "cycleId": "bd0c4407-42a6-408a-8b22-9b5c4751e900",
+      "receiptId": "bc3b7d51-cd31-45ff-bcf2-3c613e1cbbc3",
+      "operatorFailures": 0
+    }
+  ],
+  "sourceBackedAction": {
+    "contextHash": "11d07029ce169aaaa7b12957e2e4c5a51a22753b1d5961e2e0a6332d380238b7",
+    "draftHash": "43eedf08546d1275e35732455800909b496ec1b8ab7b49208a90b56a71bfbb1d",
+    "cycleId": "e9d29f53-61d0-4351-91d8-a3ebbfdfdd77",
+    "receiptId": "37577ce9-a9fb-4a40-a2e4-cf3defb16ca1",
+    "checksPassed": 3,
+    "customerValidation": "not_established",
+    "backupIntegrity": "ok"
+  },
+  "founderAcceptance": "pending",
+  "nextMilestone": "M2 not started"
+}

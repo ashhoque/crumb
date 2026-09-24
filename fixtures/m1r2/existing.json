@@ -1,0 +1,277 @@
+{
+  "contractVersion": 1,
+  "expectedVersion": 0,
+  "synthetic": true,
+  "stage": "define",
+  "project": {
+    "name": "Invoice tracker",
+    "entry": "existing",
+    "artifacts": [],
+    "permissionQuote": null
+  },
+  "preferredName": null,
+  "intention": {
+    "status": "provided",
+    "goal": "solo_profit",
+    "statement": "A profitable solo business.",
+    "advice": "Prioritize recurring buyer value, reachable users and manageable delivery costs."
+  },
+  "definition": {
+    "user": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "buyer": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "problem": {
+      "text": "I built an invoice list for agency owners; no users have tried it. They search email for promises before following up.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "trigger": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "job": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "workaround": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "pain": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "consequence": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "frequency": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "reason_for_belief": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    }
+  },
+  "feedbackClaimIds": [],
+  "sources": [
+    {
+      "id": "founder-input",
+      "title": "founder-input",
+      "url": null,
+      "kind": "founder",
+      "provenance": "synthetic_fixture",
+      "access": "provided",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "I built an invoice list for agency owners; no users have tried it. They search email for promises before following up.",
+      "limitation": "Constructed synthetic research fixture; not a real market finding.",
+      "archived": false,
+      "independenceKey": "founder-input",
+      "affiliation": "independent"
+    }
+  ],
+  "claims": [
+    {
+      "id": "founder-context",
+      "statement": "I built an invoice list for agency owners; no users have tried it. They search email for promises before following up.",
+      "basis": "founder_reported",
+      "sourceIds": [
+        "founder-input"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Synthetic scenario; no customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    }
+  ],
+  "research": [],
+  "competitors": [],
+  "adjacent": [],
+  "habitats": [],
+  "firstUserAvenues": [],
+  "redTeam": [],
+  "master": null,
+  "buildRequest": null,
+  "evaluation": {
+    "status": "not_started",
+    "coverage": [
+      {
+        "topic": "frequency",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "urgency",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "pain",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "necessity",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "prevalence",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "category_direction",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "buyer",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "existing_spend",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "reachability",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "founder_fit",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "ai_substitutes",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "dedicated_value",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "competitors",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "user_language",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "traction",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "gaps",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "adjacency",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "habitats",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      }
+    ],
+    "promising": [],
+    "weak": [],
+    "unknowns": [],
+    "contradictions": [],
+    "conclusion": null
+  },
+  "brief": {
+    "kind": "conversation",
+    "summary": "The useful question may be what owners need to know before following up. A working invoice list tells us what the code does, not why someone would change tools.",
+    "seeing": [
+      "This is a synthetic conversation fixture."
+    ],
+    "matters": [
+      "The problem and opportunity still need investigation."
+    ],
+    "next": "Clarify the part that would change the evaluation.",
+    "questions": [
+      "Who did you originally build this for, and what did they use before it?"
+    ],
+    "choices": [
+      {
+        "label": "Answer in your own words",
+        "action": "respond"
+      },
+      {
+        "label": "Correct my understanding",
+        "action": "correct"
+      }
+    ]
+  }
+}

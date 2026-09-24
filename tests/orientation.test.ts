@@ -39,13 +39,13 @@ for (const name of ['fresh', 'existing', 'feedback', 'stock']) {
     assert.ok(words(summary) <= 120);
     assert.ok(!summary.includes('Scope:'));
     assert.ok(!summary.includes('Are you starting fresh'));
-    assert.match(summary, /Build now/);
+    assert.doesNotMatch(summary, /Build now/);
     assert.throws(() => approve(root, saved.hash), /problem context/);
     assert.throws(() => approvedHandoff(root), /No approved scope/);
     for (const section of detailSections) {
       const text = renderDetail(saved, section);
       assert.ok(words(text) <= 250);
-      assert.match(text, /Build now/);
+      assert.doesNotMatch(text, /Build now/);
       assert.equal(readWorkflow(root).draft?.hash, saved.hash);
       assert.equal(readWorkflow(root).cycle, null);
     }

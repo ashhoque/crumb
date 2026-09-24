@@ -1,3 +1,3 @@
 # Compatibility reference
 
-See the maintained [local tool contract](../../pruvello/references/local-tools.md).
+Follow the current [Crumb local-tools](../../crumb/references/local-tools.md). Historical schema and state remain supported.

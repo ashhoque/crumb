@@ -1,5 +1,5 @@
 import type { BuildReceipt, Cycle, SavedDraft, WorkflowState } from '../application/workflow.js';
-import { claimFields, evaluationTopics, type ConversationDraft } from '../domain/contracts.js';
+import { claimFields, type ConversationDraft } from '../domain/contracts.js';
 import { brand } from '../domain/brand.js';
 import { OPTIONAL_DETAIL, plain, proposalSummary, words } from '../domain/conversation.js';
 
@@ -7,7 +7,7 @@ const joined = (items: string[]): string => items.length ? items.map(plain).join
 export const renderSummary = (saved: SavedDraft): string => proposalSummary(saved.draft);
 
 export function renderOpening(displayName: string = brand.name): string {
-  return `Executive Summary\n${plain(displayName)} is ${brand.tagline}. We will start from where you are; you can choose Build now at any point.\n\nAre you starting fresh, or do you already have a project in progress?\n\nStarting fresh | Existing project | Build now`;
+  return `Executive summary\n${plain(displayName)} — ${brand.tagline}. We’ll start from where you are and make the problem clearer before deciding what to do next.\n\nAre you starting fresh, or do you already have a project in progress?\n\nStarting fresh | Existing project`;
 }
 
 export const detailSections = ['why', 'definition', 'evidence', 'research', 'competitors', 'sources', 'checks'] as const;
@@ -22,7 +22,7 @@ function detailParagraphs(draft: ConversationDraft, section: DetailSection): str
   switch (section) {
     case 'why': return [
       ...(assessment ? [`Promising (working interpretation): ${assessment.promising ?? 'Unknown'}`, `Weak or uncertain (working interpretation): ${assessment.weak ?? 'Unknown'}`, `Critical unknown: ${assessment.criticalUnknown}`, `Cheapest useful check: ${assessment.cheapestCheck}`] : []),
-      ...(p ? [p.why, `Critical unknown: ${p.criticalUnknown}`, `Keep: ${joined(p.keep)}`, `Test: ${p.journey}`, `Park: ${joined(p.park)}`, `Technical checks: ${joined(p.technicalAcceptance)}`, `Learning to observe: ${joined(p.learningAcceptance)}`] : ['We are clarifying the problem; no build scope has been proposed or approved. Unknown answers are valid. You can choose Build now.']),
+      ...(p ? [p.why, `Critical unknown: ${p.criticalUnknown}`, `Keep: ${joined(p.keep)}`, `Test: ${p.journey}`, `Park: ${joined(p.park)}`, `Technical checks: ${joined(p.technicalAcceptance)}`, `Learning to observe: ${joined(p.learningAcceptance)}`] : ['We are clarifying the problem; no build scope has been proposed or approved. Unknown answers are valid.']),
       'Passing code tests does not establish customer demand.'];
     case 'definition': return [
       ...(draft.contractVersion !== 1 ? [`Your intention: ${draft.ideal.intention.statement ?? 'Unknown'}${draft.contractVersion === 3 ? ` (${draft.ideal.intention.status})` : ''}`] : []),
@@ -36,9 +36,9 @@ function detailParagraphs(draft: ConversationDraft, section: DetailSection): str
     case 'research': return [
       `Evaluation: ${evaluation.state}. ${evaluation.state === 'not_run' ? 'No research has been performed.' : evaluation.state === 'requested' ? 'Only the question is recorded; research has not run.' : evaluation.state === 'unavailable' ? evaluation.unavailableReason : 'Available material is explicitly synthetic fixture content, not live research.'}`,
       ...(evaluation.question ? [`Optional research question: ${evaluation.question}`] : []),
-      `M2 preview: ${evaluationTopics.map(topic => topic.replaceAll('_', ' ')).join(', ')}. Habitats include online and offline avenues.`,
+      'This is a historical brief-assessment record. Resume it in the current pre-build context to investigate the opportunity.',
       ...evaluation.findings.map(item => `${item.topic.replaceAll('_', ' ')}: ${item.statement} [${item.kind.replaceAll('_', ' ')}; synthetic fixture]. Limit: ${item.limitation}. Source: ${item.source.title}, ${item.source.url}, accessed ${item.source.accessedOn}.`),
-      'Research is optional. Build a smaller test while uncertainty remains. Competitors can help sharpen that test; their existence is not a reason to stop.'];
+      'A brief preview does not establish meaningful Evaluate. Preserve its unknowns while investigating competitors, user language and relevant habitats.'];
     case 'competitors': {
       const findings = evaluation.findings.filter(item => ['direct_competitors', 'manual_substitutes', 'ai_substitutes', 'pricing_positioning', 'differentiation', 'growth_signals'].includes(item.topic));
       return [...(findings.length ? findings.map(item => `${item.statement} [${item.kind.replaceAll('_', ' ')}; synthetic fixture]. Limit: ${item.limitation}. Source: ${item.source.title}, ${item.source.url}, accessed ${item.source.accessedOn}.`) : ['No competitor findings are available. Direct competitors, manual workarounds and AI substitutes remain optional research questions.']), 'Competition is for learning, not automatic discouragement or a pivot. Disclosed metrics and public proxies are different; hiring, funding, reviews, releases or traffic estimates do not establish private revenue or growth.'];
@@ -71,7 +71,7 @@ export function renderDetail(saved: SavedDraft, section: DetailSection, page = 1
   if (collapsible) body = `<details>\n<summary>View ${section} (${page}/${pages.length})</summary>\n\n${body.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')}\n\n</details>`;
   return ['Executive Summary', 'This is optional context for the current conversation. It adds no approved scope or validation.', '',
     `Recommended next action: ${approved ? 'continue the approved test.' : saved.draft.proposal ? 'return to the proposed test.' : 'continue from the current understanding.'}`, OPTIONAL_DETAIL, '', body, '',
-    `Page ${page}/${pages.length}. ${approved ? 'Back' : !saved.draft.proposal || saved.draft.proposal.method === 'build' ? 'Build now | Back' : 'Approve preparation | Build now'}${page < pages.length ? ' | More detail' : ''}`,
+    `Page ${page}/${pages.length}. Back${page < pages.length ? ' | More detail' : ''}`,
   ].join('\n');
 }
 
@@ -81,6 +81,7 @@ export function renderHandoff(cycle: Cycle): string {
   const { foundation: f, proposal: p, artifacts } = cycle.draft;
   return [
     'APPROVED TEST — HYPOTHESIS-LED', `Cycle: ${cycle.id}; foundation revision: ${cycle.revision}`,
+    ...(cycle.draft.contractVersion === 4 ? [`Referenced pre-build revision: ${cycle.draft.context.version}; SHA-256 ${cycle.draft.context.hash}. Decision basis: ${cycle.draft.decision.basis}. Preserve that evidence and its limitations.`] : []),
     ...(cycle.draft.contractVersion !== 1 ? [`Founder intention: ${plain(cycle.draft.ideal.intention.statement ?? 'unknown')}`, `Reported feedback: ${joined(cycle.draft.ideal.feedback.map(item => item.summary))}; not independently verified.`] : []),
     `User: ${plain(f.targetUser.value ?? 'unknown')} [${f.targetUser.basis}]`,
     `Outcome: ${plain(f.desiredOutcome.value ?? 'unknown')} [${f.desiredOutcome.basis}]`,

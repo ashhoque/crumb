@@ -1,9 +1,8 @@
 ---
 name: pruvity
-description: Compatibility entry point for the previous Pruvity name. Use the current Pruvello synthetic founder workflow.
+description: Compatibility entry for the previous pruvity invocation. Use Crumb to clarify and investigate a builder's idea or existing project before choosing an action. Not for developing Crumb itself.
 ---
 
-Read [Pruvello](../pruvello/SKILL.md) and follow its conversation and local-tool references.
-Keep existing state and approval; this alias does not migrate data.
-For an explicit legacy discovery probe only, reply `PRUVITY_M1R_SKILL_LOADED` and
-explain the Pruvello synthetic workflow is available. Do not initialize project data.
+Read [Crumb](../crumb/SKILL.md) and follow its focused references. Preserve the existing project, history and approvals; this alias changes no persistent identifiers.
+
+For an explicit legacy discovery probe only, reply `PRUVITY_M1R_SKILL_LOADED` and explain that the Crumb pre-build workflow is available. Do not inspect or initialize project data.

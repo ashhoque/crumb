@@ -1,0 +1,1490 @@
+{
+  "contractVersion": 1,
+  "expectedVersion": 0,
+  "synthetic": true,
+  "stage": "evaluate",
+  "project": {
+    "name": "Synthetic founder with actual public stock-workflow research",
+    "entry": "fresh",
+    "artifacts": [],
+    "permissionQuote": null
+  },
+  "preferredName": null,
+  "intention": {
+    "status": "provided",
+    "goal": "personal",
+    "statement": "For myself first; perhaps a business later.",
+    "advice": "Prioritize recurring personal usefulness and whether existing tools suffice."
+  },
+  "definition": {
+    "user": {
+      "text": "Self-directed investor comparing a shortlist.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "inferred"
+    },
+    "buyer": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "problem": {
+      "text": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "trigger": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "job": {
+      "text": "Compare criteria consistently and recover the reasoning later.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "inferred"
+    },
+    "workaround": {
+      "text": "Notes with changing criteria.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "pain": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "consequence": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "frequency": {
+      "text": "Most weekends, as reported by the example founder.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "reason_for_belief": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    }
+  },
+  "feedbackClaimIds": [],
+  "sources": [
+    {
+      "id": "founder-input",
+      "title": "founder-input",
+      "url": null,
+      "kind": "founder",
+      "provenance": "synthetic_fixture",
+      "access": "provided",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+      "limitation": "Constructed synthetic research fixture; not a real market finding.",
+      "archived": false,
+      "independenceKey": "founder-input",
+      "affiliation": "independent"
+    },
+    {
+      "id": "tradingview",
+      "title": "TradingView pricing and feature comparison",
+      "url": "https://www.tradingview.com/pricing/",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "Essential $12.95 / mo billed annually. Compare symbols. Stock, ETF, DEX, crypto screeners.",
+      "limitation": "Observed advertised annual-billing price and capabilities; taxes, professional data and offers can differ. Not a usability test.",
+      "archived": false,
+      "independenceKey": "tradingview",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "stockanalysis",
+      "title": "Stock Analysis Pro",
+      "url": "https://stockanalysis.com/pro/",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "1 download per day to Excel, CSV and Google Sheets.",
+      "limitation": "Rendered source exposed plan features but no dollar amounts; current price remains unknown in this run.",
+      "archived": false,
+      "independenceKey": "stockanalysis",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "tradezella",
+      "title": "TradeZella pricing",
+      "url": "https://www.tradezella.com/pricing",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "ESSENTIAL $35 /mo. 100K+ Traders trust us. Automated Journaling.",
+      "limitation": "Vendor claims and current advertised monthly plan; trust headline has no active/paid-user definition or reporting period.",
+      "archived": false,
+      "independenceKey": "tradezella",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "danelfin",
+      "title": "Danelfin AI Score explanation",
+      "url": "https://support.danelfin.com/hc/en-us/articles/4404382038545-What-is-the-AI-Score-How-it-rates-stocks-and-ETFs",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "The AI Score is a holistic score that rates stocks from 1 to 10",
+      "limitation": "Vendor describes a probability of beating the market over three months. This does not establish reliable future performance or highest-return predictions.",
+      "archived": false,
+      "independenceKey": "danelfin",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "workflow-discussion",
+      "title": "Investor research-workflow discussion",
+      "url": "https://www.reddit.com/r/ValueInvesting/comments/1tsgt5o/for_people_who_seriously_research_individual/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "The biggest pain point: Information decay. I use NotebookLM to help organize and query information from filings. A simple watchlist plus notes works better for me than a complicated system.",
+      "limitation": "Selected comments, not a representative sample. Authors, affiliation and buying intent are unverified. Different views in one thread are not independent population evidence.",
+      "archived": false,
+      "independenceKey": "workflow-discussion",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "tools-discussion",
+      "title": "Long-term investors discuss preferred tools",
+      "url": "https://www.reddit.com/r/stocks/comments/1m25cek/favorite_most_used_tools_resources_for_long_time/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "I like their screener and that I can use many filters to filter companies. I always end up using my custom scripts & spreadsheets.",
+      "limitation": "The original poster claims no affiliation; that claim was not independently checked. Older thread, current posting permissions not checked.",
+      "archived": false,
+      "independenceKey": "tools-discussion",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "betterinvesting",
+      "title": "BetterInvesting Online Visit-A-Club",
+      "url": "https://www.betterinvesting.org/chapters/online/visit-a-club",
+      "kind": "association",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "The Visit-A-Club program provides individuals an opportunity to visit an investment club that welcomes guests.",
+      "limitation": "Program observed; availability, local fit, individual club rules and permission for research recruitment remain unverified.",
+      "archived": false,
+      "independenceKey": "betterinvesting",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "aaii",
+      "title": "AAII chapter meetings search result",
+      "url": "https://www.aaii.com/",
+      "kind": "association",
+      "provenance": "public",
+      "access": "snippet",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "Conferences and local chapter meetings for individual investors.",
+      "limitation": "Search result showed chapter events; opening the page returned Internal Error. This is a snippet, not an inspected page or verified participation route.",
+      "archived": false,
+      "independenceKey": "aaii",
+      "affiliation": "unknown"
+    }
+  ],
+  "claims": [
+    {
+      "id": "founder-context",
+      "statement": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+      "basis": "founder_reported",
+      "sourceIds": [
+        "founder-input"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Synthetic scenario; no customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "tv-capabilities",
+      "statement": "TradingView already covers screening, technical charts and symbol comparison.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "tradingview"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research; no direct customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "tv-price",
+      "statement": "The rendered Essential offer was $12.95 per month billed annually; this is advertised pricing, not customer spending.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "tradingview"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research; no direct customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "sa-features",
+      "statement": "Stock Analysis offers financial research and exports; no price rendered in the inspected page.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "stockanalysis"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research; no direct customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "journal",
+      "statement": "TradeZella offers automated trade journaling and review at an advertised Essential monthly price of $35.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "tradezella"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research; no direct customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "journal-adoption",
+      "statement": "TradeZella displays a 100K+ trader trust headline.",
+      "basis": "reported_metric",
+      "sourceIds": [
+        "tradezella"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Self-reported headline; not active users, paid accounts, revenue, growth or verified retention.",
+      "important": false,
+      "repetition": "single",
+      "metric": {
+        "name": "vendor trader trust headline",
+        "value": "100K+",
+        "unit": "traders claimed by vendor",
+        "period": "Not specified; observed 2026-09-23",
+        "reportedBy": "TradeZella"
+      },
+      "quote": null
+    },
+    {
+      "id": "ai-ranking",
+      "statement": "Danelfin markets a 1–10 AI score for a three-month market-relative outcome.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "danelfin"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Describes vendor positioning, not verified predictive performance.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "memory-pain",
+      "statement": "A public commenter describes forgetting earlier research rationale and repeating work.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "workflow-discussion"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "One selected self-report. Prevalence, identity and willingness to pay are unknown.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": {
+        "sourceId": "workflow-discussion",
+        "text": "The biggest pain point: Information decay."
+      }
+    },
+    {
+      "id": "manual-counter",
+      "statement": "Other contributors describe satisfactory notes, documents and spreadsheet workflows.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "workflow-discussion",
+        "tools-discussion"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Counterevidence to needing dedicated software; opinions are not a measured adoption rate.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "tool-praise",
+      "statement": "An investor praises screening filters and comparative views while retaining custom spreadsheets.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "tools-discussion"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "One older discussion; no independent product test or consensus.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "generic-ai",
+      "statement": "A commenter reports using NotebookLM to organize and question filings.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "workflow-discussion"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Self-reported use, not a verified benchmark of a general AI assistant.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "club-place",
+      "statement": "BetterInvesting provides a program for visiting investment clubs.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "betterinvesting"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research; no direct customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "aaii-place",
+      "statement": "AAII search results describe local chapter meetings for individual investors.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "aaii"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Snippet only; the page could not be opened. No specific current event or recruitment permission verified.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "category-proxy",
+      "statement": "The inspected vendors maintain product and plan pages across several workflow categories.",
+      "basis": "public_proxy",
+      "sourceIds": [
+        "tradingview",
+        "stockanalysis",
+        "tradezella",
+        "danelfin"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Product presence is a weak supply signal; it establishes neither revenue nor category growth.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "rationale-hypothesis",
+      "statement": "A lighter decision-rationale history may help this founder; the commercial gap is unproven.",
+      "basis": "inference",
+      "sourceIds": [
+        "founder-input"
+      ],
+      "supports": [
+        "memory-pain"
+      ],
+      "challenges": [
+        "manual-counter",
+        "tv-capabilities",
+        "journal"
+      ],
+      "limitation": "Personal usefulness and a sellable unmet need are separate hypotheses.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    }
+  ],
+  "research": [
+    {
+      "id": "bounded-public-research",
+      "question": "Do existing tools and investor workflows support a personal comparison/rationale opportunity?",
+      "capability": "host_research",
+      "queryBudget": 12,
+      "pageBudget": 24,
+      "budgetReason": null,
+      "queries": [
+        {
+          "text": "site.tradingview.com pricing screener compare plans",
+          "materialFinding": true
+        },
+        {
+          "text": "site.stockanalysis.com pro stock screener pricing",
+          "materialFinding": true
+        },
+        {
+          "text": "site.tradezella.com pricing trading journal",
+          "materialFinding": true
+        },
+        {
+          "text": "site.danelfin.com how it works AI score past performance",
+          "materialFinding": true
+        },
+        {
+          "text": "site.reddit.com/r/stocks research tools spreadsheets Koyfin Stock Analysis complaints",
+          "materialFinding": true
+        },
+        {
+          "text": "site.aaii.com local chapters meetings individual investors",
+          "materialFinding": true
+        },
+        {
+          "text": "site.betterinvesting.org investment clubs visit meetings",
+          "materialFinding": true
+        }
+      ],
+      "inspectedSourceIds": [
+        "tradingview",
+        "stockanalysis",
+        "tradezella",
+        "danelfin",
+        "workflow-discussion",
+        "tools-discussion",
+        "betterinvesting"
+      ],
+      "stopReason": "coverage_sufficient",
+      "limitation": "Seven searches and seven distinct inspected public pages; one additional page-open failed and remains a snippet. Web tool extracts may be cached. No paywall bypass, product account testing, interviews or verified business results."
+    }
+  ],
+  "competitors": [
+    {
+      "id": "tradingview-tool",
+      "name": "TradingView",
+      "categories": [
+        "direct",
+        "incumbent"
+      ],
+      "fields": {
+        "target": {
+          "text": "Charting and market-analysis users.",
+          "claimIds": [
+            "tv-capabilities"
+          ],
+          "basis": "inferred"
+        },
+        "workflow": {
+          "text": "Screen, chart and compare symbols.",
+          "claimIds": [
+            "tv-capabilities"
+          ],
+          "basis": "observed"
+        },
+        "positioning": {
+          "text": "Broad market-analysis platform.",
+          "claimIds": [
+            "tv-capabilities"
+          ],
+          "basis": "inferred"
+        },
+        "pricing": {
+          "text": "Observed Essential annual-billing offer: $12.95/month.",
+          "claimIds": [
+            "tv-price"
+          ],
+          "basis": "observed"
+        },
+        "capabilities": {
+          "text": "Screeners, technical indicators, alerts and symbol comparisons.",
+          "claimIds": [
+            "tv-capabilities"
+          ],
+          "basis": "observed"
+        },
+        "love": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "hate": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": "Rationale-continuity benefit remains a hypothesis; existing capabilities challenge simple comparison differentiation.",
+          "claimIds": [
+            "rationale-hypothesis"
+          ],
+          "basis": "inferred"
+        }
+      },
+      "tractionClaimIds": [
+        "category-proxy"
+      ]
+    },
+    {
+      "id": "stockanalysis-tool",
+      "name": "Stock Analysis",
+      "categories": [
+        "direct"
+      ],
+      "fields": {
+        "target": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "workflow": {
+          "text": "Research financials and export data.",
+          "claimIds": [
+            "sa-features"
+          ],
+          "basis": "observed"
+        },
+        "positioning": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "pricing": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "capabilities": {
+          "text": "Research, watchlists and spreadsheet export.",
+          "claimIds": [
+            "sa-features"
+          ],
+          "basis": "observed"
+        },
+        "love": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "hate": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        }
+      },
+      "tractionClaimIds": [
+        "category-proxy"
+      ]
+    },
+    {
+      "id": "tradezella-tool",
+      "name": "TradeZella",
+      "categories": [
+        "adjacent"
+      ],
+      "fields": {
+        "target": {
+          "text": "Trade review rather than necessarily long-term fundamental comparison.",
+          "claimIds": [
+            "journal"
+          ],
+          "basis": "inferred"
+        },
+        "workflow": {
+          "text": "Journal executed trades and review behavior.",
+          "claimIds": [
+            "journal"
+          ],
+          "basis": "observed"
+        },
+        "positioning": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "pricing": {
+          "text": "Essential advertised monthly plan: $35.",
+          "claimIds": [
+            "journal"
+          ],
+          "basis": "observed"
+        },
+        "capabilities": {
+          "text": "Automated journal, review and analytics.",
+          "claimIds": [
+            "journal"
+          ],
+          "basis": "observed"
+        },
+        "love": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "hate": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        }
+      },
+      "tractionClaimIds": [
+        "journal-adoption"
+      ]
+    },
+    {
+      "id": "danelfin-tool",
+      "name": "Danelfin",
+      "categories": [
+        "direct",
+        "new_ai"
+      ],
+      "fields": {
+        "target": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "workflow": {
+          "text": "Rank candidates using a vendor AI score.",
+          "claimIds": [
+            "ai-ranking"
+          ],
+          "basis": "observed"
+        },
+        "positioning": {
+          "text": "Market-relative probabilistic ranking; its outcomes were not validated here.",
+          "claimIds": [
+            "ai-ranking"
+          ],
+          "basis": "observed"
+        },
+        "pricing": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "capabilities": {
+          "text": "AI stock score.",
+          "claimIds": [
+            "ai-ranking"
+          ],
+          "basis": "observed"
+        },
+        "love": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "hate": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        }
+      },
+      "tractionClaimIds": []
+    },
+    {
+      "id": "manual",
+      "name": "Notes, spreadsheets and existing watchlists",
+      "categories": [
+        "manual",
+        "indirect"
+      ],
+      "fields": {
+        "target": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "workflow": {
+          "text": "Keep criteria and decision notes alongside existing data.",
+          "claimIds": [
+            "manual-counter"
+          ],
+          "basis": "observed"
+        },
+        "positioning": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "pricing": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "capabilities": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "love": {
+          "text": "Selected users prefer low-maintenance notes and spreadsheets.",
+          "claimIds": [
+            "manual-counter"
+          ],
+          "basis": "observed"
+        },
+        "hate": {
+          "text": "One commenter reports information decay and repeated research.",
+          "claimIds": [
+            "memory-pain"
+          ],
+          "basis": "observed"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": "A new tool must justify recording and migration effort.",
+          "claimIds": [
+            "manual-counter"
+          ],
+          "basis": "inferred"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": "Ease of retrieving rationale may matter; no broad gap established.",
+          "claimIds": [
+            "rationale-hypothesis"
+          ],
+          "basis": "inferred"
+        }
+      },
+      "tractionClaimIds": []
+    },
+    {
+      "id": "generic-ai-tool",
+      "name": "General AI over selected research documents",
+      "categories": [
+        "generic_ai",
+        "indirect"
+      ],
+      "fields": {
+        "target": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "workflow": {
+          "text": "A commenter uses NotebookLM to organize and question filings.",
+          "claimIds": [
+            "generic-ai"
+          ],
+          "basis": "observed"
+        },
+        "positioning": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "pricing": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "capabilities": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "love": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "hate": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        }
+      },
+      "tractionClaimIds": []
+    },
+    {
+      "id": "do-nothing",
+      "name": "Keep the present process",
+      "categories": [
+        "do_nothing"
+      ],
+      "fields": {
+        "target": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "workflow": {
+          "text": "Accept occasional reconstruction rather than maintain another system.",
+          "claimIds": [
+            "manual-counter"
+          ],
+          "basis": "inferred"
+        },
+        "positioning": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "pricing": {
+          "text": "No new subscription; opportunity cost is unknown.",
+          "claimIds": [
+            "manual-counter"
+          ],
+          "basis": "inferred"
+        },
+        "capabilities": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "love": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "hate": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        }
+      },
+      "tractionClaimIds": []
+    }
+  ],
+  "adjacent": [
+    {
+      "id": "rationale-history",
+      "problem": "Recover why a candidate was preferred or rejected.",
+      "reasonClaimIds": [
+        "rationale-hypothesis"
+      ],
+      "comparison": {
+        "pain_urgency": "Reported annoyance; consequential loss unverified.",
+        "frequency": "Most weekends in the synthetic founder scenario.",
+        "spending": "No founder payment signal.",
+        "reachability": "Self first; related public habitats exist, recruitment unverified.",
+        "competition_gaps": "Existing notes and journal tools are counterevidence.",
+        "founder_fit": "Personal familiarity; no special market-data advantage established.",
+        "reusable_code": "No code inspected for this fresh scenario.",
+        "learning_cost": "Low for reviewing one existing rationale, before adding automation."
+      }
+    },
+    {
+      "id": "comparison-template",
+      "problem": "Use consistent criteria within the existing spreadsheet.",
+      "reasonClaimIds": [
+        "manual-counter",
+        "founder-context"
+      ],
+      "comparison": {
+        "pain_urgency": "Reported annoyance; consequential loss unverified.",
+        "frequency": "Most weekends in the synthetic founder scenario.",
+        "spending": "No founder payment signal.",
+        "reachability": "Self first; related public habitats exist, recruitment unverified.",
+        "competition_gaps": "A template may remove the need for dedicated software.",
+        "founder_fit": "Personal familiarity; no special market-data advantage established.",
+        "reusable_code": "No code inspected for this fresh scenario.",
+        "learning_cost": "Low setup; determine whether recording burden remains."
+      }
+    }
+  ],
+  "habitats": [
+    {
+      "id": "reddit-workflows",
+      "kind": "online",
+      "place": "r/ValueInvesting research-workflow discussions",
+      "observedClaimIds": [
+        "memory-pain",
+        "manual-counter"
+      ],
+      "likelyUsers": "People discussing individual-company research; identity and interest are unverified.",
+      "relevance": "Observed conversation concerns reasoning and research history.",
+      "participation": {
+        "route": "Read current community rules and ask for permission before any research invitation.",
+        "verified": false,
+        "sourceIds": [
+          "workflow-discussion"
+        ]
+      },
+      "limitation": "The inspected thread is research evidence, not an active reply or recruitment permission."
+    },
+    {
+      "id": "investing-clubs",
+      "kind": "professional",
+      "place": "BetterInvesting Online Visit-A-Club program",
+      "observedClaimIds": [
+        "club-place"
+      ],
+      "likelyUsers": "Investment-club members; fit with this exact workflow is inferred.",
+      "relevance": "A structured investing association with a visible visitor program.",
+      "participation": {
+        "route": "Check the chapter’s listed clubs and visitor requirements; separately seek permission for research.",
+        "verified": false,
+        "sourceIds": [
+          "betterinvesting"
+        ]
+      },
+      "limitation": "Guest-program existence does not prove a club is accepting this founder or research requests."
+    },
+    {
+      "id": "local-meetings",
+      "kind": "physical",
+      "place": "AAII local chapter meetings (candidate association route)",
+      "observedClaimIds": [
+        "aaii-place"
+      ],
+      "likelyUsers": "Individual investors at a suitable local chapter, if one is available.",
+      "relevance": "Potential face-to-face research-workflow conversations; geography not assumed.",
+      "participation": {
+        "route": null,
+        "verified": false,
+        "sourceIds": [
+          "aaii"
+        ]
+      },
+      "limitation": "Homepage open failed. Check a current local event and its rules before treating this as a usable avenue."
+    }
+  ],
+  "firstUserAvenues": [
+    "reddit-workflows",
+    "investing-clubs"
+  ],
+  "redTeam": [
+    {
+      "claimId": "rationale-hypothesis",
+      "evidence": "One public pain account and this synthetic founder report.",
+      "inference": "Retrieving rationale may be more useful than another comparison table.",
+      "assumption": "Recording effort is smaller than the later benefit.",
+      "contradiction": "Other users prefer existing notes; incumbents already compare and journal.",
+      "disproof": "An existing note template resolves the problem with no remaining friction.",
+      "cheapestLearning": "After evaluation, inspect a recent decision with the founder or discuss a recent example with a consenting relevant user."
+    }
+  ],
+  "master": {
+    "thesis": "Help this personal user preserve reasoning before claiming a commercial opportunity.",
+    "interviewPlan": "Ask about the hardest part, last occurrence, why it was hard, attempted solutions and dislikes; follow the actual answer. Do not pitch or ask hypothetical buying questions.",
+    "mvpHypothesis": "Only if chosen: capture a short rationale and retrieve it next to a consistent comparison.",
+    "nonGoals": [
+      "Predict highest-return stocks",
+      "Trade execution",
+      "Broker credentials",
+      "Market-data ingestion",
+      "Commercial launch"
+    ],
+    "technicalStrategy": "Use the existing project stack if supplied; a local fictional-data example can test interaction without buying data.",
+    "businessModel": "Personal usefulness first. Selling later remains a separate untested choice.",
+    "economics": "No revenue model or margin claimed. Current data licensing, reliability and support costs must be investigated if commercialization is chosen.",
+    "validationPlan": "Separate technical correctness from usefulness: review whether rationale is recovered with less repeated work. No market-validation claim from public pages.",
+    "risks": [
+      "Existing notes may suffice.",
+      "A new system may add maintenance.",
+      "User-reported pain may be sparse or promotional.",
+      "Return predictions would need evidence this project does not possess."
+    ]
+  },
+  "buildRequest": null,
+  "evaluation": {
+    "status": "ready",
+    "coverage": [
+      {
+        "topic": "frequency",
+        "status": "findings",
+        "claimIds": [
+          "founder-context"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify frequency; scope and limitations remain attached."
+      },
+      {
+        "topic": "urgency",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Bounded investigation did not establish urgency. Advertised prices do not establish this founder's spending or urgency."
+      },
+      {
+        "topic": "pain",
+        "status": "findings",
+        "claimIds": [
+          "memory-pain"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify pain; scope and limitations remain attached."
+      },
+      {
+        "topic": "necessity",
+        "status": "findings",
+        "claimIds": [
+          "manual-counter"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify necessity; scope and limitations remain attached."
+      },
+      {
+        "topic": "prevalence",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Bounded investigation did not establish prevalence. Advertised prices do not establish this founder's spending or urgency."
+      },
+      {
+        "topic": "category_direction",
+        "status": "findings",
+        "claimIds": [
+          "category-proxy"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify category direction; scope and limitations remain attached."
+      },
+      {
+        "topic": "buyer",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Bounded investigation did not establish buyer. Advertised prices do not establish this founder's spending or urgency."
+      },
+      {
+        "topic": "existing_spend",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Bounded investigation did not establish existing spend. Advertised prices do not establish this founder's spending or urgency."
+      },
+      {
+        "topic": "reachability",
+        "status": "findings",
+        "claimIds": [
+          "club-place",
+          "aaii-place"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify reachability; scope and limitations remain attached."
+      },
+      {
+        "topic": "founder_fit",
+        "status": "findings",
+        "claimIds": [
+          "founder-context"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify founder fit; scope and limitations remain attached."
+      },
+      {
+        "topic": "ai_substitutes",
+        "status": "findings",
+        "claimIds": [
+          "generic-ai",
+          "ai-ranking"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify ai substitutes; scope and limitations remain attached."
+      },
+      {
+        "topic": "dedicated_value",
+        "status": "findings",
+        "claimIds": [
+          "rationale-hypothesis"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify dedicated value; scope and limitations remain attached."
+      },
+      {
+        "topic": "competitors",
+        "status": "findings",
+        "claimIds": [
+          "tv-capabilities",
+          "sa-features",
+          "journal",
+          "ai-ranking"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify competitors; scope and limitations remain attached."
+      },
+      {
+        "topic": "user_language",
+        "status": "findings",
+        "claimIds": [
+          "memory-pain",
+          "tool-praise",
+          "manual-counter"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify user language; scope and limitations remain attached."
+      },
+      {
+        "topic": "traction",
+        "status": "findings",
+        "claimIds": [
+          "journal-adoption",
+          "category-proxy"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify traction; scope and limitations remain attached."
+      },
+      {
+        "topic": "gaps",
+        "status": "findings",
+        "claimIds": [
+          "rationale-hypothesis"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify gaps; scope and limitations remain attached."
+      },
+      {
+        "topic": "adjacency",
+        "status": "findings",
+        "claimIds": [
+          "rationale-hypothesis"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify adjacency; scope and limitations remain attached."
+      },
+      {
+        "topic": "habitats",
+        "status": "findings",
+        "claimIds": [
+          "club-place",
+          "aaii-place"
+        ],
+        "runIds": [
+          "bounded-public-research"
+        ],
+        "reason": "Linked observations qualify habitats; scope and limitations remain attached."
+      }
+    ],
+    "promising": [
+      "The synthetic founder reports a recurring personal comparison problem.",
+      "One actual public discussion describes rationale decay."
+    ],
+    "weak": [
+      "Screening, comparison, journals and AI ranking already exist.",
+      "Satisfactory spreadsheets and notes contradict a blanket need for another tool."
+    ],
+    "unknowns": [
+      "Frequency and severity outside this founder.",
+      "Whether a consistent note template is already sufficient.",
+      "Willingness to switch/pay and data-maintenance cost."
+    ],
+    "contradictions": [
+      "The initial broad comparison gap is contradicted by incumbent capabilities.",
+      "A pain report coexists with praise for simple existing workarounds."
+    ],
+    "conclusion": "Explore personal rationale continuity without claiming a commercial gap or return-prediction capability."
+  },
+  "brief": {
+    "kind": "research",
+    "summary": "The comparison space is already well served. A more useful personal angle may be remembering why you preferred one candidate, although a consistent spreadsheet note could be enough. One public discussion describes that memory problem; it does not establish a business.",
+    "seeing": [
+      "Existing tools cover screening, charts, journals and AI ranking.",
+      "Other investors praise simple notes and spreadsheets."
+    ],
+    "matters": [
+      "Your own recording effort may decide whether another tool helps.",
+      "Payment, prevalence and any investment-performance benefit remain unknown."
+    ],
+    "next": "Choose the next step that fits personal usefulness.",
+    "questions": [],
+    "choices": [
+      {
+        "label": "Explore a recent decision",
+        "action": "interview"
+      },
+      {
+        "label": "Shape the smallest MVP",
+        "action": "shape_mvp"
+      },
+      {
+        "label": "Open the research",
+        "action": "research"
+      }
+    ]
+  }
+}

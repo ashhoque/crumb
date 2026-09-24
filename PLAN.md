@@ -1,13 +1,54 @@
-# Pruvello implementation plan
+# Crumb implementation plan
 
-Authority: `PRODUCT_SPEC.md` and the user-approved Pruvello continuation proposal.
-Active milestone: M1-R correction only. Earlier sections below are historical.
-M0 was approved. M1's implementation passed its recorded checks but the user
-rejected its UX/testing. M1_REPORT.md remains historical evidence, not acceptance.
-The user approved the Pruvello correction on 2026-09-23. M1-R is implemented:
-**M1-R PASS WITH WARNINGS**. User experience acceptance awaits the founder's trial.
-M2 is not authorized or started.
+Authority: PRODUCT_SPEC.md v0.7 and the founder-approved M1-R2 proposal.
+Current requested milestone: **M1-R2 — Complete pre-build IDE experience**.
+Status: **implemented 23 September 2026; 140 tests passed; founder UX acceptance pending**.
 
+Continue C:\Users\Ash\Documents\Codex\CEC. Preserve the existing repository and all working Groundwork/M0/M1/M1-R infrastructure. Do not restart onboarding, recreate the project, rerun groundwork, re-scaffold or discard code.
+
+## Current product finding
+
+The Pruvello M1-R correction recorded 83/83 passing tests and its stated host/rehearsal limits. The founder subsequently tested it and rejected the remaining early transition to testing/building. Preserve the technical result as history; it does not establish acceptance of the intended pre-build experience.
+
+Crumb is the current display brand, with the tagline **The business copilot for AI builders**. Persistent identifiers, package identity, historical contracts, private paths and approved hashes remain stable.
+
+## M1-R2 checklist — approved 23 September 2026
+
+- [x] Record approval and update the active master, PLAN, STATUS and repository instructions without changing historical reports.
+- [x] Capture the maintained-file baseline and inspect existing migration/backup and context boundaries.
+- [x] Replace E-preview-to-action behavior with meaningful Intention, Define and Evaluate; preserve an explicit build escape.
+- [x] Add neutral versioned pre-build context and bounded research continuity alongside immutable cycles, with safe migration and recovery checks.
+- [x] Add permitted host research guidance, budget/stop receipts, coverage, claim provenance, inspectable sources and unavailable-research behavior.
+- [x] Implement competitor/substitute learning, user language and love/hate, reported metrics versus proxies, gaps and at most two adjacent opportunities.
+- [x] Add specific User Habitat Maps and a few credible first-user avenues without invented contacts or autonomous outreach.
+- [x] Offer natural behavior-based interview preparation after Evaluate.
+- [x] Add the optional sourced startup master and meaningful red-team review; keep the founder's required reading short.
+- [x] Implement contextual choices, progressive disclosure, response limits, warmth and optional name use.
+- [x] Apply display branding and a Crumb entry with Pruvello/Pruvity/customer-evidence compatibility aliases.
+- [x] Rehearse all six requested conversations, including sourced stock research, corrected feedback and explicit build before research.
+- [x] Run relevant regressions and all M1-R2 acceptance checks; retain failures and unverified host claims explicitly.
+- [x] Create M1_R2_REPORT.md with executed results, limits and founder acceptance status; update STATUS.
+- [x] Stop before new M2. Do not infer authorization for another milestone.
+
+## Functional roadmap
+
+| Milestone | Scope | Authorization |
+|---|---|---|
+| M1-R2 | Complete pre-build IDE: intention, definition, meaningful evaluation/research, habitats, interview option, optional master/red team and concise conversation | Approved 23 September 2026 |
+| M2 | Act / staged MVP builder, including subsequent approved build work | Not started; separate authorization |
+| M3 | Launch & Learn and recurring feedback-to-build continuity | Not started; separate authorization |
+| M4 | Crumb pilot readiness | Not started; separate authorization |
+| M5 | Evidence-earned improvements | Not started; separate authorization |
+
+Old M2 Evaluate capabilities intentionally move into M1-R2. This roadmap supersedes earlier forward-looking numbering only; it does not renumber completed history. Necessary data safeguards accompany the capability that needs them. No raw confidential customer-source import, autonomous outreach, deployment, spending, paid backend or staged-builder expansion belongs in M1-R2.
+
+## Acceptance and reporting
+
+Use R2-01 through R2-30 in the active master. Separate deterministic checks, synthetic transcripts, actual source-backed host behavior and founder acceptance. Update tests whose old UX expectations are intentionally superseded while preserving compatibility, privacy, approval and receipt coverage. Never claim acceptance from a test count alone.
+
+## Historical plan retained below
+
+All following sections are retained from the existing plan. Their approvals, results and boundaries describe their original milestone. Their forward-roadmap statements are superseded by the table above.
 
 ## Pruvello M1-R correction — approved 2026-09-23
 
