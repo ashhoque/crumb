@@ -133,7 +133,7 @@ try{
       console.log(`existing-project-resume: ${response.status}`);if(response.status!=='completed')throw new Error('Live resume failed; review retained response.');
     }
   }
-  const identityLeak=/(?:i(?:'ll| will| am|’ll)|i'm|i’m).{0,60}(?:crumb (?:skill|workflow|instructions|context)|skill|workflow)|(?:found|checking|reading).{0,40}crumb(?:'s|’s)? (?:skill|instructions|workflow|context)/i;
+  const identityLeak=/\b(?:Crumb(?:'s|’s)? (?:skill|workflow|instructions|context)|skill instructions|skill file|installed skill|global skill|I(?:'m| am|’m) (?:checking|reading|loading) (?:the )?skill)\b/i;
   results.identityLeaks=results.sessions.flatMap(s=>s.turns.flatMap((t,i)=>identityLeak.test(t.output)?[{session:s.id,turn:i+1}]:[]));
   results.timings=results.sessions.map(s=>({session:s.id,elapsedMs:s.turns.map(t=>t.elapsedMs)}));
   results.status=results.identityLeaks.length?'failed_identity_leak':'completed_needs_semantic_review';
