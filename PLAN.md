@@ -11,9 +11,10 @@ learning. Do not begin M4.
 - [x] Carry voice, evidence limits, candidate discovery and outreach permission through the active Crumb skill.
 - [x] Focused tests and full baseline regressions pass.
 - [x] Exercise six M3-R4 host flows and 11-turn continuity; repair observed candidate/win gaps.
-- [ ] Complete targeted live-host retest and final revision acceptance review.
-- [ ] Commit and push final revision documentation, merge into `main`, verify and push `main`.
-- [ ] Update and verify the global Crumb installation.
+- [x] Complete targeted live-host retest and final revision acceptance review.
+
+GitHub and global-installation closeout are recorded in the M3-R4 report and
+final delivery, rather than treated as product features in this plan.
 
 The M3-R3 plan below is historical.
 

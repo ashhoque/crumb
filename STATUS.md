@@ -1,5 +1,18 @@
 # Crumb status
 
+**M3-R4 PASS WITH WARNINGS — market intelligence and first-user revision.**
+Crumb now has a bounded early Market Pulse, a calibrated opportunity map,
+user-behavior notes, separate research/acquisition habitats, source-backed public
+candidate discovery, draft-only outreach, honest validation concepts and a
+first-user outcome learning aid. Six synthetic live-host scenarios plus 11-turn
+continuity completed; targeted candidate discovery returned five public Toronto
+clinic starting points without contacting anyone. The final full suite passed
+**328/328**. Warnings: the founder-win opening still began with analysis before
+warmth in one live turn, and cold host skill discovery adds latency. See
+[M3-R4 report](M3_R4_REPORT.md). M4 has not begun.
+
+## M3-R3 result (historical)
+
 **M3-R3 PASS WITH WARNINGS — founder voice and project-context revision.**
 The installed host no longer narrates the Crumb skill/workflow in the five
 synthetic M3-R3 conversations. Existing-app pricing, an adjacent approval pain,
