@@ -1,7 +1,6 @@
 # M3-R3 — founder intelligence, voice and project context
 
-Status: **PASS WITH WARNINGS**, subject to the GitHub closeout record below.
-M4 was not started. These are synthetic host conversations, not
+Status: **PASS WITH WARNINGS**. M4 was not started. These are synthetic host conversations, not
 real founder or customer validation.
 
 ## Runtime trace and voice root cause
@@ -117,12 +116,17 @@ source checkout must be synchronized to completed `main`.
 
 - Development branch: `m3-r3`.
 - Revision commit: `0ade360be54618068984a20981a218dc606a46df`.
-- Development branch pushed to `origin/m3-r3`; final documentation commit pending.
-- Merge/resulting main commit and push: pending.
-- Final verification on `main`: pending.
-- Global source checkout on `m3-r3`, rebuilt with pinned Node; focused
-  installation checks passed 9/9. Actual global-wrapper host discovery and
-  synthetic pricing/fast/resume/Act checks passed with zero identity leaks.
+- Final development commit: `78dfb52e662cb239dc6d02564192277b4e1986ec`,
+  pushed and verified at `origin/m3-r3`.
+- Merge commit: `58b04057100cc7ac1f4d229e261e85656287f3ac`, pushed and
+  verified at `origin/main` before this documentation closeout.
+- Final verification on merged `main`: pinned Node build and **320/320** tests,
+  zero failures/skips. No code changed in this documentation closeout.
+- Global source checkout fast-forwarded to verified `main`, rebuilt with pinned
+  Node; focused installation checks passed **9/9**. Its compiled CLI hash matched
+  the development build. Actual global-wrapper host discovery and synthetic
+  pricing/fast/resume/Act checks passed with zero identity leaks. The unrelated
+  untracked `GLOBAL_CRUMB_SETUP.md` was preserved.
 
 ## Five manual alpha prompts
 

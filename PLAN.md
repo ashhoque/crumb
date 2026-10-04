@@ -14,7 +14,7 @@ Do not begin M4.
 - [x] Complete five live synthetic host conversations and semantic review.
 - [x] Verify the 320-test full suite.
 - [x] Verify global installation and pushed development branch.
-- [ ] Merge, verify and push `main`.
+- [x] Merge, verify and push `main`; return the global installation to `main`.
 
 The M3-R2 plan below is historical.
 
