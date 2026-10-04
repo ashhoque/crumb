@@ -1,4 +1,20 @@
-# Crumb implementation plan - M3-R1
+# Crumb implementation plan - M3-R2
+
+## M3-R2 — 4 October 2026
+
+Authority: current M3-R2 handoff and the founder's GitHub closeout rule. Preserve
+IDEAL, Act gates, Build Mode and the read-only MCP boundary. Do not start M4.
+
+- [x] Trace startup reads, saved-context selection, host voice and research paths.
+- [x] Make fresh CLI/MCP reads clean by default; require explicit continuation.
+- [x] Add bounded decision research and honest external-evidence classification.
+- [x] Strengthen direct voice, collaborative ownership, locality and fast-path guidance.
+- [x] Test fresh/resume isolation, no overwrite, research reuse/bounds and Act regressions.
+- [x] Run the full repository suite and focused final-state checks.
+
+Current implementation result: **M3-R2 PASS WITH WARNINGS**. Host research behavior
+and real tester latency remain to be observed; see M3_R2_REPORT.md. The M3-R1 plan
+below is historical.
 
 ## Final M3-R1 closeout — 3 October 2026
 

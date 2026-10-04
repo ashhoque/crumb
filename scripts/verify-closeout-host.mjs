@@ -75,7 +75,8 @@ try{
   const inventory=await request('mcpServerStatus/list',{threadId:probe.threadId,serverName:'crumb_context',detail:'toolsAndAuthOnly'});
   results.mcpInventory=inventory;
   for(const tool of ['get_current_context','get_confirmed_intention','get_confirmed_user','get_confirmed_problem','get_current_evaluation','get_user_habitats','get_first_user_avenues','get_build_handoff','get_current_build_stage','search_research']){
-    const result=await request('mcpServer/tool/call',{threadId:probe.threadId,server:'crumb_context',tool,arguments:tool==='search_research'?{query:'TradingView',limit:2}:{}});
+    const scope={mode:'continue',conversationId:probe.threadId.replace(/[^A-Za-z0-9_-]/g,'_').slice(0,120)};
+    const result=await request('mcpServer/tool/call',{threadId:probe.threadId,server:'crumb_context',tool,arguments:tool==='search_research'?{scope,query:'TradingView',limit:2}:{scope}});
     results.mcp.push({tool,isError:result.isError??false,bytes:JSON.stringify(result).length});
     if(result.isError)throw new Error(`Installed MCP call failed: ${tool}`);
   }

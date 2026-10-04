@@ -138,7 +138,8 @@ test('R1 native host performs real edits/tests; failed exit cannot advance, pass
 test('R1 CLI continuation and compact context run without a transcript',t=>{
   const root=temporaryProject(t);prepareIde(root);const cli=fileURLToPath(new URL('../src/cli/main.js',import.meta.url));
   const run=(op:string,input?:unknown)=>spawnSync(process.execPath,[cli,'internal',op,root],{input:input?JSON.stringify(input):undefined,encoding:'utf8',windowsHide:true,timeout:15000});
-  const compact=run('conversation-context');assert.equal(compact.status,0,compact.stderr);assert.equal(JSON.parse(compact.stdout).mode,'conversation');
+  const fresh=run('conversation-context');assert.equal(fresh.status,0,fresh.stderr);assert.equal(JSON.parse(fresh.stdout).available,false);
+  const compact=spawnSync(process.execPath,[cli,'internal','conversation-context',root,'--resume'],{encoding:'utf8',windowsHide:true,timeout:15000});assert.equal(compact.status,0,compact.stderr);assert.equal(JSON.parse(compact.stdout).mode,'conversation');
   const resumed=run('continue-build',{phrase:CONTINUE_BUILD,host,paths:[],permissionQuote:'Synthetic permission for fresh fixture.'});
   assert.equal(resumed.status,0,resumed.stderr);const s=JSON.parse(resumed.stdout);const p=planFor(readPrebuild(root)!);p.execution={mode:'build',handoffHash:s.handoffHash,automaticStages:false,humanCheckpoints:['mvp']};
   const pack=run('work-pack',p);assert.equal(pack.status,0,pack.stderr);assert.match(pack.stdout,/Approve Build Pack/);

@@ -13,6 +13,7 @@ import { agreesWithPresentation } from '../src/domain/reply.js';
 import { discoveryCards, discoveryScope, firstUserDiscoveryNotice, validateFirstUserCards } from '../src/domain/first-user-discovery.js';
 import type { IdeContext } from '../src/domain/ide.js';
 import { inspectArtifacts } from '../src/privacy/artifacts.js';
+const continuation={scope:{mode:'continue',conversationId:'synthetic-chat-001'}};
 
 test('Closeout: artifact observations serialize as references, never raw text',t=>{
   const root=temporaryProject(t),c=ideFixture();writeFileSync(join(root,'parser.mjs'),'export const parse = JSON.parse;\n');
@@ -64,25 +65,44 @@ test('Closeout: candidates require current scope/permission, and opt-outs surviv
 });
 
 test('Closeout: all MCP reads are bounded, read-only and cannot initialize or forge approval',t=>{
-  const empty=temporaryProject(t);assert.deepEqual(readContext(empty,'get_current_context'),{available:false,reason:'No saved Crumb context. No project was initialized.'});assert.deepEqual(readdirSync(empty),[]);
+  const empty=temporaryProject(t);assert.deepEqual(readContext(empty,'get_current_context',continuation),{available:false,reason:'No saved Crumb context. No project was initialized.'});assert.deepEqual(readdirSync(empty),[]);
   const root=temporaryProject(t),saved=prepareIde(root),before=JSON.stringify(readPrebuild(root));
   const tracked=['.gitignore','CRUMB_CONTEXT.json','COPILOT_SESSION.json','BUILD_HANDOFF.json'];
   const bytes=tracked.map(path=>readFileSync(join(root,path)));
-  for(const name of contextReads){const result=readContext(root,name,name==='search_research'?{query:'synthetic',limit:2}:{});assert.ok(Buffer.byteLength(JSON.stringify(result))<=24576,name);}
+  for(const name of contextReads){const result=readContext(root,name,name==='search_research'?{...continuation,query:'synthetic',limit:2}:continuation);assert.ok(Buffer.byteLength(JSON.stringify(result))<=24576,name);}
   assert.equal(JSON.stringify(readPrebuild(root)),before);
   tracked.forEach((path,i)=>assert.deepEqual(readFileSync(join(root,path)),bytes[i]));
   assert.throws(()=>readContext(root,'get_current_context',{approval:true}),/arguments/);
   assert.throws(()=>readContext(root,'search_research',{query:'x',limit:100}),/one to six/);
-  assert.equal((readContext(root,'get_confirmed_user') as {text:string}).text,saved.context.definition.user.text);
-  writeFileSync(join(root,'BUILD_HANDOFF.json'),'{}');assert.throws(()=>readContext(root,'get_build_handoff'),/stale|edited|unconfirmed/);
+  assert.equal((readContext(root,'get_confirmed_user',continuation) as {text:string}).text,saved.context.definition.user.text);
+  writeFileSync(join(root,'BUILD_HANDOFF.json'),'{}');assert.throws(()=>readContext(root,'get_build_handoff',continuation),/stale|edited|unconfirmed/);
+});
+
+test('M3-R2 fresh chat never reads an unrelated idea; explicit continuation restores it',t=>{
+  const root=temporaryProject(t),saved=prepareIde(root,'problem');
+  for(const name of contextReads){
+    const result=readContext(root,name,name==='search_research'?{query:'synthetic'}:{});
+    assert.deepEqual(result,{available:false,reason:'Fresh conversation. Saved idea context is available only when the founder explicitly continues that project.'});
+    assert.equal(JSON.stringify(result).includes(String(saved.context.definition.user.text)),false);
+  }
+  assert.equal((readContext(root,'get_confirmed_user',continuation) as {text:string}).text,saved.context.definition.user.text);
+  assert.throws(()=>readContext(root,'get_current_context',{scope:{mode:'continue',conversationId:'x'}}),/conversation identifier/);
+  const cli=fileURLToPath(new URL('../src/cli/main.js',import.meta.url));
+  const fresh=spawnSync(process.execPath,[cli,'internal','template',root],{encoding:'utf8',windowsHide:true,timeout:15000});
+  assert.equal(fresh.status,0,fresh.stderr);assert.equal(JSON.parse(fresh.stdout).definition.user.text,null);
+  assert.throws(()=>savePrebuild(root,JSON.parse(fresh.stdout)),/changed in another session/);
+  assert.equal(readPrebuild(root)!.hash,saved.hash);
+  const continued=spawnSync(process.execPath,[cli,'internal','template',root,'--resume'],{encoding:'utf8',windowsHide:true,timeout:15000});
+  assert.equal(continued.status,0,continued.stderr);assert.equal(JSON.parse(continued.stdout).definition.user.text,saved.context.definition.user.text);
 });
 
 test('Closeout: real MCP stdio initialize/list/call rejects writes and outside-project arguments',t=>{
   const root=temporaryProject(t);prepareIde(root,'problem');
-  const messages=[{jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:'2025-03-26',capabilities:{},clientInfo:{name:'synthetic-test',version:'1'}}},{jsonrpc:'2.0',method:'notifications/initialized'},{jsonrpc:'2.0',id:2,method:'tools/list'},{jsonrpc:'2.0',id:3,method:'tools/call',params:{name:'get_confirmed_user',arguments:{}}},{jsonrpc:'2.0',id:4,method:'tools/call',params:{name:'approve_act',arguments:{}}},{jsonrpc:'2.0',id:5,method:'tools/call',params:{name:'get_current_context',arguments:{project:'C:/'}}}];
+  const messages=[{jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:'2025-03-26',capabilities:{},clientInfo:{name:'synthetic-test',version:'1'}}},{jsonrpc:'2.0',method:'notifications/initialized'},{jsonrpc:'2.0',id:2,method:'tools/list'},{jsonrpc:'2.0',id:3,method:'tools/call',params:{name:'get_confirmed_user',arguments:{}}},{jsonrpc:'2.0',id:4,method:'tools/call',params:{name:'get_confirmed_user',arguments:continuation}},{jsonrpc:'2.0',id:5,method:'tools/call',params:{name:'approve_act',arguments:{}}},{jsonrpc:'2.0',id:6,method:'tools/call',params:{name:'get_current_context',arguments:{project:'C:/'}}}];
   const result=spawnSync(process.execPath,[fileURLToPath(new URL('../src/cli/mcp.js',import.meta.url)),root],{input:messages.map(x=>JSON.stringify(x)).join('\n')+'\n',encoding:'utf8',windowsHide:true,timeout:20000});
   assert.equal(result.status,0,result.stderr);const rows=result.stdout.trim().split('\n').map(line=>JSON.parse(line));
   assert.equal(rows[0].result.protocolVersion,'2025-03-26');assert.equal(rows[1].result.tools.length,10);assert.ok(rows[1].result.tools.every((tool:{annotations:{readOnlyHint:boolean}})=>tool.annotations.readOnlyHint));
-  assert.equal(JSON.parse(rows[2].result.content[0].text).confirmed,true);
-  assert.equal(rows[3].result.isError,true);assert.equal(rows[4].result.isError,true);
+  assert.equal(JSON.parse(rows[2].result.content[0].text).available,false);
+  assert.equal(JSON.parse(rows[3].result.content[0].text).confirmed,true);
+  assert.equal(rows[4].result.isError,true);assert.equal(rows[5].result.isError,true);
 });

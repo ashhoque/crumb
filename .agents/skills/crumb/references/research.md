@@ -1,5 +1,23 @@
 # Research for a useful Evaluate decision
 
+Use the M3-R2 decision policy before a new search: decision → missing external
+evidence → materiality → bounded research → concise synthesis. A simple
+clarification with no material external gap stays on the fast path: compact current
+context, no history reload, repository scan or research call. When evidence matters,
+reuse relevant current sources before searching. Start with a few authoritative
+options, combine independent lookups when the host permits, and stop as soon as the
+immediate decision is adequately supported. The `research-decision` Core helper
+sets a small initial budget; the larger Evaluate ceilings below apply only when
+the decision genuinely needs broader investigation. Record actual calls and
+duplicate searches internally, never as routine user-facing diagnostics.
+
+Money, competitor packaging, technical dependencies and first-user habitats are
+common reasons to look ahead without being asked. They are not automatic browse
+triggers. For material external numbers/current claims, retain source URL,
+retrieval date, exact entity/product, relevant city/region and evidence status.
+Call a vendor page publicly listed unless the current offer was directly verified.
+Mark unsupported figures as estimates or unknowns and avoid false precision.
+
 Start from the explicitly confirmed Intention, User and Problem. Do not spend a personal
 tool founder's time proving venture scale. Conversely, one founder's inconvenience
 does not establish a reachable commercial buyer.

@@ -18,13 +18,15 @@ import { confirmedReply } from './conversation-render.js';
 import { researchPlan, emptyQuality } from '../domain/evaluation-quality.js';
 import { interviewFollowUp } from '../domain/interviews.js';
 import { discoveryPlan } from '../domain/first-user-discovery.js';
+import { planDecisionResearch, type ResearchDecision } from '../domain/research-decision.js';
 import type { HostSurface } from '../domain/session.js';
 
 try {
   requireTestedRuntime();
-  const { positionals, values } = parseArgs({ allowPositionals: true, strict: true, options: { json: { type: 'boolean', default: false }, section: { type: 'string' }, page: { type: 'string' }, collapsible: { type: 'boolean', default: false } } });
+  const { positionals, values } = parseArgs({ allowPositionals: true, strict: true, options: { json: { type: 'boolean', default: false }, section: { type: 'string' }, page: { type: 'string' }, collapsible: { type: 'boolean', default: false }, resume: { type: 'boolean', default: false } } });
   const [command, action, target, ...extra] = positionals;
   if ((values.section !== undefined || values.page !== undefined || values.collapsible) && !(command === 'internal' && action === 'detail')) throw new Error('Detail options belong only to internal detail.');
+  if (values.resume && !(command === 'internal' && ['conversation-context','conversation-detail','conversation-refresh','template'].includes(action ?? ''))) throw new Error('Explicit continuation applies only to saved conversation reads.');
   const print = (value: unknown): void => console.log(JSON.stringify(value, null, 2));
   const readInput = async (): Promise<unknown> => {
     let bytes = 0;
@@ -71,9 +73,9 @@ try {
     const printAct = (saved: ReturnType<typeof act.saveActPlan>):void => print({...compactAct(saved),summary:renderActSummary(saved,readPrebuild(root)!.context)});
     const printLearn = (saved: NonNullable<ReturnType<typeof learn.readLearn>>):void => print({...learn.compactLearn(saved),summary:renderLearnSummary(saved)});
     switch (action) {
-      case 'conversation-context': print(currentConversation(root)); break;
-      case 'conversation-detail': print(conversationDetail(root,await readInput())); break;
-      case 'conversation-refresh': {const s=syncConversationArtifacts(root);print(s?currentConversation(root):null);break;}
+      case 'conversation-context': print(values.resume?currentConversation(root):{available:false,reason:'Fresh conversation. Saved idea context requires explicit continuation.'}); break;
+      case 'conversation-detail': {if(!values.resume)throw new Error('Select explicit continuation before reading saved idea evidence.');print(conversationDetail(root,await readInput()));break;}
+      case 'conversation-refresh': {if(!values.resume)throw new Error('Select explicit continuation before refreshing saved idea artifacts.');const s=syncConversationArtifacts(root);print(s?currentConversation(root):null);break;}
       case 'build-transition': console.log(readyToBuild(root,await readInput() as HostSurface)); break;
       case 'continue-build': print(continueBuild(root,await readInput())); break;
       case 'work-pack': printAct(prepareWorkPack(root,await readInput())); break;
@@ -97,6 +99,7 @@ try {
       case 'act-dossier': print(act.readAct(root)); break;
       case 'schema': print(ideSchema); break;
       case 'evaluation-plan': {const s=readPrebuild(root);if(!s||s.context.contractVersion!==2)throw new Error('Use the saved intention, user and problem to begin the research plan.');print(researchPlan(s.context));break;}
+      case 'research-decision': print(planDecisionResearch(await readInput() as ResearchDecision)); break;
       case 'interview-followup': {
         const input=await readInput();
         if(!input||typeof input!=='object'||!('answer' in input)||typeof input.answer!=='string'||!input.answer.trim()||input.answer.length>4000)throw new Error('Use one relevant, minimized answer to suggest the next interview question.');
@@ -104,7 +107,7 @@ try {
       }
       case 'discovery-plan': {const s=readPrebuild(root);if(!s||s.context.contractVersion!==2)throw new Error('Use the confirmed current IDE context to prepare first-user discovery.');print(discoveryPlan(s.context));break;}
       case 'template': {
-        const saved = readPrebuild(root);
+        const saved = values.resume ? readPrebuild(root) : null;
         print(saved ? { ...(saved.context.contractVersion === 1 ? upgradeContext(saved.context) : saved.context), expectedVersion: saved.version } : {...emptyIde(),quality:emptyQuality()}); break;
       }
       case 'ide': { const input=await readInput();const saved = transitionIde(root,input);const confirming=!!input&&typeof input==='object'&&'operation'in input&&input.operation==='confirm';const summary=confirming&&saved.context.contractVersion===2&&saved.context.ide.confirmations.at(-1)?.subject==='act'?readyToBuild(root,{host:'codex',canExecute:true,sharedProjectFiles:true}):confirming?confirmedReply(saved):renderPrebuildSummary(saved);print({ version: saved.version, hash: saved.hash, context: compactPrebuild(saved), summary }); break; }
@@ -159,7 +162,7 @@ try {
         console.log(render.renderDetail(state.draft, section as typeof render.detailSections[number], Number(values.page ?? 1), values.collapsible, state.cycle !== null, state.latestReceipt)); break;
       }
       case 'handoff': console.log(render.renderHandoff(workflow.approvedHandoff(root))); break;
-      default: throw new Error('Unknown internal operation. Use the skill reference; no action was taken.');
+      default: throw new Error('Unknown operation. No action was taken.');
     }
   } else {
     throw new Error(`Usage: cec doctor | init [folder] | status [folder] [--json] | backup create [folder]. Use $${brand.skill} for the conversation.`);
