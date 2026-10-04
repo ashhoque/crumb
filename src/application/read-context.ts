@@ -12,14 +12,26 @@ import { discoveryCards } from '../domain/first-user-discovery.js';
 
 export const contextReads = ['get_current_context','get_confirmed_intention','get_confirmed_user','get_confirmed_problem','get_current_evaluation','get_user_habitats','get_first_user_avenues','get_build_handoff','get_current_build_stage','search_research'] as const;
 export type ContextRead = typeof contextReads[number];
+export const freshContext = { available:false, reason:'Fresh conversation. Saved idea context is available only when the founder explicitly continues that project.' } as const;
+
+function explicitContinuation(value: unknown): boolean {
+  if (value === undefined) return false;
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Use a fresh conversation or an explicit continuation scope.');
+  const scope = value as Record<string, unknown>;
+  if (Object.keys(scope).some(k=>!['mode','conversationId'].includes(k)) || scope.mode !== 'continue' || typeof scope.conversationId !== 'string' || !/^[A-Za-z0-9_-]{8,120}$/.test(scope.conversationId)) throw new Error('Continuing saved context needs a current conversation identifier and explicit founder intent.');
+  return true;
+}
 
 /** Core read boundary: no initializer, migrations, artifact refresh, network or
  * approval mutations. The MCP transport delegates here, never implements IDE. */
 export function readContext(target: string, name: ContextRead, args: Record<string, unknown> = {}): unknown {
   if (!contextReads.includes(name)) throw new Error('Unknown read-only context tool.');
   if (!args || typeof args !== 'object' || Array.isArray(args)) throw new Error('Use an argument object.');
-  if (Object.keys(args).some(k => name !== 'search_research' || !['query','limit'].includes(k))) throw new Error('Only bounded research search accepts arguments; project and permissions are fixed at startup.');
+  if (Object.keys(args).some(k => !['scope',...(name === 'search_research' ? ['query','limit'] : [])].includes(k))) throw new Error('Only a continuation scope and bounded research search accept arguments; project and permissions are fixed at startup.');
   if (name === 'search_research' && (typeof args.query !== 'string' || !args.query.trim() || args.query.length > 120 || (args.limit !== undefined && (!Number.isInteger(args.limit) || Number(args.limit) < 1 || Number(args.limit) > 6)))) throw new Error('Search with 1–120 characters and a limit from one to six.');
+  // A repository is not a conversation. Do not even open its private database
+  // until the host has identified this turn as an explicit continuation.
+  if (!explicitContinuation(args.scope)) return freshContext;
   const root = resolveProjectRoot(target), directory = join(root, PRIVATE_DIRECTORY);
   if (!inspectPath(directory)) return { available:false, reason:'No saved Crumb context. No project was initialized.' };
   const file = join(directory, DATABASE_NAME);

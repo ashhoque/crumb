@@ -6,9 +6,10 @@ handoffs, not implemented native integrations or file synchronization.
 
 ## Conversation
 
-Read `conversation-context`. For older saved IDE that predates these files, run
-`conversation-refresh` once; it derives artifacts from retained state without
-research or onboarding. Select one to six evidence IDs with `conversation-detail`
+Read `conversation-context --resume` only after the founder explicitly continues
+this project. For older saved IDE that predates these files, run
+`conversation-refresh --resume` once; it derives artifacts from retained state without
+research or onboarding. Select one to six evidence IDs with `conversation-detail --resume`
 and `{"ids":["saved-id"]}` when deeper support matters. Never read a giant history
 just to continue a normal turn. Sources retain dates/provenance and unknowns.
 

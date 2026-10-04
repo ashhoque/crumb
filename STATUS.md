@@ -1,5 +1,19 @@
 # Crumb status
 
+**M3-R2 PASS WITH WARNINGS — alpha-driven interaction revision.** Fresh chats now
+default to clean idea context in the CLI and read-only MCP; an explicit continuation
+restores saved state. Crumb's skill now owns bounded external research, source
+qualification, collaborative voice and a fast path for ordinary turns. The offline
+decision planner caps an initial research pass at three queries and six pages.
+
+Focused final-state checks passed **38/38**. The full repository check passed
+**314/314** before the final narrow evidence-classification and isolation-test edits;
+those edits passed the focused rerun. Final verification on merged `main` is part of
+the GitHub closeout. Host-mediated live research and unscripted tester UX remain
+warnings. See [M3-R2 report](M3_R2_REPORT.md). M4 has not begun.
+
+## M3-R1 result (historical)
+
 **M3-R1 PASS WITH WARNINGS — focused quality correction complete.** Final TypeScript
 and all 298/298 tests passed, zero failures/skips. Stock rehearsal passed with
 inspected public research and explicitly synthetic founder replies. Conversation
