@@ -16,12 +16,13 @@ Status: **PASS WITH WARNINGS**. M4 was not started. Live-host conversations and 
 - Focused M3-R4 and M3-R3 regression: 13/13 passed. After the learning addition, focused M3-R4 plus Launch & Learn: 34/34 passed. The final candidate-guidance edit passed the M3-R4 focused tests: 8/8.
 - Full suite on the final revision: **328/328 passed**, zero failures or skips, including build/type checks. The preceding 327/327 baseline also passed.
 - Live host: market, pricing, first users, hidden opportunity, feature pushback and founder win each completed two turns; continuity completed 11 turns after one `$crumb` invocation. No identity leaks were detected. A targeted first-user retest returned five public Toronto clinic starting points with source links, research/acquisition route separation and explicit uncertainty. No one was contacted. The revised founder-win flow also completed without claiming that ignored invites were demand evidence.
-- Longest observed live turn: 96.9 seconds in the targeted first-user retest; no turn exceeded two minutes. The long continuity run took 126.4 seconds across 11 turns.
+- The source-skill trials stayed below two minutes per turn; the longest was 96.9 seconds in the targeted first-user retest. The long continuity run took 126.4 seconds across 11 turns. The global-wrapper smoke test completed both market turns with no identity leak or invented TAM, but its first turn took **269.4 seconds** and its follow-up took **99.8 seconds**.
+- The global source checkout was fast-forwarded to the published `main`, rebuilt, and passed the eight M3-R4 focused tests. The global wrapper points to that source and identifies M3-R4. Its unrelated untracked setup note was preserved. GitHub `main` and `m3-r4` were verified at the same revision head before this documentation addendum.
 
 ## Remaining warnings
 
 - A paying-pilot live turn still opened with an analytical progress line before a warmer reaction after one targeted guidance repair. The response did recognize the milestone and qualify what payment proves. Stop further repair under the one-repair rule; use unscripted founder feedback to judge the desired energy.
-- Cold host turns still searched for an already supplied skill path, adding latency. The source skill cannot prevent a search that happens before it is read. No turn crossed the two-minute recurring-failure threshold in this run.
+- Cold source-skill turns sometimes searched for an already supplied skill path, adding latency. The global-wrapper market turn crossed the two-minute ordinary-turn target once at 269.4 seconds. Its follow-up was 99.8 seconds, so this was not a recurring failure in the two-turn global trial. The installed host's first-turn latency remains an explicit alpha concern.
 - The planners rely on host-supplied public evidence and founder reports. They do not independently verify claims, grant outreach permission, or establish customer validation. The live candidates are starting points; their pain and willingness remain unknown.
 
 ## Seven short alpha prompts

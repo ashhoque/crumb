@@ -8,7 +8,8 @@ first-user outcome learning aid. Six synthetic live-host scenarios plus 11-turn
 continuity completed; targeted candidate discovery returned five public Toronto
 clinic starting points without contacting anyone. The final full suite passed
 **328/328**. Warnings: the founder-win opening still began with analysis before
-warmth in one live turn, and cold host skill discovery adds latency. See
+warmth in one live turn, and a global-wrapper research turn took 269 seconds
+despite a 100-second follow-up. See
 [M3-R4 report](M3_R4_REPORT.md). M4 has not begun.
 
 ## M3-R3 result (historical)
