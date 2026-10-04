@@ -1,18 +1,24 @@
-# Current Codex installation (M3-R3)
+# Current Codex installation (M3-R5 Phase 1 candidate)
 
-On this machine the global `crumb` skill is a small entrypoint at
-`C:\Users\Ash\.agents\skills\crumb\SKILL.md`. It opens the canonical source
-skill at `C:\Users\Ash\Documents\Codex\CEC\.agents\skills\crumb\SKILL.md`.
-The Node build compiles TypeScript and copies contracts; it does not generate or
-install either skill file. After a passing revision is merged and pushed, update
-the source checkout to that `main` commit, rebuild with pinned Node 24.19.0 and
-verify the canonical skill path and global wrapper. The installed read-only MCP
-points to that checkout's compiled `dist/src/cli/mcp.js`.
+The only discoverable Crumb skill is installed directly at
+`C:\Users\Ash\.agents\skills\crumb\SKILL.md`; it is not a wrapper. Its
+version-controlled source is `skill/crumb/SKILL.md` in the Crumb repository, with
+specialist references alongside it. Repository-local skill entries and the old
+`pruvity`, `pruvello` and `customer-evidence` aliases are archived in
+`docs/legacy-skills/` and are not discoverable. Stable persistence identifiers
+remain unchanged.
+
+During Phase 1, use the pushed `m3-r5-phase1` branch in the canonical source
+checkout `C:\Users\Ash\Documents\Codex\CEC`. Build with pinned Node 24.19.0,
+run `node scripts/sync-global-skill.mjs --install`, then run it without arguments
+to compare hashes. The installed read-only MCP points to that checkout's compiled
+`dist/src/cli/mcp.js`. Run the live host acceptance against the installed global
+skill. Do not merge Phase 1 into `main`; the separate Astra review comes first.
 
 Codex also reads `C:\Users\Ash\.codex\AGENTS.md` at host level. Its scoped
 Crumb entry rule makes every visible message, including progress, speak as Crumb
 and directs the host to use a supplied skill path without a repository search.
-The product method remains in the canonical skill. A live disposable-host probe
+The product method remains in the installed skill. A live disposable-host probe
 is required after installation; source-string checks alone do not prove the
 visible voice. See `scripts/verify-closeout-host.mjs` and M3_R3_REPORT.md.
 
@@ -40,7 +46,7 @@ The updated M1 skill was validated and discovered by the real repository scanner
 This task exercised both synthetic founder paths with actual implementation and
 receipts. Those are scripted developer rehearsals, not an independent usability study.
 
-## Current supported entry
+## Historical supported entry (before M3-R5)
 
 Open CEC as a Codex project and say `$crumb Let's try a synthetic example.`
 The host prepares a unique temporary example and handles the internal commands.

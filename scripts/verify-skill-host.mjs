@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 // Opt-in M3 integration check: one synthetic ephemeral turn in the installed
 // Codex host. It uses normal host authentication; it never reads credentials.
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const expectedPath = join(root, '.agents/skills/crumb/SKILL.md');
+const expectedPath = join(process.env.USERPROFILE??'', '.agents/skills/crumb/SKILL.md');
 const result = { timestamp: new Date().toISOString(), discovery: false, invocation: false, markerObserved: false };
 const child = spawn('codex', ['app-server', '--stdio'], { cwd: root, windowsHide: true, stdio: ['pipe', 'pipe', 'pipe'] });
 const pending = new Map();
@@ -50,14 +50,14 @@ function request(method, params) {
   });
 }
 const normalize = path => process.platform === 'win32' ? resolve(path).toLowerCase() : resolve(path);
-console.log('Checking repository skill discovery and one synthetic invocation in the installed Codex host.');
+console.log('Checking the single global Crumb skill and one synthetic invocation in the installed Codex host.');
 try {
   await request('initialize', { clientInfo: { name: 'business_copilot_host_check', version: '0.0.0' }, capabilities: { experimentalApi: true } });
   child.stdin.write(JSON.stringify({ method: 'initialized', params: {} }) + '\n');
   const list = await request('skills/list', { cwds: [root], forceReload: true });
   const skill = list.data?.flatMap(item => item.skills ?? []).find(skill => skill.name === 'crumb' && normalize(skill.path) === normalize(expectedPath));
-  result.discovery = skill?.enabled === true && skill.scope === 'repo';
-  if (!result.discovery) throw new Error('The expected repository-local skill was not discovered and enabled.');
+  result.discovery = skill?.enabled === true;
+  if (!result.discovery) throw new Error('The expected global skill was not discovered and enabled.');
   const thread = await request('thread/start', { cwd: root, ephemeral: true, sandbox: 'read-only', approvalPolicy: 'never', developerInstructions: 'This is only a synthetic skill invocation test. Respond to its discovery probe only. Do not use tools, read files, change files, or implement code.' });
   await request('turn/start', { threadId: thread.thread.id, input: [{ type: 'text', text: '$crumb Run the discovery probe only.' }, { type: 'skill', name: skill.name, path: skill.path }] });
   const turn = await Promise.race([completion, new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Skill invocation timed out after 60 seconds.')), 60_000); })]);

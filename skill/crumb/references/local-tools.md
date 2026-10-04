@@ -72,9 +72,10 @@ the exact validation error, make one targeted correction, and stop if it persist
 Compact prebuild context includes `guidance`: the next useful question,
 confirmation, research, review or scope move. Follow it without asking the founder to
 manage IDE manually. It does not grant assent or mutate presentation state.
-For `kind:review`, the saved research passes completeness checks: run `ide review`,
-then present Evaluation and obtain its actual founder response. Reuse that research
-instead of repeating it; the founder has not reviewed it merely because it is ready.
+For `kind:review` with no subject, bring one working business thesis for founder
+correction; it is not Act approval. A later complete Evaluation may require
+`ide review` and its current founder receipt. Reuse research rather than repeating
+it; a tool result alone is never founder review.
 
 The old provided/skipped/ready fields describe retained data. The authoritative
 workflow is the derived ideState: confirmed intention, target_user, problem_definition,
@@ -93,25 +94,23 @@ private storage or credentials. Synthetic and real provenance remain separate.
 
 ## Present and confirm (internal ide operation)
 
-1. Save the drafted statement. Send
-   `{"expectedVersion":1,"operation":"present","subject":"intention"}`.
-   Subjects are intention, user, problem, evaluation and act. The returned summary
-   is the exact current presentation. Display it to the founder before confirming.
-2. After the founder replies, send
-   `{"expectedVersion":2,"operation":"confirm","presentationId":"returned-id","quote":"actual reply","turnId":"actual-source-turn-reference"}`.
-   Each reply confirms one statement. The tool assigns receipt identity/time.
-   Ordinary foundations and the final displayed Act commitment accept clear natural
-   agreement; no exact Yes phrase is required. Host semantic interpretation is
-   available as documented in modes.md. Edits require a revised presentation.
-   Do not rewrite an ambiguous reply to make it pass.
-3. Continue User then Problem. Existing facts can shorten discussion, not replace
-   the explicit confirmation. Save deeper research before the review transition.
-4. After meaningful investigation send
-   `{"expectedVersion":8,"operation":"review"}`. This checks all coverage,
-   alternatives, relevant attempts, counterevidence and confirmed foundations.
-   It records agent review, not founder review. Present evaluation and record its
-   actual founder assent separately, then offer interviews or the Act decision.
-5. Present act, show the concise commitment and its one question, then wait. Only its explicit
+1. Save provisional founder facts and research without inventing assent. Once the
+   intention, first user, pain, evidence, direction and main uncertainty are ready,
+   send `{"expectedVersion":1,"operation":"present-thesis"}`. Display the returned
+   exact thesis. After the founder's actual clear agreement, send
+   `{"expectedVersion":2,"operation":"confirm-thesis","presentationId":"returned-id","quote":"actual reply","turnId":"actual-source-turn-reference"}`.
+   This atomically records distinct foundation receipts from one displayed thesis.
+   Corrections require a revised thesis; ambiguity does not confirm. "Looks good,
+   but don't build yet" can confirm understanding while keeping Act locked.
+2. The older `present` and `confirm` operations remain available for a material
+   correction to one foundation. Each separate reply confirms only one statement.
+   Host semantic interpretation is documented in modes.md. Never rewrite a reply.
+3. After complete investigation send `{"expectedVersion":8,"operation":"review"}`.
+   This checks coverage, alternatives, relevant attempts, counterevidence and
+   confirmed foundations. If Evaluation was not included in the displayed thesis,
+   present its current conclusion and record the founder's actual response before
+   offering interviews or the Act decision.
+4. Present Act as its own exact commitment and wait. Only its explicit
    assent permits a solution proposal. Declining, opening details or choosing a
    redefinition does not confirm it. Review error messages internally and continue
    the useful conversation; don't hand validation fields to the founder.

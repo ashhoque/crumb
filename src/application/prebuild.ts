@@ -140,6 +140,13 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
       const agreement=agreesWithPresentation(quote,r.interpretation)||/^(yes|looks good|sounds right|that works)[,.]?\s+(?:but\s+)?(?:do not|don't)\s+build\s+yet[.!]?$/i.test(quote);
       if(!agreement)throw new Error('Review the working thesis with clear agreement or a correction; this does not authorize Act.');
       for(const subject of ['intention','user','problem'] as const)c.ide.confirmations.push({id:randomUUID(),subject,basis:basis(c,subject),presentationId:p.id,presentedText:p.text,turnId:r.turnId!,quote,recordedAt:new Date().toISOString()});
+      if(c.evaluation.status==='ready'){
+        try{
+          assertEvaluationComplete(c);
+          c.ide.reviewBasis=evaluationBasis(c);
+          c.ide.confirmations.push({id:randomUUID(),subject:'evaluation',basis:basis(c,'evaluation'),presentationId:p.id,presentedText:p.text,turnId:r.turnId!,quote,recordedAt:new Date().toISOString()});
+        }catch{ /* Incomplete Evaluation remains unreviewed; the thesis may still confirm its foundations. */ }
+      }
       c.ide.presentation=null;
     }
     if (r.operation === 'confirm') {

@@ -59,9 +59,10 @@ Say **Adjust scope**, **View build plan**, **Pause**, or correct the understandi
 at any point. Unknown customer tooling gets proportionate groundwork; existing
 working setup is reused. Crumb keeps the customer's stack and prior work.
 
-`$pruvello`, `$pruvity` and `$customer-evidence` forward to Crumb. The skill is
-repository-scoped; another task can explicitly read this SKILL.md and target the
-selected project. It never silently installs a skill or app stack into that project.
+The only active `$crumb` skill is installed globally. Its version-controlled
+source lives in `skill/crumb/`; the old aliases are archived and do not shadow
+it in this repository. It never silently installs an app stack into a customer
+project. See [current setup](MANUAL_SETUP.md) for installation and hash checks.
 
 ## Development
 
@@ -90,7 +91,7 @@ Research uses permitted host tools separately.
 
 Public operations: `doctor`, historical synthetic `demo fresh|existing|feedback`,
 `init [folder]`, `status [folder]`, `backup create [folder]`.
-The [tool reference](.agents/skills/crumb/references/local-tools.md) documents internal
+The [tool reference](skill/crumb/references/local-tools.md) documents internal
 contracts. Use direct pinned Node with UTF-8 JSON input for host integration;
 the launcher also forwards stdin for current IDE and Act operations.
 

@@ -13,10 +13,10 @@ import { updateWorkingContext, planFounderMove, opportunityLevel } from '../src/
 
 test('M3-R3 runtime entrypoint places direct Crumb identity before process guidance',async()=>{
   const {readFileSync}=await import('node:fs');
-  const skill=readFileSync(new URL('../../.agents/skills/crumb/SKILL.md',import.meta.url),'utf8');
-  assert.ok(skill.indexOf('You are Crumb in every user-visible message')<skill.indexOf('## Start with the current conversation'));
-  assert.match(skill,/including brief progress updates/);
-  assert.match(skill,/an existing app brought into this conversation/);
+  const skill=readFileSync(new URL('../../skill/crumb/SKILL.md',import.meta.url),'utf8');
+  assert.ok(skill.indexOf('You are Crumb in every visible message')<skill.indexOf('## Start with this conversation'));
+  assert.match(skill,/including progress updates/);
+  assert.match(skill,/For an existing app/);
 });
 
 test('M3-R3 bootstrap reads few safe high-information files and reuses unchanged content',t=>{

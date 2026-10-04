@@ -110,7 +110,7 @@ export function thesisText(c: IdeContext): string {
   const safe=(value:string)=>plain(value).replaceAll('<','&lt;').replaceAll('>','&gt;');
   return [`Here is my working take: ${safe(c.intention.statement)}`,
     `The first user is ${safe(c.definition.user.text)}. The pain is ${safe(c.definition.problem.text)}.`,
-    c.evaluation.conclusion?`What the evidence suggests: ${safe(c.evaluation.conclusion)}`:'This is a provisional direction; external evidence has not established demand.',
+    c.evaluation.conclusion?`What the evidence suggests: ${safe(c.evaluation.conclusion)} ${c.evaluation.promising.slice(0,2).map(safe).join(' ')}`:'This is a provisional direction; external evidence has not established demand.',
     c.evaluation.unknowns[0]?`The main uncertainty: ${safe(c.evaluation.unknowns[0])}`:'The main uncertainty is whether this pain changes real behavior.',
     'Does this capture the business direction? We can keep investigating without committing to build.'].join('\n\n').slice(0,6000);
 }
@@ -156,7 +156,7 @@ export function validateIde(input: unknown, pendingChange = false): asserts inpu
   if([c.brief.next,...c.brief.questions].some(researchableQuestion))throw new Error('Crumb should investigate that first and propose a reasoned option; ask the founder only about intent or meaningful constraints.');
   if (c.buildRequest !== null) throw new Error('An early build request cannot bypass confirmed IDE.');
   const byTurn=new Map<string,Confirmation[]>();for(const receipt of c.ide.confirmations)byTurn.set(receipt.turnId,[...(byTurn.get(receipt.turnId)??[]),receipt]);
-  if ([...byTurn.values()].some(group=>group.length>1&&(group.length!==3||new Set(group.map(r=>r.subject)).size!==3||!['intention','user','problem'].every(s=>group.some(r=>r.subject===s))||new Set(group.map(r=>r.presentationId)).size!==1||new Set(group.map(r=>r.presentedText)).size!==1||new Set(group.map(r=>r.quote)).size!==1)) || new Set(c.ide.confirmations.map(r => r.id)).size !== c.ide.confirmations.length) throw new Error('Confirmation replies and receipt identities cannot be reused outside one displayed thesis.');
+  if ([...byTurn.values()].some(group=>group.length>1&&(![3,4].includes(group.length)||new Set(group.map(r=>r.subject)).size!==group.length||!['intention','user','problem',...(group.length===4?['evaluation']:[])].every(s=>group.some(r=>r.subject===s))||new Set(group.map(r=>r.presentationId)).size!==1||new Set(group.map(r=>r.presentedText)).size!==1||new Set(group.map(r=>r.quote)).size!==1)) || new Set(c.ide.confirmations.map(r => r.id)).size !== c.ide.confirmations.length) throw new Error('Confirmation replies and receipt identities cannot be reused outside one displayed thesis.');
   if (c.ide.confirmations.some(r => !Number.isFinite(Date.parse(r.recordedAt)))) throw new Error('Confirmation receipts need valid times.');
   if (!pendingChange && (c.master || c.brief.choices.some(x => ['shape_mvp', 'build_requested'].includes(x.action)))) assertAct(c);
   if (!pendingChange && c.brief.choices.some(x => ['interview', 'master'].includes(x.action)) && !['reviewed', 'founder_reviewed'].includes(ideState(c).evaluation)) throw new Error('Finish evaluation before interview or opportunity-brief choices.');

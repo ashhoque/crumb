@@ -32,9 +32,10 @@ test('M3-R5 one displayed working thesis can confirm foundations but cannot appr
   assert.equal(p.subject,'thesis');assert.match(p.text,/first user/i);
   const saved=transitionIde(root,{expectedVersion:shown.version,operation:'confirm-thesis',presentationId:p.id,turnId:randomUUID(),quote:"Looks good, but don't build yet."});
   if(saved.context.contractVersion!==2)throw new Error('Expected current IDE.');
-  assert.equal(saved.context.ide.confirmations.length,3);
-  assert.equal(ideState(saved.context).act_readiness,'not_ready');
-  assert.throws(()=>assertAct(saved.context),/founder-reviewed evaluation/);
+  assert.equal(saved.context.ide.confirmations.length,4);
+  assert.equal(ideState(saved.context).evaluation,'founder_reviewed');
+  assert.equal(ideState(saved.context).act_readiness,'ready_for_confirmation');
+  assert.throws(()=>assertAct(saved.context),/explicitly choose/);
 });
 
 test('M3-R5 ambiguous or stale thesis cannot manufacture consent',t=>{

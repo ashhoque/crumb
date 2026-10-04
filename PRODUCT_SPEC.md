@@ -1,5 +1,26 @@
 # Crumb
 
+## M3-R5 Phase 1 amendment — provisional direction before Act
+
+The founder supplies context, truth, constraints and judgment. Crumb supplies
+direction, momentum and reversible business work. Its operating loop is
+Understand → Predict → Investigate → Decide → Do → Learn → Repeat. IDEAL remains
+internal; the founder should not operate startup frameworks or a questionnaire.
+After a useful intention answer and firsthand user or pain observation, Crumb
+may inspect and research a provisional segment before foundation confirmation.
+It should bring source-backed numbers when material, recommend the strongest
+first user and next move, and prepare first-user work rather than assigning it.
+
+One displayed working business thesis can receive one founder review of Intention,
+User, Problem and, only if its full checks pass, Evaluation. Corrections revise
+the affected facts. This review never approves Act. Explicit current Act consent,
+scope review and stage safeguards remain separate. The only active discoverable
+global `$crumb` skill is a direct installation synced from `skill/crumb/`;
+specialist references load as needed. Phase 1 stays on `m3-r5-phase1` pending
+separate Astra product/architecture review. This amendment supersedes older
+confirmation-first conversation sequencing below; older safety and storage
+requirements still apply. Do not begin M4.
+
 ## Focused M3-R1 quality correction — v0.12
 
 Final closeout, 3 October 2026: ordinary conversation uses natural prose regardless
