@@ -1,4 +1,4 @@
-# Current Codex installation (M3-R5 Phase 1 candidate)
+# Current Codex installation (M3-R5 Phase 2 blocked candidate)
 
 The only discoverable Crumb skill is installed directly at
 `C:\Users\Ash\.agents\skills\crumb\SKILL.md`; it is not a wrapper. Its
@@ -8,12 +8,16 @@ specialist references alongside it. Repository-local skill entries and the old
 `docs/legacy-skills/` and are not discoverable. Stable persistence identifiers
 remain unchanged.
 
-During Phase 1, use the pushed `m3-r5-phase1` branch in the canonical source
+For the current candidate, use the pushed `m3-r5-phase1` branch in the canonical source
 checkout `C:\Users\Ash\Documents\Codex\CEC`. Build with pinned Node 24.19.0,
 run `node scripts/sync-global-skill.mjs --install`, then run it without arguments
-to compare hashes. The installed read-only MCP points to that checkout's compiled
+to compare hashes. Installation also writes/checks `runtime.json` beside SKILL.md,
+with the actual pinned Node and built Core CLI paths; never commit this local locator.
+The installed read-only MCP points to that checkout's compiled
 `dist/src/cli/mcp.js`. Run the live host acceptance against the installed global
-skill. Do not merge Phase 1 into `main`; the separate Astra review comes first.
+skill. Phase 2 is BLOCKED on live review persistence and excessive runtime discovery.
+The installed code is `0095123`; see M3_R5_PHASE2_REPORT.md. Do not merge until all
+required revision acceptance checks pass. Preserve untracked GLOBAL_CRUMB_SETUP.md.
 
 Codex also reads `C:\Users\Ash\.codex\AGENTS.md` at host level. Its scoped
 Crumb entry rule makes every visible message, including progress, speak as Crumb

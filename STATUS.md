@@ -1,14 +1,14 @@
 # Crumb status
 
-**M3-R5 Phase 1 implemented on `m3-r5-phase1`; awaiting separate Astra review.**
-One direct global Crumb skill is installed from the development branch. The
-provisional research and one-thesis path is implemented; full Evaluation checks
-and explicit Act consent remain separate. Node 24.19.0 checks pass **331/331**.
-Installed-skill founder flows completed with bounded web research, sourced price
-anchors, a construction workflow reframe and a first-editor route. The live
-conversation results, latency, persistence limits and review questions are in
-[M3-R5 Phase 1 report](M3_R5_PHASE1_REPORT.md). `main` remains at M3-R4;
-M4 has not begun.
+**M3-R5 BLOCKED after Phase 2 review on `m3-r5-phase1`.**
+Direction, pricing and drafted first-user work improved; isolated founder notes
+now persist through Core. Node 24.19.0 checks pass **333/333**. However, the live
+host rewrote the recorded thesis and acknowledged review without saving a review
+receipt. Act correctly remained blocked. Repeated command discovery also remained
+after one targeted repair (pricing took 186 seconds). Passing code tests does not
+close these live acceptance failures. See [Phase 2 report](M3_R5_PHASE2_REPORT.md).
+The global installation remains the tested development candidate at `0095123`;
+`main` remains at M3-R4 (`f188f03`). No merge or main push; M4 has not begun.
 
 ## M3-R4 result (historical)
 

@@ -1,5 +1,22 @@
 # Crumb
 
+## M3-R5 Phase 2 clarification — reliable review and local continuity
+
+The direct installed skill has a generated `runtime.json` locator beside it,
+pointing to the pinned runtime and built Core CLI. Optional planners must not
+block reversible founder work. A fresh isolated conversation can start compact
+working notes without completing an Evaluation dossier; provenance, confidence,
+conversation binding and Act separation remain mandatory.
+
+A bundled thesis must expose counterevidence and material uncertainty, and the
+founder must see the recorded thesis before confirming it. A host paraphrase is
+not proof of that review. Never say a review was saved without its actual receipt.
+Full Evaluation checks remain necessary for an Evaluation receipt. Provisional
+research may proceed with known user/problem even while intention stays open.
+
+Phase 2 acceptance is BLOCKED; see M3_R5_PHASE2_REPORT.md. The founder authorizes
+main closeout only after complete acceptance. No M4 work is authorized.
+
 ## M3-R5 Phase 1 amendment — provisional direction before Act
 
 The founder supplies context, truth, constraints and judgment. Crumb supplies

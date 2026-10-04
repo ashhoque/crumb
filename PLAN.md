@@ -1,4 +1,22 @@
-# Crumb implementation plan - M3-R5 Phase 1
+# Crumb implementation plan - M3-R5 Phase 2
+
+## M3-R5 Phase 2 — 4 October 2026
+
+Authority: founder's Phase 2 review and conditional GitHub closeout request.
+Outcome: **BLOCKED**; see [Phase 2 report](M3_R5_PHASE2_REPORT.md).
+
+- [x] Review Phase 1 packet, actual transcripts and narrow runtime/IDE surfaces.
+- [x] Patch runtime locator, provisional direction, complete thesis disclosure,
+  concrete offers and isolated founder-note persistence without new architecture.
+- [x] Focused regressions and full suite (333/333); verify installed global skill.
+- [x] Live direction, pricing, first-user, thesis and no-build semantic audit.
+- [ ] Make displayed thesis and saved review agree in actual host use.
+- [ ] Eliminate repeated runtime discovery; retest affected live flows.
+- [ ] Reach complete acceptance before merge, final main verification and push.
+
+One targeted runtime repair was attempted. Stop further repair/retest loops under
+the workspace instruction. Keep the tested development candidate and evidence;
+do not merge this blocked result. Phase 1 and earlier plans below are historical.
 
 ## M3-R5 Phase 1 — 4 October 2026
 
