@@ -6,6 +6,11 @@ Use the pinned Node runtime and existing launcher; do not change global runtimes
 For JSON stdin on Windows use direct Node with UTF-8 input or a process API.
 
 Command shape: `node <install>/dist/src/cli/main.js internal <operation> <target>`.
+Read `../runtime.json` beside the installed SKILL.md once for the exact `node`
+and `cli` paths. Invoke those paths with `internal <operation> <target>`; the
+skill directory does not contain Core. Never search the home directory, plugin
+caches or customer project for Core. If the locator is absent, report that
+persistence is unavailable and continue reversible conversation work.
 
 For an existing app, `project-bootstrap` takes a JSON decision (`pricing`,
 `distribution`, `technical` or `product`), up to three targeted relative paths,

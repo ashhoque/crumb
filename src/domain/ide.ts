@@ -108,11 +108,17 @@ export function thesisBasis(c: IdeContext): string { return digest({foundations:
 export function thesisText(c: IdeContext): string {
   if(!c.intention.statement||!c.definition.user.text||!c.definition.problem.text)throw new Error('Draft the intention, initial user and pain before presenting a working thesis.');
   const safe=(value:string)=>plain(value).replaceAll('<','&lt;').replaceAll('>','&gt;');
-  return [`Here is my working take: ${safe(c.intention.statement)}`,
+  const text=[`Here is my working take: ${safe(c.intention.statement)}`,
     `The first user is ${safe(c.definition.user.text)}. The pain is ${safe(c.definition.problem.text)}.`,
+    c.definition.buyer.text?`Likely buyer: ${safe(c.definition.buyer.text)}`:'Buyer remains unknown.',
     c.evaluation.conclusion?`What the evidence suggests: ${safe(c.evaluation.conclusion)} ${c.evaluation.promising.slice(0,2).map(safe).join(' ')}`:'This is a provisional direction; external evidence has not established demand.',
-    c.evaluation.unknowns[0]?`The main uncertainty: ${safe(c.evaluation.unknowns[0])}`:'The main uncertainty is whether this pain changes real behavior.',
-    'Does this capture the business direction? We can keep investigating without committing to build.'].join('\n\n').slice(0,6000);
+    `Counterevidence: ${[c.investigation.counterevidence,...c.evaluation.weak,...c.evaluation.contradictions].filter((s):s is string=>!!s).map(safe).join(' ')||'Not yet investigated.'}`,
+    `Uncertainty: ${c.evaluation.unknowns.map(safe).join(' ')||'Whether this pain changes real behavior.'}`,
+    ...(c.quality?[`Technical risk: ${safe(c.quality.technical.centralRisk)}`]:[]),
+    c.investigation.decision?`Recommended direction: ${safe(c.investigation.decision)}`:'Continue investigating before committing.',
+    'Does this capture the business direction and the evidence and uncertainty we are carrying? We can keep investigating without committing to build.'].join('\n\n');
+  if(text.length>6000)throw new Error('Summarize the thesis evidence and risks before presenting it; do not truncate founder review.');
+  return text;
 }
 export function confirmation(c: IdeContext, s: Subject): Confirmation | undefined { return c.ide.confirmations.findLast(r => r.subject === s && r.basis === basis(c, s)); }
 export function ideState(c: IdeContext): { intention: string; target_user: string; problem_definition: string; evaluation: string; act_readiness: string } {

@@ -22,6 +22,9 @@ test('M3-R5 provisional foundations start investigation before three confirmatio
   assert.throws(()=>assertAct(c),/founder-confirmed/);
   c.evaluation.status='in_progress';
   assert.equal(nextIdeStep(c).kind,'review');
+  c.intention.statement=null;c.intention.status='skipped';
+  assert.equal(nextIdeStep(c).kind,'research');
+  assert.throws(()=>assertAct(c),/founder-confirmed/);
 });
 
 test('M3-R5 one displayed working thesis can confirm foundations but cannot approve Act',t=>{
@@ -30,6 +33,8 @@ test('M3-R5 one displayed working thesis can confirm foundations but cannot appr
   if(shown.context.contractVersion!==2)throw new Error('Expected current IDE.');
   const p=shown.context.ide.presentation!;
   assert.equal(p.subject,'thesis');assert.match(p.text,/first user/i);
+  assert.ok(p.text.includes(shown.context.investigation.counterevidence!));
+  for(const risk of shown.context.evaluation.unknowns)assert.ok(p.text.includes(risk));
   const saved=transitionIde(root,{expectedVersion:shown.version,operation:'confirm-thesis',presentationId:p.id,turnId:randomUUID(),quote:"Looks good, but don't build yet."});
   if(saved.context.contractVersion!==2)throw new Error('Expected current IDE.');
   assert.equal(saved.context.ide.confirmations.length,4);

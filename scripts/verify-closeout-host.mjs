@@ -42,7 +42,7 @@ lines.on('line',line=>{
 });
 function request(method,params){return new Promise((resolve,reject)=>{const id=++seq,timer=setTimeout(()=>{pending.delete(id);reject(new Error(`${method} timed out`));},30000);pending.set(id,{resolve,reject,timer});child.stdin.write(JSON.stringify({id,method,params})+'\n');});}
 function save(){writeFileSync(join(runDir,'results.json'),JSON.stringify(results,null,2));}
-function state(folder){const saved=readPrebuild(folder),c=saved.context;return {version:saved.version,user:c.definition.user.text,problem:c.definition.problem.text,confirmed:['intention','user','problem','evaluation','act'].filter(subject=>confirmation(c,subject)),presentation:c.ide.presentation?.subject??null};}
+function state(folder){const saved=readPrebuild(folder),c=saved.context;return {version:saved.version,user:c.definition.user.text,problem:c.definition.problem.text,confirmed:['intention','user','problem','evaluation','act'].filter(subject=>confirmation(c,subject)),presentation:c.ide.presentation?.subject??null,workingContext:c.workingContext??null};}
 async function turn(threadId,text,first=false){
   const started=Date.now();
   const done=new Promise((resolve,reject)=>{active={resolve,reject,output:[],messages:[],tools:[],started,timer:setTimeout(()=>{const a=active;active=null;resolve({status:'timed_out',error:`Live turn exceeded ${turnTimeout/1000} seconds; stop and inspect partial output.`,output:a.output.join('\n\n'),messages:a.messages,tools:a.tools,elapsedMs:Date.now()-started});},turnTimeout)};});
@@ -59,7 +59,7 @@ function createFixture(id,seed='evaluated'){
   }
   else {
     const c=stock();if(seed==='existing'){c.project.entry='existing';writeFileSync(join(folder,'parser.mjs'),'export const parse = JSON.parse;\n');c.project.permissionQuote='Synthetic fixture authorizes reading its parser.';c.project.artifacts=inspectArtifacts(folder,{paths:['parser.mjs'],permissionGranted:true,permissionQuote:c.project.permissionQuote}).map(({path,sha256})=>({path,sha256}));}
-    prepareIde(folder,seed==='build'?'act':seed==='pending-user'?'intention':'evaluation',c);
+    prepareIde(folder,seed==='pending-thesis'?'none':seed==='build'?'act':seed==='pending-user'?'intention':'evaluation',c);
     if(seed==='pending-user')transitionIde(folder,{operation:'present',subject:'user',expectedVersion:readPrebuild(folder).version});
   }
   return folder;
@@ -91,6 +91,9 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'m3r5-phase2-direction',seed:'fresh',messages:["$crumb I want a small paid business helping independent restaurant owners compare supplier quotes. My family runs a restaurant; every week they copy prices from emailed PDFs into a spreadsheet and sometimes miss pack-size changes. I have evenings to work on it."]},
+    {id:'m3r5-phase2-pricing',seed:'priced-app',messages:["$crumb Here's the current app. Let's figure out pricing.","I know two freelance editors with active client projects. I haven't contacted them yet.","Looks good, don't build yet."]},
+    {id:'m3r5-phase2-thesis',seed:'pending-thesis',messages:["$crumb Continue this saved project. Show me your working business thesis, including the evidence and the important risks, for my review.","Looks good, don't build yet."]},
     {id:'m3r5-autonomy',seed:'fresh',messages:["$crumb I want to build a voice-assisted note-taking product for project managers.","I want this to become a large business. On construction jobs I have seen project managers leave site conversations with voice memos, then lose a decision or who owns the follow-up. I have not interviewed anyone or checked alternatives yet."]},
     {id:'m3r5-predictive',seed:'priced-app',messages:["$crumb The Reviewlane beta is built. I can spare a few evenings. Help me turn it into a small real business.","I know two freelance editors who could look at it, but I have not asked them yet."]},
     {id:'m3r5-no-build',seed:'evaluated',messages:["$crumb Pick up the saved stock-comparison work and recommend the next useful move. I do not want to build yet."]},

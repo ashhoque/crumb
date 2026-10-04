@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {copyFileSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, rmdirSync, unlinkSync} from 'node:fs';
+import {copyFileSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, rmdirSync, unlinkSync, writeFileSync} from 'node:fs';
 import {join, dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
@@ -22,4 +22,10 @@ for(const file of files){
   if(install){mkdirSync(dirname(to),{recursive:true});copyFileSync(from,to);}
   if(!existsSync(to)||hash(from)!==hash(to))throw new Error(`Global skill differs from version-controlled source: ${file}`);
 }
-console.log(JSON.stringify({status:'in_sync',source,target,files:files.length,skillSha256:hash(join(source,'SKILL.md'))}));
+const runtime={node:process.execPath,cli:join(root,'dist/src/cli/main.js')};
+if(!existsSync(runtime.cli))throw new Error('Build Crumb Core before installing its skill.');
+const runtimePath=join(target,'runtime.json'),runtimeText=JSON.stringify(runtime,null,2)+'\n';
+if(existsSync(runtimePath)&&lstatSync(runtimePath).isSymbolicLink())throw new Error('Runtime locator must be a real file.');
+if(install)writeFileSync(runtimePath,runtimeText);
+if(!existsSync(runtimePath)||readFileSync(runtimePath,'utf8')!==runtimeText)throw new Error('Installed runtime locator differs from this checkout; reinstall.');
+console.log(JSON.stringify({status:'in_sync',source,target,files:files.length,runtime,skillSha256:hash(join(source,'SKILL.md'))}));
