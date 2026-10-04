@@ -1,0 +1,37 @@
+name: Alpha feedback
+description: Tell us how setup and your Crumb trial went.
+title: "[Alpha] "
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for trying Crumb. Redact private details; do not upload credentials, customer notes, or .customer-evidence databases."
+  - type: input
+    id: environment
+    attributes:
+      label: Environment and checkout
+      description: OS, Codex app or CLI version, node --version, npm --version, and git rev-parse --short HEAD (if available).
+    validations:
+      required: true
+  - type: dropdown
+    id: setup
+    attributes:
+      label: How did setup go?
+      options:
+        - Setup and discovery probe worked
+        - Setup failed
+        - Setup worked but skill discovery failed
+        - Other or not tried
+    validations:
+      required: true
+  - type: textarea
+    id: experience
+    attributes:
+      label: What did you try, expect, and get?
+      description: Include steps to reproduce and any redacted error or conversation excerpt.
+    validations:
+      required: true
+  - type: textarea
+    id: usefulness
+    attributes:
+      label: Did Crumb help? What was confusing or missing?
+      description: Would you use it again? Why or why not?

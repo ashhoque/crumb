@@ -2,6 +2,22 @@
 
 **The business copilot for AI builders.**
 
+## Try the alpha
+
+With Git, Codex, and Node **24.19.0** with npm **9+** installed:
+
+```sh
+git clone https://github.com/ashhoque/crumb.git
+cd crumb
+npm run setup
+```
+
+Open the cloned folder in Codex, start a new chat, and send
+`$crumb Run the discovery probe only.` Then follow the short
+[alpha tester guide](ALPHA_TESTING.md) for a first conversation and
+[feedback](https://github.com/ashhoque/crumb/issues/new?template=alpha-feedback.yml).
+The setup command builds the existing skill runtime; it does not install globally.
+
 Crumb helps clarify an idea or existing project, investigate the problem and
 alternatives, then choose a considered next step. Current milestone:
 **M1-R2 — Complete pre-build IDE experience**. See [status](STATUS.md),
