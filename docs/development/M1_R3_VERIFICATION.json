@@ -1,0 +1,329 @@
+{
+  "recordedAt": "2026-09-24T01:52:53.368Z",
+  "runtime": {
+    "node": "v24.19.0",
+    "npm": "9.6.7"
+  },
+  "check": {
+    "command": "npm run check (pinned runtime)",
+    "passed": 185,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "durationMs": 67698.153,
+    "typecheck": true,
+    "offlineCore": true
+  },
+  "baseline": {
+    "passed": 140
+  },
+  "git": {
+    "branch": "main",
+    "head": "c218317a2b17d6f4a7194ef5c875b5d26ed48d48",
+    "remote": "https://github.com/ashhoque/crumb.git",
+    "committed": false,
+    "pushed": false
+  },
+  "protectedFiles": [
+    {
+      "path": ".agents/skills/customer-evidence/SKILL.md",
+      "unchanged": true
+    },
+    {
+      "path": ".agents/skills/pruvello/SKILL.md",
+      "unchanged": true
+    },
+    {
+      "path": ".agents/skills/pruvello/references/conversations.md",
+      "unchanged": true
+    },
+    {
+      "path": ".agents/skills/pruvello/references/local-tools.md",
+      "unchanged": true
+    },
+    {
+      "path": ".agents/skills/pruvity/SKILL.md",
+      "unchanged": true
+    },
+    {
+      "path": ".agents/skills/pruvity/references/conversations.md",
+      "unchanged": true
+    },
+    {
+      "path": ".agents/skills/pruvity/references/local-tools.md",
+      "unchanged": true
+    },
+    {
+      "path": ".node-version",
+      "unchanged": true
+    },
+    {
+      "path": "CEC_MASTER_SPEC_v0.5.md",
+      "unchanged": true
+    },
+    {
+      "path": "M0_REPORT.md",
+      "unchanged": true
+    },
+    {
+      "path": "M1-R_REPORT.md",
+      "unchanged": true
+    },
+    {
+      "path": "M1_R2_REPORT.md",
+      "unchanged": true
+    },
+    {
+      "path": "M1_REPORT.md",
+      "unchanged": true
+    },
+    {
+      "path": "M1_R_REPORT.md",
+      "unchanged": true
+    },
+    {
+      "path": "contracts/conversation-v3.schema.json",
+      "unchanged": true
+    },
+    {
+      "path": "contracts/conversation-v4.schema.json",
+      "unchanged": true
+    },
+    {
+      "path": "contracts/m1.schema.json",
+      "unchanged": true
+    },
+    {
+      "path": "contracts/m1r.schema.json",
+      "unchanged": true
+    },
+    {
+      "path": "docs/development/M1_R2_INDEPENDENT_REHEARSAL.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/development/M1_R2_RESEARCH_REHEARSAL.md",
+      "unchanged": true
+    },
+    {
+      "path": "docs/development/M1_R2_VERIFICATION.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1/existing.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1/idea.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1/scenarios.md",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1/unfinished/AGENTS.md",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1/unfinished/README.md",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1/unfinished/app.mjs",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1/unfinished/app.test.mjs",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1/unfinished/package.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1r/existing.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1r/feedback.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1r/fresh.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1r2/b2b.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1r2/build-now.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1r2/evaluated-stock.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1r2/existing.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1r2/feedback.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1r2/fresh.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1r2/researched-stock.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/m1r2/stock.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/orientation/existing.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/orientation/feedback.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/orientation/fresh.json",
+      "unchanged": true
+    },
+    {
+      "path": "fixtures/orientation/stock.json",
+      "unchanged": true
+    },
+    {
+      "path": "package-lock.json",
+      "unchanged": true
+    },
+    {
+      "path": "package.json",
+      "unchanged": true
+    },
+    {
+      "path": "src/persistence/prebuild-store.ts",
+      "unchanged": true
+    },
+    {
+      "path": "src/persistence/sqlite.ts",
+      "unchanged": true
+    },
+    {
+      "path": "src/persistence/workflow-store.ts",
+      "unchanged": true
+    },
+    {
+      "path": "src/privacy/artifacts.ts",
+      "unchanged": true
+    },
+    {
+      "path": "src/privacy/storage.ts",
+      "unchanged": true
+    }
+  ],
+  "skillValidation": {
+    "packages": [
+      "crumb",
+      "pruvello",
+      "pruvity",
+      "customer-evidence"
+    ],
+    "passed": true
+  },
+  "host": {
+    "installedProfile": {
+      "discovery": false,
+      "invocation": false,
+      "error": "Codex app-server exited before responding; homeDirectoryUnavailable true."
+    },
+    "isolatedDiscovery": {
+      "passed": true,
+      "aliases": 3,
+      "authenticatedInvocationAttempted": false
+    }
+  },
+  "rehearsal": {
+    "recordedAt": "2026-09-24T01:51:27.952Z",
+    "mode": "authored local-core rehearsal",
+    "independentReview": false,
+    "installedHostGeneration": false,
+    "founderAcceptance": "pending",
+    "scenarios": [
+      {
+        "id": "fresh-b2b",
+        "turns": 25,
+        "firstSolutionTurn": 25,
+        "explicitActChoiceTurn": 24,
+        "finalVersion": 16,
+        "preActTurnsAllLocked": true,
+        "userConfirmations": 1,
+        "problemConfirmations": 1,
+        "maxNormalCrumbWords": 158
+      },
+      {
+        "id": "existing",
+        "turns": 24,
+        "firstSolutionTurn": 24,
+        "explicitActChoiceTurn": 23,
+        "finalVersion": 16,
+        "preActTurnsAllLocked": true,
+        "userConfirmations": 1,
+        "problemConfirmations": 1,
+        "maxNormalCrumbWords": 159
+      },
+      {
+        "id": "feedback",
+        "turns": 31,
+        "firstSolutionTurn": 31,
+        "explicitActChoiceTurn": 30,
+        "finalVersion": 22,
+        "preActTurnsAllLocked": true,
+        "userConfirmations": 2,
+        "problemConfirmations": 2,
+        "maxNormalCrumbWords": 154
+      },
+      {
+        "id": "stock",
+        "turns": 33,
+        "firstSolutionTurn": 33,
+        "explicitActChoiceTurn": 32,
+        "finalVersion": 22,
+        "preActTurnsAllLocked": true,
+        "userConfirmations": 2,
+        "problemConfirmations": 2,
+        "maxNormalCrumbWords": 185
+      },
+      {
+        "id": "adjacent",
+        "turns": 32,
+        "firstSolutionTurn": 32,
+        "explicitActChoiceTurn": 31,
+        "finalVersion": 22,
+        "preActTurnsAllLocked": true,
+        "userConfirmations": 2,
+        "problemConfirmations": 2,
+        "maxNormalCrumbWords": 153
+      }
+    ]
+  },
+  "founderAcceptance": "pending",
+  "M2": "not started",
+  "finalFocusedCheck": {
+    "recordedAt": "2026-09-24T01:55:28.705Z",
+    "reason": "Reject conditional or uncertain yes replies, including Yes? and Yes, maybe.",
+    "typeScriptBuild": true,
+    "command": "node --test --test-reporter=tap dist/tests/ide.test.js",
+    "passed": 39,
+    "failed": 0,
+    "skipped": 0
+  }
+}

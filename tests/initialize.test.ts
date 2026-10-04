@@ -182,7 +182,7 @@ test('hard-linked database cannot mutate another path', t => {
 test('foreign and future-version databases are refused without changing their bytes', t => {
   const root = temporaryProject(t);
   const initial = initializeProject(root);
-  for (const sql of ['PRAGMA application_id = 99', `PRAGMA application_id = ${APPLICATION_ID}; PRAGMA user_version = 3`]) {
+  for (const sql of ['PRAGMA application_id = 99', `PRAGMA application_id = ${APPLICATION_ID}; PRAGMA user_version = 5`]) {
     const database = openSqlite(initial.database);
     database.exec(sql);
     database.close();

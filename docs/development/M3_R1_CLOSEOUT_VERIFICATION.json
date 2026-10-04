@@ -1,0 +1,82 @@
+{
+  "status": "M3-R1 BLOCKED",
+  "date": "2026-10-03",
+  "syntheticFounderInputs": true,
+  "liveInstalledHost": {
+    "skillDiscovery": true,
+    "mcp": [
+      {
+        "tool": "get_current_context",
+        "isError": false,
+        "bytes": 5337
+      },
+      {
+        "tool": "get_confirmed_intention",
+        "isError": false,
+        "bytes": 285
+      },
+      {
+        "tool": "get_confirmed_user",
+        "isError": false,
+        "bytes": 305
+      },
+      {
+        "tool": "get_confirmed_problem",
+        "isError": false,
+        "bytes": 423
+      },
+      {
+        "tool": "get_current_evaluation",
+        "isError": false,
+        "bytes": 2026
+      },
+      {
+        "tool": "get_user_habitats",
+        "isError": false,
+        "bytes": 774
+      },
+      {
+        "tool": "get_first_user_avenues",
+        "isError": false,
+        "bytes": 860
+      },
+      {
+        "tool": "get_build_handoff",
+        "isError": false,
+        "bytes": 4666
+      },
+      {
+        "tool": "get_current_build_stage",
+        "isError": false,
+        "bytes": 251
+      },
+      {
+        "tool": "search_research",
+        "isError": false,
+        "bytes": 1606
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "fresh-b2b",
+        "completedTurns": 3
+      }
+    ],
+    "blocker": "Invalid IDE context: /project/artifacts/0 must NOT have additional properties",
+    "sourceLog": ".m0-local/closeout-host-1791063890965/results.json"
+  },
+  "fullRegressions": {
+    "passed": 308,
+    "failed": 0,
+    "skipped": 0,
+    "log": ".m0-local/closeout-regressions.log"
+  },
+  "finalFocusedChecks": {
+    "passed": 22,
+    "failed": 0,
+    "skipped": 0,
+    "log": ".m0-local/closeout-focused-final.log"
+  },
+  "liveResearchPerformed": false,
+  "freezeReady": false
+}

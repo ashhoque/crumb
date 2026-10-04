@@ -9,6 +9,9 @@ import { inspectArtifacts, selectedFileHash, sha256 } from '../privacy/artifacts
 import { claimFields, isActionable, validate, type Approval, type ConversationDraft, type Draft, type Receipt } from '../domain/contracts.js';
 import { validateConversation } from '../domain/conversation.js';
 import { assertPrebuildReference, storedPrebuild, readPrebuild, compactPrebuild } from './prebuild.js';
+import { readAct } from './act.js';
+import { compactAct } from './act.js';
+import { readLearn, compactLearn, isLearnCurrent } from './learn.js';
 
 export interface SavedDraft { version: number; hash: string; draft: ConversationDraft }
 export interface Cycle { id: string; foundationId: string; revision: 1; basis: 'HYPOTHESIS-LED'; draftHash: string; draft: Draft; approvedAt: string; approvalQuote: string }
@@ -59,12 +62,14 @@ function validateDraft(input: unknown): asserts input is ConversationDraft {
 
 export function saveDraft(target: string, input: unknown): SavedDraft {
   validateDraft(input);
+  if (isActionable(input) && input.contractVersion !== 5) throw new Error('New guided work requires a v5 scope after confirmed IDE and explicit Act consent. Legacy proposals remain readable history.');
   // Validate before initializing or saving; reading is limited to granted selections.
   verifyArtifacts(resolveProjectRoot(target), input);
   return withStore(target, db => db.transaction(() => {
+    if(Number(db.get('PRAGMA user_version')?.['user_version'])>=3 && db.get('SELECT version FROM act_revisions LIMIT 1'))throw new Error('Use the current M2 Act plan and stage approvals; legacy drafts cannot bypass them.');
     if (storedCycle(db)) throw new Error('M1 already has an approved cycle. It is immutable; additional cycles are deferred.');
-    if (input.contractVersion === 4) assertPrebuildReference(db, input);
-    else if (storedPrebuild(db)) throw new Error('Use a v4 action linked to the current evaluation; a legacy preview does not establish readiness.');
+    if (input.contractVersion === 5) assertPrebuildReference(db, input);
+    else if (storedPrebuild(db)) throw new Error('Use the current IDE context rather than a legacy preview.');
     const old = storedDraft(db);
     if ((old?.version ?? 0) !== input.expectedVersion) throw new Error('The draft changed in another session. Read current context, then review your revision.');
     const version = (old?.version ?? 0) + 1;
@@ -86,8 +91,8 @@ export function approveDraft(target: string, input: unknown): Cycle {
     const draft = storedDraft(db);
     if (!draft || draft.hash !== input.draftHash) throw new Error('Approval does not match the current draft. Show the current scope and obtain its approval.');
     if (!isActionable(draft.draft)) throw new Error('This is problem context, not a build scope. Show a small proposal before requesting approval.');
-    if (draft.draft.contractVersion === 4) assertPrebuildReference(db, draft.draft);
-    else if (storedPrebuild(db)) throw new Error('This legacy proposal predates the current evaluation. Review a v4 scope linked to the latest context.');
+    if (draft.draft.contractVersion !== 5) throw new Error('This legacy proposal predates confirmed IDE. Review a v5 scope after explicit Act consent.');
+    assertPrebuildReference(db, draft.draft);
     verifyArtifacts(root, draft.draft);
     const approvedAt = new Date().toISOString();
     const foundationId = randomUUID();
@@ -115,8 +120,12 @@ export function readWorkflow(target: string): WorkflowState {
 }
 
 export function approvedHandoff(target: string): Cycle {
+  if(readAct(target))throw new Error('Use the current Act stage handoff; a historical cycle cannot bypass a stage review or stopping point.');
   const state = readWorkflow(target);
   if (!state.cycle) throw new Error('No approved scope. Show the draft and wait for founder approval before implementation.');
+  if (state.cycle.draft.contractVersion !== 5) throw new Error('Historical approval is readable history, not permission to start a build without confirmed IDE.');
+  const location = initializeProject(target), db = openSqlite(location.database, true);
+  try { assertPrebuildReference(db, state.cycle.draft); } finally { db.close(); }
   if (!state.latestReceipt) verifyArtifacts(resolveProjectRoot(target), state.cycle.draft);
   return state.cycle;
 }
@@ -152,5 +161,7 @@ export function compactContext(target: string): object {
   const state = readWorkflow(target);
   const { latestReceipt, ...current } = state;
   const prebuild = readPrebuild(target);
-  return { ...current, ...(prebuild ? { prebuild: compactPrebuild(prebuild) } : {}), draft: state.cycle ? null : state.draft, latestReceipt: latestReceipt ? { id: latestReceipt.id, implementation: latestReceipt.implementation, changedPaths: latestReceipt.changes, checks: latestReceipt.checks.map(({ label, result }) => ({ label, result })), gaps: latestReceipt.gaps, runInstructions: latestReceipt.runInstructions, release: latestReceipt.release, customerExposure: latestReceipt.customerExposure, customerValidation: latestReceipt.customerValidation } : null };
+  const staged=readAct(target);
+  const learning=readLearn(target);
+  return { ...current, ...(learning?{learn:{...compactLearn(learning),current:isLearnCurrent(target,learning)}}:{}), ...(staged?{act:compactAct(staged)}:{}), ...(prebuild ? { prebuild: compactPrebuild(prebuild) } : {}), draft: state.cycle ? null : state.draft, latestReceipt: latestReceipt ? { id: latestReceipt.id, implementation: latestReceipt.implementation, changedPaths: latestReceipt.changes, checks: latestReceipt.checks.map(({ label, result }) => ({ label, result })), gaps: latestReceipt.gaps, runInstructions: latestReceipt.runInstructions, release: latestReceipt.release, customerExposure: latestReceipt.customerExposure, customerValidation: latestReceipt.customerValidation } : null };
 }

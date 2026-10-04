@@ -6,7 +6,7 @@ export function migratePrebuild(db: SqliteConnection): void {
   migrateWorkflow(db);
   db.transaction(() => {
     const version = Number(db.get('PRAGMA user_version')?.['user_version']);
-    if (version === 2) return;
+    if (version === 2 || version === 3 || version === 4) return;
     if (version !== 1) throw new Error('Unsupported pre-build storage version. Preserve the workspace.');
     db.exec(`
       CREATE TABLE prebuild_revisions (

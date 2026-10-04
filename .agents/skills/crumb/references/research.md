@@ -1,8 +1,44 @@
 # Research for a useful Evaluate decision
 
-Start from the founder's Intention and narrowed problem. Do not spend a personal
+Start from the explicitly confirmed Intention, User and Problem. Do not spend a personal
 tool founder's time proving venture scale. Conversely, one founder's inconvenience
 does not establish a reachable commercial buyer.
+
+Crumb owns this investigation. Use `internal evaluation-plan` at the start or for
+a material refresh, reuse current sources, and save populated `quality` alongside
+the dossier. The tool plans/validates; it does not browse. Actually use permitted
+host research tools. Never ask the founder which API, database, competitors or
+communities to investigate. Propose supported options, then confirm intent.
+
+## Technical feasibility, without an engineering report in chat
+
+Investigate data/APIs; freshness/quality; licensing/access; rate limits, pricing
+and operating cost; integrations; complexity/latency; model suitability and
+deterministic alternatives; reliability/failures; security/privacy; vendor dependence
+and build versus buy. Inspect permitted existing code first. Never inspect secrets.
+
+`quality.technical` retains a concise summary, central risk, up to three options,
+a reasoned recommendation and source/run-linked coverage. Unknown after research
+differs from unexamined. Explain irrelevance. Vendor docs do not prove runtime
+reliability; record needed authorized checks honestly. No invented prices/benchmarks.
+Show the judgment and main constraint briefly, then **View technical evaluation**.
+Propose an interpretation, not a pre-Act feature plan. Delayed holdings, for example,
+describe a reported period, not current buying. Confirm whether that fits intent.
+
+## Startup discipline in decisions
+
+Use prevalence/growth, urgency, consequence, necessity and frequency as lenses,
+not requirements every opportunity must satisfy or a score. Connect buyer/payment,
+switching, reachability and AI substitution to the decision. `quality.founderFit`
+records a reported/supported edge, its limits and claims. Experience, code and
+access may help; none establishes demand or an unfair advantage.
+
+Choose the cheapest important learning step. Recommend direct conversations for
+lived-behavior uncertainty rather than endless desk research. Interviews remain
+optional. After explicit Act, compare manual/existing-tool delivery before adding
+automation; keep the smallest complete path that tests the pain. No YC lecture.
+See [Kevin Hale's problem lenses](https://www.ycombinator.com/blog/startup-school-podcast-preview-with-kevin-hale)
+and [YC's early-stage advice](https://www.ycombinator.com/blog/ycs-essential-startup-advice/).
 
 ## Bounded investigation
 
@@ -57,6 +93,10 @@ choice; do not pivot automatically.
 
 ## Habitat map and first-user avenues
 
+Research these automatically during Evaluate after confirming the user. Mention
+the strongest specific route and why it fits before Act; offer **View first-user
+avenues** for evidence and rules. Do not wait to be asked.
+
 Think like the intended user: where do they work, complain, ask, compare and meet
 peers? Include specific online, professional and physical environments where
 relevant. A truck-driver product should investigate trucking places, not default
@@ -69,6 +109,17 @@ limits. An archived discussion can inform research but cannot be offered as an
 active reply route. Verify rules before describing a route as available. No
 invented people, emails, buyer status, interest, conversations or permission.
 Do not send or post. A draft invitation remains a draft.
+
+Close Evaluate with a few strong first-user avenues without waiting to be asked.
+Reuse current findings first; `discovery-plan` bounds a justified refresh to normally
+six queries and ten pages. Consider pain discussions, professional associations,
+directories, local businesses/events when relevant, and named public professionals
+or handles only where collection/use is permitted. Ask one missing audience or
+city/region question; never infer an address or locality. A snippet is not an
+inspected discussion, an inaccessible group is not evidence about its members,
+and a public URL is not commercial collection or outreach permission. Rank fit to
+the task, not fame. Keep satisfied users/counterevidence when showing complaints.
+No results describe coverage limits, not absence of demand. Preserve opt-outs.
 
 ## Source and conclusion discipline
 
@@ -93,5 +144,42 @@ turn the founder's raw investing idea directly into three MVP capabilities.
 
 Finish with a concise answer that changes the decision: promising, weak, known,
 inferred and unknown. If tools fail, preserve `limited` status and offer supplied
-sources or resumed research. An explicit build request can still bypass it. The
+sources or resumed research. It cannot unlock Act; supplied sources or resumed research can continue IDE. The
 founder does not need to read the dossier to choose the next path.
+
+## M1-R3 depth and review
+
+Evaluation belongs to the exact confirmed foundation versions. Investigate frequency,
+urgency, severity/cost, mandatory/optional work, workaround, spend, buyer, willingness
+and ability to pay, prevalence/category direction, reachability/competition/switching,
+founder insight/expertise/access, feasibility, generic AI substitution, business-model
+fit and Intention alignment. A topic name or page count is not a completed inquiry.
+
+Use a landscape pass, cohort-specific user love/hate/pain investigation and a challenge
+pass where useful. A run ceiling or diminishing returns stops that run, not necessarily
+Evaluation. If a decision-critical question remains unexamined, pursue an appropriate
+bounded follow-up or retain researching. Unknown-after-search needs a relevant attempt.
+Public access failure is a capability limitation, never proof of no market.
+
+Look for what people love, hate, tolerate, find missing, build themselves and still do
+manually. Separate consequential complaints from cosmetic preferences and count
+independent observations, not repeated posts. Check current official documentation
+before treating an old complaint as an open gap. Explicitly compare satisfied users
+and adequate alternatives, not only supporting evidence. Preserve specific prices
+and billing terms, sales/distribution, onboarding and switching evidence when available.
+
+Compare direct/adjacent/incumbent/AI products, services, manual work, spreadsheets,
+generic AI and doing nothing. Unknown findings are legitimate; unsupported filled
+fields are not. Consider at most two adjacent problems and the founder's choice.
+
+When the evidence changes a foundation, explain the proposed change, return to Define
+and reconfirm it. Retain relevant old sources while reassessing conclusions. After
+research, qualify the decision and ask whether the founder agrees with that reading
+and its uncertainty. This is founder review, still separate from final Act consent.
+
+For stocks, distinguish self-directed swing traders doing scheduled shortlist reviews
+from long-term investors or intraday alert users. Investigate screeners, technical
+and fundamental research, journals, ranking, AI alternatives, manual comparison,
+actual praise/complaints, public candidate-selection language, traction facts/proxies,
+gaps, adjacency, founder fit and habitats. No promised trading return. No prototype,
+MVP, feature scope or architecture until explicit final Act confirmation.

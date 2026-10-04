@@ -1,0 +1,426 @@
+{
+  "timestamp": "2026-09-26T22:57:53.812Z",
+  "results": [
+    {
+      "kind": "fresh",
+      "synthetic": true,
+      "host": "current Codex native file/command adapter; authored founder replies",
+      "root": "C:\\Users\\Ash\\Documents\\Codex\\2026-09-23\\you-are-continuing-development-of-my\\work\\m2-fixtures-1790463446988\\fresh",
+      "stages": [
+        "groundwork",
+        "risk",
+        "mvp"
+      ],
+      "capabilities": [
+        "Identify ready and waiting jobs"
+      ],
+      "preservedPaths": [],
+      "commands": [
+        {
+          "command": "\"C:/Python311/python.exe\" \"--version\"",
+          "exitCode": 0,
+          "output": "Python 3.11.4"
+        },
+        {
+          "command": "\"C:/Python311/python.exe\" \"-c\" \"import json; assert json.loads('[1]') == [1]; print('JSON input works without external packages')\"",
+          "exitCode": 0,
+          "output": "JSON input works without external packages"
+        },
+        {
+          "command": "\"C:/Python311/python.exe\" \"-m\" \"unittest\" \"-v\" \"test_ready.py\"",
+          "exitCode": 0,
+          "output": "test_complete_cli_journey (test_ready.ReadinessTests.test_complete_cli_journey) ... ok\r\ntest_duplicate_clients_rejected (test_ready.ReadinessTests.test_duplicate_clients_rejected) ... ok\r\ntest_invalid_cli_input_has_useful_failure (test_ready.ReadinessTests.test_invalid_cli_input_has_useful_failure) ... ok\r\ntest_no_false_readiness_from_missing_requirements (test_ready.ReadinessTests.test_no_false_readiness_from_missing_requirements) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 4 tests in 0.090s\r\n\r\nOK"
+        }
+      ],
+      "failedAttemptRecorded": false,
+      "finalStatus": "awaiting_review",
+      "customerValidation": "not_established",
+      "release": "not_released",
+      "pack": {
+        "directory": "build-context/9155f5f0-74ae-4c82-814c-ff798ea3a517",
+        "files": [
+          {
+            "path": "build-context/9155f5f0-74ae-4c82-814c-ff798ea3a517/STARTUP_MASTER.md",
+            "sha256": "8a276536b0374a2b7c17ca81430d95b30f377934be382ccff1bc9e44eb6056ea"
+          },
+          {
+            "path": "build-context/9155f5f0-74ae-4c82-814c-ff798ea3a517/BUILD_PLAN.md",
+            "sha256": "3c49a40b258dcb209c9f9016c915b32c2a7482794fdfa6a9d731e9a497d5d515"
+          },
+          {
+            "path": "build-context/9155f5f0-74ae-4c82-814c-ff798ea3a517/GROUNDWORK.md",
+            "sha256": "80e6a3f858da8b6bf824dacd8acc4b6e490f0f68b9a5aa1041e1867cad488a4e"
+          },
+          {
+            "path": "build-context/9155f5f0-74ae-4c82-814c-ff798ea3a517/STAGE_1.md",
+            "sha256": "7be22d0d585e8ce1b9bc3dae4e46cff9cbe1289d59c63473e8df61bf72bd82bb"
+          },
+          {
+            "path": "build-context/9155f5f0-74ae-4c82-814c-ff798ea3a517/STAGE_2.md",
+            "sha256": "f6a30bc064fa3d586421f6c40e8372f4580b322e0229098d18fa23bd2d4dfde7"
+          },
+          {
+            "path": "build-context/9155f5f0-74ae-4c82-814c-ff798ea3a517/STAGE_3.md",
+            "sha256": "e4cb0ae227528031f16de2a50eb268d4505dd1dbcfd324a702224d626595aaf4"
+          }
+        ]
+      },
+      "receipts": [
+        {
+          "expectedVersion": 3,
+          "stageId": "groundwork",
+          "implementation": "completed",
+          "changes": [
+            {
+              "path": "ENVIRONMENT.md",
+              "kind": "created"
+            }
+          ],
+          "checks": [
+            {
+              "criterionId": "runtime",
+              "label": "Read the installed runtime version.",
+              "command": "\"C:/Python311/python.exe\" \"--version\"",
+              "executed": true,
+              "exitCode": 0,
+              "result": "passed",
+              "output": "Python 3.11.4"
+            }
+          ],
+          "runInstructions": [
+            "python ready.py example.json"
+          ],
+          "gaps": [],
+          "id": "06e8a87a-43b4-4329-8687-c416010669b1",
+          "recordedAt": "2026-09-26T22:57:34.347Z",
+          "fileHashes": {
+            "ENVIRONMENT.md": "b2709a2722bf3a64c8f3ddc4852603c9f23781dc934b100d719a1003ca906995"
+          },
+          "customerValidation": "not_established",
+          "release": "not_released",
+          "provenance": "host_report_with_local_file_hashes"
+        },
+        {
+          "expectedVersion": 5,
+          "stageId": "risk",
+          "implementation": "completed",
+          "changes": [
+            {
+              "path": "INPUT_NOTES.md",
+              "kind": "created"
+            }
+          ],
+          "checks": [
+            {
+              "criterionId": "input",
+              "label": "Confirm a local JSON file can be read with this runtime.",
+              "command": "\"C:/Python311/python.exe\" \"-c\" \"import json; assert json.loads('[1]') == [1]; print('JSON input works without external packages')\"",
+              "executed": true,
+              "exitCode": 0,
+              "result": "passed",
+              "output": "JSON input works without external packages"
+            }
+          ],
+          "runInstructions": [
+            "python ready.py example.json"
+          ],
+          "gaps": [],
+          "id": "052827a6-e878-42aa-ab42-dc77a5eab186",
+          "recordedAt": "2026-09-26T22:57:36.406Z",
+          "fileHashes": {
+            "INPUT_NOTES.md": "30c3c61c522bd18502fa8ae963b2d2f2ba761f18b4337eaa8a082ef9a37d295a"
+          },
+          "customerValidation": "not_established",
+          "release": "not_released",
+          "provenance": "host_report_with_local_file_hashes"
+        },
+        {
+          "expectedVersion": 7,
+          "stageId": "mvp",
+          "implementation": "completed",
+          "changes": [
+            {
+              "path": "ready.py",
+              "kind": "created"
+            },
+            {
+              "path": "test_ready.py",
+              "kind": "created"
+            },
+            {
+              "path": "example.json",
+              "kind": "created"
+            }
+          ],
+          "checks": [
+            {
+              "criterionId": "journey",
+              "label": "Run the complete Python readiness acceptance tests.",
+              "command": "\"C:/Python311/python.exe\" \"-m\" \"unittest\" \"-v\" \"test_ready.py\"",
+              "executed": true,
+              "exitCode": 0,
+              "result": "passed",
+              "output": "test_complete_cli_journey (test_ready.ReadinessTests.test_complete_cli_journey) ... ok\r\ntest_duplicate_clients_rejected (test_ready.ReadinessTests.test_duplicate_clients_rejected) ... ok\r\ntest_invalid_cli_input_has_useful_failure (test_ready.ReadinessTests.test_invalid_cli_input_has_useful_failure) ... ok\r\ntest_no_false_readiness_from_missing_requirements (test_ready.ReadinessTests.test_no_false_readiness_from_missing_requirements) ... ok\r\n\r\n----------------------------------------------------------------------\r\nRan 4 tests in 0.090s\r\n\r\nOK"
+            }
+          ],
+          "runInstructions": [
+            "python ready.py example.json"
+          ],
+          "gaps": [],
+          "id": "f969a76e-2586-48b5-9833-2df4bb3e5fc3",
+          "recordedAt": "2026-09-26T22:57:38.626Z",
+          "fileHashes": {
+            "ready.py": "04e71cdcb04f7635a1837ce00684cb18cc8df4d7a4bfaefe695351fce288e813",
+            "test_ready.py": "7088b7b1e3948b37276fffd51a36ec6cb936c4759736358f353d8949d45c30bb",
+            "example.json": "7cec245472cc01dcd18c335de83f7b5d46c1cc2f4fb8dc2d6c77dcfaabee4045"
+          },
+          "customerValidation": "not_established",
+          "release": "not_released",
+          "provenance": "host_report_with_local_file_hashes"
+        }
+      ],
+      "summaries": [
+        "Executive summary\nWe're building for Owners of three-to-five-person bookkeeping firms who coordinate monthly client work and make the buying decision..\nThe pain we're addressing: During monthly close, firm owners struggle to identify jobs that can proceed because document and status updates are scattered across email and staff conversations, delaying assignments despite repeated reminders.\nOne workflow: Read the supplied client document lists and see which jobs can proceed.\nThe first version needs to help us learn: Does this remove repeated readiness checks?\n\nBuilding\n- Identify ready and waiting jobs\n\nParking\n- Automatic reminders\n- Accounts\n\nFirst build stage: Groundwork: inspect the environment. Verify the actual runtime and commands without replacing existing setup.\n\nThese capabilities test the core pain. Extra features would add work without answering that question.\n\nApprove build | Adjust scope | View build plan\nThe extra detail is optional — you can continue without reading it.",
+        "Executive summary\nGroundwork: inspect the environment: awaiting review. 1 checks passed, 0 failed, 0 not run.\nTechnical results do not establish customer validation.\n\nTry this stage using the recorded run instructions. Your review is needed before the next stage.\n\npython ready.py example.json\n\nView build plan | View technical results\nThe extra detail is optional — you can continue without reading it.",
+        "Executive summary\nM0: resolve the file input risk: awaiting review. 1 checks passed, 0 failed, 0 not run.\nTechnical results do not establish customer validation.\n\nTry this stage using the recorded run instructions. Your review is needed before the next stage.\n\npython ready.py example.json\n\nView build plan | View technical results\nThe extra detail is optional — you can continue without reading it.",
+        "Executive summary\nM1: complete client readiness: awaiting review. 1 checks passed, 0 failed, 0 not run.\nTechnical results do not establish customer validation.\n\nTry this stage using the recorded run instructions. We have reached the planned stopping point.\n\npython ready.py example.json\n\nView build plan | View technical results\nThe extra detail is optional — you can continue without reading it."
+      ]
+    },
+    {
+      "kind": "existing",
+      "synthetic": true,
+      "host": "current Codex native file/command adapter; authored founder replies",
+      "root": "C:\\Users\\Ash\\Documents\\Codex\\2026-09-23\\you-are-continuing-development-of-my\\work\\m2-fixtures-1790463446988\\existing",
+      "stages": [
+        "mvp"
+      ],
+      "capabilities": [
+        "Compare supplied facts",
+        "Save one review note"
+      ],
+      "preservedPaths": [
+        "parser.mjs",
+        "dashboard.mjs"
+      ],
+      "commands": [
+        {
+          "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe\" \"--test\" \"--test-reporter=tap\" \"compare.test.mjs\"",
+          "exitCode": 1,
+          "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nnot ok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 68.4248\n  type: 'test'\n  location: 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-09-23\\\\you-are-continuing-development-of-my\\\\work\\\\m2-fixtures-1790463446988\\\\existing\\\\compare.test.mjs:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    0 !== 2\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 2\n  actual: 0\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///C:/Users/Ash/Documents/Codex/2026-09-23/you-are-continuing-development-of-my/work/m2-fixtures-1790463446988/existing/compare.test.mjs:14:61)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1382:25)\n    Test.start (node:internal/test_runner/test:1242:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 63.9563\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 125.3303\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 1.2407\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 3\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 332.1195"
+        },
+        {
+          "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe\" \"--test\" \"--test-reporter=tap\" \"compare.test.mjs\"",
+          "exitCode": 0,
+          "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 69.3139\n  type: 'test'\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 60.8503\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 127.3452\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 1.0696\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 332.525"
+        }
+      ],
+      "failedAttemptRecorded": true,
+      "finalStatus": "awaiting_review",
+      "customerValidation": "not_established",
+      "release": "not_released",
+      "pack": {
+        "directory": "build-context/24966749-2b05-4615-8ce9-18c9f02574b8",
+        "files": [
+          {
+            "path": "build-context/24966749-2b05-4615-8ce9-18c9f02574b8/STARTUP_MASTER.md",
+            "sha256": "3ada840ce4b38d4858ffb1e73a0c2488c643fa8dcfa5b81a20ebb3593137e854"
+          },
+          {
+            "path": "build-context/24966749-2b05-4615-8ce9-18c9f02574b8/BUILD_PLAN.md",
+            "sha256": "b7aa31e8ecfcaf6656af3e967cb372db99a35880cf6be3aa238b9d5c457692a4"
+          },
+          {
+            "path": "build-context/24966749-2b05-4615-8ce9-18c9f02574b8/GROUNDWORK.md",
+            "sha256": "c048b8be8a8c2e57d8b184bc9d82858f785ce776c0f2d8a94093524750a19e90"
+          },
+          {
+            "path": "build-context/24966749-2b05-4615-8ce9-18c9f02574b8/STAGE_1.md",
+            "sha256": "207cb5560c4d1e9b007379c4fbcd89065aa5cecfa1f1ff65fc0b40ab1f5bfdc8"
+          }
+        ]
+      },
+      "receipts": [
+        {
+          "expectedVersion": 3,
+          "stageId": "mvp",
+          "implementation": "partial",
+          "changes": [
+            {
+              "path": "compare.mjs",
+              "kind": "created"
+            },
+            {
+              "path": "compare.test.mjs",
+              "kind": "created"
+            },
+            {
+              "path": "example.json",
+              "kind": "created"
+            }
+          ],
+          "checks": [
+            {
+              "criterionId": "journey",
+              "label": "Actual comparison acceptance tests",
+              "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe\" \"--test\" \"--test-reporter=tap\" \"compare.test.mjs\"",
+              "executed": true,
+              "exitCode": 1,
+              "result": "failed",
+              "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nnot ok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 68.4248\n  type: 'test'\n  location: 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-09-23\\\\you-are-continuing-development-of-my\\\\work\\\\m2-fixtures-1790463446988\\\\existing\\\\compare.test.mjs:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    0 !== 2\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 2\n  actual: 0\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///C:/Users/Ash/Documents/Codex/2026-09-23/you-are-continuing-development-of-my/work/m2-fixtures-1790463446988/existing/compare.test.mjs:14:61)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1382:25)\n    Test.start (node:internal/test_runner/test:1242:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 63.9563\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 125.3303\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 1.2407\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 3\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 332.1195"
+            }
+          ],
+          "runInstructions": [
+            "Use the approved local command with your supplied example."
+          ],
+          "gaps": [
+            "The initial implementation lost candidate details; repair it before completion."
+          ],
+          "id": "4187b571-9afe-4310-bb81-ac5809876b7f",
+          "recordedAt": "2026-09-26T22:57:43.040Z",
+          "fileHashes": {
+            "compare.mjs": "1a76fad6ca6130f2e1d38956d4c88add85aee8852ecce2ed94fae2e7a3d8c4be",
+            "compare.test.mjs": "f7f90a534545194e35132bbe65cb1aa13b3cb4c5a6b625af3205a6b6ec4ed707",
+            "example.json": "617e0d0170f6bd47514718f2e7bd40eb368241dfa016435acdbe1323af6e6e29"
+          },
+          "customerValidation": "not_established",
+          "release": "not_released",
+          "provenance": "host_report_with_local_file_hashes"
+        },
+        {
+          "expectedVersion": 4,
+          "stageId": "mvp",
+          "implementation": "completed",
+          "changes": [
+            {
+              "path": "compare.mjs",
+              "kind": "modified"
+            }
+          ],
+          "checks": [
+            {
+              "criterionId": "journey",
+              "label": "Actual input/output, persistence and invalid input checks pass.",
+              "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe\" \"--test\" \"--test-reporter=tap\" \"compare.test.mjs\"",
+              "executed": true,
+              "exitCode": 0,
+              "result": "passed",
+              "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 69.3139\n  type: 'test'\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 60.8503\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 127.3452\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 1.0696\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 332.525"
+            }
+          ],
+          "runInstructions": [
+            "node compare.mjs example.json review.json"
+          ],
+          "gaps": [],
+          "id": "ef0ea0b1-4748-4110-b145-823bb4afcf50",
+          "recordedAt": "2026-09-26T22:57:44.119Z",
+          "fileHashes": {
+            "compare.mjs": "192ee5f6094f5fcbeb94739344248c992cc7b7d5eea21976c27e69ebfd87fe6e"
+          },
+          "customerValidation": "not_established",
+          "release": "not_released",
+          "provenance": "host_report_with_local_file_hashes"
+        }
+      ],
+      "summaries": [
+        "Executive summary\nWe're building for Self-directed investor comparing a shortlist..\nThe pain we're addressing: For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.\nOne workflow: Read a local shortlist, compare the supplied facts, save one review note.\nThe first version needs to help us learn: Does one comparison reduce repeated checking?\n\nBuilding\n- Compare supplied facts\n- Save one review note\n\nParking\n- Existing dashboard\n\nFirst build stage: M1: complete the comparison. Produce one real end-to-end comparison and saved note with useful failures.\n\nThese capabilities test the core pain. Extra features would add work without answering that question.\n\nApprove build | Adjust scope | View build plan\nThe extra detail is optional — you can continue without reading it.",
+        "Executive summary\nM1: complete the comparison: awaiting review. 1 checks passed, 0 failed, 0 not run.\nTechnical results do not establish customer validation.\n\nTry this stage using the recorded run instructions. We have reached the planned stopping point.\n\nnode compare.mjs example.json review.json\n\nView build plan | View technical results\nThe extra detail is optional — you can continue without reading it."
+      ]
+    },
+    {
+      "kind": "stock",
+      "synthetic": true,
+      "host": "current Codex native file/command adapter; authored founder replies",
+      "root": "C:\\Users\\Ash\\Documents\\Codex\\2026-09-23\\you-are-continuing-development-of-my\\work\\m2-fixtures-1790463446988\\stock",
+      "stages": [
+        "mvp"
+      ],
+      "capabilities": [
+        "Compare supplied facts",
+        "Save one review note"
+      ],
+      "preservedPaths": [],
+      "commands": [
+        {
+          "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe\" \"--test\" \"--test-reporter=tap\" \"compare.test.mjs\"",
+          "exitCode": 0,
+          "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 68.1121\n  type: 'test'\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 59.6621\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 115.3572\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 0.5367\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 361.9696"
+        }
+      ],
+      "failedAttemptRecorded": false,
+      "finalStatus": "awaiting_review",
+      "customerValidation": "not_established",
+      "release": "not_released",
+      "pack": {
+        "directory": "build-context/bd28351a-95a9-4cfd-8ebe-809f1fc9565e",
+        "files": [
+          {
+            "path": "build-context/bd28351a-95a9-4cfd-8ebe-809f1fc9565e/STARTUP_MASTER.md",
+            "sha256": "a3b9237f1e67bb44705036434b4ca7fad6547958812b915715b3310fe8f7ab0b"
+          },
+          {
+            "path": "build-context/bd28351a-95a9-4cfd-8ebe-809f1fc9565e/BUILD_PLAN.md",
+            "sha256": "99a49b3803912609a7adfccec8d17d34a2e4636c0e99d49c8b59d9a2ae2f41f6"
+          },
+          {
+            "path": "build-context/bd28351a-95a9-4cfd-8ebe-809f1fc9565e/GROUNDWORK.md",
+            "sha256": "a0ae935048c06222ce34bf160287ecb5dcd569074a0558027741a58e4bc2d283"
+          },
+          {
+            "path": "build-context/bd28351a-95a9-4cfd-8ebe-809f1fc9565e/STAGE_1.md",
+            "sha256": "b93fb003c67b80851f5b8c1933867e3e155f6d90a48a8550603583c3f4d10c38"
+          }
+        ]
+      },
+      "receipts": [
+        {
+          "expectedVersion": 3,
+          "stageId": "mvp",
+          "implementation": "completed",
+          "changes": [
+            {
+              "path": "compare.mjs",
+              "kind": "created"
+            },
+            {
+              "path": "compare.test.mjs",
+              "kind": "created"
+            },
+            {
+              "path": "example.json",
+              "kind": "created"
+            }
+          ],
+          "checks": [
+            {
+              "criterionId": "journey",
+              "label": "Actual input/output, persistence and invalid input checks pass.",
+              "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe\" \"--test\" \"--test-reporter=tap\" \"compare.test.mjs\"",
+              "executed": true,
+              "exitCode": 0,
+              "result": "passed",
+              "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 68.1121\n  type: 'test'\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 59.6621\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 115.3572\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 0.5367\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 361.9696"
+            }
+          ],
+          "runInstructions": [
+            "node compare.mjs example.json review.json"
+          ],
+          "gaps": [],
+          "id": "06874bf4-668e-4506-87bb-df37c30b1ef7",
+          "recordedAt": "2026-09-26T22:57:53.523Z",
+          "fileHashes": {
+            "compare.mjs": "85ca95c28c0c771087f1585c06f839f6bb497d9a0b5139e1f3ecd17cddbdd06e",
+            "compare.test.mjs": "f7f90a534545194e35132bbe65cb1aa13b3cb4c5a6b625af3205a6b6ec4ed707",
+            "example.json": "617e0d0170f6bd47514718f2e7bd40eb368241dfa016435acdbe1323af6e6e29"
+          },
+          "customerValidation": "not_established",
+          "release": "not_released",
+          "provenance": "host_report_with_local_file_hashes"
+        }
+      ],
+      "summaries": [
+        "Executive summary\nWe're building for US self-directed swing traders who already screen momentum/growth stocks, maintain a shortlist, and compare candidates during scheduled evening or weekend reviews..\nThe pain we're addressing: During a shortlist review, these traders struggle to compare plausible candidates consistently because technical, sector, fundamental and catalyst notes are scattered. They repeat the synthesis and lose track of their reasoning, using charts, research pages and spreadsheets today.\nOne workflow: Read a local shortlist, compare the supplied facts, save one review note.\nThe first version needs to help us learn: Does one comparison reduce repeated checking?\n\nBuilding\n- Compare supplied facts\n- Save one review note\n\nParking\n- Live prices\n- Portfolio dashboard\n\nFirst build stage: M1: complete the comparison. Produce one real end-to-end comparison and saved note with useful failures.\n\nThese capabilities test the core pain. Extra features would add work without answering that question.\n\nApprove build | Adjust scope | View build plan\nThe extra detail is optional — you can continue without reading it.",
+        "Executive summary\nM1: complete the comparison: awaiting review. 1 checks passed, 0 failed, 0 not run.\nTechnical results do not establish customer validation.\n\nTry this stage using the recorded run instructions. We have reached the planned stopping point.\n\nnode compare.mjs example.json review.json\n\nView build plan | View technical results\nThe extra detail is optional — you can continue without reading it."
+      ]
+    }
+  ]
+}

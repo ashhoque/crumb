@@ -1,0 +1,334 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "urn:business-copilot:conversation:v5",
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 400,
+      "pattern": "\\S"
+    },
+    "nullableText": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/text"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "draft": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contractVersion",
+        "synthetic",
+        "expectedVersion",
+        "foundation",
+        "proposal",
+        "artifacts",
+        "artifactPermission",
+        "ideal",
+        "brief",
+        "phase",
+        "decision",
+        "context"
+      ],
+      "properties": {
+        "contractVersion": {
+          "const": 5
+        },
+        "synthetic": {
+          "type": "boolean"
+        },
+        "expectedVersion": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "foundation": {
+          "$ref": "https://cec.local/contracts/m1-v1#/$defs/foundation"
+        },
+        "proposal": {
+          "$ref": "https://cec.local/contracts/m1-v1#/$defs/proposal"
+        },
+        "artifacts": {
+          "$ref": "https://cec.local/contracts/m1-v1#/$defs/draft/properties/artifacts"
+        },
+        "artifactPermission": {
+          "$ref": "https://cec.local/contracts/m1-v1#/$defs/draft/properties/artifactPermission"
+        },
+        "brief": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "summary",
+            "nextAction",
+            "questions"
+          ],
+          "properties": {
+            "summary": {
+              "$ref": "#/$defs/text"
+            },
+            "nextAction": {
+              "$ref": "#/$defs/text"
+            },
+            "questions": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/text"
+              },
+              "maxItems": 2
+            }
+          }
+        },
+        "ideal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "intention",
+            "consequence",
+            "feedback",
+            "evaluation",
+            "assessment"
+          ],
+          "properties": {
+            "intention": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "goal",
+                "statement",
+                "status"
+              ],
+              "properties": {
+                "goal": {
+                  "enum": [
+                    "solo_profit",
+                    "high_growth",
+                    "b2b_enterprise",
+                    "impact",
+                    "learning",
+                    "custom",
+                    "unknown"
+                  ]
+                },
+                "statement": {
+                  "$ref": "#/$defs/nullableText"
+                },
+                "status": {
+                  "enum": [
+                    "unasked",
+                    "asked",
+                    "provided",
+                    "skipped"
+                  ]
+                }
+              }
+            },
+            "consequence": {
+              "$ref": "https://cec.local/contracts/m1-v1#/$defs/claim"
+            },
+            "feedback": {
+              "type": "array",
+              "maxItems": 6,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "summary",
+                  "source",
+                  "provenance"
+                ],
+                "properties": {
+                  "summary": {
+                    "$ref": "#/$defs/text"
+                  },
+                  "source": {
+                    "$ref": "#/$defs/text"
+                  },
+                  "provenance": {
+                    "const": "founder_reported"
+                  }
+                }
+              }
+            },
+            "evaluation": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "state",
+                "question",
+                "unavailableReason",
+                "findings"
+              ],
+              "properties": {
+                "state": {
+                  "enum": [
+                    "not_run",
+                    "requested",
+                    "available",
+                    "unavailable"
+                  ]
+                },
+                "question": {
+                  "$ref": "#/$defs/nullableText"
+                },
+                "unavailableReason": {
+                  "$ref": "#/$defs/nullableText"
+                },
+                "findings": {
+                  "type": "array",
+                  "maxItems": 12,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "topic",
+                      "statement",
+                      "kind",
+                      "source",
+                      "limitation",
+                      "provenance"
+                    ],
+                    "properties": {
+                      "topic": {
+                        "enum": [
+                          "direct_competitors",
+                          "manual_substitutes",
+                          "ai_substitutes",
+                          "pricing_positioning",
+                          "praise",
+                          "complaints",
+                          "differentiation",
+                          "growth_signals",
+                          "problem_discussions",
+                          "communities",
+                          "user_habitats",
+                          "first_user_avenues"
+                        ]
+                      },
+                      "statement": {
+                        "$ref": "#/$defs/text"
+                      },
+                      "kind": {
+                        "enum": [
+                          "disclosed_metric",
+                          "public_proxy",
+                          "public_observation"
+                        ]
+                      },
+                      "limitation": {
+                        "$ref": "#/$defs/text"
+                      },
+                      "provenance": {
+                        "const": "synthetic_fixture"
+                      },
+                      "source": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "title",
+                          "url",
+                          "accessedOn"
+                        ],
+                        "properties": {
+                          "title": {
+                            "$ref": "#/$defs/text"
+                          },
+                          "url": {
+                            "type": "string",
+                            "pattern": "^https://[^\\s]+$",
+                            "maxLength": 1000
+                          },
+                          "accessedOn": {
+                            "type": "string",
+                            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "assessment": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "promising": {
+                      "$ref": "#/$defs/nullableText"
+                    },
+                    "criticalUnknown": {
+                      "$ref": "#/$defs/text"
+                    },
+                    "cheapestCheck": {
+                      "$ref": "#/$defs/text"
+                    },
+                    "weak": {
+                      "$ref": "#/$defs/nullableText"
+                    }
+                  },
+                  "additionalProperties": false,
+                  "required": [
+                    "promising",
+                    "weak",
+                    "criticalUnknown",
+                    "cheapestCheck"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "phase": {
+          "const": "proposal"
+        },
+        "decision": {
+          "type": "object",
+          "properties": {
+            "basis": {
+              "const": "act_confirmed"
+            },
+            "source": {
+              "$ref": "#/$defs/text"
+            },
+            "confirmationId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "basis",
+            "source",
+            "confirmationId"
+          ]
+        },
+        "context": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "version",
+            "hash"
+          ],
+          "properties": {
+            "version": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "hash": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        }
+      }
+    }
+  }
+}

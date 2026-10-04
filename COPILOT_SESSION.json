@@ -1,0 +1,15 @@
+{
+  "format": "business-copilot-session-v1",
+  "projectId": "be0bfa07-1c6c-446a-bf5a-e2e701aa8563",
+  "mode": "conversation",
+  "revision": 56,
+  "contextHash": "290fe974281efe06e37fa8de5b6150539830129678e3d5d20eb168785c904f28",
+  "actBasis": null,
+  "files": {
+    "CRUMB_CONTEXT.md": "3b110cb1fca9e1081ac2d4fc9c968317e1f2db9e93d52dd0a53af27ce0a0b1c8",
+    "CRUMB_CONTEXT.json": "4c0bfa1192abfc2c33a67d45204fd23dc0e28952f47ebdfb379b6a9e5c0d5dba",
+    "CRUMB_RESEARCH.json": "96c7296dc2f4f13161a2e6bdadb543283a741f3639e8eab27b48a3e84af9eaf6"
+  },
+  "inspection": null,
+  "digest": "02c8b781c9833f70e71b686fdef9947a98567bf14b5b8bd47e9ece17c355c596"
+}

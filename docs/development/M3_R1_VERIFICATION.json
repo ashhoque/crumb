@@ -1,0 +1,49 @@
+{
+  "m4Started": false,
+  "missingBaselineFiles": [],
+  "changedExistingFiles": [
+    ".agents/skills/crumb/references/act.md",
+    ".agents/skills/crumb/references/local-tools.md",
+    ".agents/skills/crumb/SKILL.md",
+    "AGENTS.md",
+    "cec.ps1",
+    "docs/development/README.md",
+    "PLAN.md",
+    "PRODUCT_SPEC.md",
+    "README.md",
+    "src/application/act.ts",
+    "src/application/build-pack.ts",
+    "src/application/prebuild.ts",
+    "src/cli/act-render.ts",
+    "src/cli/main.ts",
+    "src/domain/act.ts",
+    "src/domain/conversation.ts",
+    "src/domain/guide.ts",
+    "src/domain/ide.ts",
+    "STATUS.md",
+    "tests/cli.test.ts",
+    "tests/ide-conversations.test.ts",
+    "tests/ide.test.ts",
+    "tests/learn.test.ts"
+  ],
+  "execution": "Real disposable fixture edits and child Node/Python checks; synthetic founder/user inputs.",
+  "branch": "main",
+  "final": {
+    "skipped": 0,
+    "durationMs": 141742.481,
+    "cancelled": 0,
+    "passed": 286,
+    "failed": 0,
+    "exitCode": 0
+  },
+  "head": "c218317a2b17d6f4a7194ef5c875b5d26ed48d48",
+  "newR1Tests": 16,
+  "baseline": {
+    "failed": 0,
+    "skipped": 0,
+    "passed": 270
+  },
+  "status": "M3-R1 PASS WITH WARNINGS",
+  "historicalReportsFixturesOrDependenciesChanged": [],
+  "nativeCloudTransferImplemented": false
+}

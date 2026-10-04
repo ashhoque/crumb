@@ -1,0 +1,27 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import { writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { temporaryProject } from './helpers.js';
+import { authorized, resultFor } from './act-fixtures.js';
+import { recordActStage, reviewActStage } from '../src/application/act.js';
+import { readPrebuild, savePrebuild } from '../src/application/prebuild.js';
+import { readLearn } from '../src/application/learn.js';
+const cli=fileURLToPath(new URL('../src/cli/main.js',import.meta.url));
+test('M3 actual CLI prepares, imports through PowerShell, summarizes and stops; no send command exists',t=>{
+  const root=temporaryProject(t);let a=authorized(root);writeFileSync(join(root,'compare.mjs'),'// Synthetic CLI fixture.');const r=resultFor(a);r.changes=[{path:'compare.mjs',kind:'created'}];a=recordActStage(root,r);reviewActStage(root,{expectedVersion:a.version,decision:'finish',quote:'Synthetic founder reviews CLI fixture.'});
+  const run=(args:string[],input?:object)=>spawnSync(process.execPath,[cli,...args],{encoding:'utf8',windowsHide:true,input:input===undefined?'':JSON.stringify(input),timeout:15000});
+  const prepared=run(['internal','learn-prepare',root],{expectedVersion:0});assert.equal(prepared.status,0,prepared.stderr);const version=JSON.parse(prepared.stdout).version as number;
+  const pack=run(['internal','learn-pack',root]);assert.equal(pack.status,0,pack.stderr);assert.equal(JSON.parse(pack.stdout).outreach,'founder_controlled_not_sent');
+  const payload={expectedVersion:version,notes:'Synthetic founder reports no reply yet.',synthetic:true,observations:[{kind:'no_response',excerpt:'Synthetic founder reports no reply yet.',userRef:null,sessionRef:null,theme:'Route response',outcome:'unknown',signal:'none'}]};
+  const imported=process.platform==='win32'?spawnSync('pwsh',['-NoProfile','-CommandWithArgs','& $args[0] @($args[1..($args.Count - 1)])',fileURLToPath(new URL('../../cec.ps1',import.meta.url)),'internal','learn-import',root],{encoding:'utf8',windowsHide:true,input:JSON.stringify(payload),timeout:20000,env:{...process.env,CEC_NODE:process.execPath}}):run(['internal','learn-import',root],payload);
+  assert.equal(imported.status,0,imported.stderr);
+  const summarized=run(['internal','learn-summarize',root],{expectedVersion:JSON.parse(imported.stdout).version});assert.equal(summarized.status,0,summarized.stderr);assert.match(JSON.parse(summarized.stdout).summary,/ambiguous/);
+  const decided=run(['internal','learn-decide',root],{expectedVersion:JSON.parse(summarized.stdout).version,choice:'approve',quote:'Synthetic founder: test the route first.'});assert.equal(decided.status,0,decided.stderr);assert.equal(JSON.parse(decided.stdout).status,'decided');
+  assert.equal(run(['internal','learn-send',root]).status,1);assert.equal(readLearn(root)!.record.observations.length,1);
+  const status=run(['status',root,'--json']);assert.equal(status.status,0,status.stderr);assert.ok(JSON.parse(status.stdout).learn);assert.ok(!status.stdout.includes(payload.notes));
+  const c=readPrebuild(root)!;c.context.expectedVersion=c.version;c.context.definition.problem.text='A revised problem pending founder confirmation.';savePrebuild(root,c.context);
+  const resumed=run(['status',root]);assert.equal(resumed.status,0,resumed.stderr);assert.doesNotMatch(resumed.stdout,/Direction recorded/);
+});

@@ -1,0 +1,84 @@
+{
+  "format": "business-copilot-current-context-v1",
+  "revision": 56,
+  "contextHash": "290fe974281efe06e37fa8de5b6150539830129678e3d5d20eb168785c904f28",
+  "synthetic": false,
+  "preferredName": null,
+  "intention": {
+    "text": "Start a wedding decor rental business using items I already own, with customers renting the items and arranging the decor themselves; I do not want to provide decorating services.",
+    "confirmed": true
+  },
+  "user": {
+    "text": "Couples setting up their own weddings and choosing decor for the event.",
+    "confirmed": false
+  },
+  "buyer": "The couple renting decor for its own wedding.",
+  "problem": {
+    "text": null,
+    "confirmed": false
+  },
+  "constraints": [
+    "Focus on renting existing wedding decor inventory. The first renter, item list, pickup and return, and setup responsibilities remain to be clarified."
+  ],
+  "evaluation": {
+    "conclusion": null,
+    "state": "not_started",
+    "competitors": [],
+    "marketGap": null,
+    "unknowns": []
+  },
+  "habitats": [],
+  "firstUserCards": [],
+  "discovery": {
+    "channels": "online",
+    "region": null,
+    "outcome": "not_run",
+    "runIds": [],
+    "limitation": "No first-user discovery has been run for this context yet.",
+    "suppressedSubjectKeys": []
+  },
+  "interviewLearning": [],
+  "quality": {
+    "technicalSummary": "Technical feasibility has not been investigated yet.",
+    "centralRisk": "Unknown until the central capability and its dependencies are investigated.",
+    "founderEdge": "No founder advantage established yet.",
+    "founderLimit": "Use only reported experience, permitted repository observations and relevant evidence.",
+    "nextLearning": {
+      "uncertainty": "pain",
+      "reason": "Determine the cheapest way to resolve the current important uncertainty.",
+      "recommendation": "research"
+    },
+    "detail": "View technical evaluation"
+  },
+  "state": {
+    "intention": "founder_confirmed",
+    "target_user": "drafted",
+    "problem_definition": "unknown",
+    "evaluation": "not_started",
+    "act_readiness": "not_ready"
+  },
+  "guidance": {
+    "kind": "confirm",
+    "subject": "user",
+    "text": "The first user I'd focus on is Couples setting up their own weddings and choosing decor for the event., with The couple renting decor for its own wedding. as the buyer.\n\nIs this the user you actually want to focus on first?"
+  },
+  "actConfirmation": null,
+  "detail": {
+    "research": "CRUMB_RESEARCH.json",
+    "handoff": "BUILD_HANDOFF.md",
+    "retrieval": "Retrieve only relevant claim/source/habitat IDs; do not reload full history."
+  },
+  "researchPolicy": {
+    "default": "reuse_cached",
+    "refreshWhen": [
+      "user_changes",
+      "material_problem_change",
+      "market_change",
+      "stale_or_time_sensitive",
+      "inadequate_coverage",
+      "founder_requests_refresh"
+    ],
+    "sourceCount": 2,
+    "latestResearchOn": "2026-10-03"
+  }
+}

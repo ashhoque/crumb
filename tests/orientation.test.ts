@@ -1,10 +1,12 @@
+// Legacy payload/record compatibility. Fixture seeding is test-only; ide.test.ts tests all new-work gates.
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { cpSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
-import { approveDraft, approvedHandoff, compactContext, readWorkflow, recordReceipt, saveDraft } from '../src/application/workflow.js';
+import { compactContext, readWorkflow, recordReceipt } from '../src/application/workflow.js';
+import { seedHistoricalApproval as approveDraft, readHistoricalScope as approvedHandoff, seedHistoricalDraft as saveDraft } from './historical-fixtures.js';
 import { createBackup } from '../src/application/backup.js';
 import { inspectArtifacts } from '../src/privacy/artifacts.js';
 import { detailSections, renderDetail, renderHandoff, renderOpening, renderStatus, renderSummary } from '../src/cli/render.js';
@@ -24,7 +26,7 @@ function action(context: OrientationDraft, basis: ActionDraft['decision']['basis
 }
 
 for (const name of ['fresh', 'existing', 'feedback', 'stock']) {
-  test(`${name}: orientation survives a new process without a proposal, approval or repeated onboarding`, t => {
+  test(`historical data: ${name}: orientation survives a new process without a proposal, approval or repeated onboarding`, t => {
     const root = temporaryProject(t), input = orientation(name);
     const saved = saveDraft(root, input);
     const process = spawnSync(globalThis.process.execPath, [cli, 'internal', 'context', root], { encoding: 'utf8', windowsHide: true });
@@ -54,7 +56,7 @@ for (const name of ['fresh', 'existing', 'feedback', 'stock']) {
   });
 }
 
-test('the stock regression rejects a premature action unless the founder explicitly elects to build', t => {
+test('historical data: the stock regression rejects a premature action unless the founder explicitly elects to build', t => {
   const root = temporaryProject(t), context = orientation();
   const premature = action(context, 'context_ready');
   assert.throws(() => saveDraft(root, premature), /Clarify intention/);
@@ -67,7 +69,7 @@ test('the stock regression rejects a premature action unless the founder explici
   assert.equal(cycle.basis, 'HYPOTHESIS-LED');
 });
 
-test('malformed orientation, intentions and excess questions fail before storage', t => {
+test('historical data: malformed orientation, intentions and excess questions fail before storage', t => {
   const root = temporaryProject(t);
   for (const change of [
     (d: OrientationDraft) => { Object.assign(d, { proposal: legacy().proposal }); },
@@ -88,7 +90,7 @@ test('malformed orientation, intentions and excess questions fail before storage
   assert.throws(() => saveDraft(root, falseMethod), /build request/);
 });
 
-test('Build now bypasses unknown intention and research in every orientation state', t => {
+test('historical data: Build now bypasses unknown intention and research in every orientation state', t => {
   for (const status of ['unasked', 'asked', 'skipped'] as const) {
     for (const state of ['not_run', 'requested', 'unavailable'] as const) {
       const root = temporaryProject(t), input = orientation();
@@ -105,7 +107,7 @@ test('Build now bypasses unknown intention and research in every orientation sta
   }
 });
 
-test('skipped intention persists and evaluated context can recommend a learning action without a build', t => {
+test('historical data: skipped intention persists and evaluated context can recommend a learning action without a build', t => {
   const root = temporaryProject(t), input = orientation('existing');
   input.ideal.intention = { status: 'skipped', goal: 'unknown', statement: null };
   input.brief.questions = [];
@@ -121,7 +123,7 @@ test('skipped intention persists and evaluated context can recommend a learning 
   assert.equal(approve(root, proposed.hash).draft.proposal.method, 'learning');
 });
 
-test('existing-project v3 context preserves selected files and still detects drift before approval', t => {
+test('historical data: existing-project v3 context preserves selected files and still detects drift before approval', t => {
   const root = temporaryProject(t);
   cpSync(join(fixtures, 'm1/unfinished'), root, { recursive: true });
   const input = orientation('existing');
@@ -138,7 +140,7 @@ test('existing-project v3 context preserves selected files and still detects dri
   assert.equal(readWorkflow(root).cycle, null);
 });
 
-test('feedback corrections replace an unapproved proposal without reusing stale approval', t => {
+test('historical data: feedback corrections replace an unapproved proposal without reusing stale approval', t => {
   const root = temporaryProject(t), first = action(orientation('existing'), 'context_ready');
   first.proposal = legacy('existing').proposal;
   const original = saveDraft(root, first);
@@ -158,9 +160,10 @@ test('feedback corrections replace an unapproved proposal without reusing stale 
   assert.equal((cycle.draft as ActionDraft).ideal.feedback.length, 3);
 });
 
-test('v3 CLI orientation to reviewed action to real receipt and backup retains context', t => {
+test('historical data: v3 seeded snapshots remain readable with actual receipts and backup', t => {
   const root = temporaryProject(t);
   const run = (operation: string, input?: object) => {
+    if (operation === 'draft') return JSON.stringify(saveDraft(root, input));
     const result = spawnSync(process.execPath, [cli, 'internal', operation, root], { encoding: 'utf8', input: input ? JSON.stringify(input) : undefined, windowsHide: true });
     assert.equal(result.status, 0, result.stderr); return result.stdout;
   };
@@ -183,7 +186,7 @@ test('v3 CLI orientation to reviewed action to real receipt and backup retains c
   assert.ok(JSON.stringify(compactContext(root)).includes('Synthetic Stock Comparison'));
 });
 
-test('display renaming never changes old snapshots, hashes, schema identity or paths', t => {
+test('historical data: display renaming never changes old snapshots, hashes, schema identity or paths', t => {
   const root = temporaryProject(t), old = legacy();
   const saved = saveDraft(root, old), cycle = approve(root, saved.hash);
   const snapshot = JSON.stringify(readWorkflow(root));

@@ -1,0 +1,182 @@
+{
+  "timestamp": "2026-09-27T00:05:24.249Z",
+  "result": "M3 PASS WITH WARNINGS",
+  "baseline": {
+    "passed": 237,
+    "failed": 0
+  },
+  "final": {
+    "passed": 270,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 64431.5744
+  },
+  "scenarios": [
+    {
+      "id": "A",
+      "result": "pass",
+      "destination": "act",
+      "synthetic": true,
+      "stopped": true
+    },
+    {
+      "id": "B",
+      "result": "pass",
+      "destination": "act",
+      "synthetic": true,
+      "stopped": true
+    },
+    {
+      "id": "C",
+      "result": "pass",
+      "destination": "evaluate",
+      "synthetic": true,
+      "stopped": true
+    },
+    {
+      "id": "D",
+      "result": "pass",
+      "destination": "define_problem",
+      "synthetic": true,
+      "stopped": true
+    },
+    {
+      "id": "E",
+      "result": "pass",
+      "destination": "exposure",
+      "synthetic": true,
+      "stopped": true
+    },
+    {
+      "id": "F",
+      "result": "pass",
+      "destination": "act",
+      "synthetic": true,
+      "stopped": true
+    }
+  ],
+  "protectedFiles": [
+    ".node-version",
+    "CEC_MASTER_SPEC_v0.5.md",
+    "contracts/conversation-v3.schema.json",
+    "contracts/conversation-v4.schema.json",
+    "contracts/conversation-v5.schema.json",
+    "contracts/m1.schema.json",
+    "contracts/m1r.schema.json",
+    "docs/development/M1_R_CONVERSATION_REHEARSAL.md",
+    "docs/development/M1_R2_INDEPENDENT_REHEARSAL.md",
+    "docs/development/M1_R2_RESEARCH_REHEARSAL.md",
+    "docs/development/M1_R2_VERIFICATION.json",
+    "docs/development/M1_R3_CONVERSATION_EXAMPLES.md",
+    "docs/development/M1_R3_REHEARSAL_RESULTS.json",
+    "docs/development/M1_R3_REHEARSALS.md",
+    "docs/development/M1_R3_STOCK_RESEARCH.md",
+    "docs/development/M1_R3_VERIFICATION.json",
+    "docs/development/M2_ACCEPTANCE_FIXTURES.md",
+    "docs/development/M2_ACCEPTANCE_RESULTS.json",
+    "docs/development/M2_ACCEPTANCE_VERIFICATION.json",
+    "docs/development/M2_PRESERVATION.json",
+    "docs/development/M2_REHEARSAL_RESULTS.json",
+    "docs/development/M2_REHEARSALS.md",
+    "docs/development/M2_VERIFICATION.json",
+    "fixtures/m1/existing.json",
+    "fixtures/m1/idea.json",
+    "fixtures/m1/scenarios.md",
+    "fixtures/m1/unfinished/AGENTS.md",
+    "fixtures/m1/unfinished/app.mjs",
+    "fixtures/m1/unfinished/app.test.mjs",
+    "fixtures/m1/unfinished/package.json",
+    "fixtures/m1/unfinished/README.md",
+    "fixtures/m1r/existing.json",
+    "fixtures/m1r/feedback.json",
+    "fixtures/m1r/fresh.json",
+    "fixtures/m1r2/b2b.json",
+    "fixtures/m1r2/build-now.json",
+    "fixtures/m1r2/evaluated-stock.json",
+    "fixtures/m1r2/existing.json",
+    "fixtures/m1r2/feedback.json",
+    "fixtures/m1r2/fresh.json",
+    "fixtures/m1r2/researched-stock.json",
+    "fixtures/m1r2/stock.json",
+    "fixtures/m1r3/stock.json",
+    "fixtures/m2/comparison/compare.mjs",
+    "fixtures/m2/comparison/compare.test.mjs",
+    "fixtures/m2/fresh/ready.py",
+    "fixtures/m2/fresh/test_ready.py",
+    "fixtures/orientation/existing.json",
+    "fixtures/orientation/feedback.json",
+    "fixtures/orientation/fresh.json",
+    "fixtures/orientation/stock.json",
+    "M0_REPORT.md",
+    "M1_R_REPORT.md",
+    "M1_R2_REPORT.md",
+    "M1_R2_TEST_GUIDE.md",
+    "M1_R3_REPORT.md",
+    "M1_R3_TEST_GUIDE.md",
+    "M1_REPORT.md",
+    "M1-R_REPORT.md",
+    "M1-R_TEST_GUIDE.md",
+    "M2_REPORT.md",
+    "M2_TEST_GUIDE.md",
+    "package-lock.json",
+    "package.json"
+  ],
+  "preserved": true,
+  "modified": [
+    ".agents/skills/crumb/references/act.md",
+    ".agents/skills/crumb/references/local-tools.md",
+    ".agents/skills/crumb/SKILL.md",
+    "AGENTS.md",
+    "cec.ps1",
+    "docs/development/README.md",
+    "PLAN.md",
+    "PRODUCT_SPEC.md",
+    "README.md",
+    "scripts/verify-skill-host.mjs",
+    "src/application/act.ts",
+    "src/application/initialize.ts",
+    "src/application/workflow.ts",
+    "src/cli/act-render.ts",
+    "src/cli/main.ts",
+    "src/persistence/act-store.ts",
+    "src/persistence/prebuild-store.ts",
+    "src/persistence/workflow-store.ts",
+    "STATUS.md",
+    "tests/cli.test.ts",
+    "tests/initialize.test.ts"
+  ],
+  "added": [
+    ".agents/skills/crumb/references/learn.md",
+    "M3_REPORT.md",
+    "M3_TEST_GUIDE.md",
+    "docs/development/M3_SCENARIOS.md",
+    "docs/development/M3_SCENARIO_RESULTS.json",
+    "docs/development/M3_VERIFICATION.json",
+    "src/application/learn.ts",
+    "src/cli/learn-render.ts",
+    "src/domain/learn.ts",
+    "src/persistence/learn-store.ts",
+    "tests/learn-cli.test.ts",
+    "tests/learn-scenarios.test.ts",
+    "tests/learn-scenarios.ts",
+    "tests/learn.test.ts"
+  ],
+  "head": "c218317a2b17d6f4a7194ef5c875b5d26ed48d48",
+  "branch": "main",
+  "whitespaceCheck": {
+    "command": "git -c core.autocrlf=false diff --check",
+    "exitCode": 0
+  },
+  "logs": [
+    {
+      "name": "m3-baseline.log",
+      "sha256": "52381e961584959485a06509decf9f337feebf2b4b94ce43451fd8eab9fea495"
+    },
+    {
+      "name": "m3-final-check.log",
+      "sha256": "1b99fabd1036f90caa4ad8bcfabd019931ea2574809eb511b1dcb907703c8aab"
+    }
+  ],
+  "m4Started": false,
+  "outreachSent": false
+}

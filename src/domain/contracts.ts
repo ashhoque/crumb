@@ -68,8 +68,12 @@ export interface EvaluatedActionDraft extends Omit<ActionDraft, 'contractVersion
   context: { version: number; hash: string };
   decision: { basis: 'evaluation_ready' | 'build_requested'; source: string };
 }
+export interface ConfirmedActionDraft extends Omit<EvaluatedActionDraft, 'contractVersion' | 'decision'> {
+  contractVersion: 5;
+  decision: { basis: 'act_confirmed'; source: string; confirmationId: string };
+}
 /** Actionable drafts retain the historical Draft API; orientation cannot be approved. */
-export type Draft = LegacyDraft | RevisedDraft | ActionDraft | EvaluatedActionDraft;
+export type Draft = LegacyDraft | RevisedDraft | ActionDraft | EvaluatedActionDraft | ConfirmedActionDraft;
 export type ConversationDraft = Draft | OrientationDraft;
 export function isActionable(draft: ConversationDraft): draft is Draft { return draft.proposal !== null; }
 export interface Approval { contractVersion: 1; draftHash: string; founderApproved: true; approvalQuote: string }
@@ -88,14 +92,16 @@ ajv.addSchema(schema);
 ajv.addSchema(JSON.parse(readFileSync(new URL('../../contracts/m1r.schema.json', import.meta.url), 'utf8')) as object);
 ajv.addSchema(JSON.parse(readFileSync(new URL('../../contracts/conversation-v3.schema.json', import.meta.url), 'utf8')) as object);
 ajv.addSchema(JSON.parse(readFileSync(new URL('../../contracts/conversation-v4.schema.json', import.meta.url), 'utf8')) as object);
+ajv.addSchema(JSON.parse(readFileSync(new URL('../../contracts/conversation-v5.schema.json', import.meta.url), 'utf8')) as object);
 const validators = Object.fromEntries(['draft', 'approval', 'receipt', 'inspect'].map(name => [name, ajv.compile({ $ref: `https://cec.local/contracts/m1-v1#/$defs/${name}` })]));
 const revisedDraftValidator = ajv.compile({ $ref: 'https://pruvity.local/contracts/m1r-v2#/$defs/draft' });
 const conversationValidator = ajv.compile({ $ref: 'urn:business-copilot:conversation:v3#/$defs/draft' });
 const evaluatedValidator = ajv.compile({ $ref: 'urn:business-copilot:conversation:v4#/$defs/draft' });
+const confirmedValidator = ajv.compile({ $ref: 'urn:business-copilot:conversation:v5#/$defs/draft' });
 
 export function validate<T>(kind: 'draft' | 'approval' | 'receipt' | 'inspect', input: unknown): asserts input is T {
   const version = kind === 'draft' && typeof input === 'object' && input !== null && 'contractVersion' in input ? input.contractVersion : undefined;
-  const validator = version === 4 ? evaluatedValidator : version === 3 ? conversationValidator : version === 2 ? revisedDraftValidator : validators[kind]!;
+  const validator = version === 5 ? confirmedValidator : version === 4 ? evaluatedValidator : version === 3 ? conversationValidator : version === 2 ? revisedDraftValidator : validators[kind]!;
   if (!validator(input)) {
     // Report locations/rules, never echo potentially private field values.
     throw new Error(`Invalid ${kind}: ${validator.errors?.slice(0, 5).map(error => `${error.instancePath || '/'} ${error.message}`).join('; ')}. Correct the request; nothing was saved.`);

@@ -1,0 +1,64 @@
+{
+  "recordedAt": "2026-09-24T01:51:27.952Z",
+  "mode": "authored local-core rehearsal",
+  "independentReview": false,
+  "installedHostGeneration": false,
+  "founderAcceptance": "pending",
+  "scenarios": [
+    {
+      "id": "fresh-b2b",
+      "turns": 25,
+      "firstSolutionTurn": 25,
+      "explicitActChoiceTurn": 24,
+      "finalVersion": 16,
+      "preActTurnsAllLocked": true,
+      "userConfirmations": 1,
+      "problemConfirmations": 1,
+      "maxNormalCrumbWords": 158
+    },
+    {
+      "id": "existing",
+      "turns": 24,
+      "firstSolutionTurn": 24,
+      "explicitActChoiceTurn": 23,
+      "finalVersion": 16,
+      "preActTurnsAllLocked": true,
+      "userConfirmations": 1,
+      "problemConfirmations": 1,
+      "maxNormalCrumbWords": 159
+    },
+    {
+      "id": "feedback",
+      "turns": 31,
+      "firstSolutionTurn": 31,
+      "explicitActChoiceTurn": 30,
+      "finalVersion": 22,
+      "preActTurnsAllLocked": true,
+      "userConfirmations": 2,
+      "problemConfirmations": 2,
+      "maxNormalCrumbWords": 154
+    },
+    {
+      "id": "stock",
+      "turns": 33,
+      "firstSolutionTurn": 33,
+      "explicitActChoiceTurn": 32,
+      "finalVersion": 22,
+      "preActTurnsAllLocked": true,
+      "userConfirmations": 2,
+      "problemConfirmations": 2,
+      "maxNormalCrumbWords": 185
+    },
+    {
+      "id": "adjacent",
+      "turns": 32,
+      "firstSolutionTurn": 32,
+      "explicitActChoiceTurn": 31,
+      "finalVersion": 22,
+      "preActTurnsAllLocked": true,
+      "userConfirmations": 2,
+      "problemConfirmations": 2,
+      "maxNormalCrumbWords": 153
+    }
+  ]
+}

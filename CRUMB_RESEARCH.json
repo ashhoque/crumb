@@ -1,0 +1,262 @@
+{
+  "format": "business-copilot-research-v1",
+  "revision": 56,
+  "contextHash": "290fe974281efe06e37fa8de5b6150539830129678e3d5d20eb168785c904f28",
+  "synthetic": false,
+  "claims": [
+    {
+      "id": "founder_wedding_couples_first_renter",
+      "statement": "The founder says the first renters would be couples setting up their own weddings.",
+      "basis": "founder_reported",
+      "sourceIds": [
+        "founder_wedding_couples_reply"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "This identifies the intended renter; no customer demand or rental behavior has been observed.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": {
+        "sourceId": "founder_wedding_couples_reply",
+        "text": "couples setting up their own weddings"
+      }
+    },
+    {
+      "id": "founder_existing_house_decor",
+      "statement": "The founder says the existing items are house decor.",
+      "basis": "founder_reported",
+      "sourceIds": [
+        "founder_house_decor_reply"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "The item types and suitability for wedding rentals have not been checked.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": {
+        "sourceId": "founder_house_decor_reply",
+        "text": "it is house decor"
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "founder_wedding_couples_reply",
+      "title": "Founder answer in this chat about the first wedding decor renter",
+      "url": null,
+      "kind": "founder",
+      "provenance": "founder_report",
+      "access": "provided",
+      "retrievedOn": "2026-10-03",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "couples setting up their own weddings it shosue decor",
+      "limitation": "The final phrase is unclear; this is founder intent, not customer behavior.",
+      "archived": false,
+      "independenceKey": "01a104cc-fa3a-71e3-9d9b-91c8100ad809",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "founder_house_decor_reply",
+      "title": "Founder clarification in this chat about the items",
+      "url": null,
+      "kind": "founder",
+      "provenance": "founder_report",
+      "access": "provided",
+      "retrievedOn": "2026-10-03",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "it is house decor",
+      "limitation": "The exact items, quantities and condition have not been described.",
+      "archived": false,
+      "independenceKey": "01a104cf-dc14-7a70-b32a-14153d90f53a",
+      "affiliation": "unknown"
+    }
+  ],
+  "competitors": [],
+  "habitats": [],
+  "firstUserAvenues": [],
+  "discovery": {
+    "channels": "online",
+    "region": null,
+    "outcome": "not_run",
+    "runIds": [],
+    "limitation": "No first-user discovery has been run for this context yet.",
+    "suppressedSubjectKeys": []
+  },
+  "redTeam": [],
+  "adjacent": [],
+  "investigation": {
+    "coverage": [
+      {
+        "topic": "workaround",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "willingness_to_pay",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "ability_to_pay",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "switching_cost",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "founder_insight",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "founder_expertise",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "founder_access",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "technical_feasibility",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "business_model_fit",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "intention_alignment",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      }
+    ],
+    "questions": [],
+    "alternatives": [],
+    "counterevidence": null,
+    "decision": null,
+    "redefinition": null
+  },
+  "quality": {
+    "technical": {
+      "material": true,
+      "summary": "Technical feasibility has not been investigated yet.",
+      "centralRisk": "Unknown until the central capability and its dependencies are investigated.",
+      "coverage": [
+        {
+          "topic": "data_apis",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Investigate if material; explain relevance otherwise."
+        },
+        {
+          "topic": "freshness_quality",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Investigate if material; explain relevance otherwise."
+        },
+        {
+          "topic": "access_licensing",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Investigate if material; explain relevance otherwise."
+        },
+        {
+          "topic": "rate_cost",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Investigate if material; explain relevance otherwise."
+        },
+        {
+          "topic": "integrations",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Investigate if material; explain relevance otherwise."
+        },
+        {
+          "topic": "complexity_latency",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Investigate if material; explain relevance otherwise."
+        },
+        {
+          "topic": "ai_deterministic",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Investigate if material; explain relevance otherwise."
+        },
+        {
+          "topic": "reliability_failures",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Investigate if material; explain relevance otherwise."
+        },
+        {
+          "topic": "security_privacy",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Investigate if material; explain relevance otherwise."
+        },
+        {
+          "topic": "vendor_build_buy",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Investigate if material; explain relevance otherwise."
+        }
+      ],
+      "options": [],
+      "recommendation": null
+    },
+    "founderFit": {
+      "edge": "No founder advantage established yet.",
+      "limitation": "Use only reported experience, permitted repository observations and relevant evidence.",
+      "claimIds": []
+    },
+    "learning": {
+      "uncertainty": "pain",
+      "reason": "Determine the cheapest way to resolve the current important uncertainty.",
+      "recommendation": "research"
+    }
+  },
+  "feedbackClaimIds": []
+}

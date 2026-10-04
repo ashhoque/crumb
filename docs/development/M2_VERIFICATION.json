@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-09-26T23:04:37.173Z",
+  "node": "24.19.0",
+  "baseline": {
+    "passed": 185,
+    "failed": 0,
+    "skipped": 0
+  },
+  "postUx": {
+    "passed": 185,
+    "failed": 0,
+    "skipped": 0
+  },
+  "final": {
+    "passed": 227,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 60237.0322
+  },
+  "skills": {
+    "crumb": true,
+    "pruvello": true,
+    "pruvity": true,
+    "customer-evidence": true
+  },
+  "logs": [
+    {
+      "name": "m2-baseline-check.log",
+      "sha256": "bb5898e2356017e2a91ca9d6f7020691626d5c909261bd9a5e8ba85280b4fbb0"
+    },
+    {
+      "name": "m2-ux-regression.log",
+      "sha256": "85233253aa1066b4ef25882136c8a9594a69ca928985a131e11e1f631780aea7"
+    },
+    {
+      "name": "m2-final-check.log",
+      "sha256": "1e8f5bc9798eddd88c9e95853060ebf5037a47fc79f88d2994125eed4a247ca8"
+    }
+  ],
+  "fixtureResults": "M2_REHEARSAL_RESULTS.json",
+  "preservation": "M2_PRESERVATION.json",
+  "m3Started": false,
+  "committed": false,
+  "pushed": false
+}

@@ -4,8 +4,10 @@
 
 Crumb helps clarify an idea or existing project, investigate the problem and
 alternatives, then choose a considered next step. Current milestone:
-**M1-R2 — Complete pre-build IDE experience**. See [status](STATUS.md),
-[implementation report](M1_R2_REPORT.md) and [trial guide](M1_R2_TEST_GUIDE.md).
+**M3-R1 - Conversation Mode to Work/Build Mode**. See [status](STATUS.md),
+[implementation report](M3_R1_REPORT.md) and [focused quality trial](M3_R1_QUALITY_TEST_GUIDE.md).
+The focused correction strengthens research ownership, technical feasibility,
+proactive first-user avenues and past-behavior interviews within the same architecture.
 The existing project was preserved and pushed to GitHub before this work.
 [Development decisions](docs/development/README.md) retain the approved proposal.
 
@@ -23,24 +25,39 @@ A personal tool does not need a venture-scale business case. Skipped intention
 remains unknown without repeated prompting. Existing code is preserved and read
 within permission. Raw confidential customer-source import is outside this milestone.
 
-Normal next choices follow meaningful evaluation: explore recent user behavior,
-shape a small MVP, consider a relevant adjacent opportunity, or open the research.
-An explicit request to build bypasses unfinished research. The concrete scope still
-needs approval; approval already given for that scope is reused. Context saves and
-research do not need build approval.
+Crumb explicitly confirms your Intention, initial User and Problem, then investigates
+the opportunity. Research may send the conversation back to Define and reconfirm.
+You review the evaluation before a concise commitment summary asks:
+**Are you ready to commit a build cycle to this?** Clear natural agreement with
+that current commitment saves a portable handoff. An early request cannot bypass this
+guided workflow. The concrete implementation scope still requires approval.
 
 Say **View competitors**, **View what users are saying**, **View market gaps**,
 **View adjacent opportunities**, **View user habitats**, **View sources**, **Why?**,
+**View technical evaluation**, **View first-user avenues**,
 or **Open full research** when useful. Details are contextual and paginated.
-**The extra detail below is optional—you can continue without reading it.**
-An optional startup master retains research and challenges important claims;
-skipping it does not prevent building. Founders do not fill JSON forms or run tools.
+**The extra detail is optional — you can continue without reading it.**
+An optional opportunity brief retains research and challenges important claims.
+Before Act it excludes solution scope; after Act a startup master may include it.
+Skipping the document does not bypass confirmation. Founders do not fill JSON forms or run tools.
 
-After a reviewed first build, the host runs checks, records a receipt and verifies
-a backup. Research can continue after that cycle. A second tracked cycle and the
-staged builder remain future M2. Ordinary coding and a reviewed portable handoff
-remain available without resetting history. Public research and passing code are
-not customer validation.
+After explicit Act readiness, Crumb saves compact context and a Build Handoff.
+Continue in the build-capable session with **Continue the Crumb build.** In ChatGPT
+with verified shared Project files, the instruction is to open Work in that same
+Project. This repository implements a portable text adapter, not native cloud sync.
+It never claims to have opened another chat or moved local files automatically.
+
+The build session verifies the handoff and permitted repository, then prepares all
+six Build Pack documents before code. Review one journey, one to three capabilities,
+KEEP / TEST / PARK, risks and the stage/checkpoint policy. After approval, Codex
+edits and tests the authorized stage. Passing exits may advance within an approved
+automatic policy; failures and human checkpoints stop it. The final MVP always
+stops for your review. Technical success is not customer validation. Existing
+M2 runs retain their original manual review policy.
+
+Say **Adjust scope**, **View build plan**, **Pause**, or correct the understanding
+at any point. Unknown customer tooling gets proportionate groundwork; existing
+working setup is reused. Crumb keeps the customer's stack and prior work.
 
 `$pruvello`, `$pruvity` and `$customer-evidence` forward to Crumb. The skill is
 repository-scoped; another task can explicitly read this SKILL.md and target the
@@ -67,13 +84,15 @@ npm ci --ignore-scripts
 Enter-CECEnvironment.ps1 is an optional untracked helper. Strict TypeScript compiles
 to ESM, with built-in SQLite and Ajv. No new dependency, model SDK, backend, crawler
 or ORM was introduced. Tests block Node network transports, including CLI children;
-this is not OS-level isolation. Research uses permitted host tools separately.
+this is not OS-level isolation. The fresh-project integration fixture uses Python
+3.11+ (CEC_TEST_PYTHON can select it); no extra Python packages are required.
+Research uses permitted host tools separately.
 
 Public operations: `doctor`, historical synthetic `demo fresh|existing|feedback`,
 `init [folder]`, `status [folder]`, `backup create [folder]`.
 The [tool reference](.agents/skills/crumb/references/local-tools.md) documents internal
 contracts. Use direct pinned Node with UTF-8 JSON input for host integration;
-a launcher pipeline previously lost input during rehearsal.
+the launcher also forwards stdin for current IDE and Act operations.
 
 ## Storage and approval boundaries
 
@@ -82,23 +101,27 @@ preserving target code, manifests and instructions. It verifies the Git index an
 effective ignores, refuses tracked private data and linked/colliding paths, and
 never automatically untracks files or changes Git trust settings.
 
-Append-only pre-build revisions are limited to 256 KiB each and coexist with
-unchanged approved cycles. V4 actions reference exact context hashes. Corrections
-invalidate pending scope; material changes retire an unchanged startup master.
+Append-only v2 prebuild revisions are limited to 300 KiB (legacy v1: 256 KiB).
+V5 actions reference the exact context and explicit Act receipt. Material changes
+invalidate dependent confirmations and pending scope; old records remain intact.
 Previous approved work and documents remain in history. Selected code hashes are
 rechecked at approval. The core validates consistency, not research truth, user
 identity, consent or arbitrary host execution claims; it is not an agent sandbox.
 
+SQLite v3 adds an append-only Act journal alongside earlier cycles and IDE records.
 Fresh SQLite backups include research and approved history and verify integrity
 and a digest. Logical context recovery cannot overwrite history or restore a cycle.
 Same-disk copies do not protect against disk loss. Broader real-customer data import,
 deletion and recovery gates remain future work. No outreach, spending, deployment,
-automatic outcome ingestion or second tracked cycle is included. M2 needs separate
-authorization.
+automatic outcome ingestion is included. M3 adds a v4 append-only learning journal,
+founder-pasted minimized notes, existing-route launch packs and reviewed next
+decisions. It sends nothing and builds no automatic feedback features. Customer build
+pack files are separate from the database backup and use the project file-backup
+process. New approved Act runs preserve earlier history.
 
 ## Authority and branding
 
-[PRODUCT_SPEC.md](PRODUCT_SPEC.md) is the active v0.7 master. Historical reports
+[PRODUCT_SPEC.md](PRODUCT_SPEC.md) is the active v0.11 master. Historical reports
 and CEC_MASTER_SPEC_v0.5.md retain their original findings. Display identity lives
 in `src/domain/brand.ts`; package, private paths, old schemas and saved hashes keep
 their compatibility identifiers.

@@ -4,7 +4,7 @@ import { createInterface } from 'node:readline';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// Opt-in M1-R2 integration check: one synthetic ephemeral turn in the installed
+// Opt-in M3 integration check: one synthetic ephemeral turn in the installed
 // Codex host. It uses normal host authentication; it never reads credentials.
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const expectedPath = join(root, '.agents/skills/crumb/SKILL.md');
@@ -61,7 +61,7 @@ try {
   const thread = await request('thread/start', { cwd: root, ephemeral: true, sandbox: 'read-only', approvalPolicy: 'never', developerInstructions: 'This is only a synthetic skill invocation test. Respond to its discovery probe only. Do not use tools, read files, change files, or implement code.' });
   await request('turn/start', { threadId: thread.thread.id, input: [{ type: 'text', text: '$crumb Run the discovery probe only.' }, { type: 'skill', name: skill.name, path: skill.path }] });
   const turn = await Promise.race([completion, new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('Skill invocation timed out after 60 seconds.')), 60_000); })]);
-  result.markerObserved = agentText.includes('CRUMB_M1R2_SKILL_LOADED');
+  result.markerObserved = agentText.includes('CRUMB_M3_SKILL_LOADED');
   result.invocation = turn.status === 'completed' && result.markerObserved;
   result.turnStatus = turn.status;
 } catch (error) {

@@ -1,23 +1,31 @@
+import { ideState, type AnyPrebuild } from '../domain/ide.js';
 import { OPTIONAL_DETAIL, plain, words } from '../domain/conversation.js';
 import { competitorFields, definitionFields, comparisonFields, type PrebuildContext, type SavedPrebuild, type ResearchClaim } from '../domain/prebuild.js';
+import { problemInterview } from '../domain/interviews.js';
+import { discoveryCards } from '../domain/first-user-discovery.js';
 
-export const prebuildSections = ['why', 'definition', 'evidence', 'research', 'competitors', 'users', 'gaps', 'adjacent', 'habitats', 'sources', 'interview', 'red-team'] as const;
+export const prebuildSections = ['why', 'definition', 'evidence', 'research', 'competitors', 'users', 'gaps', 'adjacent', 'habitats', 'sources', 'interview', 'red-team', 'technical'] as const;
 export type PrebuildSection = typeof prebuildSections[number];
 const safe = (value: string): string => plain(value).replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
 const label = (value: string): string => value.replaceAll('_', ' ');
 const bullets = (values: string[]): string[] => values.map(value => `- ${safe(value)}`);
 
 export function renderPrebuildSummary(saved: SavedPrebuild): string {
+  if (saved.context.contractVersion === 1) return ['Executive summary', 'Your earlier context and research are preserved. We will confirm the current intention, user and problem before a new build decision.', '', 'Next', 'Review the saved understanding and confirm the intention.', '', OPTIONAL_DETAIL].join('\n');
+  if (saved.context.contractVersion === 2 && saved.context.ide.presentation) return saved.context.ide.presentation.text;
   const b = saved.context.brief;
   const questions = [...new Set(b.questions.map(safe))].filter(question => question !== safe(b.next));
+  if (b.kind === 'conversation') {
+    return [...new Set([safe(b.summary), ...b.seeing.map(safe), ...b.matters.map(safe), safe(b.next), ...questions])].filter(Boolean).join('\n\n');
+  }
   return ['Executive summary', safe(b.summary), '', ...(b.seeing.length ? ["What I'm seeing", ...bullets(b.seeing), ''] : []), ...(b.matters.length ? ['What still matters', ...bullets(b.matters), ''] : []), 'Next', safe(b.next), ...questions, b.choices.map(choice => safe(choice.label)).join(' | '), '', OPTIONAL_DETAIL].filter((line, i, all) => line !== '' || all[i - 1] !== '').join('\n');
 }
 
-function sourceText(c: PrebuildContext, id: string): string {
+function sourceText(c: AnyPrebuild, id: string): string {
   const s = c.sources.find(item => item.id === id)!;
   return `${safe(s.title)}${s.url ? ` — ${s.url}` : ''}; ${label(s.provenance)}, ${s.access}, retrieved ${s.retrievedOn}${s.publishedOn ? `, published ${s.publishedOn}` : ''}, delivery ${s.delivery}. ${safe(s.limitation)}`;
 }
-function claimText(c: PrebuildContext, claim: ResearchClaim): string {
+function claimText(c: AnyPrebuild, claim: ResearchClaim): string {
   return [
     `${safe(claim.statement)} [${label(claim.basis)}; ${label(claim.repetition)}]. ${safe(claim.limitation)}`,
     ...(claim.quote ? [`Source words: “${safe(claim.quote.text)}”.`] : []),
@@ -27,22 +35,29 @@ function claimText(c: PrebuildContext, claim: ResearchClaim): string {
     ...(claim.challenges.length ? [`Challenges: ${claim.challenges.join(', ')}.`] : []),
   ].join(' ');
 }
-const selectedClaims = (c: PrebuildContext, ids: string[]): string[] => [...new Set(ids)].map(id => claimText(c, c.claims.find(item => item.id === id)!));
+const selectedClaims = (c: AnyPrebuild, ids: string[]): string[] => [...new Set(ids)].map(id => claimText(c, c.claims.find(item => item.id === id)!));
 
-export function interviewGuide(c: PrebuildContext): string[] {
-  if (c.evaluation.status !== 'ready') return ['Finish the relevant evaluation before recommending interviews. An explicit request to build still works.'];
-  const job = safe(c.definition.job.text ?? c.definition.problem.text ?? 'this workflow');
-  return [
-    `Explore recent behavior around: ${job}. The habitat map identifies possible places, not confirmed participants.`,
-    'Start with the hardest part of that work. Ask for the most recent occasion, why it was difficult, what they tried, and what remained unsatisfactory.',
-    'Follow their actual answer. Ask what happened, what they did next and what the workaround cost in effort; do not pitch or lead with hypothetical purchase intent.',
-    'Adapted from Eric Migicovsky’s How to Talk to Users: https://www.youtube.com/watch?v=MT4Ig2uqjTc . A prepared guide or invitation is not a sent message, interview or validation.',
-    ...(c.master ? [safe(c.master.interviewPlan)] : []),
-  ];
+export function interviewGuide(c: AnyPrebuild): string[] {
+  if (c.contractVersion === 2 ? !['reviewed', 'founder_reviewed'].includes(ideState(c).evaluation) : c.evaluation.status !== 'ready') return ['Finish the current user and problem evaluation before preparing interviews. Act remains locked until its explicit confirmation.'];
+  return problemInterview(c).map(paragraph=>paragraph.split('\n').map(safe).join('\n'));
 }
 
-function paragraphs(c: PrebuildContext, section: PrebuildSection): string[] {
+function paragraphs(c: AnyPrebuild, section: PrebuildSection): string[] {
+  if (c.contractVersion === 2 && section === 'research') return [
+    `Evaluation: ${ideState(c).evaluation}. Research is not customer validation.`,
+    ...c.research.map(r => `${safe(r.question)} — ${r.capability}; ${r.queries.length}/${r.queryBudget} queries, ${r.inspectedSourceIds.length}/${r.pageBudget} inspected pages. Stop: ${label(r.stopReason)}. ${safe(r.limitation)}`),
+    ...[...c.evaluation.coverage, ...c.investigation.coverage].map(x => `${label(x.topic)}: ${label(x.status)}. ${safe(x.reason)}. Claims: ${x.claimIds.join(', ') || 'None'}. Research: ${x.runIds.join(', ') || 'None'}.`),
+    ...c.investigation.questions.map(x => `${label(x.topic)} inquiry: ${safe(x.relevance)}. Runs: ${x.runIds.join(', ')}.`),
+    ...c.investigation.alternatives.map(x => `${label(x.kind)}: ${safe(x.conclusion)}. Runs: ${x.runIds.join(', ')}.`),
+    `Counterevidence: ${safe(c.investigation.counterevidence ?? 'Not reviewed yet.')}`,
+    `Decision: ${safe(c.investigation.decision ?? 'Not reviewed yet.')}`,
+  ];
   switch (section) {
+    case 'technical': {
+      const q=c.contractVersion===2?c.quality:undefined;
+      if(!q)return ['No detailed technical evaluation is retained yet. Crumb should inspect permitted repository context and investigate the material dependencies before asking you to choose a mechanism.'];
+      return [safe(q.technical.summary),`Central risk: ${safe(q.technical.centralRisk)}`,...q.technical.options.map(x=>`${safe(x.name)}: ${safe(x.approach)} Tradeoff: ${safe(x.tradeoff)}. Claims: ${x.claimIds.join(', ')}.`),...(q.technical.recommendation?[`Recommendation: ${safe(q.technical.recommendation.option)} because ${safe(q.technical.recommendation.reason)}`]:[]),...q.technical.coverage.flatMap(x=>[`${label(x.topic)}: ${label(x.status)}. ${safe(x.reason)}`,...selectedClaims(c,x.claimIds)]),'Repository observations, vendor terms and technical feasibility are not proof of customer demand.'];
+    }
     case 'why': return [safe(c.evaluation.conclusion ?? 'We are still clarifying the intention and problem.'), ...c.evaluation.promising.map(value => `Promising: ${safe(value)}`), ...c.evaluation.weak.map(value => `Weak: ${safe(value)}`), ...c.evaluation.unknowns.map(value => `Unknown: ${safe(value)}`), ...c.evaluation.contradictions.map(value => `Contradiction: ${safe(value)}`)];
     case 'definition': return [`Intention: ${safe(c.intention.statement ?? 'Unknown')} (${c.intention.status}). ${safe(c.intention.advice ?? 'Advice remains conditional until the goal is understood.')}`, ...definitionFields.map(key => `${label(key)}: ${safe(c.definition[key].text ?? 'Unknown')} [${c.definition[key].basis}]. Claims: ${c.definition[key].claimIds.join(', ') || 'None'}.`)];
     case 'evidence': return c.claims.length ? c.claims.map(claim => claimText(c, claim)) : ['No evidence has been retained.'];
@@ -56,7 +71,12 @@ function paragraphs(c: PrebuildContext, section: PrebuildSection): string[] {
     }
     case 'gaps': return [...c.competitors.map(item => `${safe(item.name)}: ${safe(item.fields.gaps.text ?? 'No gap established')}.`), ...selectedClaims(c, c.evaluation.coverage.filter(item => item.topic === 'gaps').flatMap(item => item.claimIds)), 'A missing feature is not proof of an unmet need. Existing capabilities and manual substitutes may contradict the proposed gap.'];
     case 'adjacent': return c.adjacent.length ? c.adjacent.flatMap(item => [`Current focus: ${safe(c.definition.problem.text ?? 'Unknown')}. Nearby opportunity: ${safe(item.problem)}.`, ...comparisonFields.map(key => `${label(key)}: ${safe(item.comparison[key])}`), ...selectedClaims(c, item.reasonClaimIds), 'This comparison proposes no automatic pivot.']) : ['No better adjacent opportunity has been established. Keep the current focus unless evidence or the founder changes it.'];
-    case 'habitats': return c.habitats.length ? c.habitats.flatMap(h => [`${safe(h.place)} (${h.kind})${c.firstUserAvenues.includes(h.id) ? ' — suggested first-user avenue' : ''}. Likely users (inference): ${safe(h.likelyUsers)}. Relevance (inference): ${safe(h.relevance)}.`, `Participation: ${safe(h.participation.route ?? 'Not verified')}; ${h.participation.verified ? 'source-supported route, not permission to contact' : 'unverified route'}. ${safe(h.limitation)}`, ...selectedClaims(c, h.observedClaimIds)]) : ['No specific user habitats have been established. No people or contact permissions are implied.'];
+    case 'habitats': {
+      const habitatLines=c.habitats.flatMap(h => [`${safe(h.place)} (${h.kind})${c.firstUserAvenues.includes(h.id) ? ' — suggested first-user avenue' : ''}. Likely users (inference): ${safe(h.likelyUsers)}. Relevance (inference): ${safe(h.relevance)}.`, `Participation: ${safe(h.participation.route ?? 'Not verified')}; ${h.participation.verified ? 'source-supported route, not permission to contact' : 'unverified route'}. ${safe(h.limitation)}`, ...selectedClaims(c, h.observedClaimIds)]);
+      const cards=discoveryCards(c);
+      const cardLines=cards.map(card=>`${safe(card.displayName)} (${safe(card.relationship.replaceAll('_',' '))}; ${safe(card.kind)}): ${safe(card.observed)} Fit: ${safe(card.fitInference)} Unknown: ${safe(card.uncertainty)} Route: ${safe(card.route??'not established')} (${safe(card.routeStatus)}). Sources: ${card.sourceIds.map(id=>sourceText(c,id)).join(' / ')}. This is a review candidate, not contact permission or customer validation.`);
+      return habitatLines.length||cardLines.length?[...habitatLines,...cardLines]:['No specific user habitats or source-backed first-user cards have been established. No people or contact permissions are implied.'];
+    }
     case 'sources': return c.sources.length ? c.sources.map(s => `${s.id}: ${sourceText(c, s.id)}`) : ['No sources retained.'];
     case 'interview': return interviewGuide(c);
     case 'red-team': return c.redTeam.length ? c.redTeam.map(item => `Claim ${item.claimId}: evidence — ${safe(item.evidence)}; inference — ${safe(item.inference)}; assumption — ${safe(item.assumption)}; contradiction — ${safe(item.contradiction)}; disproof — ${safe(item.disproof)}; cheapest further learning — ${safe(item.cheapestLearning)}.`) : ['No red-team review has been retained yet. Important claims need a challenge before generating the startup master.'];
@@ -66,6 +86,7 @@ function paragraphs(c: PrebuildContext, section: PrebuildSection): string[] {
 export function renderPrebuildDetail(saved: SavedPrebuild, section: PrebuildSection, page = 1, collapsible = false): string {
   const chunks = paragraphs(saved.context, section).flatMap(paragraph => {
     const tokens = paragraph.split(/\s+/u);
+    if(tokens.length<=160)return [paragraph];
     return Array.from({ length: Math.ceil(tokens.length / 160) }, (_, i) => tokens.slice(i * 160, (i + 1) * 160).join(' '));
   });
   const pages: string[][] = [[]];
@@ -81,9 +102,13 @@ export function renderPrebuildDetail(saved: SavedPrebuild, section: PrebuildSect
 
 export function renderStartupMaster(saved: SavedPrebuild): string {
   const c = saved.context, m = c.master;
+  if (c.contractVersion === 2 && !m) {
+    if (!['reviewed', 'founder_reviewed'].includes(ideState(c).evaluation)) throw new Error('Finish the current evaluation before the opportunity brief.');
+    return ['# Opportunity brief', '', 'Agreement and research do not establish customer validation.', ...paragraphs(c, 'definition'), ...paragraphs(c, 'why'), ...(c.opportunity ? ['Business model: ' + safe(c.opportunity.businessModel), 'Economics: ' + safe(c.opportunity.economics), ...interviewGuide(c), ...bullets(c.opportunity.risks)] : []), renderFullResearch(saved)].join('\n\n');
+  }
   if (!m || c.evaluation.status !== 'ready') throw new Error('Save a ready evaluation and red-team master content before opening the startup master.');
   return [
-    '# Startup master', '', `Context revision ${saved.version}; SHA-256 ${saved.hash}.`, c.synthetic ? 'Synthetic scenario; not customer validation.' : 'Founder context and public research; not verified customer demand.', '',
+    '# Startup master', '', ...(c.contractVersion === 1 ? ['Historical M1-R2 record; not current Act permission or a new scope recommendation.'] : []), `Context revision ${saved.version}; SHA-256 ${saved.hash}.`, c.synthetic ? 'Synthetic scenario; not customer validation.' : 'Founder context and public research; not verified customer demand.', '',
     '## Executive summary', safe(c.brief.summary), '', '## Intention and thesis', safe(c.intention.statement ?? 'Unknown'), safe(m.thesis), '',
     '## Problem, user, buyer and workaround', ...paragraphs(c, 'definition'), '',
     '## Research and market evidence', ...paragraphs(c, 'research'), '',

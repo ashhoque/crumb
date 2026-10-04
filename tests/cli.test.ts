@@ -19,8 +19,8 @@ test('doctor reports actual runtime/database versions without creating storage',
   const output = JSON.parse(result.stdout) as Record<string, unknown>;
   assert.equal(output['node'], process.versions.node);
   assert.match(String(output['sqlite']), /^3\./);
-  assert.equal(output['milestone'], 'M1-R2');
-  assert.equal(output['customerWorkflow'], 'pre-build evaluation with permitted host research; existing first-cycle build path');
+  assert.equal(output['milestone'], 'M3-R1');
+  assert.equal(output['customerWorkflow'], 'conversation IDE; portable handoff; reviewed Work Build Pack; approved stages and human checkpoints; founder-controlled Launch & Learn');
   assert.deepEqual(readdirSync(root), []);
 });
 

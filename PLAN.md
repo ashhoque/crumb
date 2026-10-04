@@ -1,3 +1,169 @@
+# Crumb implementation plan - M3-R1
+
+## Final M3-R1 closeout — 3 October 2026
+
+Current scope: complete the saved UX/discovery patch and verify the installed host;
+preserve all prior work. No M4, billing, trial, hosted MCP or new provider integration.
+
+- [x] Inspect only active voice/renderers, IDE/discovery/session boundaries and callers.
+- [x] Remove ordinary-turn report/menu requirements; preserve semantic confirmations.
+- [x] Keep first-user suggestions source-bound, permission-aware, scoped and suppressible.
+- [x] Add the small read-only local MCP boundary through existing Core abstractions.
+- [x] Focused checks pass after updating the synthetic permission fixture.
+- [x] Full regressions: 308 passed; final focused checks after source-label change: 22 passed.
+- [x] Installed Codex discovered/invoked Crumb; all ten MCP read tools succeeded.
+- [ ] Complete remaining live conversations: existing-project fixture still fails after its targeted repair.
+- [x] Record M3-R1 BLOCKED, actual live evidence and the freeze hold in M3_R1_REPORT.md.
+
+**Current result: M3-R1 BLOCKED; not ready to freeze.** The final installed-host run
+completed three fresh-B2B turns (uncertain audience, API delegation and no-humor
+preference included). It then rejected extra properties on project.artifacts in
+the existing-project test setup. Stop under the one-repair rule. Switch models for
+focused harness debugging, then run the remaining live cases. No M4 is authorized.
+
+Earlier pass counts below are historical, not this closeout's release result.
+
+## Focused product-quality correction — 27 September 2026
+
+Authority: PRODUCT_SPEC.md v0.12 and the focused correction request. Same M3-R1,
+same Conversation → Build architecture; no later milestone authorized.
+
+- [x] Inspect current modules and Git state; preserve all existing work.
+- [x] Run unchanged baseline: 286/286 passed, then show the concise correction plan.
+- [x] Improve contextual acknowledgements, natural flow and approved-name guidance.
+- [x] Assign researchable questions to Crumb and retain founder intent/constraints.
+- [x] Add source-linked technical coverage, options, central risk and founder-fit limits.
+- [x] Proactively surface competitor love/hate/gaps and specific first-user avenues.
+- [x] Recommend direct learning when warranted; correct five discovery concepts.
+- [x] Preserve gates, research reuse, compact context and the Build Pack/human stops.
+- [x] Add twelve focused automated checks and the refreshed synthetic stock rehearsal.
+- [x] Final TypeScript + all regressions: 298/298 passed, zero failures/skips; exit 0.
+- [x] Record actual research, stock rehearsal, limits and preservation in M3_R1_REPORT.md.
+
+**M3-R1 PASS WITH WARNINGS.** Next: the founder's unscripted trial in
+M3_R1_QUALITY_TEST_GUIDE.md. Work is stopped; no autonomous outreach or later milestone.
+
+## Original M3-R1 delivery (historical)
+
+Authority: PRODUCT_SPEC.md v0.11 and the founder's approved Conversation Mode to
+Work/Build Mode revision. Same repository, approved IDE/M2/M3 and existing history.
+
+**Status: M3-R1 PASS WITH WARNINGS; 286/286 tests passed; stopped before later work.**
+
+- [x] Inspect Git/branch/master/PLAN/M1-R3/M2/M3 reports and preserve existing work.
+- [x] Run the unchanged baseline: 270/270 passed.
+- [x] Present the concise reuse/mode/context/handoff/pack/test/non-goal plan.
+- [x] Preserve five IDE agreements and add natural, contextual confirmation UX.
+- [x] Save compact current state, separate cached research and portable handoff.
+- [x] Add provider-neutral modes and truthful ChatGPT same-Project Work instruction.
+- [x] Verify continuation/revision/Act and permitted repository inspection.
+- [x] Generate all six Build Pack documents before approval or product code.
+- [x] Execute only the approved stage policy; failed checks block advancement;
+  human checkpoints and final MVP stop for review.
+- [x] Run final TypeScript + all regressions: 286/286 passed, zero failures/skips.
+- [x] Preserve earlier reports; record current evidence/limits in M3_R1_REPORT.md.
+- [x] Stop; no later revision/M4, commit/push, cloud rollout or outreach.
+
+Next: one unscripted disposable-project trial using M3_R1_TEST_GUIDE.md. Native
+ChatGPT/Claude/Cursor transport and cloud sync remain unsupported. The current
+same-local-project Codex path is tested; portable documents are not execution
+credentials. Founder acceptance is still distinct from synthetic test success.
+
+---
+
+## Previous M3 plan (historical)
+
+# Crumb implementation plan - M3
+
+Authority: PRODUCT_SPEC.md v0.10 and the founder-approved M3 request. M2 is approved. Same repository, current master and existing milestone history.
+
+**Status: M3 PASS WITH WARNINGS; 270/270 tests passed; stopped before M4.**
+
+- [x] Inspect branch/status/master/PLAN/M1-R3/M2 and preserve the working tree.
+- [x] Run the unchanged baseline: 237/237 passed.
+- [x] Show the concise reuse/state/workflow/test/non-goal plan before implementation.
+- [x] Add launch context/pack and an append-only learning journal.
+- [x] Add rough-note import/organization, evidence distinctions and conservative synthesis.
+- [x] Preserve KEEP / TEST / PARK and require founder decisions; no outreach or automatic edits.
+- [x] Exercise A-F, including the existing stock MVP and proper problem-confirmation loop.
+- [x] Run all M1-R3/M2/M3 regressions: 270/270 passed with zero skips.
+- [x] Record actual results and limits in M3_REPORT.md; update current documents.
+- [x] Stop before M4.
+
+Recommended next step: one unscripted founder trial following M3_TEST_GUIDE.md. If acceptable, explicitly decide whether to authorize M4. No commit, push, rollout, outreach or M4 work occurred.
+
+---
+
+## Earlier plans (historical)
+
+# Crumb implementation plan — M2
+
+Authority: PRODUCT_SPEC.md v0.9 and the founder's M2 request on 26 September 2026.
+M1-R3 is accepted well enough to proceed. M2 is authorized; no redesign or rebuild.
+Status: **implemented locally; 237/237 tests passed; M2 PASS WITH WARNINGS; stopped before M3**.
+
+- [x] Inspect Git status/current master/PLAN/reports and preserve the existing work.
+- [x] Run the unchanged M1-R3 baseline: 185/185 passed.
+- [x] Present the concise implementation plan; no material conflict was found.
+- [x] Implement small shared UX improvements and rerun the baseline: 185/185 passed.
+- [x] Implement Act scope, KEEP / TEST / PARK, build packs and reviewed stages.
+- [x] Complete full M2 acceptance and regression checks.
+- [x] Exercise fresh Python, existing JavaScript and stock IDE → Act fixtures.
+- [x] Record results in M2_REPORT.md; update active documents.
+- [x] Stop before Launch & Learn / M3.
+
+The current native Codex host performs actual customer edits and tests. Scope
+approval authorizes one stage; founder review controls each continuation. No UI
+redesign, speculative features, billing, deployment, outreach or M3 is included.
+No commit or push is authorized. Preserve all earlier reports byte-for-byte.
+
+Current roadmap: M1-R3 accepted well enough to proceed; M2 implemented and technically verified; M3 and later work not started. See [M2_REPORT.md](M2_REPORT.md) and [M2_TEST_GUIDE.md](M2_TEST_GUIDE.md). Unscripted founder UX acceptance remains separate.
+
+Acceptance/regression pass completed: 237/237 passed; fresh (3 stages), existing (1 stage), stock (2 stages) stopped for review. No production source change. Fixture run instructions and the master verification paragraph were corrected. Unscripted founder UX remains the recommended next trial; M3 awaits explicit authorization. See M2_REPORT.md.
+
+## Earlier plan — historical milestone status
+
+# Crumb implementation plan
+
+Authority: PRODUCT_SPEC.md v0.8 and the approved M1-R3 proposal.
+Current milestone: **M1-R3 — IDE before Act**.
+Status: **implemented; 185/185 tests passed; founder UX acceptance pending**.
+
+Continue the current repository. Preserve code, persistent identifiers, lockfile, private storage, immutable history and historical reports. M1-R2 passed 140 tests, but founder testing found that it still advanced to MVP planning too early.
+
+## M1-R3 checklist
+
+
+- [x] Record actual approval and update active authority documents and repository instructions.
+- [x] Preserve current Git work/history and capture the implementation baseline.
+- [x] Add the five state families and statement-bound confirmation transitions.
+- [x] Enforce confirmation dependencies, redefinition and stale-consent rejection.
+- [x] Deepen evaluation, competitor/user research, founder fit and habitat continuity.
+- [x] Require founder evaluation review and the final four-choice Act checkpoint.
+- [x] Remove early solutioning and the guided build bypass from all active paths.
+- [x] Preserve interviews and an optional opportunity brief within IDE.
+- [x] Add and run hard readiness/compatibility/recovery tests and five conversation rehearsals.
+- [x] Run the full pinned-runtime regression suite and report actual results and limits.
+- [x] Create M1_R3_REPORT.md; update STATUS.md, AGENTS.md and relevant usage documentation.
+- [x] Stop before Act/M2. Do not push without explicit approval.
+
+
+## Current roadmap
+
+| Milestone | State |
+|---|---|
+| M1-R3 — IDE before Act | Implemented; local verification passed; founder acceptance pending |
+| M2 — Act / staged MVP builder | Not started; separate approval |
+| M3 — Launch & Learn | Not started |
+| M4 — Pilot readiness | Not started |
+| M5 — Evidence-earned improvements | Not started |
+
+No Git push is authorized.
+
+The separate installed-profile host probe could not start because its home directory was unavailable. Isolated discovery passed; authenticated invocation remains unverified. See M1_R3_REPORT.md.
+
+## Historical plan (forward guidance superseded above)
+
 # Crumb implementation plan
 
 Authority: PRODUCT_SPEC.md v0.7 and the founder-approved M1-R2 proposal.
@@ -176,4 +342,3 @@ Pruvity and legacy alias validation passed; actual Codex repository discovery pa
 No dependencies added. Historical groundwork and M0/M1 reports remain unchanged.
 Nested authenticated invocation is still sandbox-limited; no fresh independent
 M1-R usability result is claimed. See M1-R_REPORT.md. Stop here; M2 is not started.
-

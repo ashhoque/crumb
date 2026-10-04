@@ -1,48 +1,44 @@
-# Interviews and the optional startup master
+# Interviews and the optional opportunity brief
 
-## After meaningful Evaluate
+Offer interviews after the current User, Problem and Evaluation are established.
+“Before committing code, I'd talk to a few people who fit the user we've just defined.
+I found these likely avenues. Want me to prepare the conversations?” Only claim an
+avenue was found when the habitat evidence supports it. No automatic outreach.
 
-Offer to help talk to likely users. Adapt the conversation to their actual work:
-hardest part; most recent occurrence; why difficult; what they tried; what remains
-unsatisfactory. Follow the answers rather than mechanically reciting five questions.
-Prefer concrete past behavior to pitching, compliments or hypothetical purchase
-intent. The founder may instead choose a tiny MVP or adjacent comparison.
+Use Eric Migicovsky's behavior approach: hardest part of the workflow, last occasion,
+why it was hard, what they tried and what they disliked about those approaches. Follow
+the answer; avoid a pitch or hypothetical purchase question. Guide preparation does
+not require Act or a software action draft. Declining interviews grants no build consent.
+Source: [YC's recap of Eric Migicovsky's guidance](https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky/).
 
-For a stock-shortlist workflow, explore a recent shortlist, how the person compared
-it, the point that took effort, their existing tools and how they recovered their
-reasoning later. If they describe conflicting data, follow that branch. Don't ask
-whether they would buy the founder's unbuilt tool.
+Keep these five concepts in order, adapted to the confirmed job/problem:
 
-Framework reference: Eric Migicovsky, How to Talk to Users:
-https://www.youtube.com/watch?v=MT4Ig2uqjTc .
+1. Which part of that work causes the most trouble?
+2. Walk through the most recent occasion it happened.
+3. What made that occasion difficult?
+4. Which approaches have they already tried?
+5. Where did those approaches let them down?
 
-The application can render an internal guide; adapt its wording in the conversation.
-An invitation is draft text only. No autonomous message or contact. A habitat is
-not a qualified buyer, and preparing/scheduling an interview does not complete one.
-Founder-reported feedback preserves its origin and may contradict the current idea.
+Listen about their life; do not pitch. Workflow questions may be follow-ups but
+must not replace these concepts. Avoid hypothetical purchase, AI-product, feature
+wishlist or proposed-price questions during discovery; later offer tests differ.
+Follow actual answers with one relevant question about timing, consequence, people,
+effort/cost or the workaround. `interview-followup` suggests a past-behavior question
+from a minimized answer and stores nothing. Use judgment; do not dump every follow-up.
 
-## Master for continuity
+When behavior is the important unknown, lead: "A few conversations could settle
+what desk research can't. I can prepare a short guide around their last experience."
+Mention researched habitats without inventing access. Building remains a deliberate
+founder choice after the existing final commitment.
 
-Offer once enough evaluation exists, normally when the founder chooses the MVP
-route. Explain that the coding agent needs the detail; the founder mainly needs
-the executive summary. Skip without blocking. This project startup master is
-separate from Crumb's own PRODUCT_SPEC.md.
+Material feedback returns to Define/Evaluate and invalidates affected agreements.
+Retain founder-reported provenance; do not turn a summary into verified customer data.
 
-Use the saved dossier and fill the applicable master fields: thesis, interview
-plan, MVP hypothesis/non-goals, technical strategy, business-model hypothesis,
-economics where useful, validation plan and risks. Context already supplies
-Intention, problem/user/buyer/workaround, research, competitors, love/hate, reported
-traction/proxies, market evidence, gaps, adjacency, founder fit, habitats/routes,
-contradictions, sources and unknowns. Don't invent economics for a personal tool.
+Before Act, the optional document is an opportunity brief: confirmed foundations,
+research, competing workflows, love/hate, facts/proxies, gaps, habitats, founder fit,
+business-model/economics hypotheses, feasibility constraints, risks, sources and
+learning questions. Red-team important claims. No MVP hypothesis, feature design,
+architecture or prototype plan appears in this document before the checkpoint.
 
-Mark important claims and red-team each before generating the master: evidence,
-inference, assumption, contradiction, what would disprove it, and the cheapest
-useful further learning. Challenge the core value proposition, not just implementation
-details. A competitor solving the proposed problem and a sufficient manual workaround
-are real counterevidence. Do not add a fake success score.
-
-`internal master` renders the saved, version-bound Markdown. Retain it through
-the existing private context; export to a user-approved location when requested,
-using a neutral name such as STARTUP_MASTER.md. Do not overwrite the target's
-README, AGENTS.md or roadmap. Material context changes require an updated master;
-an old export keeps its old revision/hash and does not authorize a broader build.
+After explicit Act consent, extend it with the scoped solution where useful. Its
+existence never approves implementation. Historical masters stay historical.

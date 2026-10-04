@@ -1,43 +1,47 @@
 # Crumb status
 
-**M1-R2 implemented — verified with limitations. Founder UX acceptance pending.**
-23 September 2026. Revised M2 has not started.
+**M3-R1 PASS WITH WARNINGS — focused quality correction complete.** Final TypeScript
+and all 298/298 tests passed, zero failures/skips. Stock rehearsal passed with
+inspected public research and explicitly synthetic founder replies. Conversation
+quality, research ownership, technical Evaluate, proactive habitats and discovery
+interviews are improved within the existing architecture.
 
-The founder approved Complete pre-build IDE experience and requested GitHub first.
-The existing 83-test baseline and proposal were pushed to main at a601e85 before
-implementation. Git is installed and authenticated; no terminal setup remains.
+Warnings: unscripted founder UX remains to be judged; the core does not independently
+verify host semantics/research. No live API/commercial-rights test or native provider
+transport was added. See M3_R1_REPORT.md for precise limits.
 
-Crumb now retains Intention/Define/Evaluate independently of a build proposal,
-with bounded host research, source/claim continuity, competitor and substitute
-learning, user language, metrics/proxies, gaps/adjacent comparisons, habitats,
-interview preparation and an optional startup master/red team. The normal path
-requires meaningful evaluation. An explicit build request preserves the existing
-small-scope approval, implementation, check, receipt and backup path.
+Next: run M3_R1_QUALITY_TEST_GUIDE.md and report what feels wrong. Stopped here; no
+later milestone, outreach, deployment, commit or push. Earlier delivery below is history.
 
-| Verification | Executed result |
-|---|---|
-| Pinned-runtime build and offline suite | 140 passed, 0 failed/skipped; all 83 baseline tests retained |
-| Independent conversation rehearsal | Six synthetic paths saved/resumed; corrected feedback retained; explicit build completed |
-| Source-backed stock rehearsal | Actual public sources, qualified evaluation, master, reviewed normal action; 3 local build checks passed |
-| Backups and context recovery | Integrity-checked snapshots and non-overwriting logical recovery exercised |
-| Skill validation/scanner | Crumb plus three compatibility aliases passed |
-| Nested authenticated host invocation | Unverified: home-directory startup failure |
-| Old contracts, lockfile and historical reports | Unchanged |
-| Actual founder acceptance | Pending; not inferred from the above |
+## Original M3-R1 delivery (historical)
 
-See [M1_R2_REPORT.md](M1_R2_REPORT.md) for the complete acceptance matrix and
-disclosed limits, and [M1_R2_TEST_GUIDE.md](M1_R2_TEST_GUIDE.md) for the founder trial.
-The active authority is PRODUCT_SPEC.md v0.7. Display branding is separate from
-stable package/storage/schema identity.
+**M3-R1 PASS WITH WARNINGS.** TypeScript and all **286/286 tests** passed with
+zero failures/skips. Conversation → portable handoff → verified build continuation
+→ six-document Build Pack → approved stage execution/human checkpoint is implemented.
+Earlier M1-R3/M2/M3 scenarios still pass. No later revision or M4 has begun.
 
-The core validates host-reported context; it does not independently establish
-research truth, consent, customer demand or the quality of business reasoning.
-Raw confidential customer-source import, automated outreach, spending, deployment,
-automatic outcome ingestion and a second tracked build cycle remain outside scope.
-Backups on the same disk do not protect against disk loss. Broader recovery/data
-rights and distribution gates remain future work.
+Warnings: ChatGPT/Claude/Cursor are capability-aware text adapters, not native
+connectors or cloud sync. Semantic interpretation and execution receipts rely on
+the authorized host. Business facts requiring fresh research remain host work
+when decision-critical. Unscripted founder UX acceptance is still needed.
 
-Historical evidence remains in M0_REPORT.md, M1_REPORT.md, M1-R_REPORT.md and
-M1_R_REPORT.md. The latter's 83-test result is preserved, alongside the founder's
-subsequent rejection of its early move to testing/building. It is not acceptance
-of the current milestone. Stop before the revised M2 Act/staged builder.
+Next: run [the M3-R1 trial](M3_R1_TEST_GUIDE.md), including **Continue the Crumb
+build.**, pack approval and the human stop; then report what felt wrong or unnecessary.
+See [M3-R1 report](M3_R1_REPORT.md). Existing changes remain local, uncommitted and
+unpushed. No later work is authorized automatically.
+
+## Previous milestone result (historical)
+
+**M3 PASS WITH WARNINGS.** The current regression suite passed 270/270 tests,
+with zero failures or skips. All six required synthetic end-to-end scenarios
+passed. Confirmed IDE and the reviewed M2 MVP flow into a launch pack, attributed
+learning and a founder-reviewed next decision. No outreach or automatic feature
+implementation occurred. M4 has not started.
+
+Warnings: host-classified/synthetic evidence is not verified customer behavior;
+unscripted founder UX and current channel access still require human evaluation.
+Run one manual trial using [M3_TEST_GUIDE.md](M3_TEST_GUIDE.md), then explicitly
+decide whether to authorize M4. See [M3_REPORT.md](M3_REPORT.md).
+
+Branch main and existing Git history are preserved. Changes remain local,
+uncommitted and unpushed.

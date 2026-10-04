@@ -51,11 +51,13 @@ export function initializeProject(input: string): InitializationResult {
     const existing = openSqlite(database, true);
     try {
       version = Number(existing.get('PRAGMA user_version')?.['user_version']);
-      if (existing.get('PRAGMA application_id')?.['application_id'] !== APPLICATION_ID || ![0, 1, 2].includes(version)) {
+      if (existing.get('PRAGMA application_id')?.['application_id'] !== APPLICATION_ID || ![0, 1, 2, 3, 4].includes(version)) {
         throw new Error('This is not a supported CEC database. No migration or overwrite was attempted.');
       }
       if (version >= 1 && existing.get("SELECT name FROM sqlite_schema WHERE type = 'table' AND name = 'cec_meta'") === undefined) throw new Error('CEC schema identity is missing. Preserve the database and review.');
-      if (version === 2 && existing.get("SELECT name FROM sqlite_schema WHERE type = 'table' AND name = 'prebuild_revisions'") === undefined) throw new Error('Pre-build schema identity is missing. Preserve the database and review.');
+      if (version >= 2 && existing.get("SELECT name FROM sqlite_schema WHERE type = 'table' AND name = 'prebuild_revisions'") === undefined) throw new Error('Pre-build schema identity is missing. Preserve the database and review.');
+      if (version >= 3 && existing.get("SELECT name FROM sqlite_schema WHERE type = 'table' AND name = 'act_revisions'") === undefined) throw new Error('Act schema identity is missing. Preserve the database and review.');
+      if (version === 4 && existing.get("SELECT name FROM sqlite_schema WHERE type = 'table' AND name = 'learn_revisions'") === undefined) throw new Error('Learning schema identity is missing. Preserve the database and review.');
     } finally { existing.close(); }
   }
   if (!directoryInfo) mkdirSync(privateDirectory, { mode: 0o700 });

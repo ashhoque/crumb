@@ -1,4 +1,5 @@
 import { Ajv } from 'ajv';
+import type { IdeContext } from './ide.js';
 
 export const coverageTopics = ['frequency', 'urgency', 'pain', 'necessity', 'prevalence', 'category_direction', 'buyer', 'existing_spend', 'reachability', 'founder_fit', 'ai_substitutes', 'dedicated_value', 'competitors', 'user_language', 'traction', 'gaps', 'adjacency', 'habitats'] as const;
 export type CoverageTopic = typeof coverageTopics[number];
@@ -58,7 +59,7 @@ export interface PrebuildContext {
   buildRequest: { quote: string } | null;
   brief: { kind: 'conversation' | 'research'; summary: string; seeing: string[]; matters: string[]; next: string; questions: string[]; choices: { label: string; action: ChoiceAction }[] };
 }
-export interface SavedPrebuild { version: number; hash: string; recordedAt: string; context: PrebuildContext }
+export interface SavedPrebuild { version: number; hash: string; recordedAt: string; context: PrebuildContext | IdeContext }
 
 /** A starting shape for the host, not an intake form for the founder. */
 export function emptyPrebuild(): PrebuildContext {

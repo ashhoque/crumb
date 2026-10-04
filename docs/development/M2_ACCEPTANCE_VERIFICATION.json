@@ -1,0 +1,108 @@
+{
+  "timestamp": "2026-09-26T23:28:49.845Z",
+  "result": "M2 PASS WITH WARNINGS",
+  "baseline": {
+    "passed": 227,
+    "failed": 0,
+    "skipped": 0
+  },
+  "targeted": {
+    "passed": 10,
+    "failed": 0
+  },
+  "final": {
+    "passed": 237,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 57975.8394
+  },
+  "fixturesTimestamp": "2026-09-26T23:22:32.244Z",
+  "protectedFiles": [
+    "M1_R3_REPORT.md",
+    "M1_R3_TEST_GUIDE.md",
+    "contracts/conversation-v5.schema.json",
+    "docs/development/M1_R3_REHEARSALS.md",
+    "docs/development/M1_R3_REHEARSAL_RESULTS.json",
+    "docs/development/M1_R3_STOCK_RESEARCH.md",
+    "docs/development/M1_R3_VERIFICATION.json",
+    "fixtures/m1r3/stock.json",
+    "src/application/act.ts",
+    "src/application/build-pack.ts",
+    "src/cli/act-render.ts",
+    "src/domain/act.ts",
+    "src/domain/guide.ts",
+    "src/domain/ide.ts",
+    "src/persistence/act-store.ts",
+    ".node-version",
+    "CEC_MASTER_SPEC_v0.5.md",
+    "M0_REPORT.md",
+    "M1-R_REPORT.md",
+    "M1-R_TEST_GUIDE.md",
+    "M1_R2_REPORT.md",
+    "M1_R2_TEST_GUIDE.md",
+    "M1_REPORT.md",
+    "M1_R_REPORT.md",
+    "contracts/conversation-v3.schema.json",
+    "contracts/conversation-v4.schema.json",
+    "contracts/m1.schema.json",
+    "contracts/m1r.schema.json",
+    "docs/development/M1_R2_INDEPENDENT_REHEARSAL.md",
+    "docs/development/M1_R2_RESEARCH_REHEARSAL.md",
+    "docs/development/M1_R2_VERIFICATION.json",
+    "docs/development/M1_R_CONVERSATION_REHEARSAL.md",
+    "package-lock.json",
+    "package.json",
+    "src/application/backup.ts",
+    "src/application/demo.ts",
+    "src/application/initialize.ts",
+    "src/application/prebuild.ts",
+    "src/application/runtime.ts",
+    "src/application/workflow.ts",
+    "src/cli/main.ts",
+    "src/cli/prebuild-render.ts",
+    "src/cli/render.ts",
+    "src/domain/brand.ts",
+    "src/domain/contracts.ts",
+    "src/domain/conversation.ts",
+    "src/domain/prebuild.ts",
+    "src/persistence/prebuild-store.ts",
+    "src/persistence/sqlite.ts",
+    "src/persistence/workflow-store.ts",
+    "src/privacy/artifacts.ts",
+    "src/privacy/storage.ts"
+  ],
+  "productionUnchanged": true,
+  "changesSinceAcceptanceBaseline": [
+    "M2_REPORT.md",
+    "tests/act-integration.test.ts",
+    "tests/act-integration.ts",
+    "PLAN.md",
+    "PRODUCT_SPEC.md",
+    "STATUS.md"
+  ],
+  "head": "c218317a2b17d6f4a7194ef5c875b5d26ed48d48",
+  "branch": "main",
+  "logs": [
+    {
+      "name": "m2-acceptance-baseline.log",
+      "sha256": "7c63e3f8a07ed419a49bcc085fcaae820725bff83a8cd5972d7c9dbe6042cea7"
+    },
+    {
+      "name": "m2-acceptance-final.log",
+      "sha256": "e713886752673dfb9f9fd899918c481ca00e6caa8344d188bfa414e22e9ad1ec"
+    }
+  ],
+  "m3Started": false,
+  "addedFiles": [
+    "tests/act-acceptance.test.ts",
+    "docs/development/M2_ACCEPTANCE_FIXTURES.md",
+    "docs/development/M2_ACCEPTANCE_RESULTS.json",
+    "docs/development/M2_ACCEPTANCE_VERIFICATION.json"
+  ],
+  "whitespaceCheck": {
+    "command": "git -c core.autocrlf=false diff --check",
+    "exitCode": 0
+  },
+  "finalPreservationCheck": "2026-09-26T23:30:06.184Z",
+  "acceptanceTestSha256": "bb6dc7ed602491e9dd028b8e8d4531d49882a695679ff04b2dd779c7bd299cd4"
+}

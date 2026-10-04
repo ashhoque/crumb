@@ -1,6 +1,6 @@
 import type { ConversationDraft } from './contracts.js';
 
-export const OPTIONAL_DETAIL = 'The extra detail below is optional—you can continue without reading it.';
+export const OPTIONAL_DETAIL = 'The extra detail below is optional \u2014 you can continue without reading it.';
 export const plain = (value: string): string => value.replace(/\x1b\[[0-?]*[ -/]*[@-~]/g, '').replace(/[\x00-\x1f\x7f-\x9f\u202a-\u202e\u2066-\u2069]/g, ' ').trim();
 export const words = (value: string): number => plain(value).split(/\s+/u).filter(Boolean).length;
 
@@ -14,7 +14,7 @@ export function proposalSummary(draft: ConversationDraft): string {
     'Executive Summary', plain(summary), '',
     `Recommended next action: ${plain(action)}`,
     ...(p ? [`Scope: ${scope}${/[.!?]$/.test(scope) ? '' : '.'}`, 'Local only; no spending, sending or deployment.'] : []),
-    ...(draft.contractVersion === 3 || draft.contractVersion === 4 ? draft.brief.questions.map(plain) : []), '',
+    ...(draft.contractVersion === 3 || draft.contractVersion === 4 || draft.contractVersion === 5 ? draft.brief.questions.map(plain) : []), '',
     OPTIONAL_DETAIL,
     !p ? 'Continue understanding | Correct my understanding | Why?' : p.method === 'build' ? 'Build this scope | Adjust scope | Why?' : 'Prepare this conversation | Adjust scope | Why?',
   ].join('\n');
@@ -24,7 +24,7 @@ export function validateConversation(draft: ConversationDraft): void {
   if (draft.contractVersion === 1) return;
   const { intention, evaluation, feedback } = draft.ideal;
   if ((intention.goal === 'unknown') !== (intention.statement === null)) throw new Error('Keep skipped intention unknown; otherwise preserve the founder objective in their words.');
-  if (draft.contractVersion === 3 || draft.contractVersion === 4) {
+  if (draft.contractVersion === 3 || draft.contractVersion === 4 || draft.contractVersion === 5) {
     const { intention: intent, assessment } = draft.ideal;
     if ((intent.status === 'provided') !== (intent.goal !== 'unknown')) throw new Error('Preserve whether intention was provided, asked, unasked or deliberately skipped.');
     if (draft.phase === 'orientation' && (draft.proposal !== null || draft.decision !== null)) throw new Error('Orientation retains understanding without an action proposal or decision.');
@@ -32,7 +32,7 @@ export function validateConversation(draft: ConversationDraft): void {
       if (!draft.proposal || !draft.decision) throw new Error('An action proposal needs its complete scope and a reason to propose it.');
       if (draft.decision.basis === 'build_requested' && draft.proposal.method !== 'build') throw new Error('A build request must lead to a reviewed build scope.');
       if (draft.decision.basis === 'context_ready' && (!assessment || !draft.foundation.problem.value || !['provided', 'skipped'].includes(intent.status))) throw new Error('Clarify intention, the problem and a brief evaluation before recommending an action, or record the explicit build request.');
-      if (draft.contractVersion === 4 && (evaluation.state !== 'not_run' || evaluation.findings.length)) throw new Error('Keep v4 research in its referenced dossier; legacy fixture research must not stand in for the current evaluation.');
+      if ((draft.contractVersion === 4 || draft.contractVersion === 5) && (evaluation.state !== 'not_run' || evaluation.findings.length)) throw new Error('Keep v4 research in its referenced dossier; legacy fixture research must not stand in for the current evaluation.');
     }
     // Structural guard only: compound questions and reasoning still need transcript review.
     const questionText = [draft.brief.summary, draft.brief.nextAction, ...draft.brief.questions].join(' ');

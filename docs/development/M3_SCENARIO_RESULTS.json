@@ -1,0 +1,1037 @@
+{
+  "timestamp": "2026-09-27T00:05:24.249Z",
+  "synthetic": true,
+  "scenarios": [
+    {
+      "id": "A",
+      "title": "Positive usage",
+      "synthetic": true,
+      "build": {
+        "kind": "existing",
+        "stages": [
+          "mvp"
+        ],
+        "commands": [
+          {
+            "command": "& 'C:\\Users\\Ash\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe' '--test' '--test-reporter=tap' 'compare.test.mjs'",
+            "exitCode": 1,
+            "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nnot ok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 188.8996\n  type: 'test'\n  location: 'C:\\\\Users\\\\Ash\\\\AppData\\\\Local\\\\Temp\\\\cec-m0-BzATTi\\\\compare.test.mjs:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    0 !== 2\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 2\n  actual: 0\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///C:/Users/Ash/AppData/Local/Temp/cec-m0-BzATTi/compare.test.mjs:14:61)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1382:25)\n    Test.start (node:internal/test_runner/test:1242:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 164.777\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 355.2469\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 1.0257\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 3\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 888.02"
+          },
+          {
+            "command": "& 'C:\\Users\\Ash\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe' '--test' '--test-reporter=tap' 'compare.test.mjs'",
+            "exitCode": 0,
+            "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 159.995\n  type: 'test'\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 148.3724\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 358.0905\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 0.9543\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 860.04"
+          }
+        ],
+        "capabilities": [
+          "Compare supplied facts",
+          "Save one review note"
+        ]
+      },
+      "confirmed": {
+        "intention": "For myself first; perhaps a business later.",
+        "user": "Self-directed investor comparing a shortlist.",
+        "problem": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one."
+      },
+      "launchPack": {
+        "who": "Self-directed investor comparing a shortlist.",
+        "problem": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+        "style": "one_user",
+        "routes": [
+          {
+            "habitatId": "investor-habitat",
+            "where": "Fictional investor workflow group",
+            "avenue": "Inspect current rules before any founder participation.",
+            "sourceIds": [
+              "investor-group"
+            ],
+            "observed": [
+              "A fictional investor group discusses research workflows."
+            ],
+            "inference": "They discuss the work being investigated; individual interest is unknown.",
+            "limitation": "Synthetic habitat; no actual group, participant or permission is established. Participation rules, timing and access must be checked before contacting anyone.",
+            "routeVerified": false,
+            "message": "I have an early version for Self-directed investor comparing a shortlist.. It lets someone Read a local shortlist, compare the supplied facts, save one review note. If participation here is appropriate, I would like to watch one relevant person try that task and hear where it falls short. This is an early workflow test, not a claim of proven outcomes."
+          }
+        ],
+        "objective": "Does one comparison reduce repeated checking?",
+        "task": "Read a local shortlist, compare the supplied facts, save one review note",
+        "observe": [
+          "Can the user start and complete this task without coaching?",
+          "Where do they hesitate or return to their existing workflow?",
+          "Do they get a useful result and choose to use it again?"
+        ],
+        "limitations": [
+          "No network, accounts or additional dependencies.",
+          "Passing software tests does not establish customer usefulness."
+        ],
+        "outreach": "founder_controlled_not_sent"
+      },
+      "launchSummary": "Executive summary\nSynthetic product-test fixture. The reviewed MVP is for Self-directed investor comparing a shortlist.. I would start with one relevant user through Fictional investor workflow group, using the task we already built. Watch whether they reach the core result without coaching; no message has been sent.\n\nNext\nReview the first-user launch pack, then paste what happened.\n\nThe extra detail is optional — you can continue without reading it.\nView launch pack | View routes | View MVP limitations",
+      "observations": [
+        {
+          "kind": "observed_behavior",
+          "excerpt": "u1 completed the comparison and used the saved note at the next review.",
+          "userRef": "u1",
+          "sessionRef": "s1",
+          "theme": "Core comparison",
+          "outcome": "positive",
+          "signal": "value",
+          "id": "61d75230-8f75-448e-9256-9f530afe4db8",
+          "importId": "08030757-c9f4-455b-84af-11e402456a13",
+          "provenance": "synthetic_fixture"
+        },
+        {
+          "kind": "observed_behavior",
+          "excerpt": "u1 hesitated at the input format before completing the task.",
+          "userRef": "u1",
+          "sessionRef": "s1",
+          "theme": "Core comparison",
+          "outcome": "positive",
+          "signal": "friction",
+          "id": "c6eba997-5231-4f3f-a940-86271dc035ac",
+          "importId": "08030757-c9f4-455b-84af-11e402456a13",
+          "provenance": "synthetic_fixture"
+        },
+        {
+          "kind": "repeated_use",
+          "excerpt": "u2 returned without prompting and completed the comparison again.",
+          "userRef": "u2",
+          "sessionRef": "s2",
+          "theme": "Core comparison",
+          "outcome": "positive",
+          "signal": "value",
+          "id": "04e0202c-de65-488b-b255-85017be0a9e1",
+          "importId": "08030757-c9f4-455b-84af-11e402456a13",
+          "provenance": "synthetic_fixture"
+        },
+        {
+          "kind": "commitment",
+          "excerpt": "u2 committed to another pilot session.",
+          "userRef": "u2",
+          "sessionRef": "s2",
+          "theme": "Core comparison",
+          "outcome": "positive",
+          "signal": "none",
+          "id": "a14b6c17-fdf1-4d01-965b-6d8e550a3d00",
+          "importId": "08030757-c9f4-455b-84af-11e402456a13",
+          "provenance": "synthetic_fixture"
+        }
+      ],
+      "learning": {
+        "summary": "There is a useful workflow signal here; it is still early evidence, not validation.",
+        "destination": "act",
+        "recommendation": "Test one clearer instruction at the observed point of hesitation, using the same core journey.",
+        "evidenceIds": [
+          "61d75230-8f75-448e-9256-9f530afe4db8",
+          "c6eba997-5231-4f3f-a940-86271dc035ac",
+          "04e0202c-de65-488b-b255-85017be0a9e1",
+          "a14b6c17-fdf1-4d01-965b-6d8e550a3d00"
+        ],
+        "keep": [
+          "Read a local shortlist, compare the supplied facts, save one review note"
+        ],
+        "test": [
+          "Test one clearer instruction at the observed point of hesitation, using the same core journey."
+        ],
+        "park": [
+          "Existing dashboard"
+        ],
+        "contradictions": [],
+        "unknowns": [
+          "Customer validation and market fit are not established.",
+          "Evidence is supplied by the founder/host, not independently verified.",
+          "No payment evidence was supplied."
+        ],
+        "themes": [
+          {
+            "theme": "Core comparison",
+            "users": 2,
+            "observations": 4
+          }
+        ],
+        "counts": {
+          "opinion": 0,
+          "reported_behavior": 0,
+          "observed_behavior": 2,
+          "commitment": 1,
+          "payment": 0,
+          "repeated_use": 1,
+          "technical_result": 0,
+          "outreach_sent": 0,
+          "conversation": 0,
+          "no_response": 0,
+          "feature_request": 0,
+          "unknown": 0
+        },
+        "validation": "not_established"
+      },
+      "summary": "Executive summary\nSynthetic product-test fixture. There is a useful workflow signal here; it is still early evidence, not validation. Test one clearer instruction at the observed point of hesitation, using the same core journey.\n\nWhat we learned\n- Reported observation: u1 completed the comparison and used the saved note at the next review.\n- Reported observation: u1 hesitated at the input format before completing the task.\n- Reported observation: u2 returned without prompting and completed the comparison again.\n\nWhat I would leave parked\n- Existing dashboard\n\nNext\nApprove next direction | Review evidence | Challenge recommendation\n\nThe extra detail is optional — you can continue without reading it.\nView evidence | View sessions | View contradictions | View feature requests | View sources\nTechnical success is not customer validation.",
+      "decision": {
+        "choice": "approve",
+        "quote": "Synthetic founder: approve this next direction for review; do not build it yet.",
+        "destination": "act",
+        "recordedAt": "2026-09-27T00:04:18.147Z"
+      },
+      "status": "decided",
+      "returnLoop": null,
+      "codeUnchangedAfterLearning": true,
+      "parkPreserved": true,
+      "messagesSentByCrumb": 0,
+      "m4Started": false
+    },
+    {
+      "id": "B",
+      "title": "Mixed result",
+      "synthetic": true,
+      "build": {
+        "kind": "existing",
+        "stages": [
+          "mvp"
+        ],
+        "commands": [
+          {
+            "command": "& 'C:\\Users\\Ash\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe' '--test' '--test-reporter=tap' 'compare.test.mjs'",
+            "exitCode": 1,
+            "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nnot ok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 131.6665\n  type: 'test'\n  location: 'C:\\\\Users\\\\Ash\\\\AppData\\\\Local\\\\Temp\\\\cec-m0-MJ5jwc\\\\compare.test.mjs:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    0 !== 2\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 2\n  actual: 0\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///C:/Users/Ash/AppData/Local/Temp/cec-m0-MJ5jwc/compare.test.mjs:14:61)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1382:25)\n    Test.start (node:internal/test_runner/test:1242:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 126.1238\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 250.9636\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 0.9125\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 3\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 654.8768"
+          },
+          {
+            "command": "& 'C:\\Users\\Ash\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe' '--test' '--test-reporter=tap' 'compare.test.mjs'",
+            "exitCode": 0,
+            "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 119.6694\n  type: 'test'\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 111.5634\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 234.3164\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 0.9247\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 595.699"
+          }
+        ],
+        "capabilities": [
+          "Compare supplied facts",
+          "Save one review note"
+        ]
+      },
+      "confirmed": {
+        "intention": "For myself first; perhaps a business later.",
+        "user": "Self-directed investor comparing a shortlist.",
+        "problem": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one."
+      },
+      "launchPack": {
+        "who": "Self-directed investor comparing a shortlist.",
+        "problem": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+        "style": "one_user",
+        "routes": [
+          {
+            "habitatId": "investor-habitat",
+            "where": "Fictional investor workflow group",
+            "avenue": "Inspect current rules before any founder participation.",
+            "sourceIds": [
+              "investor-group"
+            ],
+            "observed": [
+              "A fictional investor group discusses research workflows."
+            ],
+            "inference": "They discuss the work being investigated; individual interest is unknown.",
+            "limitation": "Synthetic habitat; no actual group, participant or permission is established. Participation rules, timing and access must be checked before contacting anyone.",
+            "routeVerified": false,
+            "message": "I have an early version for Self-directed investor comparing a shortlist.. It lets someone Read a local shortlist, compare the supplied facts, save one review note. If participation here is appropriate, I would like to watch one relevant person try that task and hear where it falls short. This is an early workflow test, not a claim of proven outcomes."
+          }
+        ],
+        "objective": "Does one comparison reduce repeated checking?",
+        "task": "Read a local shortlist, compare the supplied facts, save one review note",
+        "observe": [
+          "Can the user start and complete this task without coaching?",
+          "Where do they hesitate or return to their existing workflow?",
+          "Do they get a useful result and choose to use it again?"
+        ],
+        "limitations": [
+          "No network, accounts or additional dependencies.",
+          "Passing software tests does not establish customer usefulness."
+        ],
+        "outreach": "founder_controlled_not_sent"
+      },
+      "launchSummary": "Executive summary\nSynthetic product-test fixture. The reviewed MVP is for Self-directed investor comparing a shortlist.. I would start with one relevant user through Fictional investor workflow group, using the task we already built. Watch whether they reach the core result without coaching; no message has been sent.\n\nNext\nReview the first-user launch pack, then paste what happened.\n\nThe extra detail is optional — you can continue without reading it.\nView launch pack | View routes | View MVP limitations",
+      "observations": [
+        {
+          "kind": "observed_behavior",
+          "excerpt": "u1 used the comparison to identify missing information.",
+          "userRef": "u1",
+          "sessionRef": "s1",
+          "theme": "Core comparison",
+          "outcome": "positive",
+          "signal": "value",
+          "id": "d046f5b3-6c70-45d7-aba7-694c44d2a1a1",
+          "importId": "cda41413-8cc6-4f72-9fd8-b265501328b2",
+          "provenance": "synthetic_fixture"
+        },
+        {
+          "kind": "observed_behavior",
+          "excerpt": "u2 ignored the saved note and returned to the old spreadsheet.",
+          "userRef": "u2",
+          "sessionRef": "s2",
+          "theme": "Core comparison",
+          "outcome": "negative",
+          "signal": "low_priority",
+          "id": "3e5b1ebf-a729-43c5-b28e-36f4d7b0cf4d",
+          "importId": "cda41413-8cc6-4f72-9fd8-b265501328b2",
+          "provenance": "synthetic_fixture"
+        },
+        {
+          "kind": "observed_behavior",
+          "excerpt": "u1 hesitated when entering the supplied facts.",
+          "userRef": "u1",
+          "sessionRef": "s1",
+          "theme": "Core comparison",
+          "outcome": "positive",
+          "signal": "friction",
+          "id": "c88c603a-3820-4c32-8d7b-03d0561a20fe",
+          "importId": "cda41413-8cc6-4f72-9fd8-b265501328b2",
+          "provenance": "synthetic_fixture"
+        },
+        {
+          "kind": "feature_request",
+          "excerpt": "u2 asked for a portfolio dashboard.",
+          "userRef": "u2",
+          "sessionRef": "s2",
+          "theme": "Core comparison",
+          "outcome": "unknown",
+          "signal": "none",
+          "id": "5af36068-20e4-4d2f-a53e-2ae05f0d2a10",
+          "importId": "cda41413-8cc6-4f72-9fd8-b265501328b2",
+          "provenance": "synthetic_fixture"
+        }
+      ],
+      "learning": {
+        "summary": "There is a useful workflow signal here; it is still early evidence, not validation.",
+        "destination": "act",
+        "recommendation": "Test one clearer instruction at the observed point of hesitation, using the same core journey.",
+        "evidenceIds": [
+          "d046f5b3-6c70-45d7-aba7-694c44d2a1a1",
+          "3e5b1ebf-a729-43c5-b28e-36f4d7b0cf4d",
+          "c88c603a-3820-4c32-8d7b-03d0561a20fe",
+          "5af36068-20e4-4d2f-a53e-2ae05f0d2a10"
+        ],
+        "keep": [
+          "Read a local shortlist, compare the supplied facts, save one review note"
+        ],
+        "test": [
+          "Test one clearer instruction at the observed point of hesitation, using the same core journey."
+        ],
+        "park": [
+          "Existing dashboard",
+          "Request: u2 asked for a portfolio dashboard."
+        ],
+        "contradictions": [
+          "Conflicting reports about Core comparison; retain both accounts.",
+          "Some usage suggests value while other users saw insufficient reason to switch."
+        ],
+        "unknowns": [
+          "Customer validation and market fit are not established.",
+          "Evidence is supplied by the founder/host, not independently verified.",
+          "No payment evidence was supplied."
+        ],
+        "themes": [
+          {
+            "theme": "Core comparison",
+            "users": 2,
+            "observations": 4
+          }
+        ],
+        "counts": {
+          "opinion": 0,
+          "reported_behavior": 0,
+          "observed_behavior": 3,
+          "commitment": 0,
+          "payment": 0,
+          "repeated_use": 0,
+          "technical_result": 0,
+          "outreach_sent": 0,
+          "conversation": 0,
+          "no_response": 0,
+          "feature_request": 1,
+          "unknown": 0
+        },
+        "validation": "not_established"
+      },
+      "summary": "Executive summary\nSynthetic product-test fixture. There is a useful workflow signal here; it is still early evidence, not validation. Test one clearer instruction at the observed point of hesitation, using the same core journey.\n\nWhat we learned\n- Reported observation: u1 used the comparison to identify missing information.\n- Reported observation: u2 ignored the saved note and returned to the old spreadsheet.\n- Conflicting reports about Core comparison; retain both accounts.\n\nWhat I would leave parked\n- Existing dashboard\n- Request: u2 asked for a portfolio dashboard.\n\nNext\nApprove next direction | Review evidence | Challenge recommendation\n\nThe extra detail is optional — you can continue without reading it.\nView evidence | View sessions | View contradictions | View feature requests | View sources\nTechnical success is not customer validation.",
+      "decision": {
+        "choice": "approve",
+        "quote": "Synthetic founder: approve this next direction for review; do not build it yet.",
+        "destination": "act",
+        "recordedAt": "2026-09-27T00:04:28.284Z"
+      },
+      "status": "decided",
+      "returnLoop": null,
+      "codeUnchangedAfterLearning": true,
+      "parkPreserved": true,
+      "messagesSentByCrumb": 0,
+      "m4Started": false
+    },
+    {
+      "id": "C",
+      "title": "Technically working, low-priority pain",
+      "synthetic": true,
+      "build": {
+        "kind": "existing",
+        "stages": [
+          "mvp"
+        ],
+        "commands": [
+          {
+            "command": "& 'C:\\Users\\Ash\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe' '--test' '--test-reporter=tap' 'compare.test.mjs'",
+            "exitCode": 1,
+            "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nnot ok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 117.7666\n  type: 'test'\n  location: 'C:\\\\Users\\\\Ash\\\\AppData\\\\Local\\\\Temp\\\\cec-m0-aOrpYj\\\\compare.test.mjs:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    0 !== 2\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 2\n  actual: 0\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///C:/Users/Ash/AppData/Local/Temp/cec-m0-aOrpYj/compare.test.mjs:14:61)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1382:25)\n    Test.start (node:internal/test_runner/test:1242:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 106.5623\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 217.1237\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 0.7631\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 3\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 563.4647"
+          },
+          {
+            "command": "& 'C:\\Users\\Ash\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe' '--test' '--test-reporter=tap' 'compare.test.mjs'",
+            "exitCode": 0,
+            "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 121.3471\n  type: 'test'\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 110.3737\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 225.4353\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 1.0128\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 583.2482"
+          }
+        ],
+        "capabilities": [
+          "Compare supplied facts",
+          "Save one review note"
+        ]
+      },
+      "confirmed": {
+        "intention": "For myself first; perhaps a business later.",
+        "user": "Self-directed investor comparing a shortlist.",
+        "problem": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one."
+      },
+      "launchPack": {
+        "who": "Self-directed investor comparing a shortlist.",
+        "problem": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+        "style": "one_user",
+        "routes": [
+          {
+            "habitatId": "investor-habitat",
+            "where": "Fictional investor workflow group",
+            "avenue": "Inspect current rules before any founder participation.",
+            "sourceIds": [
+              "investor-group"
+            ],
+            "observed": [
+              "A fictional investor group discusses research workflows."
+            ],
+            "inference": "They discuss the work being investigated; individual interest is unknown.",
+            "limitation": "Synthetic habitat; no actual group, participant or permission is established. Participation rules, timing and access must be checked before contacting anyone.",
+            "routeVerified": false,
+            "message": "I have an early version for Self-directed investor comparing a shortlist.. It lets someone Read a local shortlist, compare the supplied facts, save one review note. If participation here is appropriate, I would like to watch one relevant person try that task and hear where it falls short. This is an early workflow test, not a claim of proven outcomes."
+          }
+        ],
+        "objective": "Does one comparison reduce repeated checking?",
+        "task": "Read a local shortlist, compare the supplied facts, save one review note",
+        "observe": [
+          "Can the user start and complete this task without coaching?",
+          "Where do they hesitate or return to their existing workflow?",
+          "Do they get a useful result and choose to use it again?"
+        ],
+        "limitations": [
+          "No network, accounts or additional dependencies.",
+          "Passing software tests does not establish customer usefulness."
+        ],
+        "outreach": "founder_controlled_not_sent"
+      },
+      "launchSummary": "Executive summary\nSynthetic product-test fixture. The reviewed MVP is for Self-directed investor comparing a shortlist.. I would start with one relevant user through Fictional investor workflow group, using the task we already built. Watch whether they reach the core result without coaching; no message has been sent.\n\nNext\nReview the first-user launch pack, then paste what happened.\n\nThe extra detail is optional — you can continue without reading it.\nView launch pack | View routes | View MVP limitations",
+      "observations": [
+        {
+          "kind": "technical_result",
+          "excerpt": "The software test command passed.",
+          "userRef": null,
+          "sessionRef": null,
+          "theme": "Core comparison",
+          "outcome": "positive",
+          "signal": "none",
+          "id": "38e5f5e8-f3ad-43eb-bf1e-ea3ee825ce7c",
+          "importId": "a4c1bb5d-54a0-4ea1-b1c9-86fcee6bcda0",
+          "provenance": "synthetic_fixture"
+        },
+        {
+          "kind": "opinion",
+          "excerpt": "u1 said the tool looked nice.",
+          "userRef": "u1",
+          "sessionRef": "s1",
+          "theme": "Core comparison",
+          "outcome": "positive",
+          "signal": "none",
+          "id": "8081f600-15e3-4b16-8385-b86fb59fa9a9",
+          "importId": "a4c1bb5d-54a0-4ea1-b1c9-86fcee6bcda0",
+          "provenance": "synthetic_fixture"
+        },
+        {
+          "kind": "observed_behavior",
+          "excerpt": "u1 completed the task but chose the old workflow because this pain was not important enough to switch.",
+          "userRef": "u1",
+          "sessionRef": "s1",
+          "theme": "Core comparison",
+          "outcome": "negative",
+          "signal": "low_priority",
+          "id": "f25a5b72-e875-4dda-bf30-b4cbc29c196f",
+          "importId": "a4c1bb5d-54a0-4ea1-b1c9-86fcee6bcda0",
+          "provenance": "synthetic_fixture"
+        }
+      ],
+      "learning": {
+        "summary": "The result is weaker than we hoped: the reported usage did not show a reason to change the current workflow.",
+        "destination": "evaluate",
+        "recommendation": "Revisit the priority of this pain and the fit of this user before changing the product.",
+        "evidenceIds": [
+          "38e5f5e8-f3ad-43eb-bf1e-ea3ee825ce7c",
+          "8081f600-15e3-4b16-8385-b86fb59fa9a9",
+          "f25a5b72-e875-4dda-bf30-b4cbc29c196f"
+        ],
+        "keep": [
+          "Read a local shortlist, compare the supplied facts, save one review note"
+        ],
+        "test": [
+          "Revisit the priority of this pain and the fit of this user before changing the product."
+        ],
+        "park": [
+          "Existing dashboard"
+        ],
+        "contradictions": [
+          "Conflicting reports about Core comparison; retain both accounts."
+        ],
+        "unknowns": [
+          "Customer validation and market fit are not established.",
+          "Evidence is supplied by the founder/host, not independently verified.",
+          "No payment evidence was supplied."
+        ],
+        "themes": [
+          {
+            "theme": "Core comparison",
+            "users": 1,
+            "observations": 3
+          }
+        ],
+        "counts": {
+          "opinion": 1,
+          "reported_behavior": 0,
+          "observed_behavior": 1,
+          "commitment": 0,
+          "payment": 0,
+          "repeated_use": 0,
+          "technical_result": 1,
+          "outreach_sent": 0,
+          "conversation": 0,
+          "no_response": 0,
+          "feature_request": 0,
+          "unknown": 0
+        },
+        "validation": "not_established"
+      },
+      "summary": "Executive summary\nSynthetic product-test fixture. The result is weaker than we hoped: the reported usage did not show a reason to change the current workflow. Revisit the priority of this pain and the fit of this user before changing the product.\n\nWhat we learned\n- Reported observation: u1 completed the task but chose the old workflow because this pain was not important enough to switch.\n- Conflicting reports about Core comparison; retain both accounts.\n\nWhat I would leave parked\n- Existing dashboard\n\nNext\nApprove next direction | Review evidence | Challenge recommendation\n\nThe extra detail is optional — you can continue without reading it.\nView evidence | View sessions | View contradictions | View feature requests | View sources\nTechnical success is not customer validation.",
+      "decision": {
+        "choice": "approve",
+        "quote": "Synthetic founder: approve this next direction for review; do not build it yet.",
+        "destination": "evaluate",
+        "recordedAt": "2026-09-27T00:04:36.763Z"
+      },
+      "status": "decided",
+      "returnLoop": null,
+      "codeUnchangedAfterLearning": true,
+      "parkPreserved": true,
+      "messagesSentByCrumb": 0,
+      "m4Started": false
+    },
+    {
+      "id": "D",
+      "title": "Different pain discovered",
+      "synthetic": true,
+      "build": {
+        "kind": "existing",
+        "stages": [
+          "mvp"
+        ],
+        "commands": [
+          {
+            "command": "& 'C:\\Users\\Ash\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe' '--test' '--test-reporter=tap' 'compare.test.mjs'",
+            "exitCode": 1,
+            "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nnot ok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 110.3331\n  type: 'test'\n  location: 'C:\\\\Users\\\\Ash\\\\AppData\\\\Local\\\\Temp\\\\cec-m0-herhhG\\\\compare.test.mjs:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    0 !== 2\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 2\n  actual: 0\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///C:/Users/Ash/AppData/Local/Temp/cec-m0-herhhG/compare.test.mjs:14:61)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1382:25)\n    Test.start (node:internal/test_runner/test:1242:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 96.9084\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 193.197\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 0.8722\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 3\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 513.9612"
+          },
+          {
+            "command": "& 'C:\\Users\\Ash\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe' '--test' '--test-reporter=tap' 'compare.test.mjs'",
+            "exitCode": 0,
+            "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 106.8755\n  type: 'test'\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 103.1919\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 191.1347\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 0.5759\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 510.0794"
+          }
+        ],
+        "capabilities": [
+          "Compare supplied facts",
+          "Save one review note"
+        ]
+      },
+      "confirmed": {
+        "intention": "For myself first; perhaps a business later.",
+        "user": "Self-directed investor comparing a shortlist.",
+        "problem": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one."
+      },
+      "launchPack": {
+        "who": "Self-directed investor comparing a shortlist.",
+        "problem": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+        "style": "one_user",
+        "routes": [
+          {
+            "habitatId": "investor-habitat",
+            "where": "Fictional investor workflow group",
+            "avenue": "Inspect current rules before any founder participation.",
+            "sourceIds": [
+              "investor-group"
+            ],
+            "observed": [
+              "A fictional investor group discusses research workflows."
+            ],
+            "inference": "They discuss the work being investigated; individual interest is unknown.",
+            "limitation": "Synthetic habitat; no actual group, participant or permission is established. Participation rules, timing and access must be checked before contacting anyone.",
+            "routeVerified": false,
+            "message": "I have an early version for Self-directed investor comparing a shortlist.. It lets someone Read a local shortlist, compare the supplied facts, save one review note. If participation here is appropriate, I would like to watch one relevant person try that task and hear where it falls short. This is an early workflow test, not a claim of proven outcomes."
+          }
+        ],
+        "objective": "Does one comparison reduce repeated checking?",
+        "task": "Read a local shortlist, compare the supplied facts, save one review note",
+        "observe": [
+          "Can the user start and complete this task without coaching?",
+          "Where do they hesitate or return to their existing workflow?",
+          "Do they get a useful result and choose to use it again?"
+        ],
+        "limitations": [
+          "No network, accounts or additional dependencies.",
+          "Passing software tests does not establish customer usefulness."
+        ],
+        "outreach": "founder_controlled_not_sent"
+      },
+      "launchSummary": "Executive summary\nSynthetic product-test fixture. The reviewed MVP is for Self-directed investor comparing a shortlist.. I would start with one relevant user through Fictional investor workflow group, using the task we already built. Watch whether they reach the core result without coaching; no message has been sent.\n\nNext\nReview the first-user launch pack, then paste what happened.\n\nThe extra detail is optional — you can continue without reading it.\nView launch pack | View routes | View MVP limitations",
+      "observations": [
+        {
+          "kind": "observed_behavior",
+          "excerpt": "u1 skipped fresh comparisons and tried to recover the reasoning behind a previous shortlist instead.",
+          "userRef": "u1",
+          "sessionRef": "s1",
+          "theme": "Core comparison",
+          "outcome": "mixed",
+          "signal": "different_problem",
+          "id": "d04cfec0-2aec-4549-a035-4385509636a7",
+          "importId": "8aa18b54-5803-4a0b-ba09-83f3a9a50507",
+          "provenance": "synthetic_fixture"
+        }
+      ],
+      "learning": {
+        "summary": "That is useful, even though it changes the problem more than the product.",
+        "destination": "define_problem",
+        "recommendation": "Draft the revised problem from the observed behavior, confirm it, and reassess Evaluate before Act.",
+        "evidenceIds": [
+          "d04cfec0-2aec-4549-a035-4385509636a7"
+        ],
+        "keep": [
+          "Read a local shortlist, compare the supplied facts, save one review note"
+        ],
+        "test": [
+          "Draft the revised problem from the observed behavior, confirm it, and reassess Evaluate before Act."
+        ],
+        "park": [
+          "Existing dashboard"
+        ],
+        "contradictions": [],
+        "unknowns": [
+          "Customer validation and market fit are not established.",
+          "Evidence is supplied by the founder/host, not independently verified.",
+          "No payment evidence was supplied."
+        ],
+        "themes": [
+          {
+            "theme": "Core comparison",
+            "users": 1,
+            "observations": 1
+          }
+        ],
+        "counts": {
+          "opinion": 0,
+          "reported_behavior": 0,
+          "observed_behavior": 1,
+          "commitment": 0,
+          "payment": 0,
+          "repeated_use": 0,
+          "technical_result": 0,
+          "outreach_sent": 0,
+          "conversation": 0,
+          "no_response": 0,
+          "feature_request": 0,
+          "unknown": 0
+        },
+        "validation": "not_established"
+      },
+      "summary": "Executive summary\nSynthetic product-test fixture. That is useful, even though it changes the problem more than the product. Draft the revised problem from the observed behavior, confirm it, and reassess Evaluate before Act.\n\nWhat we learned\n- Reported observation: u1 skipped fresh comparisons and tried to recover the reasoning behind a previous shortlist instead.\n\nWhat I would leave parked\n- Existing dashboard\n\nNext\nApprove next direction | Review evidence | Challenge recommendation\n\nThe extra detail is optional — you can continue without reading it.\nView evidence | View sessions | View contradictions | View feature requests | View sources\nTechnical success is not customer validation.",
+      "decision": {
+        "choice": "approve",
+        "quote": "Synthetic founder: approve this next direction for review; do not build it yet.",
+        "destination": "define_problem",
+        "recordedAt": "2026-09-27T00:04:44.810Z"
+      },
+      "status": "decided",
+      "returnLoop": {
+        "intentionRetained": true,
+        "userRetained": true,
+        "revisedProblem": "During a repeat shortlist review, the user cannot recover the prior reasoning needed to continue the decision.",
+        "problemReconfirmed": true,
+        "evaluationReassessedAndConfirmed": true,
+        "explicitActReconfirmed": true,
+        "nextScope": "proposed_only",
+        "codeAuthorized": false
+      },
+      "codeUnchangedAfterLearning": true,
+      "parkPreserved": true,
+      "messagesSentByCrumb": 0,
+      "m4Started": false
+    },
+    {
+      "id": "E",
+      "title": "No outreach response",
+      "synthetic": true,
+      "build": {
+        "kind": "existing",
+        "stages": [
+          "mvp"
+        ],
+        "commands": [
+          {
+            "command": "& 'C:\\Users\\Ash\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe' '--test' '--test-reporter=tap' 'compare.test.mjs'",
+            "exitCode": 1,
+            "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nnot ok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 96.0031\n  type: 'test'\n  location: 'C:\\\\Users\\\\Ash\\\\AppData\\\\Local\\\\Temp\\\\cec-m0-lFmcBz\\\\compare.test.mjs:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    0 !== 2\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 2\n  actual: 0\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///C:/Users/Ash/AppData/Local/Temp/cec-m0-lFmcBz/compare.test.mjs:14:61)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1382:25)\n    Test.start (node:internal/test_runner/test:1242:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 98.1084\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 193.6719\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 0.6191\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 3\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 494.3163"
+          },
+          {
+            "command": "& 'C:\\Users\\Ash\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe' '--test' '--test-reporter=tap' 'compare.test.mjs'",
+            "exitCode": 0,
+            "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 101.7138\n  type: 'test'\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 95.5969\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 193.2054\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 0.6561\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 499.1292"
+          }
+        ],
+        "capabilities": [
+          "Compare supplied facts",
+          "Save one review note"
+        ]
+      },
+      "confirmed": {
+        "intention": "For myself first; perhaps a business later.",
+        "user": "Self-directed investor comparing a shortlist.",
+        "problem": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one."
+      },
+      "launchPack": {
+        "who": "Self-directed investor comparing a shortlist.",
+        "problem": "For myself first, maybe sell later. I compare shortlisted stocks most weekends; criteria shift and I forget why I preferred one.",
+        "style": "one_user",
+        "routes": [
+          {
+            "habitatId": "investor-habitat",
+            "where": "Fictional investor workflow group",
+            "avenue": "Inspect current rules before any founder participation.",
+            "sourceIds": [
+              "investor-group"
+            ],
+            "observed": [
+              "A fictional investor group discusses research workflows."
+            ],
+            "inference": "They discuss the work being investigated; individual interest is unknown.",
+            "limitation": "Synthetic habitat; no actual group, participant or permission is established. Participation rules, timing and access must be checked before contacting anyone.",
+            "routeVerified": false,
+            "message": "I have an early version for Self-directed investor comparing a shortlist.. It lets someone Read a local shortlist, compare the supplied facts, save one review note. If participation here is appropriate, I would like to watch one relevant person try that task and hear where it falls short. This is an early workflow test, not a claim of proven outcomes."
+          }
+        ],
+        "objective": "Does one comparison reduce repeated checking?",
+        "task": "Read a local shortlist, compare the supplied facts, save one review note",
+        "observe": [
+          "Can the user start and complete this task without coaching?",
+          "Where do they hesitate or return to their existing workflow?",
+          "Do they get a useful result and choose to use it again?"
+        ],
+        "limitations": [
+          "No network, accounts or additional dependencies.",
+          "Passing software tests does not establish customer usefulness."
+        ],
+        "outreach": "founder_controlled_not_sent"
+      },
+      "launchSummary": "Executive summary\nSynthetic product-test fixture. The reviewed MVP is for Self-directed investor comparing a shortlist.. I would start with one relevant user through Fictional investor workflow group, using the task we already built. Watch whether they reach the core result without coaching; no message has been sent.\n\nNext\nReview the first-user launch pack, then paste what happened.\n\nThe extra detail is optional — you can continue without reading it.\nView launch pack | View routes | View MVP limitations",
+      "observations": [
+        {
+          "kind": "outreach_sent",
+          "excerpt": "The founder reports sending one relevant invitation.",
+          "userRef": null,
+          "sessionRef": null,
+          "theme": "Core comparison",
+          "outcome": "unknown",
+          "signal": "none",
+          "id": "c6ff1bda-7573-4ab2-9afb-f3bfb6247410",
+          "importId": "30ca79dc-937c-4d5a-846b-3551598deb96",
+          "provenance": "synthetic_fixture"
+        },
+        {
+          "kind": "no_response",
+          "excerpt": "The founder received no reply within the reported observation window.",
+          "userRef": null,
+          "sessionRef": null,
+          "theme": "Core comparison",
+          "outcome": "unknown",
+          "signal": "none",
+          "id": "9e448b8a-cae2-41a6-b549-af886258665d",
+          "importId": "30ca79dc-937c-4d5a-846b-3551598deb96",
+          "provenance": "synthetic_fixture"
+        }
+      ],
+      "learning": {
+        "summary": "No replies is ambiguous. It does not establish that the pain is unimportant.",
+        "destination": "exposure",
+        "recommendation": "Check the saved channel norms and try one clearer task invitation or a trusted introduction before changing the product.",
+        "evidenceIds": [
+          "c6ff1bda-7573-4ab2-9afb-f3bfb6247410",
+          "9e448b8a-cae2-41a6-b549-af886258665d"
+        ],
+        "keep": [
+          "Read a local shortlist, compare the supplied facts, save one review note"
+        ],
+        "test": [
+          "Check the saved channel norms and try one clearer task invitation or a trusted introduction before changing the product."
+        ],
+        "park": [
+          "Existing dashboard"
+        ],
+        "contradictions": [],
+        "unknowns": [
+          "Customer validation and market fit are not established.",
+          "Evidence is supplied by the founder/host, not independently verified.",
+          "Core task completion and useful outcome remain unknown.",
+          "No payment evidence was supplied."
+        ],
+        "themes": [
+          {
+            "theme": "Core comparison",
+            "users": 0,
+            "observations": 2
+          }
+        ],
+        "counts": {
+          "opinion": 0,
+          "reported_behavior": 0,
+          "observed_behavior": 0,
+          "commitment": 0,
+          "payment": 0,
+          "repeated_use": 0,
+          "technical_result": 0,
+          "outreach_sent": 1,
+          "conversation": 0,
+          "no_response": 1,
+          "feature_request": 0,
+          "unknown": 0
+        },
+        "validation": "not_established"
+      },
+      "summary": "Executive summary\nSynthetic product-test fixture. No replies is ambiguous. It does not establish that the pain is unimportant. Check the saved channel norms and try one clearer task invitation or a trusted introduction before changing the product.\n\nWhat we learned\n- Observed usage is still unknown.\n\nWhat I would leave parked\n- Existing dashboard\n\nNext\nApprove next direction | Review evidence | Challenge recommendation\n\nThe extra detail is optional — you can continue without reading it.\nView evidence | View sessions | View contradictions | View feature requests | View sources\nTechnical success is not customer validation.",
+      "decision": {
+        "choice": "approve",
+        "quote": "Synthetic founder: approve this next direction for review; do not build it yet.",
+        "destination": "exposure",
+        "recordedAt": "2026-09-27T00:04:53.503Z"
+      },
+      "status": "decided",
+      "returnLoop": null,
+      "codeUnchangedAfterLearning": true,
+      "parkPreserved": true,
+      "messagesSentByCrumb": 0,
+      "m4Started": false
+    },
+    {
+      "id": "F",
+      "title": "Stock MVP workflow usefulness, not investment performance",
+      "synthetic": true,
+      "build": {
+        "kind": "stock",
+        "stages": [
+          "risk",
+          "mvp"
+        ],
+        "commands": [
+          {
+            "command": "& 'C:\\Users\\Ash\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe' '--input-type=module' '-e' 'import assert from ''node:assert/strict''; const data=JSON.parse(\"{\\n  \\\"candidates\\\": [\\n    {\\n      \\\"symbol\\\": \\\"AAA\\\",\\n      \\\"asOf\\\": \\\"Synthetic observation, not market data\\\",\\n      \\\"technical\\\": \\\"Supplied trend note\\\",\\n      \\\"sector\\\": \\\"Unknown\\\",\\n      \\\"fundamental\\\": \\\"Supplied business note\\\",\\n      \\\"catalyst\\\": \\\"Unknown\\\"\\n    },\\n    {\\n      \\\"symbol\\\": \\\"BBB\\\",\\n      \\\"asOf\\\": \\\"Synthetic observation, not market data\\\",\\n      \\\"technical\\\": \\\"Supplied trend note\\\",\\n      \\\"sector\\\": \\\"Unknown\\\",\\n      \\\"fundamental\\\": \\\"Supplied business note\\\",\\n      \\\"catalyst\\\": \\\"Unknown\\\"\\n    }\\n  ],\\n  \\\"note\\\": \\\"Record which facts need checking next.\\\"\\n}\\n\"); assert.equal(data.candidates.length,2); assert.ok(data.candidates.every(x=>x.technical && x.sector && x.fundamental && x.catalyst)); console.log(''Supplied shortlist notes can be read without live market data.'');'",
+            "exitCode": 0,
+            "output": "Supplied shortlist notes can be read without live market data."
+          },
+          {
+            "command": "& 'C:\\Users\\Ash\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe' '--test' '--test-reporter=tap' 'compare.test.mjs'",
+            "exitCode": 0,
+            "output": "TAP version 13\n# Subtest: a supplied shortlist produces an actual persisted comparison and note\nok 1 - a supplied shortlist produces an actual persisted comparison and note\n  ---\n  duration_ms: 96.4166\n  type: 'test'\n  ...\n# Subtest: invalid input produces a useful error and no persisted result\nok 2 - invalid input produces a useful error and no persisted result\n  ---\n  duration_ms: 93.353\n  type: 'test'\n  ...\n# Subtest: existing reviews and source files are preserved\nok 3 - existing reviews and source files are preserved\n  ---\n  duration_ms: 188.9301\n  type: 'test'\n  ...\n# Subtest: missing dimensions and duplicate symbols are rejected; input stays unchanged\nok 4 - missing dimensions and duplicate symbols are rejected; input stays unchanged\n  ---\n  duration_ms: 0.9467\n  type: 'test'\n  ...\n1..4\n# tests 4\n# suites 0\n# pass 4\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 486.1031"
+          }
+        ],
+        "capabilities": [
+          "Compare supplied facts",
+          "Save one review note"
+        ]
+      },
+      "confirmed": {
+        "intention": "Build a paid decision-support business for active US swing traders, small enough for a solo technical founder to run with limited support time.",
+        "user": "US self-directed swing traders who already screen momentum/growth stocks, maintain a shortlist, and compare candidates during scheduled evening or weekend reviews.",
+        "problem": "During a shortlist review, these traders struggle to compare plausible candidates consistently because technical, sector, fundamental and catalyst notes are scattered. They repeat the synthesis and lose track of their reasoning, using charts, research pages and spreadsheets today."
+      },
+      "launchPack": {
+        "who": "US self-directed swing traders who already screen momentum/growth stocks, maintain a shortlist, and compare candidates during scheduled evening or weekend reviews.",
+        "problem": "During a shortlist review, these traders struggle to compare plausible candidates consistently because technical, sector, fundamental and catalyst notes are scattered. They repeat the synthesis and lose track of their reasoning, using charts, research pages and spreadsheets today.",
+        "style": "small_private_pilot",
+        "routes": [
+          {
+            "habitatId": "swing-community",
+            "where": "r/swingtrading scheduled-work and candidate-selection discussions",
+            "avenue": "Read current rules and ask moderators where needed before a founder posts.",
+            "sourceIds": [
+              "scheduled",
+              "selection",
+              "switching",
+              "old-alert"
+            ],
+            "observed": [
+              "Public swing-trading discussions and the TradingView community contain relevant workflows; recruitment permission is unverified.",
+              "Scheduled shortlist research appears in public discussions, but the exact paying cohort remains unverified."
+            ],
+            "inference": "Public workflow language close to the revised problem.",
+            "limitation": "Observed discussion, not an invitation, contact list or permission to recruit. Participation rules, timing and access must be checked before contacting anyone.",
+            "routeVerified": false,
+            "message": "I have an early version for US self-directed swing traders who already screen momentum/growth stocks, maintain a shortlist, and compare candidates during scheduled evening or weekend reviews.. It lets someone Read a local shortlist, compare the supplied facts, save one review note. If participation here is appropriate, I would like to watch one relevant person try that task and hear where it falls short. This is an early workflow test, not a claim of proven outcomes."
+          },
+          {
+            "habitatId": "tv-community",
+            "where": "TradingView community discussions",
+            "avenue": "Check current community rules and participate transparently; no outreach performed.",
+            "sourceIds": [
+              "switching",
+              "old-alert",
+              "scheduled"
+            ],
+            "observed": [
+              "Public swing-trading discussions and the TradingView community contain relevant workflows; recruitment permission is unverified.",
+              "A switcher values dynamic watchlists and scanning while considering the loss of a familiar ecosystem. Repetition is unestablished."
+            ],
+            "inference": "Existing-tool satisfaction and switching are central questions.",
+            "limitation": "No verified route or response rate. Participation rules, timing and access must be checked before contacting anyone.",
+            "routeVerified": false,
+            "message": "I have an early version for US self-directed swing traders who already screen momentum/growth stocks, maintain a shortlist, and compare candidates during scheduled evening or weekend reviews.. It lets someone Read a local shortlist, compare the supplied facts, save one review note. If participation here is appropriate, I would like to watch one relevant person try that task and hear where it falls short. This is an early workflow test, not a claim of proven outcomes."
+          }
+        ],
+        "objective": "Does one comparison reduce repeated checking?",
+        "task": "Read a local shortlist, compare the supplied facts, save one review note",
+        "observe": [
+          "Can the user start and complete this task without coaching?",
+          "Where do they hesitate or return to their existing workflow?",
+          "Do they get a useful result and choose to use it again?"
+        ],
+        "limitations": [
+          "No network, accounts or additional dependencies.",
+          "Passing software tests does not establish customer usefulness."
+        ],
+        "outreach": "founder_controlled_not_sent"
+      },
+      "launchSummary": "Executive summary\nSynthetic product-test fixture. The reviewed MVP is for US self-directed swing traders who already screen momentum/growth stocks, maintain a shortlist, and compare candidates during scheduled evening or weekend reviews.. I would start with one relevant user through r/swingtrading scheduled-work and candidate-selection discussions, using the task we already built. Watch whether they reach the core result without coaching; no message has been sent.\n\nNext\nReview the first-user launch pack, then paste what happened.\n\nThe extra detail is optional — you can continue without reading it.\nView launch pack | View routes | View MVP limitations",
+      "observations": [
+        {
+          "kind": "observed_behavior",
+          "excerpt": "u1 compared the supplied technical, sector, fundamental and catalyst notes and identified a missing fact.",
+          "userRef": "u1",
+          "sessionRef": "s1",
+          "theme": "Core comparison",
+          "outcome": "positive",
+          "signal": "value",
+          "id": "7e8f95f1-06a5-424b-b2ab-0b34f88002f0",
+          "importId": "eaa5bd5c-ca4a-42b1-9009-0cd24a24f00e",
+          "provenance": "synthetic_fixture"
+        },
+        {
+          "kind": "observed_behavior",
+          "excerpt": "u1 hesitated at the technical-note input format.",
+          "userRef": "u1",
+          "sessionRef": "s1",
+          "theme": "Core comparison",
+          "outcome": "positive",
+          "signal": "friction",
+          "id": "abf9a096-72b1-418a-985b-97bc3cd4f82d",
+          "importId": "eaa5bd5c-ca4a-42b1-9009-0cd24a24f00e",
+          "provenance": "synthetic_fixture"
+        },
+        {
+          "kind": "repeated_use",
+          "excerpt": "u2 returned without coaching to compare another supplied shortlist.",
+          "userRef": "u2",
+          "sessionRef": "s2",
+          "theme": "Core comparison",
+          "outcome": "positive",
+          "signal": "value",
+          "id": "0648c3d5-c67f-4558-a17d-0d3a1e15219f",
+          "importId": "eaa5bd5c-ca4a-42b1-9009-0cd24a24f00e",
+          "provenance": "synthetic_fixture"
+        },
+        {
+          "kind": "feature_request",
+          "excerpt": "u2 requested automated discovery and winning-trade predictions.",
+          "userRef": "u2",
+          "sessionRef": "s2",
+          "theme": "Core comparison",
+          "outcome": "unknown",
+          "signal": "none",
+          "id": "3f95ec2a-62da-4f7b-8dcc-735abcf9dd4a",
+          "importId": "eaa5bd5c-ca4a-42b1-9009-0cd24a24f00e",
+          "provenance": "synthetic_fixture"
+        }
+      ],
+      "learning": {
+        "summary": "There is a useful workflow signal here; it is still early evidence, not validation.",
+        "destination": "act",
+        "recommendation": "Test one clearer instruction at the observed point of hesitation, using the same core journey.",
+        "evidenceIds": [
+          "7e8f95f1-06a5-424b-b2ab-0b34f88002f0",
+          "abf9a096-72b1-418a-985b-97bc3cd4f82d",
+          "0648c3d5-c67f-4558-a17d-0d3a1e15219f",
+          "3f95ec2a-62da-4f7b-8dcc-735abcf9dd4a"
+        ],
+        "keep": [
+          "Read a local shortlist, compare the supplied facts, save one review note"
+        ],
+        "test": [
+          "Test one clearer instruction at the observed point of hesitation, using the same core journey."
+        ],
+        "park": [
+          "Live prices",
+          "Portfolio dashboard",
+          "Request: u2 requested automated discovery and winning-trade predictions."
+        ],
+        "contradictions": [],
+        "unknowns": [
+          "Customer validation and market fit are not established.",
+          "Evidence is supplied by the founder/host, not independently verified.",
+          "No payment evidence was supplied."
+        ],
+        "themes": [
+          {
+            "theme": "Core comparison",
+            "users": 2,
+            "observations": 4
+          }
+        ],
+        "counts": {
+          "opinion": 0,
+          "reported_behavior": 0,
+          "observed_behavior": 2,
+          "commitment": 0,
+          "payment": 0,
+          "repeated_use": 1,
+          "technical_result": 0,
+          "outreach_sent": 0,
+          "conversation": 0,
+          "no_response": 0,
+          "feature_request": 1,
+          "unknown": 0
+        },
+        "validation": "not_established"
+      },
+      "summary": "Executive summary\nSynthetic product-test fixture. There is a useful workflow signal here; it is still early evidence, not validation. Test one clearer instruction at the observed point of hesitation, using the same core journey.\n\nWhat we learned\n- Reported observation: u1 compared the supplied technical, sector, fundamental and catalyst notes and identified a missing fact.\n- Reported observation: u1 hesitated at the technical-note input format.\n- Reported observation: u2 returned without coaching to compare another supplied shortlist.\n\nWhat I would leave parked\n- Live prices\n- Portfolio dashboard\n\nNext\nApprove next direction | Review evidence | Challenge recommendation\n\nThe extra detail is optional — you can continue without reading it.\nView evidence | View sessions | View contradictions | View feature requests | View sources\nTechnical success is not customer validation.",
+      "decision": {
+        "choice": "approve",
+        "quote": "Synthetic founder: approve this next direction for review; do not build it yet.",
+        "destination": "act",
+        "recordedAt": "2026-09-27T00:05:06.840Z"
+      },
+      "status": "decided",
+      "returnLoop": null,
+      "codeUnchangedAfterLearning": true,
+      "parkPreserved": true,
+      "messagesSentByCrumb": 0,
+      "m4Started": false
+    }
+  ]
+}

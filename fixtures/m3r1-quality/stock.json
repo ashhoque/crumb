@@ -1,0 +1,2637 @@
+{
+  "contractVersion": 2,
+  "expectedVersion": 0,
+  "synthetic": true,
+  "stage": "evaluate",
+  "project": {
+    "name": "M3-R1 quality stock rehearsal",
+    "entry": "fresh",
+    "artifacts": [],
+    "permissionQuote": null
+  },
+  "preferredName": {
+    "value": "Sam",
+    "source": "Synthetic founder explicitly says: Please call me Sam. This is not the real founder identity."
+  },
+  "intention": {
+    "status": "provided",
+    "goal": "solo_profit",
+    "statement": "Build a paid decision-support business for active US swing traders, small enough for a solo technical founder to run with limited support time.",
+    "advice": "Compare commercial demand and data costs with a solo business, without promising trading returns."
+  },
+  "definition": {
+    "user": {
+      "text": "US self-directed swing traders who already screen momentum/growth stocks, maintain a shortlist, and compare candidates during scheduled evening or weekend reviews.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "buyer": {
+      "text": "The individual trader, paying personally if the additional value justifies another subscription.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "problem": {
+      "text": "During a shortlist review, these traders struggle to compare plausible candidates consistently because technical, sector, fundamental and catalyst notes are scattered. They repeat the synthesis and lose track of their reasoning, using charts, research pages and spreadsheets today.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "trigger": {
+      "text": "An evening or weekend review before a multi-day or multi-week position.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "job": {
+      "text": "Compare already discovered candidates and explain a choice consistently.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "workaround": {
+      "text": "Charts, earnings notes and a spreadsheet; alternatives may already be sufficient.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "pain": {
+      "text": "Repeated manual synthesis and changing criteria, reported by the invented founder.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "consequence": {
+      "text": "Lost review time and inconsistent rationale; no measured financial effect.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "frequency": {
+      "text": "Weekly for the invented founder; public discussions show scheduled work but do not measure cohort frequency.",
+      "claimIds": [
+        "founder-context"
+      ],
+      "basis": "observed"
+    },
+    "reason_for_belief": {
+      "text": "Founder workflow experience plus related public behavior, still only a hypothesis.",
+      "claimIds": [
+        "comparison-hypothesis"
+      ],
+      "basis": "inferred"
+    }
+  },
+  "feedbackClaimIds": [],
+  "sources": [
+    {
+      "id": "founder",
+      "title": "Invented stock founder",
+      "url": null,
+      "kind": "founder",
+      "provenance": "synthetic_fixture",
+      "access": "provided",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "Invented rehearsal founder: I screen US momentum and growth stocks each weekend, hold for days or weeks, then compare a shortlist across charts, earnings notes and a spreadsheet. My criteria drift and I repeat the work. I can code and know two traders, but have no paid commitments or data distribution agreement. I want a paid solo business and can do initial interviews, not continuous market-hours support.",
+      "limitation": "Synthetic founder replies; not the actual user or a validated customer.",
+      "archived": false,
+      "independenceKey": "founder",
+      "affiliation": "independent"
+    },
+    {
+      "id": "finviz",
+      "title": "Finviz Elite",
+      "url": "https://finviz.com/elite",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-27",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "Vendor offers screening, charts and real-time capabilities; Elite is USD39.50 monthly or USD299.50 annually. Refresh observation: The inspected FAQ lists USD 39.50 monthly or USD 299.50 annually and a trial that renews unless cancelled. Listed capabilities include screening, quotes, exports and alerts. Those prices do not establish demand for another product.",
+      "limitation": "Posted offer, not payment behavior of the chosen cohort. Historical snapshot originally retrieved 2026-09-23. Refresh: Paraphrased public page inspected through the host web tool; cached delivery may differ from current live content. No API request, customer interview or commercial agreement was performed.",
+      "archived": false,
+      "independenceKey": "finviz",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "tv",
+      "title": "TradingView pricing and capabilities",
+      "url": "https://www.tradingview.com/pricing/",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-27",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "Charting, screeners, watchlists and alerts form an established research workflow. Refresh observation: The comparison lists screeners, technical and fundamental fields, watchlist filters, chart comparison and AI screener requests. Existing capability is meaningful counterevidence to a broad better-screener claim; plan entitlements and checkout pricing remain time-sensitive.",
+      "limitation": "Pricing displayed in a different locale; no US price transposed or purchase data inferred. Historical snapshot originally retrieved 2026-09-23. Refresh: Paraphrased public page inspected through the host web tool; cached delivery may differ from current live content. No API request, customer interview or commercial agreement was performed.",
+      "archived": false,
+      "independenceKey": "tv",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "ts",
+      "title": "TrendSpider product",
+      "url": "https://trendspider.com/product/",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "Vendor combines scanning, chart analysis, strategy testing and the Sidekick AI assistant.",
+      "limitation": "Vendor capability descriptions, not independent satisfaction or outcome evidence.",
+      "archived": false,
+      "independenceKey": "ts",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "zella",
+      "title": "TradeZella pricing",
+      "url": "https://www.tradezella.com/pricing",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "AI journaling, session review and backtesting. Essential shown at USD35/month; banner says 100K+ traders trust the product and 500+ brokers connected.",
+      "limitation": "Vendor totals are undefined and unverified; not active paid customers, retention or revenue.",
+      "archived": false,
+      "independenceKey": "zella",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "danel",
+      "title": "Danelfin AI Score explanation",
+      "url": "https://support.danelfin.com/hc/en-us/articles/4404382038545-What-is-the-AI-Score-How-it-rates-stocks-and-ETFs",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "Vendor describes a 1–10 score estimating market outperformance over three months.",
+      "limitation": "Description of positioning, not proof of prediction accuracy or performance.",
+      "archived": false,
+      "independenceKey": "danel",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "selection",
+      "title": "How do you choose your stocks?",
+      "url": "https://www.reddit.com/r/swingtrading/comments/1rrqx7p/how_do_you_choose_your_stocks/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "A contributor describes selection through technical setup, sector leadership, volume and earnings.",
+      "limitation": "One public self-report; does not establish paid US cohort, prevalence, time lost or willingness to pay.",
+      "archived": false,
+      "independenceKey": "selection",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "scheduled",
+      "title": "Swing trading around a day job",
+      "url": "https://www.reddit.com/r/swingtrading/comments/1upwu2j/how_do_you_actually_swing_trade_around_a_95/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "Contributors describe scheduled evening or weekend research and limiting watchlists.",
+      "limitation": "Mixed public cohort; not every poster has the proposed comparison problem. No measured burden or trading outcomes retained.",
+      "archived": false,
+      "independenceKey": "scheduled",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "switching",
+      "title": "Considering TrendSpider",
+      "url": "https://www.reddit.com/r/swingtrading/comments/1qfwugo/considering_trendspider_questions/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": "2026-01-18",
+      "delivery": "unknown",
+      "retainedText": "A prospective switcher asks about dynamic watchlists, scans and sector strength for scheduled planning; a reply values dynamic lists while noting ecosystem differences.",
+      "limitation": "Initial question and single reply are anecdotes. A later vendor-promotional reply is excluded from independent praise.",
+      "archived": false,
+      "independenceKey": "switching",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "free",
+      "title": "Trading tool sale discussion",
+      "url": "https://www.reddit.com/r/swingtrading/comments/1p328za/for_new_swing_traders_any_good_black_friday_sales/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": "2025-11-21",
+      "delivery": "unknown",
+      "retainedText": "Some posters praise TradingView; another considers a free broker platform sufficient.",
+      "limitation": "Newer-trader cohort and older discussion; useful counterexample, not prevalence or current price evidence.",
+      "archived": false,
+      "independenceKey": "free",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "ai",
+      "title": "ChatGPT and market study discussion",
+      "url": "https://www.reddit.com/r/swingtrading/comments/1m8eyuc/using_chat_gpt_to_trade_and_study_the_market/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "A poster uses personal chart criteria and AI as a second opinion; comments contain both adequate-use reports and inconsistency concerns.",
+      "limitation": "Mixed self-reports and promotional replies. No recurring-theme or trading-performance claim; promoted products excluded as independent evidence.",
+      "archived": false,
+      "independenceKey": "ai",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "old-alert",
+      "title": "Earlier extended-hours alert complaint",
+      "url": "https://www.reddit.com/r/TradingView/comments/1rfex1y/watchlist_alerts_should_work_in_prepost_market_too/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "Earlier user complaint about watchlist alerts outside regular hours.",
+      "limitation": "Historical complaint; current official documentation contradicts treating this as an open gap.",
+      "archived": false,
+      "independenceKey": "old-alert",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "alert-doc",
+      "title": "Current watchlist alert documentation",
+      "url": "https://www.tradingview.com/support/solutions/43000739708-watchlist-alerts-your-trading-edge/",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "Current documentation supports extended sessions for US stock and ETF watchlist alerts.",
+      "limitation": "Capability documentation rebuts a proposed gap; says nothing about satisfaction, revenue or adoption.",
+      "archived": false,
+      "independenceKey": "alert-doc",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "release",
+      "title": "TradingView extended-hours release",
+      "url": "https://www.tradingview.com/blog/en/extended-hours-support-59226/",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": "2026-07-02",
+      "delivery": "unknown",
+      "retainedText": "A dated product release describes extended-hours support.",
+      "limitation": "One shipping event; not a verified release cadence, demand, retention or revenue.",
+      "archived": false,
+      "independenceKey": "release",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "terms",
+      "title": "TrendSpider data terms",
+      "url": "https://trendspider.com/terms-of-service/",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "Terms include market-data entitlements and restrictions on retransmission of licensed data.",
+      "limitation": "Feasibility constraint to investigate with an actual provider; not a legal conclusion or cost quote.",
+      "archived": false,
+      "independenceKey": "terms",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "service",
+      "title": "Stock trader service comparison",
+      "url": "https://www.stockstraderservice.com/compare",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "snippet",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "Search snippet advertises explained ranked overnight shortlists for several trading styles.",
+      "limitation": "Only search snippet accessible; page open failed. Biased vendor comparison, no gap or quality conclusion.",
+      "archived": false,
+      "independenceKey": "service",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "tools-snippet",
+      "title": "Trading platform discussion",
+      "url": "https://www.reddit.com/r/swingtrading/comments/1sldpqu/what_platform_are_you_all_using_for_trading/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "snippet",
+      "retrievedOn": "2026-09-23",
+      "publishedOn": null,
+      "delivery": "unknown",
+      "retainedText": "Search snippet mentions using separate screening, charting and broker tools.",
+      "limitation": "Open failed with 503; snippet only, not a full inspected discussion.",
+      "archived": false,
+      "independenceKey": "tools-snippet",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "q-sec",
+      "title": "SEC Form 13F FAQ",
+      "url": "https://www.sec.gov/rules-regulations/staff-guidance/division-investment-management-frequently-asked-questions/frequently-asked-questions-about-form-13f",
+      "kind": "filing",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-27",
+      "publishedOn": null,
+      "delivery": "cached",
+      "retainedText": "The SEC describes quarterly institutional holdings and filing deadlines generally 45 days after quarter-end. These disclosures are not a live transaction feed.",
+      "limitation": "Paraphrased public page inspected through the host web tool; cached delivery may differ from current live content. No API request, customer interview or commercial agreement was performed.",
+      "archived": false,
+      "independenceKey": "q-sec",
+      "affiliation": "independent"
+    },
+    {
+      "id": "q-alpha",
+      "title": "Alpha Vantage premium",
+      "url": "https://www.alphavantage.co/premium/",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-27",
+      "publishedOn": null,
+      "delivery": "cached",
+      "retainedText": "The provider lists a standard allowance of 25 API requests per day and premium access for higher volume or premium functions. A commercial quote and final operating cost were not obtained.",
+      "limitation": "Paraphrased public page inspected through the host web tool; cached delivery may differ from current live content. No API request, customer interview or commercial agreement was performed.",
+      "archived": false,
+      "independenceKey": "q-alpha",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "q-license",
+      "title": "Alpha Vantage terms",
+      "url": "https://www.alphavantage.co/terms_of_service/",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-27",
+      "publishedOn": null,
+      "delivery": "cached",
+      "retainedText": "The terms describe personal non-commercial use absent a separate written agreement. Distribution through a commercial product requires resolving the applicable agreement; a personal API key is not proof of commercial rights.",
+      "limitation": "Paraphrased public page inspected through the host web tool; cached delivery may differ from current live content. No API request, customer interview or commercial agreement was performed.",
+      "archived": false,
+      "independenceKey": "q-license",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "q-pine",
+      "title": "TradingView Pine Screener requirements",
+      "url": "https://www.tradingview.com/support/solutions/43000742436-tradingview-pine-screener-key-features-and-requirements/",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-27",
+      "publishedOn": null,
+      "delivery": "cached",
+      "retainedText": "Pine Screener supports custom watchlists and mixed assets. Documented limits include one indicator per screen, five separate request calls, specified timeframes and calculation on the last 500 bars. This contradicts a blanket claim that comparison or watchlist scanning is absent.",
+      "limitation": "Paraphrased public page inspected through the host web tool; cached delivery may differ from current live content. No API request, customer interview or commercial agreement was performed.",
+      "archived": false,
+      "independenceKey": "q-pine",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "q-lovehate",
+      "title": "TradingView user discussion",
+      "url": "https://www.reddit.com/r/TradingView/comments/1phy727/biggest_pet_peeves_about_tradingview/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-27",
+      "publishedOn": null,
+      "delivery": "cached",
+      "retainedText": "A poster praises financial statements and the earnings calendar while describing mixed-asset watchlist/screener friction. Commenters raise other concerns. This is anecdotal, not verified current product failure or willingness to switch.",
+      "limitation": "Paraphrased public page inspected through the host web tool; cached delivery may differ from current live content. No API request, customer interview or commercial agreement was performed.",
+      "archived": false,
+      "independenceKey": "q-lovehate",
+      "affiliation": "independent"
+    },
+    {
+      "id": "q-habitat",
+      "title": "Swing-trading data workflow discussion",
+      "url": "https://www.reddit.com/r/swingtrading/comments/1vvzsm7/simple_question_where_do_you_get_the_data/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-09-27",
+      "publishedOn": null,
+      "delivery": "cached",
+      "retainedText": "Participants describe using Finviz or other screeners, moving candidates into TradingView, and using free tools or broker data. One warns about stale prices, split adjustments and missing candles. Their paid demand and cohort identity are unverified.",
+      "limitation": "Paraphrased public page inspected through the host web tool; cached delivery may differ from current live content. No API request, customer interview or commercial agreement was performed.",
+      "archived": false,
+      "independenceKey": "q-habitat",
+      "affiliation": "independent"
+    },
+    {
+      "id": "q-rules",
+      "title": "Swing-trading participation rules access attempt",
+      "url": "https://www.reddit.com/r/swingtrading/about/rules/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "unavailable",
+      "retrievedOn": "2026-09-27",
+      "publishedOn": null,
+      "delivery": "cached",
+      "retainedText": "",
+      "limitation": "Redirected to a rules page without readable community rules. Recruitment permission was not verified.",
+      "archived": false,
+      "independenceKey": "q-rules",
+      "affiliation": "unknown"
+    }
+  ],
+  "claims": [
+    {
+      "id": "founder-context",
+      "statement": "Invented rehearsal founder: I screen US momentum and growth stocks each weekend, hold for days or weeks, then compare a shortlist across charts, earnings notes and a spreadsheet. My criteria drift and I repeat the work. I can code and know two traders, but have no paid commitments or data distribution agreement. I want a paid solo business and can do initial interviews, not continuous market-hours support.",
+      "basis": "founder_reported",
+      "sourceIds": [
+        "founder"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "paid-alternatives",
+      "statement": "Paid tools offer screening, charting, AI and trade review; a price is not willingness to buy another tool.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "finviz",
+        "tv",
+        "ts",
+        "zella"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "rank-alternative",
+      "statement": "An existing AI score targets a three-month horizon; fit with multi-day comparison is uncertain.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "danel"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "scheduled-work",
+      "statement": "Scheduled shortlist research appears in public discussions, but the exact paying cohort remains unverified.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "scheduled",
+        "selection"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "love-hate",
+      "statement": "A switcher values dynamic watchlists and scanning while considering the loss of a familiar ecosystem. Repetition is unestablished.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "switching"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "free-enough",
+      "statement": "A free broker workflow is adequate for at least one commenter in a newer-trader discussion.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "free"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "ai-substitute",
+      "statement": "Generic AI is already part of some self-reported research workflows; consistency and trust are unresolved.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "ai"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "old-gap",
+      "statement": "An old alert complaint cannot establish an open gap when current official docs support that session.",
+      "basis": "inference",
+      "sourceIds": [
+        "old-alert",
+        "alert-doc"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "release-proxy",
+      "statement": "One dated TradingView feature release is a product-activity proxy only.",
+      "basis": "public_proxy",
+      "sourceIds": [
+        "release"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "vendor-users",
+      "statement": "TradeZella says 100K+ traders trust it; this is an undefined vendor total.",
+      "basis": "reported_metric",
+      "sourceIds": [
+        "zella"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": {
+        "name": "Vendor claimed traders",
+        "value": "100K+",
+        "unit": "traders (definition unspecified)",
+        "period": "Banner observed 2026-09-23; accumulation period unspecified",
+        "reportedBy": "TradeZella"
+      },
+      "quote": null
+    },
+    {
+      "id": "revenue-unknown",
+      "statement": "Revenue, retention, paid cohort size and reliable market prevalence were not established.",
+      "basis": "unknown",
+      "sourceIds": [],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "data-constraint",
+      "statement": "Data rights and entitlements may affect a solo business; a commercial license and operating cost remain unknown.",
+      "basis": "inference",
+      "sourceIds": [
+        "terms"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "service-option",
+      "statement": "An explained-shortlist service appears in a vendor search snippet; quality and customer outcomes are unknown.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "service"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "comparison-hypothesis",
+      "statement": "Comparison among already screened candidates is closer to this founder’s experience than broad discovery; incremental value remains unproven.",
+      "basis": "inference",
+      "sourceIds": [
+        "founder",
+        "scheduled",
+        "selection"
+      ],
+      "supports": [
+        "scheduled-work"
+      ],
+      "challenges": [
+        "paid-alternatives",
+        "free-enough",
+        "ai-substitute"
+      ],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "habit",
+      "statement": "Public swing-trading discussions and the TradingView community contain relevant workflows; recruitment permission is unverified.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "scheduled",
+        "switching",
+        "old-alert"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bounded public research in a synthetic founder rehearsal; not customer validation.",
+      "important": false,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "q-sec-claim",
+      "statement": "The SEC describes quarterly institutional holdings and filing deadlines generally 45 days after quarter-end. These disclosures are not a live transaction feed.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "q-sec"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Public source observation, not customer validation. Discussion authors/cohort and product version are unverified.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "q-alpha-claim",
+      "statement": "The provider lists a standard allowance of 25 API requests per day and premium access for higher volume or premium functions. A commercial quote and final operating cost were not obtained.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "q-alpha"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Public source observation, not customer validation. Discussion authors/cohort and product version are unverified.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "q-license-claim",
+      "statement": "The terms describe personal non-commercial use absent a separate written agreement. Distribution through a commercial product requires resolving the applicable agreement; a personal API key is not proof of commercial rights.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "q-license"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Public source observation, not customer validation. Discussion authors/cohort and product version are unverified.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "q-pine-claim",
+      "statement": "Pine Screener supports custom watchlists and mixed assets. Documented limits include one indicator per screen, five separate request calls, specified timeframes and calculation on the last 500 bars. This contradicts a blanket claim that comparison or watchlist scanning is absent.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "q-pine"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Public source observation, not customer validation. Discussion authors/cohort and product version are unverified.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "q-lovehate-claim",
+      "statement": "A poster praises financial statements and the earnings calendar while describing mixed-asset watchlist/screener friction. Commenters raise other concerns. This is anecdotal, not verified current product failure or willingness to switch.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "q-lovehate"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Public source observation, not customer validation. Discussion authors/cohort and product version are unverified. A single anecdote, not independently repeated consensus.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "q-habitat-claim",
+      "statement": "Participants describe using Finviz or other screeners, moving candidates into TradingView, and using free tools or broker data. One warns about stale prices, split adjustments and missing candles. Their paid demand and cohort identity are unverified.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "q-habitat"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Public source observation, not customer validation. Discussion authors/cohort and product version are unverified.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "q-tvprice-claim",
+      "statement": "The comparison lists screeners, technical and fundamental fields, watchlist filters, chart comparison and AI screener requests. Existing capability is meaningful counterevidence to a broad better-screener claim; plan entitlements and checkout pricing remain time-sensitive.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "tv"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Public source observation, not customer validation. Discussion authors/cohort and product version are unverified.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "q-finviz-claim",
+      "statement": "The inspected FAQ lists USD 39.50 monthly or USD 299.50 annually and a trial that renews unless cancelled. Listed capabilities include screening, quotes, exports and alerts. Those prices do not establish demand for another product.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "finviz"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Public source observation, not customer validation. Discussion authors/cohort and product version are unverified.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    }
+  ],
+  "research": [
+    {
+      "id": "landscape",
+      "question": "Which accessible commercial and AI alternatives, prices, activity signals and current documentation constrain the comparison idea?",
+      "capability": "provided_sources",
+      "queryBudget": 12,
+      "pageBudget": 24,
+      "budgetReason": null,
+      "queries": [],
+      "inspectedSourceIds": [
+        "finviz",
+        "tv",
+        "ts",
+        "zella",
+        "danel",
+        "old-alert",
+        "alert-doc",
+        "release",
+        "selection"
+      ],
+      "stopReason": "coverage_sufficient",
+      "limitation": "Public pages actually inspected during the proposal and implementation. This receipt retains selected pages, not a reconstructed search history. Commercial adoption and performance are not established."
+    },
+    {
+      "id": "pain-search",
+      "question": "Do scheduled swing traders describe shortlist comparison pain, adequate alternatives, services, switching or AI; what remains unknown about payment and data economics?",
+      "capability": "host_research",
+      "queryBudget": 12,
+      "pageBudget": 24,
+      "budgetReason": null,
+      "queries": [
+        {
+          "text": "site.reddit.com/r/swingtrading \"watchlist\" \"time\" \"spreadsheet\"",
+          "materialFinding": true
+        },
+        {
+          "text": "site.reddit.com/r/swingtrading \"compare\" \"candidates\"",
+          "materialFinding": false
+        },
+        {
+          "text": "site.reddit.com/r/swingtrading \"TrendSpider\" \"TradingView\" worth",
+          "materialFinding": true
+        },
+        {
+          "text": "site.reddit.com/r/swingtrading \"weekend\" \"review\" stocks",
+          "materialFinding": true
+        },
+        {
+          "text": "swing trader shortlist comparison spreadsheet ChatGPT stock research service",
+          "materialFinding": true
+        },
+        {
+          "text": "site.trendspider.com pricing terms market data redistribution",
+          "materialFinding": true
+        },
+        {
+          "text": "site.finviz.com terms data commercial use",
+          "materialFinding": false
+        },
+        {
+          "text": "site.tradezella.com funding revenue customers",
+          "materialFinding": false
+        }
+      ],
+      "inspectedSourceIds": [
+        "scheduled",
+        "switching",
+        "free",
+        "ai",
+        "terms"
+      ],
+      "stopReason": "coverage_sufficient",
+      "limitation": "Eight actual queries, selected inspected sources retained. Exact comparison language was sparse, so investigation broadened to scheduled reviews and substitutes. Snippet-only service and platform results excluded from inspected counts. Coverage sufficient for a qualified rehearsal decision; no claim all questions are resolved."
+    },
+    {
+      "id": "founder-review",
+      "question": "Does the invented founder have relevant insight, skills, access, support capacity and commercial intent?",
+      "capability": "synthetic_fixture",
+      "queryBudget": 0,
+      "pageBudget": 1,
+      "budgetReason": null,
+      "queries": [],
+      "inspectedSourceIds": [
+        "founder"
+      ],
+      "stopReason": "coverage_sufficient",
+      "limitation": "Invented behavioral clarification only; cannot establish the actual founder’s fit or customer access."
+    },
+    {
+      "id": "q-refresh",
+      "question": "For the confirmed scheduled shortlist-review cohort, what current technical access/freshness limits, adequate alternatives and public workflow observations affect the opportunity?",
+      "capability": "host_research",
+      "queryBudget": 12,
+      "pageBudget": 24,
+      "budgetReason": null,
+      "queries": [
+        {
+          "text": "SEC Form 13F 45 days end quarter holdings information managers",
+          "materialFinding": true
+        },
+        {
+          "text": "Alpha Vantage API free 25 requests per day premium commercial use",
+          "materialFinding": true
+        },
+        {
+          "text": "TradingView compare stocks screener watchlist community complaints price swing trading",
+          "materialFinding": true
+        }
+      ],
+      "inspectedSourceIds": [
+        "q-sec",
+        "q-alpha",
+        "q-license",
+        "q-pine",
+        "q-lovehate",
+        "q-habitat",
+        "tv",
+        "finviz"
+      ],
+      "stopReason": "coverage_sufficient",
+      "limitation": "Focused live host search and cached-page inspection complement retained earlier research. No API/data integration or real interviews. Rules route was attempted but unavailable. Prior source dates remain unchanged."
+    }
+  ],
+  "competitors": [
+    {
+      "id": "tv",
+      "name": "TradingView",
+      "categories": [
+        "incumbent",
+        "direct"
+      ],
+      "fields": {
+        "target": {
+          "text": "Chart and watchlist users.",
+          "claimIds": [
+            "paid-alternatives"
+          ],
+          "basis": "observed"
+        },
+        "workflow": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "positioning": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "pricing": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "capabilities": {
+          "text": "Screening, watchlists, chart comparison, fundamentals and Pine-based custom checks are already available.",
+          "claimIds": [
+            "q-pine-claim",
+            "q-tvprice-claim"
+          ],
+          "basis": "observed"
+        },
+        "love": {
+          "text": "A public poster values financial statements and the earnings calendar; this remains one anecdote.",
+          "claimIds": [
+            "q-lovehate-claim"
+          ],
+          "basis": "observed"
+        },
+        "hate": {
+          "text": "The same discussion describes screener/watchlist friction; current version and exact cohort are uncertain.",
+          "claimIds": [
+            "q-lovehate-claim"
+          ],
+          "basis": "observed"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": "Familiar chart workflows and ecosystem matter to a prospective switcher.",
+          "claimIds": [
+            "love-hate"
+          ],
+          "basis": "observed"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": "Possible gap: consistency of cross-tool rationale, not absence of screening. Pine Screener and existing chart comparison are counterevidence.",
+          "claimIds": [
+            "q-pine-claim",
+            "q-tvprice-claim"
+          ],
+          "basis": "inferred"
+        }
+      },
+      "tractionClaimIds": [
+        "release-proxy"
+      ]
+    },
+    {
+      "id": "finviz",
+      "name": "Finviz",
+      "categories": [
+        "incumbent"
+      ],
+      "fields": {
+        "target": {
+          "text": "Self-directed market screeners.",
+          "claimIds": [
+            "paid-alternatives"
+          ],
+          "basis": "observed"
+        },
+        "workflow": {
+          "text": "Screen candidates and inspect charts.",
+          "claimIds": [
+            "paid-alternatives"
+          ],
+          "basis": "observed"
+        },
+        "positioning": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "pricing": {
+          "text": "Inspected FAQ: USD 39.50 monthly or 299.50 yearly, with renewing trial terms; recheck before purchase.",
+          "claimIds": [
+            "q-finviz-claim"
+          ],
+          "basis": "observed"
+        },
+        "capabilities": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "love": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "hate": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        }
+      },
+      "tractionClaimIds": []
+    },
+    {
+      "id": "ts",
+      "name": "TrendSpider",
+      "categories": [
+        "direct",
+        "new_ai"
+      ],
+      "fields": {
+        "target": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "workflow": {
+          "text": "Scan, analyze and test strategies with an AI assistant.",
+          "claimIds": [
+            "paid-alternatives"
+          ],
+          "basis": "observed"
+        },
+        "positioning": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "pricing": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "capabilities": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "love": {
+          "text": "One reply values dynamic lists; repeated independent praise unestablished.",
+          "claimIds": [
+            "love-hate"
+          ],
+          "basis": "observed"
+        },
+        "hate": {
+          "text": "An ecosystem tradeoff appears; no repeated cohort-specific complaint established.",
+          "claimIds": [
+            "love-hate"
+          ],
+          "basis": "observed"
+        },
+        "complexity": {
+          "text": "Multiple requested controls imply workflow fit matters; onboarding burden is unknown.",
+          "claimIds": [
+            "love-hate"
+          ],
+          "basis": "inferred"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        }
+      },
+      "tractionClaimIds": []
+    },
+    {
+      "id": "danel",
+      "name": "Danelfin",
+      "categories": [
+        "new_ai",
+        "adjacent"
+      ],
+      "fields": {
+        "target": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "workflow": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "positioning": {
+          "text": "AI scoring for a three-month relative-performance horizon.",
+          "claimIds": [
+            "rank-alternative"
+          ],
+          "basis": "observed"
+        },
+        "pricing": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "capabilities": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "love": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "hate": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": "Fit for a days-to-weeks comparison workflow remains a question, not an underserved segment proven.",
+          "claimIds": [
+            "rank-alternative"
+          ],
+          "basis": "inferred"
+        },
+        "gaps": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        }
+      },
+      "tractionClaimIds": []
+    },
+    {
+      "id": "zella",
+      "name": "TradeZella",
+      "categories": [
+        "adjacent",
+        "new_ai"
+      ],
+      "fields": {
+        "target": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "workflow": {
+          "text": "Journal trades and review sessions with AI.",
+          "claimIds": [
+            "paid-alternatives"
+          ],
+          "basis": "observed"
+        },
+        "positioning": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "pricing": {
+          "text": "Essential USD35 monthly.",
+          "claimIds": [
+            "paid-alternatives"
+          ],
+          "basis": "observed"
+        },
+        "capabilities": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "love": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "hate": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        }
+      },
+      "tractionClaimIds": [
+        "vendor-users",
+        "revenue-unknown"
+      ]
+    },
+    {
+      "id": "service",
+      "name": "Explained-shortlist service",
+      "categories": [
+        "service"
+      ],
+      "fields": {
+        "target": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "workflow": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "positioning": {
+          "text": "Vendor snippet advertises ranked shortlists; full page unavailable.",
+          "claimIds": [
+            "service-option"
+          ],
+          "basis": "observed"
+        },
+        "pricing": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "capabilities": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "love": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "hate": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        }
+      },
+      "tractionClaimIds": []
+    },
+    {
+      "id": "manual",
+      "name": "Existing charts, notes and spreadsheets",
+      "categories": [
+        "manual",
+        "do_nothing"
+      ],
+      "fields": {
+        "target": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "workflow": {
+          "text": "Keep the existing manual comparison routine.",
+          "claimIds": [
+            "founder-context"
+          ],
+          "basis": "observed"
+        },
+        "positioning": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "pricing": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "capabilities": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "love": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "hate": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": "Additional recording may add work instead of removing it.",
+          "claimIds": [
+            "comparison-hypothesis"
+          ],
+          "basis": "inferred"
+        }
+      },
+      "tractionClaimIds": []
+    },
+    {
+      "id": "generic",
+      "name": "General AI assistant",
+      "categories": [
+        "generic_ai"
+      ],
+      "fields": {
+        "target": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "workflow": {
+          "text": "Use existing personal criteria and notes with an AI second opinion.",
+          "claimIds": [
+            "ai-substitute"
+          ],
+          "basis": "observed"
+        },
+        "positioning": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "pricing": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "capabilities": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "love": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "hate": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "complexity": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "onboarding": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "missing_workflows": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "switching": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "underserved": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "gaps": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        }
+      },
+      "tractionClaimIds": []
+    }
+  ],
+  "adjacent": [
+    {
+      "id": "journal-review",
+      "problem": "Recover and learn from the rationale after a trade.",
+      "reasonClaimIds": [
+        "paid-alternatives",
+        "comparison-hypothesis"
+      ],
+      "comparison": {
+        "pain_urgency": "Repeated post-trade review pain was not established for this cohort.",
+        "frequency": "Potentially per completed trade; unknown in this cohort.",
+        "spending": "TradeZella offers a paid alternative; extra willingness to pay is unknown.",
+        "reachability": "Related trader communities, permission unverified.",
+        "competition_gaps": "Established journaling/AI tools weaken an assumed open gap.",
+        "founder_fit": "Near the founder’s workflow, but personal insight is stronger before entry.",
+        "reusable_code": "No implementation selected; do not turn adjacency into scope.",
+        "learning_cost": "Ask about the last completed trade and how rationale was reviewed."
+      }
+    },
+    {
+      "id": "alert-reliability",
+      "problem": "Reliably follow watchlist conditions outside regular hours.",
+      "reasonClaimIds": [
+        "old-gap"
+      ],
+      "comparison": {
+        "pain_urgency": "Earlier complaint exists but may be obsolete.",
+        "frequency": "Depends on sessions and alert use; unknown.",
+        "spending": "Existing chart subscription may cover it.",
+        "reachability": "TradingView community contains discussion; recruitment unverified.",
+        "competition_gaps": "Current documentation addresses the apparent capability gap.",
+        "founder_fit": "Market-hours reliability could conflict with solo support constraints.",
+        "reusable_code": "No proposed architecture or reuse commitment.",
+        "learning_cost": "Check the current documented setting before considering a new problem."
+      }
+    }
+  ],
+  "habitats": [
+    {
+      "id": "q-swing-habitat",
+      "kind": "online",
+      "place": "r/swingtrading: data-source and screener workflow discussion",
+      "observedClaimIds": [
+        "q-habitat-claim"
+      ],
+      "likelyUsers": "Self-directed traders, inferred from the discussion; exact scheduled-review cohort and buyer intent are unknown.",
+      "relevance": "Participants describe screening candidates and moving them into charting tools, close to the confirmed comparison workflow.",
+      "participation": {
+        "route": null,
+        "verified": false,
+        "sourceIds": []
+      },
+      "limitation": "Read the public discussion for language; rules/recruitment permission were unavailable, so do not post or message automatically."
+    },
+    {
+      "id": "swing-community",
+      "kind": "online",
+      "place": "r/swingtrading scheduled-work and candidate-selection discussions",
+      "observedClaimIds": [
+        "habit",
+        "scheduled-work"
+      ],
+      "likelyUsers": "Self-directed traders discussing scheduled reviews; exact cohort must be screened.",
+      "relevance": "Public workflow language close to the revised problem.",
+      "participation": {
+        "route": "Read current rules and ask moderators where needed before a founder posts.",
+        "verified": false,
+        "sourceIds": [
+          "scheduled",
+          "selection"
+        ]
+      },
+      "limitation": "Observed discussion, not an invitation, contact list or permission to recruit."
+    },
+    {
+      "id": "tv-community",
+      "kind": "online",
+      "place": "TradingView community discussions",
+      "observedClaimIds": [
+        "habit",
+        "love-hate"
+      ],
+      "likelyUsers": "Chart/watchlist users; many may be outside the selected swing-trader cohort.",
+      "relevance": "Existing-tool satisfaction and switching are central questions.",
+      "participation": {
+        "route": "Check current community rules and participate transparently; no outreach performed.",
+        "verified": false,
+        "sourceIds": [
+          "switching",
+          "old-alert"
+        ]
+      },
+      "limitation": "No verified route or response rate."
+    }
+  ],
+  "firstUserAvenues": [
+    "q-swing-habitat",
+    "swing-community",
+    "tv-community"
+  ],
+  "redTeam": [
+    {
+      "claimId": "comparison-hypothesis",
+      "evidence": "Synthetic firsthand context and public scheduled-work observations.",
+      "inference": "Consistent comparison could be closer to the founder than broad discovery.",
+      "assumption": "Enough traders feel the same pain and will pay beyond existing tools.",
+      "contradiction": "Free broker tools, chart subscriptions, spreadsheets and AI may suffice.",
+      "disproof": "Recent-work interviews show consistency is already adequate or extra effort outweighs the benefit.",
+      "cheapestLearning": "Ask qualified traders to walk through their last shortlist review and existing workarounds; no new product needed."
+    },
+    {
+      "claimId": "q-sec-claim",
+      "evidence": "The retained page supports only the bounded observation.",
+      "inference": "This may affect workflow feasibility or the question to ask users.",
+      "assumption": "Applicability to the confirmed scheduled-review cohort is not proven.",
+      "contradiction": "Existing tools and satisfied users may already meet the need.",
+      "disproof": "Current permitted documentation or relevant users show a materially different constraint or workflow.",
+      "cheapestLearning": "Check the relevant current terms/capability and observe one real recent review before adding scope."
+    },
+    {
+      "claimId": "q-alpha-claim",
+      "evidence": "The retained page supports only the bounded observation.",
+      "inference": "This may affect workflow feasibility or the question to ask users.",
+      "assumption": "Applicability to the confirmed scheduled-review cohort is not proven.",
+      "contradiction": "Existing tools and satisfied users may already meet the need.",
+      "disproof": "Current permitted documentation or relevant users show a materially different constraint or workflow.",
+      "cheapestLearning": "Check the relevant current terms/capability and observe one real recent review before adding scope."
+    },
+    {
+      "claimId": "q-license-claim",
+      "evidence": "The retained page supports only the bounded observation.",
+      "inference": "This may affect workflow feasibility or the question to ask users.",
+      "assumption": "Applicability to the confirmed scheduled-review cohort is not proven.",
+      "contradiction": "Existing tools and satisfied users may already meet the need.",
+      "disproof": "Current permitted documentation or relevant users show a materially different constraint or workflow.",
+      "cheapestLearning": "Check the relevant current terms/capability and observe one real recent review before adding scope."
+    },
+    {
+      "claimId": "q-pine-claim",
+      "evidence": "The retained page supports only the bounded observation.",
+      "inference": "This may affect workflow feasibility or the question to ask users.",
+      "assumption": "Applicability to the confirmed scheduled-review cohort is not proven.",
+      "contradiction": "Existing tools and satisfied users may already meet the need.",
+      "disproof": "Current permitted documentation or relevant users show a materially different constraint or workflow.",
+      "cheapestLearning": "Check the relevant current terms/capability and observe one real recent review before adding scope."
+    },
+    {
+      "claimId": "q-lovehate-claim",
+      "evidence": "The retained page supports only the bounded observation.",
+      "inference": "This may affect workflow feasibility or the question to ask users.",
+      "assumption": "Applicability to the confirmed scheduled-review cohort is not proven.",
+      "contradiction": "Existing tools and satisfied users may already meet the need.",
+      "disproof": "Current permitted documentation or relevant users show a materially different constraint or workflow.",
+      "cheapestLearning": "Check the relevant current terms/capability and observe one real recent review before adding scope."
+    },
+    {
+      "claimId": "q-habitat-claim",
+      "evidence": "The retained page supports only the bounded observation.",
+      "inference": "This may affect workflow feasibility or the question to ask users.",
+      "assumption": "Applicability to the confirmed scheduled-review cohort is not proven.",
+      "contradiction": "Existing tools and satisfied users may already meet the need.",
+      "disproof": "Current permitted documentation or relevant users show a materially different constraint or workflow.",
+      "cheapestLearning": "Check the relevant current terms/capability and observe one real recent review before adding scope."
+    },
+    {
+      "claimId": "q-tvprice-claim",
+      "evidence": "The retained page supports only the bounded observation.",
+      "inference": "This may affect workflow feasibility or the question to ask users.",
+      "assumption": "Applicability to the confirmed scheduled-review cohort is not proven.",
+      "contradiction": "Existing tools and satisfied users may already meet the need.",
+      "disproof": "Current permitted documentation or relevant users show a materially different constraint or workflow.",
+      "cheapestLearning": "Check the relevant current terms/capability and observe one real recent review before adding scope."
+    },
+    {
+      "claimId": "q-finviz-claim",
+      "evidence": "The retained page supports only the bounded observation.",
+      "inference": "This may affect workflow feasibility or the question to ask users.",
+      "assumption": "Applicability to the confirmed scheduled-review cohort is not proven.",
+      "contradiction": "Existing tools and satisfied users may already meet the need.",
+      "disproof": "Current permitted documentation or relevant users show a materially different constraint or workflow.",
+      "cheapestLearning": "Check the relevant current terms/capability and observe one real recent review before adding scope."
+    }
+  ],
+  "master": null,
+  "buildRequest": null,
+  "evaluation": {
+    "status": "ready",
+    "coverage": [
+      {
+        "topic": "frequency",
+        "status": "findings",
+        "claimIds": [
+          "scheduled-work"
+        ],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "How often do scheduled traders review candidates? Examples exist, but cohort frequency is not measured."
+      },
+      {
+        "topic": "urgency",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "Is comparison an urgent blocker? Scheduled review is evident; no independent cost or deadline severity established."
+      },
+      {
+        "topic": "pain",
+        "status": "findings",
+        "claimIds": [
+          "founder-context"
+        ],
+        "runIds": [
+          "founder-review"
+        ],
+        "reason": "What was hard in the last comparison? Repeated synthesis is invented founder context; public evidence does not quantify severity."
+      },
+      {
+        "topic": "necessity",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "Is a new comparison tool necessary? Free and manual alternatives challenge necessity; no mandatory purchase established."
+      },
+      {
+        "topic": "prevalence",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "How many paid US swing traders share this pain? No defensible denominator found in the bounded discussions."
+      },
+      {
+        "topic": "category_direction",
+        "status": "findings",
+        "claimIds": [
+          "release-proxy"
+        ],
+        "runIds": [
+          "landscape"
+        ],
+        "reason": "Are alternatives still evolving? A dated release is activity, not category revenue growth."
+      },
+      {
+        "topic": "buyer",
+        "status": "findings",
+        "claimIds": [
+          "founder-context"
+        ],
+        "runIds": [
+          "founder-review"
+        ],
+        "reason": "Who decides and pays? The invented founder selects the individual trader, not a trading firm."
+      },
+      {
+        "topic": "existing_spend",
+        "status": "findings",
+        "claimIds": [
+          "paid-alternatives"
+        ],
+        "runIds": [
+          "landscape"
+        ],
+        "reason": "What is offered for money? Prices are observable; spending by this exact cohort is not."
+      },
+      {
+        "topic": "reachability",
+        "status": "findings",
+        "claimIds": [
+          "habit"
+        ],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "Where do people discuss the work? Public communities are observable; access and response rates are untested."
+      },
+      {
+        "topic": "founder_fit",
+        "status": "findings",
+        "claimIds": [
+          "founder-context"
+        ],
+        "runIds": [
+          "founder-review"
+        ],
+        "reason": "Does a solo builder have relevant experience and support capacity? Only the synthetic founder reports it."
+      },
+      {
+        "topic": "ai_substitutes",
+        "status": "findings",
+        "claimIds": [
+          "ai-substitute"
+        ],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "Can a general AI assistant help with existing notes and criteria? Some posters already use it. Incremental value is unknown."
+      },
+      {
+        "topic": "dedicated_value",
+        "status": "findings",
+        "claimIds": [
+          "comparison-hypothesis"
+        ],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "What value would remain after a consistent spreadsheet and AI workflow? A hypothesis, not a demonstrated gap."
+      },
+      {
+        "topic": "competitors",
+        "status": "findings",
+        "claimIds": [
+          "paid-alternatives"
+        ],
+        "runIds": [
+          "landscape"
+        ],
+        "reason": "What already supports discovery, comparison, charting and review? Evaluate multiple categories, not only stock rankers."
+      },
+      {
+        "topic": "user_language",
+        "status": "findings",
+        "claimIds": [
+          "love-hate"
+        ],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "What do users value and tolerate? Dynamic lists and familiarity appear; repeated cohort-specific hate is not established."
+      },
+      {
+        "topic": "traction",
+        "status": "findings",
+        "claimIds": [
+          "vendor-users"
+        ],
+        "runIds": [
+          "landscape"
+        ],
+        "reason": "Which metrics are reported, which are activity proxies? Vendor totals and a release are not revenue or retention."
+      },
+      {
+        "topic": "gaps",
+        "status": "findings",
+        "claimIds": [
+          "old-gap"
+        ],
+        "runIds": [
+          "landscape"
+        ],
+        "reason": "Is the earlier alert complaint still an open gap? Current documentation contradicts that interpretation."
+      },
+      {
+        "topic": "adjacency",
+        "status": "findings",
+        "claimIds": [
+          "comparison-hypothesis"
+        ],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "Is shortlist comparison closer to this founder than broad discovery or journal review? Compare two nearby pains without forcing a pivot."
+      },
+      {
+        "topic": "habitats",
+        "status": "findings",
+        "claimIds": [
+          "habit"
+        ],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "Which communities contain the actual workflow? Observe before assuming permission to recruit."
+      }
+    ],
+    "promising": [
+      "Public discussions show scheduled shortlist research, close to the chosen workflow; exact pain remains uncertain.",
+      "The invented founder has firsthand comparison experience and two possible interview connections, not customers."
+    ],
+    "weak": [
+      "Incumbents, free workflows and generic AI could already be sufficient."
+    ],
+    "unknowns": [
+      "Whether other scheduled-review traders repeat the comparison enough to change their current workflow.",
+      "Would a consistent manual review already solve enough of the pain?",
+      "What licensed-data agreement and cost would commercial automation require?"
+    ],
+    "contradictions": [
+      "The old extended-hours complaint is contradicted by current official documentation."
+    ],
+    "conclusion": "There may be a useful problem in keeping shortlist reasoning consistent. Existing screeners are strong; paid demand and workflow pain still need direct learning. Technical freshness and commercial-access limits rule out claims about live institutional buying."
+  },
+  "brief": {
+    "kind": "research",
+    "summary": "The useful question is consistent shortlist reasoning, not another broad screener. Current data limits matter; other traders have not validated the pain.",
+    "seeing": [],
+    "matters": [],
+    "next": "Review the evidence and the remaining uncertainty.",
+    "questions": [],
+    "choices": []
+  },
+  "opportunity": {
+    "businessModel": "A subscription is a founder hypothesis; payment and incremental value are untested.",
+    "economics": "Data licensing, AI usage and support costs unknown; no margin claim.",
+    "interviewPlan": "Ask about the hardest part, last occurrence, why it was hard, attempted fixes and what remains unsatisfactory.",
+    "risks": [
+      "Existing tools may suffice.",
+      "Public self-reports are not validated demand.",
+      "Data rights and support may conflict with a solo business."
+    ]
+  },
+  "investigation": {
+    "coverage": [
+      {
+        "topic": "workaround",
+        "status": "findings",
+        "claimIds": [
+          "founder-context"
+        ],
+        "runIds": [
+          "founder-review"
+        ],
+        "reason": "What happened in the last review? Charts, research and a spreadsheet remain the invented baseline."
+      },
+      {
+        "topic": "willingness_to_pay",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "Will this cohort pay extra for consistent comparison? Public requests and vendor prices do not answer; needs behavioral conversations."
+      },
+      {
+        "topic": "ability_to_pay",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "Can the intended trader afford another tool? Account size and disposable budget were not established."
+      },
+      {
+        "topic": "switching_cost",
+        "status": "findings",
+        "claimIds": [
+          "love-hate"
+        ],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "What would users give up? Familiar chart setups and communities suggest friction; no migration cost measured."
+      },
+      {
+        "topic": "founder_insight",
+        "status": "findings",
+        "claimIds": [
+          "founder-context"
+        ],
+        "runIds": [
+          "q-refresh"
+        ],
+        "reason": "No paid commitments, proprietary data or distribution agreement; personal experience may not generalize and continuous support would conflict with the stated goal."
+      },
+      {
+        "topic": "founder_expertise",
+        "status": "findings",
+        "claimIds": [
+          "founder-context"
+        ],
+        "runIds": [
+          "q-refresh"
+        ],
+        "reason": "No paid commitments, proprietary data or distribution agreement; personal experience may not generalize and continuous support would conflict with the stated goal."
+      },
+      {
+        "topic": "founder_access",
+        "status": "findings",
+        "claimIds": [
+          "founder-context"
+        ],
+        "runIds": [
+          "q-refresh"
+        ],
+        "reason": "No paid commitments, proprietary data or distribution agreement; personal experience may not generalize and continuous support would conflict with the stated goal."
+      },
+      {
+        "topic": "technical_feasibility",
+        "status": "findings",
+        "claimIds": [
+          "q-sec-claim",
+          "q-alpha-claim",
+          "q-license-claim"
+        ],
+        "runIds": [
+          "q-refresh"
+        ],
+        "reason": "A small comparison of dated supplied facts looks feasible; live commercial data access is still unresolved."
+      },
+      {
+        "topic": "business_model_fit",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "pain-search"
+        ],
+        "reason": "Can a subscription cover data, AI and support? License quote, usage and conversion missing; unit economics unknown."
+      },
+      {
+        "topic": "intention_alignment",
+        "status": "findings",
+        "claimIds": [
+          "founder-context"
+        ],
+        "runIds": [
+          "founder-review"
+        ],
+        "reason": "Would this fit a paid solo business? Research/support costs could conflict with limited support time."
+      }
+    ],
+    "questions": [
+      {
+        "topic": "frequency",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "How often do scheduled traders review candidates? Examples exist, but cohort frequency is not measured."
+      },
+      {
+        "topic": "urgency",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "Is comparison an urgent blocker? Scheduled review is evident; no independent cost or deadline severity established."
+      },
+      {
+        "topic": "pain",
+        "runIds": [
+          "founder-review"
+        ],
+        "relevance": "What was hard in the last comparison? Repeated synthesis is invented founder context; public evidence does not quantify severity."
+      },
+      {
+        "topic": "necessity",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "Is a new comparison tool necessary? Free and manual alternatives challenge necessity; no mandatory purchase established."
+      },
+      {
+        "topic": "prevalence",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "How many paid US swing traders share this pain? No defensible denominator found in the bounded discussions."
+      },
+      {
+        "topic": "category_direction",
+        "runIds": [
+          "landscape"
+        ],
+        "relevance": "Are alternatives still evolving? A dated release is activity, not category revenue growth."
+      },
+      {
+        "topic": "buyer",
+        "runIds": [
+          "founder-review"
+        ],
+        "relevance": "Who decides and pays? The invented founder selects the individual trader, not a trading firm."
+      },
+      {
+        "topic": "existing_spend",
+        "runIds": [
+          "landscape"
+        ],
+        "relevance": "What is offered for money? Prices are observable; spending by this exact cohort is not."
+      },
+      {
+        "topic": "reachability",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "Where do people discuss the work? Public communities are observable; access and response rates are untested."
+      },
+      {
+        "topic": "founder_fit",
+        "runIds": [
+          "founder-review"
+        ],
+        "relevance": "Does a solo builder have relevant experience and support capacity? Only the synthetic founder reports it."
+      },
+      {
+        "topic": "ai_substitutes",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "Can a general AI assistant help with existing notes and criteria? Some posters already use it. Incremental value is unknown."
+      },
+      {
+        "topic": "dedicated_value",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "What value would remain after a consistent spreadsheet and AI workflow? A hypothesis, not a demonstrated gap."
+      },
+      {
+        "topic": "competitors",
+        "runIds": [
+          "landscape"
+        ],
+        "relevance": "What already supports discovery, comparison, charting and review? Evaluate multiple categories, not only stock rankers."
+      },
+      {
+        "topic": "user_language",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "What do users value and tolerate? Dynamic lists and familiarity appear; repeated cohort-specific hate is not established."
+      },
+      {
+        "topic": "traction",
+        "runIds": [
+          "landscape"
+        ],
+        "relevance": "Which metrics are reported, which are activity proxies? Vendor totals and a release are not revenue or retention."
+      },
+      {
+        "topic": "gaps",
+        "runIds": [
+          "landscape"
+        ],
+        "relevance": "Is the earlier alert complaint still an open gap? Current documentation contradicts that interpretation."
+      },
+      {
+        "topic": "adjacency",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "Is shortlist comparison closer to this founder than broad discovery or journal review? Compare two nearby pains without forcing a pivot."
+      },
+      {
+        "topic": "habitats",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "Which communities contain the actual workflow? Observe before assuming permission to recruit."
+      },
+      {
+        "topic": "workaround",
+        "runIds": [
+          "founder-review"
+        ],
+        "relevance": "What happened in the last review? Charts, research and a spreadsheet remain the invented baseline."
+      },
+      {
+        "topic": "willingness_to_pay",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "Will this cohort pay extra for consistent comparison? Public requests and vendor prices do not answer; needs behavioral conversations."
+      },
+      {
+        "topic": "ability_to_pay",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "Can the intended trader afford another tool? Account size and disposable budget were not established."
+      },
+      {
+        "topic": "switching_cost",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "What would users give up? Familiar chart setups and communities suggest friction; no migration cost measured."
+      },
+      {
+        "topic": "founder_insight",
+        "runIds": [
+          "founder-review",
+          "q-refresh"
+        ],
+        "relevance": "Which part has the founder experienced personally? Weekly shortlist synthesis, only in this invented scenario."
+      },
+      {
+        "topic": "founder_expertise",
+        "runIds": [
+          "founder-review",
+          "q-refresh"
+        ],
+        "relevance": "Can the founder build and maintain it? Coding is reported; financial-data operations and customer support expertise are unverified."
+      },
+      {
+        "topic": "founder_access",
+        "runIds": [
+          "founder-review",
+          "q-refresh"
+        ],
+        "relevance": "Can the founder reach the first users? Two acquaintances are reported, not interested or recruited customers."
+      },
+      {
+        "topic": "technical_feasibility",
+        "runIds": [
+          "pain-search",
+          "q-refresh"
+        ],
+        "relevance": "Do data permissions or cost affect feasibility? Public terms show constraints; no architecture or provider selected."
+      },
+      {
+        "topic": "business_model_fit",
+        "runIds": [
+          "pain-search"
+        ],
+        "relevance": "Can a subscription cover data, AI and support? License quote, usage and conversion missing; unit economics unknown."
+      },
+      {
+        "topic": "intention_alignment",
+        "runIds": [
+          "founder-review"
+        ],
+        "relevance": "Would this fit a paid solo business? Research/support costs could conflict with limited support time."
+      }
+    ],
+    "alternatives": [
+      {
+        "kind": "direct",
+        "competitorIds": [
+          "tv",
+          "ts"
+        ],
+        "runIds": [
+          "landscape",
+          "pain-search"
+        ],
+        "conclusion": "Compare the linked direct alternatives; capability overlap does not establish unmet demand."
+      },
+      {
+        "kind": "adjacent",
+        "competitorIds": [
+          "zella",
+          "danel"
+        ],
+        "runIds": [
+          "landscape",
+          "pain-search"
+        ],
+        "conclusion": "Compare the linked adjacent alternatives; capability overlap does not establish unmet demand."
+      },
+      {
+        "kind": "incumbent",
+        "competitorIds": [
+          "finviz",
+          "tv"
+        ],
+        "runIds": [
+          "landscape",
+          "pain-search"
+        ],
+        "conclusion": "Compare the linked incumbent alternatives; capability overlap does not establish unmet demand."
+      },
+      {
+        "kind": "new_ai",
+        "competitorIds": [
+          "ts",
+          "danel",
+          "zella"
+        ],
+        "runIds": [
+          "landscape",
+          "pain-search"
+        ],
+        "conclusion": "Compare the linked new_ai alternatives; capability overlap does not establish unmet demand."
+      },
+      {
+        "kind": "service",
+        "competitorIds": [
+          "service"
+        ],
+        "runIds": [
+          "landscape",
+          "pain-search"
+        ],
+        "conclusion": "Only a vendor snippet was accessible; service outcomes and price remain unknown."
+      },
+      {
+        "kind": "manual",
+        "competitorIds": [
+          "manual"
+        ],
+        "runIds": [
+          "founder-review",
+          "pain-search"
+        ],
+        "conclusion": "Compare the linked manual alternatives; capability overlap does not establish unmet demand."
+      },
+      {
+        "kind": "spreadsheet",
+        "competitorIds": [
+          "manual"
+        ],
+        "runIds": [
+          "founder-review",
+          "pain-search"
+        ],
+        "conclusion": "The invented founder already uses a spreadsheet; public search did not establish spreadsheet failure across the cohort."
+      },
+      {
+        "kind": "generic_ai",
+        "competitorIds": [
+          "generic"
+        ],
+        "runIds": [
+          "landscape",
+          "pain-search"
+        ],
+        "conclusion": "Compare the linked generic_ai alternatives; capability overlap does not establish unmet demand."
+      },
+      {
+        "kind": "do_nothing",
+        "competitorIds": [
+          "manual"
+        ],
+        "runIds": [
+          "landscape",
+          "pain-search"
+        ],
+        "conclusion": "Keeping a small watchlist and current workflow may be adequate; a new paid tool is optional."
+      }
+    ],
+    "counterevidence": "Satisfied or free-tool users, generic AI and incumbent comparison capabilities weaken a new paid product. The extended-hours gap is contradicted by current documentation. No repeated cohort-specific severe complaint or verified revenue was found.",
+    "decision": "Recommend a few behavior-focused conversations before committing code, while allowing an explicit build decision with the remaining uncertainty. Keep current foundations; no automatic pivot or feature scope.",
+    "redefinition": null
+  },
+  "ide": {
+    "generations": {
+      "intention": 0,
+      "user": 0,
+      "problem": 0,
+      "evaluation": 0,
+      "act": 0
+    },
+    "confirmations": [],
+    "presentation": null,
+    "reviewBasis": null
+  },
+  "quality": {
+    "technical": {
+      "material": true,
+      "summary": "A small comparison of dated supplied facts looks feasible; live commercial data access is still unresolved.",
+      "centralRisk": "Freshness and commercial rights: delayed holdings cannot tell users what institutions are buying today.",
+      "coverage": [
+        {
+          "topic": "data_apis",
+          "status": "findings",
+          "claimIds": [
+            "q-sec-claim",
+            "q-alpha-claim",
+            "q-license-claim"
+          ],
+          "runIds": [
+            "q-refresh"
+          ],
+          "reason": "Compare dated user-supplied inputs, public filings and a licensed vendor API; required commercial entitlements remain unresolved."
+        },
+        {
+          "topic": "freshness_quality",
+          "status": "findings",
+          "claimIds": [
+            "q-sec-claim",
+            "q-habitat-claim"
+          ],
+          "runIds": [
+            "q-refresh"
+          ],
+          "reason": "Quarterly holdings have publication lag. Preserve as-of dates, missing values and split/period differences; never describe them as current institutional purchases."
+        },
+        {
+          "topic": "access_licensing",
+          "status": "findings",
+          "claimIds": [
+            "q-license-claim"
+          ],
+          "runIds": [
+            "q-refresh"
+          ],
+          "reason": "Personal access is not redistribution permission. Resolve the commercial agreement before shared vendor-data use."
+        },
+        {
+          "topic": "rate_cost",
+          "status": "findings",
+          "claimIds": [
+            "q-alpha-claim"
+          ],
+          "runIds": [
+            "q-refresh"
+          ],
+          "reason": "25 requests/day constrains a free experiment. Paid/commercial costs and workload have not been measured; do not invent a monthly operating-cost estimate."
+        },
+        {
+          "topic": "integrations",
+          "status": "unknown_after_search",
+          "claimIds": [],
+          "runIds": [
+            "q-refresh"
+          ],
+          "reason": "No authenticated integration was exercised. A vendor adapter would need entitlement, timestamp and error checks; the dated-input interpretation avoids that immediate dependency."
+        },
+        {
+          "topic": "complexity_latency",
+          "status": "unknown_after_search",
+          "claimIds": [],
+          "runIds": [
+            "q-refresh"
+          ],
+          "reason": "Scheduled reviews may tolerate dated inputs, unlike intraday alerts. This is an inference to confirm through observed use; no latency benchmark was run."
+        },
+        {
+          "topic": "ai_deterministic",
+          "status": "findings",
+          "claimIds": [
+            "q-pine-claim",
+            "q-tvprice-claim"
+          ],
+          "runIds": [
+            "q-refresh"
+          ],
+          "reason": "Existing deterministic screening is substantial counterevidence. A language model may summarize supplied notes but cannot verify freshness or infer winning trades; calculations and missing-data checks should be deterministic."
+        },
+        {
+          "topic": "reliability_failures",
+          "status": "unknown_after_search",
+          "claimIds": [],
+          "runIds": [
+            "q-refresh"
+          ],
+          "reason": "Test stale/missing fields, inconsistent periods, symbol mapping, throttling and partial failure in a later authorized build; these have not been load-tested."
+        },
+        {
+          "topic": "security_privacy",
+          "status": "unknown_after_search",
+          "claimIds": [],
+          "runIds": [
+            "q-refresh"
+          ],
+          "reason": "Keep credentials and private holdings out of research/context. Use minimal local notes for a permitted test; threat modelling and deployment checks remain later authorized work."
+        },
+        {
+          "topic": "vendor_build_buy",
+          "status": "findings",
+          "claimIds": [
+            "q-pine-claim",
+            "q-finviz-claim",
+            "q-license-claim"
+          ],
+          "runIds": [
+            "q-refresh"
+          ],
+          "reason": "Try the current charting/screener plus a consistent manual review first. Do not rebuild data collection, charting or a screener merely because AI can generate it; any paid dependency needs explicit approval."
+        }
+      ],
+      "options": [
+        {
+          "name": "Dated supplied facts",
+          "approach": "Interpret the comparison as checking a fixed supplied snapshot and its rationale, with explicit unknowns.",
+          "tradeoff": "Manual input limits automation but avoids promising fresh data or an unlicensed feed.",
+          "claimIds": [
+            "founder-context",
+            "q-habitat-claim"
+          ]
+        },
+        {
+          "name": "Licensed vendor API",
+          "approach": "Investigate permitted data endpoints and commercial entitlements before automated shared access.",
+          "tradeoff": "Rate, freshness, price, reliability and redistribution constraints need an agreed workload and terms.",
+          "claimIds": [
+            "q-alpha-claim",
+            "q-license-claim"
+          ]
+        },
+        {
+          "name": "Public holdings context",
+          "approach": "Represent reported quarterly positions with period and filing dates only.",
+          "tradeoff": "Lag and coverage make this background context, not current buying activity or performance prediction.",
+          "claimIds": [
+            "q-sec-claim"
+          ]
+        }
+      ],
+      "recommendation": {
+        "option": "Dated supplied facts",
+        "reason": "It fits the reported scheduled-review intent while keeping the unproven pain separate from live-data and licensing risks. Confirm that interpretation, rather than asking the founder to choose an API."
+      }
+    },
+    "founderFit": {
+      "edge": "The synthetic founder reports doing this review personally, coding ability and access to two traders.",
+      "limitation": "No paid commitments, proprietary data or distribution agreement; personal experience may not generalize and continuous support would conflict with the stated goal.",
+      "claimIds": [
+        "founder-context"
+      ]
+    },
+    "learning": {
+      "uncertainty": "workaround",
+      "reason": "The missing evidence is whether other scheduled-review traders repeat the synthesis enough to change their current workflow.",
+      "recommendation": "interviews"
+    }
+  }
+}

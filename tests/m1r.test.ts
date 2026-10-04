@@ -1,10 +1,12 @@
+// Legacy payload/record compatibility. Fixture seeding is test-only; ide.test.ts tests all new-work gates.
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { cpSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
-import { approveDraft, approvedHandoff, compactContext, readWorkflow, saveDraft } from '../src/application/workflow.js';
+import { compactContext, readWorkflow } from '../src/application/workflow.js';
+import { seedHistoricalApproval as approveDraft, readHistoricalScope as approvedHandoff, seedHistoricalDraft as saveDraft } from './historical-fixtures.js';
 import { inspectArtifacts } from '../src/privacy/artifacts.js';
 import { detailSections, renderDetail, renderHandoff, renderOpening, renderStatus, renderSummary } from '../src/cli/render.js';
 import { words } from '../src/domain/conversation.js';
@@ -23,7 +25,7 @@ function attachProject(root: string, draft: RevisedDraft) {
 const approve = (root: string, hash: string) => approveDraft(root, {contractVersion:1, draftHash:hash, founderApproved:true, approvalQuote:'Build now'});
 const finding = (): Evaluation['findings'][number] => ({topic:'growth_signals',statement:'Synthetic competitor posted three jobs',kind:'public_proxy',source:{title:'Synthetic careers page',url:'https://example.invalid/careers',accessedOn:'2026-09-23'},limitation:'Hiring is not revenue or verified growth',provenance:'synthetic_fixture'});
 
-test('demo preparation creates unique disposable examples without draft or approval', t => {
+test('historical data: demo preparation creates unique disposable examples without draft or approval', t => {
   assert.throws(()=>prepareDemo('../existing'),/Choose a synthetic/);
   const targets=new Set<string>();
   for(const scenario of ['fresh','existing','feedback']) {
@@ -36,7 +38,7 @@ test('demo preparation creates unique disposable examples without draft or appro
   assert.equal(targets.size,3);
 });
 
-test('first interaction is short and offers the two entry paths without writes', t => {
+test('historical data: first interaction is short and offers the two entry paths without writes', t => {
   const root = temporaryProject(t);
   const text = renderStatus(readWorkflow(root));
   assert.equal(text, renderOpening());
@@ -46,7 +48,7 @@ test('first interaction is short and offers the two entry paths without writes',
   assert.deepEqual(readdirSync(root), []);
 });
 
-for (const name of ['fresh', 'existing', 'feedback']) test(`${name}: concise reviewed scope, optional detail, approval and resume preserve context`, t => {
+for (const name of ['fresh', 'existing', 'feedback']) test(`historical data: ${name}: concise reviewed scope, optional detail, approval and resume preserve context`, t => {
   const root = temporaryProject(t), draft = fixture(name);
   if (name !== 'fresh') attachProject(root, draft);
   const before = draft.artifacts.map(item => readFileSync(join(root,item.path)));
@@ -75,7 +77,7 @@ for (const name of ['fresh', 'existing', 'feedback']) test(`${name}: concise rev
   for (const [index,item] of draft.artifacts.entries()) assert.deepEqual(readFileSync(join(root,item.path)),before[index]);
 });
 
-test('unknown intention, buyer and no evidence do not prevent a bounded approved build', t => {
+test('historical data: unknown intention, buyer and no evidence do not prevent a bounded approved build', t => {
   const root=temporaryProject(t), draft=fixture();
   draft.ideal.intention={goal:'unknown',statement:null};
   const cycle=approve(root,saveDraft(root,draft).hash);
@@ -83,7 +85,7 @@ test('unknown intention, buyer and no evidence do not prevent a bounded approved
   assert.equal(cycle.basis,'HYPOTHESIS-LED');
 });
 
-test('all founder-defined goal categories round-trip without a questionnaire', t => {
+test('historical data: all founder-defined goal categories round-trip without a questionnaire', t => {
   for (const goal of ['solo_profit','high_growth','b2b_enterprise','impact','learning','custom'] as const) {
     const root=temporaryProject(t), draft=fixture();
     draft.ideal.intention={goal,statement:'My own definition of success.'};
@@ -91,7 +93,7 @@ test('all founder-defined goal categories round-trip without a questionnaire', t
   }
 });
 
-test('invalid intention, consequence or feedback provenance fails before creating storage', t => {
+test('historical data: invalid intention, consequence or feedback provenance fails before creating storage', t => {
   const root=temporaryProject(t);
   for (const change of [
     (d:RevisedDraft)=>{d.ideal.intention.statement=null;},
@@ -104,7 +106,7 @@ test('invalid intention, consequence or feedback provenance fails before creatin
   }
 });
 
-test('evaluation states never gate build and distinguish proxy from disclosed metric', t => {
+test('historical data: evaluation states never gate build and distinguish proxy from disclosed metric', t => {
   for (const state of ['not_run','requested','available','unavailable'] as const) {
     const root=temporaryProject(t),draft=fixture();
     draft.ideal.evaluation={state,question:state==='requested'?'Which manual substitutes exist?':null,unavailableReason:state==='unavailable'?'Research is not available in this prototype.':null,findings:state==='available'?[finding()]:[]};
@@ -116,7 +118,7 @@ test('evaluation states never gate build and distinguish proxy from disclosed me
   }
 });
 
-test('evaluation rejects fabricated availability, private metrics, missing sources and invalid dates', t => {
+test('historical data: evaluation rejects fabricated availability, private metrics, missing sources and invalid dates', t => {
   const root=temporaryProject(t);
   for(const change of [
     (e:Evaluation)=>{e.findings=[];},
@@ -132,7 +134,7 @@ test('evaluation rejects fabricated availability, private metrics, missing sourc
   }
 });
 
-test('oversized response or one-sentence summary is rejected without silently truncating scope', t => {
+test('historical data: oversized response or one-sentence summary is rejected without silently truncating scope', t => {
   const root=temporaryProject(t), draft=fixture();
   draft.brief.summary='One sentence only.';
   assert.throws(()=>saveDraft(root,draft),/two to five/);
@@ -142,7 +144,7 @@ test('oversized response or one-sentence summary is rejected without silently tr
   assert.deepEqual(readdirSync(root),[]);
 });
 
-test('optional research pagination exposes every finding within budget and escapes collapsible markup', t => {
+test('historical data: optional research pagination exposes every finding within budget and escapes collapsible markup', t => {
   const root=temporaryProject(t),draft=fixture();
   draft.ideal.evaluation.state='available';
   draft.ideal.evaluation.findings=Array.from({length:12},(_,i)=>({...finding(),statement:`Finding ${i}: ${'synthetic '.repeat(25)} </details><script>bad</script>`}));
@@ -157,7 +159,7 @@ test('optional research pagination exposes every finding within budget and escap
   assert.throws(()=>renderDetail(saved,'research',count+1),/Choose a detail page/);
 });
 
-test('v1 approved cycles remain byte-equivalent and cannot be overwritten with revised branding', t => {
+test('historical data: v1 approved cycles remain byte-equivalent and cannot be overwritten with revised branding', t => {
   const root=temporaryProject(t), legacy=JSON.parse(readFileSync(join(fixtures,'m1/idea.json'),'utf8')) as unknown;
   const saved=saveDraft(root,legacy),cycle=approve(root,saved.hash);
   assert.deepEqual(readWorkflow(root).cycle,cycle);
@@ -165,7 +167,7 @@ test('v1 approved cycles remain byte-equivalent and cannot be overwritten with r
   assert.deepEqual(readWorkflow(root).cycle?.draft,legacy);
 });
 
-test('v2 correction invalidates old Build now approval while preserving skipped context', t => {
+test('historical data: v2 correction invalidates old Build now approval while preserving skipped context', t => {
   const root=temporaryProject(t),draft=fixture();
   const original=saveDraft(root,draft);
   draft.expectedVersion=original.version;draft.ideal.intention={goal:'learning',statement:'I just want to learn.'};
@@ -175,7 +177,7 @@ test('v2 correction invalidates old Build now approval while preserving skipped 
   assert.equal(approve(root,revised.hash).draft.foundation.buyer.value,null);
 });
 
-test('real CLI optional-detail actions return to the same unapproved scope', t => {
+test('historical data: real CLI optional-detail actions return to the same unapproved scope', t => {
   const root=temporaryProject(t),saved=saveDraft(root,fixture());
   for(const section of ['research','competitors','evidence','sources']) {
     const result=spawnSync(process.execPath,[cli,'internal','detail',root,'--section',section],{encoding:'utf8',windowsHide:true});
