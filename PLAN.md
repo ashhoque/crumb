@@ -13,7 +13,8 @@ Do not begin M4.
 - [x] Add focused identity, bootstrap, snapshot, isolation and research regressions.
 - [x] Complete five live synthetic host conversations and semantic review.
 - [x] Verify the 320-test full suite.
-- [ ] Verify global installation, development branch and `main` closeout.
+- [x] Verify global installation and pushed development branch.
+- [ ] Merge, verify and push `main`.
 
 The M3-R2 plan below is historical.
 

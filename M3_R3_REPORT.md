@@ -1,7 +1,7 @@
 # M3-R3 — founder intelligence, voice and project context
 
-Status: **PASS WITH WARNINGS**, subject to the GitHub and global-install closeout
-record below. M4 was not started. These are synthetic host conversations, not
+Status: **PASS WITH WARNINGS**, subject to the GitHub closeout record below.
+M4 was not started. These are synthetic host conversations, not
 real founder or customer validation.
 
 ## Runtime trace and voice root cause
@@ -79,8 +79,13 @@ tool events and approximate elapsed time.
 
 Fresh-chat isolation, explicit resume and Act protection also passed the focused
 Core/CLI/MCP regressions. The actual-host existing-project/resume path was
-exercised during the runtime trace; final installed global-path verification is
-recorded below.
+exercised again through the **global wrapper** after syncing the canonical
+source checkout to the development commit. Across its pricing, simple and
+existing-project/resume turns, the installed host reported zero identity leaks.
+The pricing follow-up took 6.5 seconds with no commands; the simple follow-up
+took 1.9 seconds with no commands. “Looks good, don't build yet” left Act
+unconfirmed, and explicit resume recovered the relevant decision without
+recreating the history.
 
 ## Warnings
 
@@ -88,7 +93,7 @@ recorded below.
   question after the founder moved to feature requests. One targeted instruction
   correction did not remove it; further prompt repair stopped under repository
   guidance. This needs another alpha trial.
-- Cold host setup remains 33–62 seconds in these isolated scenarios, and the
+- Cold host setup remains 10–62 seconds in these isolated scenarios, and the
   live-web pricing turn took about 109 seconds. Warm ordinary follow-up was
   2.6 seconds with zero commands. No claim of general model-latency improvement
   is made; timings are approximate and host-dependent.
@@ -111,10 +116,13 @@ source checkout must be synchronized to completed `main`.
 ## GitHub closeout
 
 - Development branch: `m3-r3`.
-- Revision commit and branch push: pending.
+- Revision commit: `0ade360be54618068984a20981a218dc606a46df`.
+- Development branch pushed to `origin/m3-r3`; final documentation commit pending.
 - Merge/resulting main commit and push: pending.
 - Final verification on `main`: pending.
-- Global source checkout and installed skill verification: pending.
+- Global source checkout on `m3-r3`, rebuilt with pinned Node; focused
+  installation checks passed 9/9. Actual global-wrapper host discovery and
+  synthetic pricing/fast/resume/Act checks passed with zero identity leaks.
 
 ## Five manual alpha prompts
 
