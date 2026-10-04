@@ -9,15 +9,14 @@ import { renderPrebuildSummary, renderPrebuildDetail } from '../src/cli/prebuild
 import { OPTIONAL_DETAIL } from '../src/domain/conversation.js';
 
 test('M2 proactive guidance advances known foundations without repeated intake or fabricated assent',t=>{
-  for(const [through,next] of [['none','intention'],['intention','user'],['user','problem'],['problem','evaluation'],['evaluation','act'],['act',null]] as const){
+  for(const [through,kind,next] of [['none','review',null],['intention','review',null],['user','review',null],['problem','review','evaluation'],['evaluation','confirm','act'],['act','scope',null]] as const){
     const root=temporaryProject(t),s=prepareIde(root,through),guide=nextIdeStep(s.context);
-    assert.equal(guide.subject,next);assert.ok(['confirm','review','scope'].includes(guide.kind));
+    assert.equal(guide.subject,next);assert.equal(guide.kind,kind);
     assert.doesNotMatch(guide.text,/What would you like to do next|Who is your target user|Are you starting fresh/i);
     assert.ok((guide.text.match(/\?/g)??[]).length<=1);
     assert.equal(readPrebuild(root)!.context.contractVersion===2 && (readPrebuild(root)!.context as IdeContext).ide.presentation,null);
     assert.equal(readPrebuild(root)!.version,s.version);
-    if(next==='user')assert.ok(guide.text.includes(s.context.definition.user.text!));
-    if(next==='problem')assert.ok(guide.text.includes(s.context.definition.problem.text!));
+    if(kind==='review')assert.doesNotMatch(guide.text,/ready to commit a build cycle/i);
   }
 });
 test('M2 tiny human replies have one useful question and no report furniture',t=>{
@@ -37,7 +36,7 @@ test('M2 substantive synthesis stays concise with optional detail and no hidden 
   const saved=savePrebuild(root,c),text=renderPrebuildSummary(saved);
   assert.ok(text.startsWith('Executive summary'));assert.ok(text.includes(OPTIONAL_DETAIL));
   assert.ok(text.split(/\s+/).length<150);renderPrebuildDetail(saved,'sources');
-  assert.equal(readPrebuild(root)!.version,saved.version);assert.equal(nextIdeStep(readPrebuild(root)!.context).subject,'intention');
+  assert.equal(readPrebuild(root)!.version,saved.version);assert.equal(nextIdeStep(readPrebuild(root)!.context).kind,'review');
 });
 test('M2 name is optional, has explicit provenance, and is not inserted mechanically',t=>{
   const root=temporaryProject(t),c=emptyIde();c.project.name='Alex repository';c.project.entry='fresh';

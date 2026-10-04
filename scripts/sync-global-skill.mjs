@@ -1,5 +1,5 @@
 import {createHash} from 'node:crypto';
-import {copyFileSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync} from 'node:fs';
+import {copyFileSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, rmdirSync, unlinkSync} from 'node:fs';
 import {join, dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
@@ -11,6 +11,11 @@ if(!process.env.USERPROFILE||args.some(arg=>arg!=='--install')||args.length>1)th
 const files=['SKILL.md',...readdirSync(join(source,'references')).map(name=>`references/${name}`).sort()];
 const hash=path=>createHash('sha256').update(readFileSync(path)).digest('hex');
 if(existsSync(target)&&lstatSync(target).isSymbolicLink())throw new Error('Global skill target must be a real directory.');
+const oldAgents=join(target,'agents'),oldPolicy=join(oldAgents,'openai.yaml');
+if(existsSync(oldAgents)){
+  if(!install||lstatSync(oldAgents).isSymbolicLink()||readdirSync(oldAgents).join(',')!=='openai.yaml'||readFileSync(oldPolicy,'utf8').replaceAll('\r','').trim()!=='policy:\n  allow_implicit_invocation: false')throw new Error('Global skill has unexpected legacy metadata; inspect it before installing.');
+  unlinkSync(oldPolicy);rmdirSync(oldAgents);
+}
 for(const file of files){
   const from=join(source,file),to=join(target,file);
   if(!lstatSync(from).isFile()||(existsSync(to)&&lstatSync(to).isSymbolicLink()))throw new Error(`Refusing linked skill file: ${file}`);
