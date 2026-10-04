@@ -1,4 +1,24 @@
-# Crumb implementation plan - M3-R4
+# Crumb implementation plan - M3-R5 Phase 1
+
+## M3-R5 Phase 1 — 4 October 2026
+
+Authority: the founder's M3-R5 Phase 1 request. This phase remains on
+`m3-r5-phase1` for separate Astra review; do not merge `main` or begin M4.
+
+- [x] Trace the active installed skill, global wrapper, legacy aliases, IDE gate,
+  Market Pulse, first-user path and live host harness.
+- [x] Let provisional foundations trigger bounded research and one working-thesis
+  review while keeping Evaluation quality checks and Act consent separate.
+- [x] Install one direct global `$crumb` skill from version-controlled source;
+  archive aliases and remove stale invocation metadata.
+- [x] Test ordinary-language direction, independent research, pricing, first-user
+  activation and no-build safety through the installed skill.
+- [x] Run focused regressions and the full Node 24.19.0 check (331/331).
+- [ ] Separate Astra product and architecture review, followed by any requested
+  corrections and revision closeout. No `main` merge before that review.
+
+The [Phase 1 report](M3_R5_PHASE1_REPORT.md) holds the live evidence, warnings
+and review judgments. The M3-R4 plan below is historical.
 
 ## M3-R4 — 4 October 2026
 
