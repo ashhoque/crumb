@@ -2,6 +2,8 @@
 export const projectFactKeys = [
   'product','customer','problem','stage','capabilities','workflow','business_model',
   'pricing','validation','constraints','assumptions','decision','risk','next_move',
+  'user_incentives','switching_barriers','trust','buyer_process',
+  'market_pulse','research_habitat','acquisition_habitat','first_user_learning',
 ] as const;
 export const founderFactKeys = [
   'objective','stage','decision','momentum','knowledge','friction',

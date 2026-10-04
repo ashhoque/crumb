@@ -100,6 +100,11 @@ try {
       case 'schema': print(ideSchema); break;
       case 'evaluation-plan': {const s=readPrebuild(root);if(!s||s.context.contractVersion!==2)throw new Error('Use the saved intention, user and problem to begin the research plan.');print(researchPlan(s.context));break;}
       case 'research-decision': print(planDecisionResearch(await readInput() as ResearchDecision)); break;
+      case 'market-pulse': {const {planMarketPulse}=await import('../domain/market-intelligence.js');print(planMarketPulse(await readInput() as Parameters<typeof planMarketPulse>[0]));break;}
+      case 'opportunity-map': {const {assessOpportunity}=await import('../domain/market-intelligence.js');print(assessOpportunity(await readInput() as Parameters<typeof assessOpportunity>[0]));break;}
+      case 'first-user-plan': {const {planFirstUsers}=await import('../domain/first-user-engine.js');print(planFirstUsers(await readInput() as Parameters<typeof planFirstUsers>[0]));break;}
+      case 'outreach-draft': {const {prepareOutreach}=await import('../domain/first-user-engine.js');print(prepareOutreach(await readInput() as Parameters<typeof prepareOutreach>[0]));break;}
+      case 'validation-asset': {const {validationAsset}=await import('../domain/first-user-engine.js');const i=await readInput() as {painKnown:boolean;productBuilt:boolean;fastLearning:boolean};if(!i||typeof i.painKnown!=='boolean'||typeof i.productBuilt!=='boolean'||typeof i.fastLearning!=='boolean')throw new Error('Describe pain, product and learning state.');print(validationAsset(i.painKnown,i.productBuilt,i.fastLearning));break;}
       case 'founder-move': {
         const {planFounderMove}=await import('../domain/founder-intelligence.js');
         print(planFounderMove(await readInput() as Parameters<typeof planFounderMove>[0]));break;
