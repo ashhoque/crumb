@@ -15,8 +15,8 @@ import { inspectArtifacts } from '../dist/src/privacy/artifacts.js';
 const root=dirname(dirname(fileURLToPath(import.meta.url))),runDir=join(root,'.m0-local',`closeout-host-${Date.now()}`);
 mkdirSync(runDir,{recursive:true});
 const fixtureDir=mkdtempSync(join(tmpdir(),'crumb-closeout-'));
-const skillPath=join(root,'.agents/skills/crumb/SKILL.md'),mcp=join(root,'dist/src/cli/mcp.js');
-const results={timestamp:new Date().toISOString(),syntheticInputs:true,liveModel:true,discovery:false,mcp:[],sessions:[],status:'running'};
+const skillPath=process.argv.includes('--global-skill')?join(process.env.USERPROFILE??'', '.agents/skills/crumb/SKILL.md'):join(root,'.agents/skills/crumb/SKILL.md'),mcp=join(root,'dist/src/cli/mcp.js');
+const results={timestamp:new Date().toISOString(),syntheticInputs:true,liveModel:true,skillPath,discovery:false,mcp:[],sessions:[],status:'running'};
 const stock=()=>JSON.parse(readFileSync(join(root,'fixtures/m3r1-quality/stock.json'),'utf8'));
 const cases=JSON.parse(readFileSync(join(root,'fixtures/m3r1-closeout/conversation-cases.json'),'utf8')).cases;
 const turnTimeout=process.argv.includes('--live-web')?300000:180000;
@@ -34,23 +34,29 @@ lines.on('line',line=>{
   if(msg.id!==undefined&&!msg.method&&pending.has(msg.id)){const p=pending.get(msg.id);pending.delete(msg.id);clearTimeout(p.timer);msg.error?p.reject(new Error(msg.error.message)):p.resolve(msg.result);}
   if(active&&msg.method==='item/completed'){
     const item=msg.params?.item;
-    if(item?.type==='agentMessage')active.output.push(item.text??'');
+    if(item?.type==='agentMessage'){active.output.push(item.text??'');active.messages.push({phase:item.phase??null,text:item.text??''});}
     else if(item)active.tools.push({type:item.type,name:item.tool??item.name??null,command:item.command??null,status:item.status??null,...(item.status==='failed'?{failureOutput:(item.aggregatedOutput??'').slice(-4000)}:{}),...(item.type==='webSearch'?{action:item.action??null}:{})});
   }
-  if(active&&msg.method==='turn/completed'){const a=active;active=null;clearTimeout(a.timer);a.resolve({status:msg.params.turn.status,error:msg.params.turn.error??null,output:a.output.join('\n\n'),tools:a.tools});}
+  if(active&&msg.method==='turn/completed'){const a=active;active=null;clearTimeout(a.timer);a.resolve({status:msg.params.turn.status,error:msg.params.turn.error??null,output:a.output.join('\n\n'),messages:a.messages,tools:a.tools,elapsedMs:Date.now()-a.started});}
   if(msg.id!==undefined&&msg.method)child.stdin.write(JSON.stringify({id:msg.id,error:{code:-32601,message:'This test authorizes only normal sandbox tools against its disposable synthetic fixture; no elevated or external actions.'}})+'\n');
 });
 function request(method,params){return new Promise((resolve,reject)=>{const id=++seq,timer=setTimeout(()=>{pending.delete(id);reject(new Error(`${method} timed out`));},30000);pending.set(id,{resolve,reject,timer});child.stdin.write(JSON.stringify({id,method,params})+'\n');});}
 function save(){writeFileSync(join(runDir,'results.json'),JSON.stringify(results,null,2));}
 function state(folder){const saved=readPrebuild(folder),c=saved.context;return {version:saved.version,user:c.definition.user.text,problem:c.definition.problem.text,confirmed:['intention','user','problem','evaluation','act'].filter(subject=>confirmation(c,subject)),presentation:c.ide.presentation?.subject??null};}
 async function turn(threadId,text,first=false){
-  const done=new Promise((resolve,reject)=>{active={resolve,reject,output:[],tools:[],timer:setTimeout(()=>{const a=active;active=null;resolve({status:'timed_out',error:`Live turn exceeded ${turnTimeout/1000} seconds; stop and inspect partial output.`,output:a.output.join('\n\n'),tools:a.tools});},turnTimeout)};});
+  const started=Date.now();
+  const done=new Promise((resolve,reject)=>{active={resolve,reject,output:[],messages:[],tools:[],started,timer:setTimeout(()=>{const a=active;active=null;resolve({status:'timed_out',error:`Live turn exceeded ${turnTimeout/1000} seconds; stop and inspect partial output.`,output:a.output.join('\n\n'),messages:a.messages,tools:a.tools,elapsedMs:Date.now()-started});},turnTimeout)};});
   await request('turn/start',{threadId,input:[{type:'text',text},...(first?[{type:'skill',name:'crumb',path:skillPath}]:[])]});
   return done;
 }
 function createFixture(id,seed='evaluated'){
   const folder=join(fixtureDir,id);mkdirSync(folder);
   if(seed==='fresh'){const c=emptyIde();c.synthetic=true;c.project.entry='fresh';savePrebuild(folder,c);}
+  else if(seed==='priced-app'){
+    writeFileSync(join(folder,'README.md'),'# Reviewlane\nA small app for freelance video editors to compare client revision requests, deadlines and deliverables in one board. Editors use it on each active project; clients see a shared status page. A working beta exists. Pricing and payment willingness are unknown. No real customers or sales are represented in this synthetic fixture.\n');
+    writeFileSync(join(folder,'package.json'),JSON.stringify({name:'reviewlane',version:'0.1.0',description:'Revision board for freelance video editors'}));
+    const c=emptyIde();c.synthetic=true;c.project.entry='existing';savePrebuild(folder,c);
+  }
   else {
     const c=stock();if(seed==='existing'){c.project.entry='existing';writeFileSync(join(folder,'parser.mjs'),'export const parse = JSON.parse;\n');c.project.permissionQuote='Synthetic fixture authorizes reading its parser.';c.project.artifacts=inspectArtifacts(folder,{paths:['parser.mjs'],permissionGranted:true,permissionQuote:c.project.permissionQuote}).map(({path,sha256})=>({path,sha256}));}
     prepareIde(folder,seed==='build'?'act':seed==='pending-user'?'intention':'evaluation',c);
@@ -63,7 +69,7 @@ async function start(id,seed='evaluated',existingFolder){
   const liveWeb=process.argv.includes('--live-web');
   const config={'mcp_servers.crumb_context':{command:process.execPath,args:[mcp,folder],required:true,startup_timeout_sec:15,tool_timeout_sec:15,default_tools_approval_mode:'approve'},web_search:liveWeb?'live':'disabled'};
   const t=await request('thread/start',{cwd:folder,ephemeral:true,sandbox:'workspace-write',approvalPolicy:'never',config,
-    developerInstructions:`This is an opt-in synthetic acceptance test of the installed Crumb skill. Use the real Crumb behavior, not a critique of it. All founder statements are synthetic and all writes are limited to ${folder}. The Crumb installation is ${root}; pinned Node is ${process.execPath}. Use the configured read-only crumb_context MCP tools for compact saved state; use Crumb's existing internal CLI for necessary state writes. Never inspect the real installation's private customer state, credentials, or unrelated files. No external communication, deployment, paid service, code implementation, or subagents. ${liveWeb?'Public web research is authorized through available host tools; respect access restrictions and distinguish current findings from saved synthetic fixture assertions.':'Web research is disabled for this isolated replay; reuse stored research and state that test limitation.'} Do not invent a search, source, candidate, permission, interview or test. Supplied scenario backgrounds in brackets describe synthetic test conditions, not actual new research receipts.`});
+    developerInstructions:`This is an opt-in synthetic acceptance test of the installed Crumb skill. Use the real Crumb behavior, not a critique of it. All founder statements are synthetic and all writes are limited to ${folder}. The Crumb source is the explicitly supplied skill path; pinned Node is ${process.execPath}. Use the configured read-only crumb_context MCP tools for compact saved state; use Crumb's existing internal CLI for necessary state writes. Never inspect the real installation's private customer state, credentials, or unrelated files. No external communication, deployment, paid service, code implementation, or subagents. ${liveWeb?'Public web research is authorized through available host tools; respect access restrictions and distinguish current findings from saved synthetic fixture assertions.':'Web research is disabled for this isolated replay; reuse stored research and state that test limitation.'} Do not invent a search, source, candidate, permission, interview or test. Supplied scenario backgrounds in brackets describe synthetic test conditions, not actual new research receipts.`});
   return {folder,threadId:t.thread.id};
 }
 try{
@@ -83,6 +89,11 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'m3r3-pricing',seed:'priced-app',messages:["$crumb The app's basically built. Let's figure out pricing.","Would a per-project price fit better than a monthly editor plan? Use what we already know."]},
+    {id:'m3r3-feature-obsession',seed:'fresh',messages:["$crumb We're building a review board for freelance editors, but we haven't spoken to users yet. What should we do next?","I keep thinking we need more features. Add an AI brief generator and a calendar before we talk to anyone."]},
+    {id:'m3r3-research-surprise',seed:'fresh',messages:["$crumb Our synthetic research notes: people barely mention the dashboard we imagined, but several independently describe losing track of revision approvals and paying assistants to chase them. What do you notice? Don't claim these notes are verified customers."]},
+    {id:'m3r3-real-win',seed:'fresh',messages:["$crumb We got our first paying customer for the review board today! They paid for help tracking revision approvals."]},
+    {id:'m3r3-simple',seed:'fresh',messages:["$crumb Quick clarification: what's the difference between a customer and a user for our app? Keep it short.","Got it. If the editor uses the app and the agency pays, which is which? One sentence."]},
     {id:'fresh-b2b',seed:'fresh',messages:["$crumb I want a small paid business helping independent restaurant managers compare supplier quotes. I have evenings to work on it.","I'm not sure whether the owner or the person placing orders is the right user.","I don't know which API we'd need. You figure that out. Keep it direct, no jokes."]},
     {id:'existing-project',seed:'existing',messages:["$crumb I already have the shortlist parser in this project. Where were we?","Looks good, don't build yet. I only want to discuss what remains uncertain."]},
     {id:'customer-feedback',messages:["$crumb These are synthetic notes for this test: three scheduled-review traders liked comparing their own shortlist, but ignored discovery and wanted clearer source dates. What changes?","Exactly. The comparison is still the job, but they need to know how stale each fact is."]},
@@ -109,6 +120,10 @@ try{
       console.log(`existing-project-resume: ${response.status}`);if(response.status!=='completed')throw new Error('Live resume failed; review retained response.');
     }
   }
-  results.status='completed_needs_semantic_review';
+  const identityLeak=/(?:i(?:'ll| will| am|’ll)|i'm|i’m).{0,60}(?:crumb (?:skill|workflow|instructions|context)|skill|workflow)|(?:found|checking|reading).{0,40}crumb(?:'s|’s)? (?:skill|instructions|workflow|context)/i;
+  results.identityLeaks=results.sessions.flatMap(s=>s.turns.flatMap((t,i)=>identityLeak.test(t.output)?[{session:s.id,turn:i+1}]:[]));
+  results.timings=results.sessions.map(s=>({session:s.id,elapsedMs:s.turns.map(t=>t.elapsedMs)}));
+  results.status=results.identityLeaks.length?'failed_identity_leak':'completed_needs_semantic_review';
+  if(results.identityLeaks.length)process.exitCode=1;
 }catch(error){results.status='blocked';results.error=error.message;results.homeDirectoryUnavailable=/Could not find home directory/i.test(diagnostic);process.exitCode=1;}
 finally{save();console.log(JSON.stringify({status:results.status,path:join(runDir,'results.json'),error:results.error}));child.stdin.end();child.kill();lines.close();cancel('Test ended.');}

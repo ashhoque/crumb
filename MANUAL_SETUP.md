@@ -1,4 +1,22 @@
-# Setup status after M1-R2
+# Current Codex installation (M3-R3)
+
+On this machine the global `crumb` skill is a small entrypoint at
+`C:\Users\Ash\.agents\skills\crumb\SKILL.md`. It opens the canonical source
+skill at `C:\Users\Ash\Documents\Codex\CEC\.agents\skills\crumb\SKILL.md`.
+The Node build compiles TypeScript and copies contracts; it does not generate or
+install either skill file. After a passing revision is merged and pushed, update
+the source checkout to that `main` commit, rebuild with pinned Node 24.19.0 and
+verify the canonical skill path and global wrapper. The installed read-only MCP
+points to that checkout's compiled `dist/src/cli/mcp.js`.
+
+Codex also reads `C:\Users\Ash\.codex\AGENTS.md` at host level. Its scoped
+Crumb entry rule makes every visible message, including progress, speak as Crumb
+and directs the host to use a supplied skill path without a repository search.
+The product method remains in the canonical skill. A live disposable-host probe
+is required after installation; source-string checks alone do not prove the
+visible voice. See `scripts/verify-closeout-host.mjs` and M3_R3_REPORT.md.
+
+## Historical setup after M1-R2
 
 Git is installed and authenticated, main tracks origin/main, and the existing
 project is published at https://github.com/ashhoque/crumb. No download or terminal

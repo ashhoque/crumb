@@ -12,6 +12,7 @@ export function conversationContext(s:SavedPrebuild){
   const c=s.context,confirmed=(subject:'intention'|'user'|'problem')=>!!confirmation(c,subject);
   const insights=c.competitors.slice(0,2).map(x=>({name:x.name,insight:clip(x.fields.gaps.text??x.fields.love.text??x.fields.positioning.text),claimIds:[...new Set([...x.fields.gaps.claimIds,...x.fields.love.claimIds])].slice(0,4)}));
   return {format:'business-copilot-current-context-v1',revision:s.version,contextHash:s.hash,synthetic:c.synthetic,
+    ...(c.workingContext?{workingContext:c.workingContext}:{}),
     preferredName:c.preferredName?{value:c.preferredName.value,source:clip(c.preferredName.source)}:null,
     intention:{text:c.intention.statement,confirmed:confirmed('intention')},user:{text:c.definition.user.text,confirmed:confirmed('user')},buyer:clip(c.definition.buyer.text),problem:{text:c.definition.problem.text,confirmed:confirmed('problem')},
     constraints:[clip(c.intention.advice),clip(c.definition.frequency.text),clip(c.definition.workaround.text)].filter(Boolean),

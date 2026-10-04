@@ -2,7 +2,7 @@
 import { parseArgs } from 'node:util';
 import { requireTestedRuntime } from '../application/runtime.js';
 import { brand } from '../domain/brand.js';
-import { readPrebuild, savePrebuild, compactPrebuild, exportPrebuild, importPrebuild, transitionIde } from '../application/prebuild.js';
+import { readPrebuild, savePrebuild, saveWorkingContext, compactPrebuild, exportPrebuild, importPrebuild, transitionIde } from '../application/prebuild.js';
 import { prebuildSections, renderPrebuildSummary, renderPrebuildDetail, renderStartupMaster, renderFullResearch } from './prebuild-render.js';
 import { emptyIde, ideSchema, upgradeContext } from '../domain/ide.js';
 import * as act from '../application/act.js';
@@ -26,7 +26,7 @@ try {
   const { positionals, values } = parseArgs({ allowPositionals: true, strict: true, options: { json: { type: 'boolean', default: false }, section: { type: 'string' }, page: { type: 'string' }, collapsible: { type: 'boolean', default: false }, resume: { type: 'boolean', default: false } } });
   const [command, action, target, ...extra] = positionals;
   if ((values.section !== undefined || values.page !== undefined || values.collapsible) && !(command === 'internal' && action === 'detail')) throw new Error('Detail options belong only to internal detail.');
-  if (values.resume && !(command === 'internal' && ['conversation-context','conversation-detail','conversation-refresh','template'].includes(action ?? ''))) throw new Error('Explicit continuation applies only to saved conversation reads.');
+  if (values.resume && !(command === 'internal' && ['conversation-context','conversation-detail','conversation-refresh','template','working-context'].includes(action ?? ''))) throw new Error('Explicit continuation applies only to saved conversation reads or working-context transfer.');
   const print = (value: unknown): void => console.log(JSON.stringify(value, null, 2));
   const readInput = async (): Promise<unknown> => {
     let bytes = 0;
@@ -100,6 +100,18 @@ try {
       case 'schema': print(ideSchema); break;
       case 'evaluation-plan': {const s=readPrebuild(root);if(!s||s.context.contractVersion!==2)throw new Error('Use the saved intention, user and problem to begin the research plan.');print(researchPlan(s.context));break;}
       case 'research-decision': print(planDecisionResearch(await readInput() as ResearchDecision)); break;
+      case 'founder-move': {
+        const {planFounderMove}=await import('../domain/founder-intelligence.js');
+        print(planFounderMove(await readInput() as Parameters<typeof planFounderMove>[0]));break;
+      }
+      case 'project-bootstrap': {
+        const {bootstrapProject}=await import('../application/project-bootstrap.js');
+        print(bootstrapProject(root,await readInput() as Parameters<typeof bootstrapProject>[1]));break;
+      }
+      case 'working-context': {
+        const saved=saveWorkingContext(root,await readInput() as Parameters<typeof saveWorkingContext>[1],values.resume);
+        print({version:saved.version,hash:saved.hash,workingContext:saved.context.contractVersion===2?saved.context.workingContext:null});break;
+      }
       case 'interview-followup': {
         const input=await readInput();
         if(!input||typeof input!=='object'||!('answer' in input)||typeof input.answer!=='string'||!input.answer.trim()||input.answer.length>4000)throw new Error('Use one relevant, minimized answer to suggest the next interview question.');

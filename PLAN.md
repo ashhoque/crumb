@@ -1,4 +1,22 @@
-# Crumb implementation plan - M3-R2
+# Crumb implementation plan - M3-R3
+
+## M3-R3 — 4 October 2026
+
+Authority: the founder's M3-R3 revision request and GitHub closeout rule.
+Preserve M3-R2 fresh-chat isolation, confirmed IDE, Act consent and M3 learning.
+Do not begin M4.
+
+- [x] Trace the source skill, direct installed path, global wrapper and host-visible output.
+- [x] Add a host entry instruction for direct Crumb voice, including progress messages.
+- [x] Add compact project bootstrap, bounded working model and delta snapshot updates.
+- [x] Add one-move budget and calibrated opportunity levels.
+- [x] Add focused identity, bootstrap, snapshot, isolation and research regressions.
+- [x] Complete five live synthetic host conversations and semantic review.
+- [x] Verify the 320-test full suite.
+- [x] Verify global installation and pushed development branch.
+- [ ] Merge, verify and push `main`.
+
+The M3-R2 plan below is historical.
 
 ## M3-R2 — 4 October 2026
 

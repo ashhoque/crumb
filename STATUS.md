@@ -1,5 +1,17 @@
 # Crumb status
 
+**M3-R3 PASS WITH WARNINGS — founder voice and project-context revision.**
+The installed host no longer narrates the Crumb skill/workflow in the five
+synthetic M3-R3 conversations. Existing-app pricing, an adjacent approval pain,
+feature pushback, a first payment and a warm simple clarification were exercised
+through the real Codex host. Core now provides bounded project bootstrap,
+confidence-marked snapshot/founder deltas, opportunity levels and a one-move
+budget. The final full suite passed **320/320**. The repeat-question behavior in
+one feature dialogue and cold/live-research latency remain warnings. See
+[M3-R3 report](M3_R3_REPORT.md). M4 has not begun.
+
+## M3-R2 result (historical)
+
 **M3-R2 PASS WITH WARNINGS — alpha-driven interaction revision.** Fresh chats now
 default to clean idea context in the CLI and read-only MCP; an explicit continuation
 restores saved state. Crumb's skill now owns bounded external research, source

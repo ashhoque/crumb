@@ -1,21 +1,22 @@
 # Crumb repository instructions
 
 Use PRODUCT_SPEC.md v0.12 as product authority and PLAN.md / STATUS.md for state.
-The current authorized work is the focused M3-R1 product-quality correction,
-preserving Conversation Mode to Work/Build Mode. Do not start another milestone.
-Reuse the approved milestones. Record actual work in M3_R1_REPORT.md; stop before
-any later revision or M4. The R1 mode/pack/checkpoint policy supersedes earlier
-per-stage-only wording for new R1 plans; legacy M2 runs retain their review policy.
+The current authorized work is M3-R3 founder intelligence, personality and
+existing-project context, preserving confirmed IDE, Act gates and M3-R2 fresh-chat
+isolation. Do not begin M4. Record actual work in M3_R3_REPORT.md. The R1
+mode/pack/checkpoint policy still governs new Act plans; legacy M2 runs retain
+their original review policy.
 On 26 September 2026 the founder accepted M1-R3 well enough to proceed and
 authorized M2: Act plus small shared conversation improvements. Continue this
 existing repository; do not redesign M1-R3, re-scaffold or restart groundwork.
 The founder has now approved M2 and authorized M3 Launch & Learn. Record current
 work is preserved in M3_REPORT.md. Reuse confirmed IDE and the reviewed MVP.
 
-- Preserve all existing code, uncommitted work and Git history. The founder now
-  authorizes committing and pushing completed work regularly to `main` on
-  `origin`; review staged files for private data and run relevant checks first.
-  Do not create a replacement application.
+- Preserve all existing code, uncommitted work and Git history. Implement on the
+  active development branch; commit and push coherent tested changes. Merge into
+  `main` only after full revision acceptance, verify there, then push `main`.
+  Never force-push or push a knowingly broken state. Review staged files for
+  private data first. Do not create a replacement application.
 - Use Node 24.19.0, the existing lockfile and npm. cec.ps1 check selects the pinned
   runtime; direct pinned Node scripts/check.mjs is equivalent. Do not change global
   runtimes or Git settings. Enter-CECEnvironment.ps1 is a local untracked helper.
