@@ -7,7 +7,7 @@ import { inspectPath, PRIVATE_DIRECTORY, resolveProjectRoot } from '../privacy/s
 import { inspectArtifacts, sha256 } from '../privacy/artifacts.js';
 import { validatePrebuild, type PrebuildContext, type SavedPrebuild } from '../domain/prebuild.js';
 import type { EvaluatedActionDraft } from '../domain/contracts.js';
-import { validateIde, upgradeContext, resumedBrief, invalidateChanges, basis, evaluationBasis, assertEvaluationComplete, presentationText, thesisBasis, thesisText, subjects, ideState, assertAct, confirmation, type AnyPrebuild, type Subject } from '../domain/ide.js';
+import { emptyIde, validateIde, upgradeContext, resumedBrief, invalidateChanges, basis, evaluationBasis, assertEvaluationComplete, presentationText, thesisBasis, thesisText, subjects, ideState, assertAct, confirmation, type AnyPrebuild, type Subject } from '../domain/ide.js';
 import type { ConfirmedActionDraft } from '../domain/contracts.js';
 import { nextIdeStep } from '../domain/guide.js';
 import { agreesWithPresentation, type ReplyInterpretation } from '../domain/reply.js';
@@ -166,9 +166,16 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
 
 export function savePrebuild(target:string,input:unknown):SavedPrebuild {const saved=savePrebuildState(target,input);syncConversationArtifacts(target,saved);return saved;}
 /** Conversation notes are knowledge, never confirmation or Act permission. */
-export function saveWorkingContext(target:string,input:{expectedVersion:number;conversationId:string;delta:Partial<Pick<FounderWorkingContext,'project'|'founder'|'inspected'|'opportunity'>>},allowResume=false):SavedPrebuild {
+export function saveWorkingContext(target:string,input:{expectedVersion:number;conversationId:string;start?:boolean;synthetic?:boolean;delta:Partial<Pick<FounderWorkingContext,'project'|'founder'|'inspected'|'opportunity'>>},allowResume=false):SavedPrebuild {
   if(!input || !Number.isInteger(input.expectedVersion) || typeof input.conversationId!=='string')throw new Error('Working context needs the current revision and conversation identifier.');
+  if((input.start!==undefined&&typeof input.start!=='boolean')||(input.synthetic!==undefined&&typeof input.synthetic!=='boolean'))throw new Error('Working context start flags must be boolean.');
   const saved=readPrebuild(target);
+  if(input.start){
+    if(saved||input.expectedVersion!==0)throw new Error('Start working notes in an unused context folder; never replace another conversation.');
+    const context=emptyIde();context.synthetic=input.synthetic??false;
+    context.workingContext=updateWorkingContext(undefined,input.delta,input.conversationId);
+    return savePrebuild(target,context);
+  }
   if(!saved || saved.context.contractVersion!==2)throw new Error('Start a current Crumb project context before saving working notes.');
   if(saved.version!==input.expectedVersion)throw new Error('Project context changed. Resume the latest compact state.');
   if(confirmation(saved.context,'act'))throw new Error('After Act approval, do not rewrite its referenced context for working notes.');

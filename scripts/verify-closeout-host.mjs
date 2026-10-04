@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { createInterface } from 'node:readline';
 import { dirname, join } from 'node:path';
@@ -42,7 +42,7 @@ lines.on('line',line=>{
 });
 function request(method,params){return new Promise((resolve,reject)=>{const id=++seq,timer=setTimeout(()=>{pending.delete(id);reject(new Error(`${method} timed out`));},30000);pending.set(id,{resolve,reject,timer});child.stdin.write(JSON.stringify({id,method,params})+'\n');});}
 function save(){writeFileSync(join(runDir,'results.json'),JSON.stringify(results,null,2));}
-function state(folder){const saved=readPrebuild(folder),c=saved.context;return {version:saved.version,user:c.definition.user.text,problem:c.definition.problem.text,confirmed:['intention','user','problem','evaluation','act'].filter(subject=>confirmation(c,subject)),presentation:c.ide.presentation?.subject??null,workingContext:c.workingContext??null};}
+function state(folder){const saved=readPrebuild(folder),c=saved.context,notesRoot=join(folder,'crumb-contexts');const notes=existsSync(notesRoot)?readdirSync(notesRoot,{withFileTypes:true}).filter(d=>d.isDirectory()).slice(0,8).map(d=>({folder:d.name,workingContext:readPrebuild(join(notesRoot,d.name))?.context.workingContext??null})):[];return {version:saved.version,user:c.definition.user.text,problem:c.definition.problem.text,confirmed:['intention','user','problem','evaluation','act'].filter(subject=>confirmation(c,subject)),presentation:c.ide.presentation?.subject??null,workingContext:c.workingContext??null,notes};}
 async function turn(threadId,text,first=false){
   const started=Date.now();
   const done=new Promise((resolve,reject)=>{active={resolve,reject,output:[],messages:[],tools:[],started,timer:setTimeout(()=>{const a=active;active=null;resolve({status:'timed_out',error:`Live turn exceeded ${turnTimeout/1000} seconds; stop and inspect partial output.`,output:a.output.join('\n\n'),messages:a.messages,tools:a.tools,elapsedMs:Date.now()-started});},turnTimeout)};});

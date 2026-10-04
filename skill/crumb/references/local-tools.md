@@ -50,6 +50,33 @@ Only the installed Codex path has been tested; no Claude/Cursor/Replit support c
 
 ## Read and save
 
+For fresh conversation notes, use an unused child folder under the selected
+project, e.g. `crumb-contexts/<current-chat-id>`, as the target. Do not read the
+existing idea or reconstruct a full prebuild dossier. Send this shape to
+`internal working-context <target>` on UTF-8 stdin (replace example content):
+
+```json
+{"start":true,"expectedVersion":0,"conversationId":"current_chat_123","delta":{"project":{"next_move":{"value":"Prepare a paid pilot offer","status":"inferred","confidence":"medium","source":"Current founder conversation"}},"founder":{"likely_next_need":{"value":"An invitation for the first two prospects","status":"inferred","confidence":"medium","source":"Current founder conversation"}}}}
+```
+
+For synthetic acceptance only, add `"synthetic":true`. The start operation
+refuses any existing context. Later deltas omit `start` and use the returned
+version and same conversation ID. Retain this target for continuation; knowledge
+notes never grant foundation or Act approval. Do not assemble full IDE state just
+to save notes. Use full `template`/`prebuild` only when actually recording formal
+evidence and preparing founder review.
+
+Optional planners need no call when the next action is already clear. If useful,
+`market-pulse` accepts this shape; `materialGap` is boolean, never prose:
+
+```json
+{"user":"specific provisional user","problem":"observed pain","decision":"one decision","externalEvidence":"none","materialGap":true,"localMarket":false}
+```
+
+Set `localMarket:true` only when location changes the decision; use a founder-
+supplied `region` or accept the planner's request for it. Never invent a region.
+Do not retry undocumented variations or inspect Core source to discover inputs.
+
 Use `conversation-context --resume` only for explicit continuation and
 `conversation-detail --resume` with selected IDs for relevant cached evidence.
 Without `--resume`, context and `template` begin cleanly; a fresh idea must use
