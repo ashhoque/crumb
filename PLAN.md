@@ -1,4 +1,21 @@
-# Crumb implementation plan - M3-R3
+# Crumb implementation plan - M3-R4
+
+## M3-R4 — 4 October 2026
+
+Authority: the founder's M3-R4 request and GitHub closeout rule. Preserve M3-R3
+founder context, M3-R2 fresh-chat isolation, confirmed IDE, Act consent and M3
+learning. Do not begin M4.
+
+- [x] Add bounded early Market Pulse, calibrated opportunity map and compact user/market observations.
+- [x] Add local/community first-user route decisions, draft-only outreach, honest validation assets and outcome learning.
+- [x] Carry voice, evidence limits, candidate discovery and outreach permission through the active Crumb skill.
+- [x] Focused tests and full baseline regressions pass.
+- [x] Exercise six M3-R4 host flows and 11-turn continuity; repair observed candidate/win gaps.
+- [ ] Complete targeted live-host retest and final revision acceptance review.
+- [ ] Commit and push final revision documentation, merge into `main`, verify and push `main`.
+- [ ] Update and verify the global Crumb installation.
+
+The M3-R3 plan below is historical.
 
 ## M3-R3 — 4 October 2026
 

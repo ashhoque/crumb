@@ -159,6 +159,10 @@ local business market and ask for city/region if absent. Start in focused online
 communities for a distributed role. Review roughly 5–20 high-fit public
 candidates when available; keep the three best source-backed cards in compact
 context. Named people are optional, and an inaccessible route is not a lead.
+When asked for first users, inspect public candidate pages yourself and give
+the best verified matches with observed fit and limits. Do not delegate the
+shortlist search back to the founder. If only a few can be verified within the
+bounded batch, return those few and say the shortlist is incomplete.
 Observed public business details may support a route; do not invent contact
 details or infer interest. `outreach-draft` produces a short founder-review draft
 only; it cannot send. An observed like or reply count may be reported with source,

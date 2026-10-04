@@ -1,9 +1,10 @@
 # Crumb repository instructions
 
 Use PRODUCT_SPEC.md v0.12 as product authority and PLAN.md / STATUS.md for state.
-The current authorized work is M3-R3 founder intelligence, personality and
-existing-project context, preserving confirmed IDE, Act gates and M3-R2 fresh-chat
-isolation. Do not begin M4. Record actual work in M3_R3_REPORT.md. The R1
+The current authorized work is M3-R4 market intelligence, founder copilot and
+first-user discovery, preserving M3-R3 founder context, confirmed IDE, Act gates
+and M3-R2 fresh-chat isolation. Do not begin M4. Record actual work in
+M3_R4_REPORT.md. The R1
 mode/pack/checkpoint policy still governs new Act plans; legacy M2 runs retain
 their original review policy.
 On 26 September 2026 the founder accepted M1-R3 well enough to proceed and
