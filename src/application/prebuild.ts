@@ -12,6 +12,7 @@ import type { ConfirmedActionDraft } from '../domain/contracts.js';
 import { nextIdeStep } from '../domain/guide.js';
 import { agreesWithPresentation, type ReplyInterpretation } from '../domain/reply.js';
 import { syncConversationArtifacts } from './session.js';
+import { updateWorkingContext, type FounderWorkingContext } from '../domain/founder-intelligence.js';
 
 export function storedPrebuild(db: SqliteConnection): SavedPrebuild | null {
   if (Number(db.get('PRAGMA user_version')?.['user_version']) < 2) return null;
@@ -65,13 +66,14 @@ function savePrebuildState(target: string, input: unknown): SavedPrebuild {
 
 function masterBasis(context: AnyPrebuild): string {
   const { expectedVersion, brief, preferredName, master, ...basis } = context;
+  if ('workingContext' in basis) delete basis.workingContext;
   return JSON.stringify(basis);
 }
 
 /** Host context excludes the optional dossier until it is explicitly requested. */
 export function compactPrebuild(saved: SavedPrebuild): object {
   const { context: c, ...identity } = saved;
-  return { ...identity, guidance: nextIdeStep(c), ...(c.contractVersion === 2 ? { ideState: ideState(c), basis: Object.fromEntries(subjects.map(s=>[s,basis(c,s)])), confirmations: c.ide.confirmations.map(({id,subject,basis})=>({id,subject,basis})), presentation: c.ide.presentation } : { historical: true }), synthetic: c.synthetic, stage: c.stage, project: c.project, preferredName: c.preferredName, intention: c.intention, definition: c.definition, feedbackClaimIds: c.feedbackClaimIds, brief: c.brief, evaluation: { status: c.evaluation.status, conclusion: c.evaluation.conclusion, promising: c.evaluation.promising, weak: c.evaluation.weak, unknowns: c.evaluation.unknowns, contradictions: c.evaluation.contradictions }, detailCounts: { sources: c.sources.length, claims: c.claims.length, competitors: c.competitors.length, habitats: c.habitats.length, adjacent: c.adjacent.length }, masterAvailable: c.master !== null || (c.contractVersion === 2 && c.ide.reviewBasis !== null) };
+  return { ...identity, guidance: nextIdeStep(c), ...(c.contractVersion === 2 ? { ideState: ideState(c), basis: Object.fromEntries(subjects.map(s=>[s,basis(c,s)])), confirmations: c.ide.confirmations.map(({id,subject,basis})=>({id,subject,basis})), presentation: c.ide.presentation, ...(c.workingContext?{workingContext:c.workingContext}:{}) } : { historical: true }), synthetic: c.synthetic, stage: c.stage, project: c.project, preferredName: c.preferredName, intention: c.intention, definition: c.definition, feedbackClaimIds: c.feedbackClaimIds, brief: c.brief, evaluation: { status: c.evaluation.status, conclusion: c.evaluation.conclusion, promising: c.evaluation.promising, weak: c.evaluation.weak, unknowns: c.evaluation.unknowns, contradictions: c.evaluation.contradictions }, detailCounts: { sources: c.sources.length, claims: c.claims.length, competitors: c.competitors.length, habitats: c.habitats.length, adjacent: c.adjacent.length }, masterAvailable: c.master !== null || (c.contractVersion === 2 && c.ide.reviewBasis !== null) };
 }
 
 export function assertPrebuildReference(db: SqliteConnection, draft: EvaluatedActionDraft | ConfirmedActionDraft): void {
@@ -145,4 +147,17 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
 }
 
 export function savePrebuild(target:string,input:unknown):SavedPrebuild {const saved=savePrebuildState(target,input);syncConversationArtifacts(target,saved);return saved;}
+/** Conversation notes are knowledge, never confirmation or Act permission. */
+export function saveWorkingContext(target:string,input:{expectedVersion:number;conversationId:string;delta:Partial<Pick<FounderWorkingContext,'project'|'founder'|'inspected'|'opportunity'>>},allowResume=false):SavedPrebuild {
+  if(!input || !Number.isInteger(input.expectedVersion) || typeof input.conversationId!=='string')throw new Error('Working context needs the current revision and conversation identifier.');
+  const saved=readPrebuild(target);
+  if(!saved || saved.context.contractVersion!==2)throw new Error('Start a current Crumb project context before saving working notes.');
+  if(saved.version!==input.expectedVersion)throw new Error('Project context changed. Resume the latest compact state.');
+  if(confirmation(saved.context,'act'))throw new Error('After Act approval, do not rewrite its referenced context for working notes.');
+  const current=saved.context.workingContext;
+  const copied=allowResume&&current&&current.conversationId!==input.conversationId?{...current,conversationId:input.conversationId}:current;
+  const next=updateWorkingContext(copied,input.delta,input.conversationId);
+  const context={...saved.context,expectedVersion:saved.version,workingContext:next};
+  return savePrebuild(target,context);
+}
 export function transitionIde(target:string,input:unknown):SavedPrebuild {const saved=transitionIdeState(target,input);syncConversationArtifacts(target,saved);return saved;}

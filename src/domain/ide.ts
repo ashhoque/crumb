@@ -4,6 +4,7 @@ import { emptyPrebuild, prebuildSchema, validatePrebuild, coverageTopics, type P
 import { plain } from './conversation.js';
 import { qualitySchema, validateQuality, researchableQuestion, evaluationHighlights, type EvaluationQuality } from './evaluation-quality.js';
 import { validateFirstUserCards, type FirstUserCard, type FirstUserDiscovery } from './first-user-discovery.js';
+import { projectFactKeys, founderFactKeys, type FounderWorkingContext } from './founder-intelligence.js';
 
 export const subjects = ['intention', 'user', 'problem', 'evaluation', 'act'] as const;
 export type Subject = typeof subjects[number];
@@ -14,6 +15,7 @@ export interface Confirmation { id: string; subject: Subject; basis: string; pre
 export interface Presentation { id: string; subject: Subject; basis: string; text: string }
 export interface IdeContext extends Omit<PrebuildContext, 'contractVersion'> {
   contractVersion: 2;
+  workingContext?: FounderWorkingContext;
   quality?: EvaluationQuality;
   firstUserCards?: FirstUserCard[];
   discovery?: FirstUserDiscovery;
@@ -35,10 +37,13 @@ const arr = (items: object, maxItems = 128) => ({ type: 'array', items, maxItems
 const hash = { type: 'string', pattern: '^[a-f0-9]{64}$' };
 const refs = arr(str(80), 64);
 const subject = { enum: subjects };
+const workingFact = obj({value:str(320),status:{enum:['known','inferred','stale','unknown']},confidence:{enum:['high','medium','low']},source:nil(str(240))});
+const optionalFacts = (keys:readonly string[]) => ({type:'object',properties:Object.fromEntries(keys.map(k=>[k,workingFact])),required:[],additionalProperties:false});
 export const ideSchema = {
   ...structuredClone(prebuildSchema), $id: 'urn:business-copilot:prebuild:v2',
   properties: {
     ...structuredClone(prebuildSchema.properties), contractVersion: { const: 2 }, quality:qualitySchema,
+    workingContext: obj({conversationId:{type:'string',pattern:'^[A-Za-z0-9_-]{8,120}$'},project:optionalFacts(projectFactKeys),founder:optionalFacts(founderFactKeys),inspected:arr(obj({path:str(240),sha256:hash}),12),opportunity:nil(obj({signal:str(300),evidenceIds:arr(str(80),6),level:{enum:['signal','hypothesis','strong','recommended_test']}}))}),
     firstUserCards: arr({ ...obj({ id: str(80), kind: { enum: ['person','community','business','event','place'] }, displayName: str(240), subjectKey: str(240), relationship: { enum: ['intended_user','buyer','expert','gatekeeper','adjacent','unknown'] }, observed: str(), fitInference: str(), uncertainty: str(), sourceIds: refs, route: nil(str(2000)), routeStatus: { enum: ['reviewed','check_rules','unavailable'] }, firsthand: { type: 'boolean' }, scopeKey:hash, usePermission:{enum:['permitted','unknown','restricted']} }), required:['id','kind','displayName','subjectKey','relationship','observed','fitInference','uncertainty','sourceIds','route','routeStatus','firsthand'] }, 3),
     discovery: { ...obj({ channels: { enum: ['online','local','both'] }, region: nil(str(240)), outcome: { enum: ['not_run','ready','partial','no_results','unavailable','declined'] }, runIds: refs, limitation: str(), suppressedSubjectKeys:refs }), required:['channels','region','outcome','runIds','limitation'] },
     investigation: obj({
@@ -77,7 +82,7 @@ export function emptyIde(): IdeContext { const c = emptyPrebuild(); return { ...
 /** Reuse v1 evidence validation without letting v1 readiness imply consent. */
 export function legacyView(c: AnyPrebuild): PrebuildContext {
   if (c.contractVersion === 1) return c;
-  const { ide: _, investigation: __, opportunity: ___, quality: ____, firstUserCards: _____, discovery: ______, ...base } = c;
+  const { ide: _, investigation: __, opportunity: ___, quality: ____, firstUserCards: _____, discovery: ______, workingContext: _______, ...base } = c;
   return { ...base, contractVersion: 1, brief: { ...base.brief, choices: [] } };
 }
 function foundation(c: IdeContext, s: Subject): unknown {
@@ -137,6 +142,7 @@ export function validateIde(input: unknown, pendingChange = false): asserts inpu
   validatePrebuild(legacyView(c));
   validateQuality(c);
   validateFirstUserCards(c);
+  if (c.workingContext && (JSON.stringify(c.workingContext).length>6500 || Object.values({...c.workingContext.project,...c.workingContext.founder}).some(f=>f?.status==='inferred'&&f.confidence==='high') || c.workingContext.inspected.some(x=>/(^|[\\/])(?:\.git|\.customer-evidence|\.env)(?:[\\/]|$)/i.test(x.path)))) throw new Error('Working context must stay compact, confidence-aware and free of private paths.');
   if([c.brief.next,...c.brief.questions].some(researchableQuestion))throw new Error('Crumb should investigate that first and propose a reasoned option; ask the founder only about intent or meaningful constraints.');
   if (c.buildRequest !== null) throw new Error('An early build request cannot bypass confirmed IDE.');
   if (new Set(c.ide.confirmations.map(r => r.turnId)).size !== c.ide.confirmations.length || new Set(c.ide.confirmations.map(r => r.id)).size !== c.ide.confirmations.length) throw new Error('Confirmation replies and receipt identities cannot be reused.');

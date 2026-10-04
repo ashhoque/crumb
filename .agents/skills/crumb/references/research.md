@@ -17,6 +17,11 @@ triggers. For material external numbers/current claims, retain source URL,
 retrieval date, exact entity/product, relevant city/region and evidence status.
 Call a vendor page publicly listed unless the current offer was directly verified.
 Mark unsupported figures as estimates or unknowns and avoid false precision.
+Search-result snippets alone are insufficient to quote a precise current price.
+Open the vendor's pricing page when accessible and confirm the amount, unit,
+plan and billing interval. If the host exposes only search results, avoid the
+exact figure and give a qualitative comparison or an explicitly unverified
+range instead. Keep the opening within the normal research page budget.
 
 Start from the explicitly confirmed Intention, User and Problem. Do not spend a personal
 tool founder's time proving venture scale. Conversely, one founder's inconvenience
