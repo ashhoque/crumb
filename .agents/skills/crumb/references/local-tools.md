@@ -24,6 +24,10 @@ Working notes never grant confirmation or Act permission. A new chat may transfe
 them with `--resume` only after the founder explicitly asks to continue that
 same project. Do not save working notes after Act approval; keep the approved
 handoff stable.
+M3-R4 optional project facts include user incentives, switching barriers, trust,
+buyer process, market pulse, research/acquisition habitats and first-user learning.
+Keep each short, source-aware and revisable. They do not establish a psychological
+profile or imply a customer conversation happened.
 
 The optional local read-only MCP boundary runs with the pinned Node executable:
 `node <install>/dist/src/cli/mcp.js <selected-project>`. Configure that command and
@@ -132,6 +136,20 @@ offline planner does not browse or verify a claim.
 `interview-followup` takes `{"answer":"one minimized past-behavior answer"}` and
 returns one suggested question with `recorded:false`. It sends/stores nothing;
 use normal evidence capture separately for attributed interview learning.
+`market-pulse` accepts user, problem, decision, materialGap, externalEvidence,
+localMarket and optional region; it returns a bounded research decision and
+queries, not search results. `opportunity-map` accepts a segment, pain, product
+fit, founder advantage and up to twelve dated, source-backed signals; it keeps
+pain, frequency, workaround, spend, reach, growth, alternatives and engagement
+separate. Snippets and unavailable pages do not become observed evidence; TAM
+remains unknown. Both commands are read-only and need no saved IDE context.
+`first-user-plan` accepts user, pain, local_smb/distributed market, optional
+region and up to eight source-backed habitats with fit, role and participation
+status. It returns research and acquisition routes plus a small discovery bound.
+`outreach-draft` accepts audience, observedContext, one ask, channel, sourceUrl
+and routeReviewed; output is draft-only and cannot send. `validation-asset` accepts
+painKnown, productBuilt and fastLearning; it recommends a truthful concept or
+conversation, never Act approval. Host work remains subject to Act gates.
 `discovery-plan` returns a scope-bound plan, normally at most six queries/ten pages.
 It does not run searches. The host records actual research through existing sources,
 claims and receipts. Optional `firstUserCards` keep observed name/handle, relationship,

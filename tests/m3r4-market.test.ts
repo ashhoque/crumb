@@ -3,6 +3,9 @@ import assert from 'node:assert/strict';
 import { planMarketPulse, assessOpportunity, type MarketSignal } from '../src/domain/market-intelligence.js';
 import { planFirstUsers, prepareOutreach, validationAsset } from '../src/domain/first-user-engine.js';
 import { updateWorkingContext } from '../src/domain/founder-intelligence.js';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
 
 const base={user:'Independent accountants',problem:'Manual client document chasing',decision:'Which narrow user should we test first?',externalEvidence:'none' as const,materialGap:true,localMarket:false};
 test('M3-R4 pulse runs early but remains one bounded batch',()=>{
@@ -45,4 +48,18 @@ test('M3-R4 compact user and market learning stays tentative',()=>{
   const context=updateWorkingContext(undefined,{project:{market_pulse:{value:'Public complaints point to a possible wedge',status:'inferred',confidence:'medium',source:'https://example.com'},buyer_process:{value:'Owner may approve tools',status:'inferred',confidence:'low',source:null},first_user_learning:{value:'Two ignored messages; channel signal unclear',status:'known',confidence:'medium',source:'founder report'}}},'conversation_123');
   assert.equal(context.project.market_pulse?.status,'inferred');
   assert.throws(()=>updateWorkingContext(context,{project:{trust:{value:'Certain',status:'inferred',confidence:'high',source:null}}},'conversation_123'),/inference cannot be high-confidence/);
+});
+test('M3-R4 live skill guidance retains personality, early research, continuity and send gate',()=>{
+  const skill=readFileSync(new URL('../../.agents/skills/crumb/SKILL.md',import.meta.url),'utf8');
+  const research=readFileSync(new URL('../../.agents/skills/crumb/references/research.md',import.meta.url),'utf8');
+  assert.match(skill,/hype partner with standards/);assert.match(skill,/single `\$crumb` invocation continues/);
+  assert.match(skill,/Never send a message/);assert.match(skill,/early Market Pulse/);
+  assert.match(research,/Engagement|engagement/);assert.match(research,/research habitats and one or two acquisition routes/);
+});
+test('M3-R4 installed CLI planners run without a saved project or network',()=>{
+  const cli=fileURLToPath(new URL('../src/cli/main.js',import.meta.url));
+  const result=spawnSync(process.execPath,[cli,'internal','market-pulse'],{input:JSON.stringify(base),encoding:'utf8',windowsHide:true,timeout:15000});
+  assert.equal(result.status,0,result.stderr);assert.equal(JSON.parse(result.stdout).action,'research');
+  const outreach=spawnSync(process.execPath,[cli,'internal','outreach-draft'],{input:JSON.stringify({audience:'accountants',observedContext:'your firm handles client files',ask:'Open to a short chat',channel:'email',sourceUrl:'https://example.com',routeReviewed:true}),encoding:'utf8',windowsHide:true,timeout:15000});
+  assert.equal(outreach.status,0,outreach.stderr);assert.equal(JSON.parse(outreach.stdout).sendAllowed,false);
 });
