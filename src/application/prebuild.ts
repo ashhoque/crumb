@@ -7,7 +7,7 @@ import { inspectPath, PRIVATE_DIRECTORY, resolveProjectRoot } from '../privacy/s
 import { inspectArtifacts, sha256 } from '../privacy/artifacts.js';
 import { validatePrebuild, type PrebuildContext, type SavedPrebuild } from '../domain/prebuild.js';
 import type { EvaluatedActionDraft } from '../domain/contracts.js';
-import { validateIde, upgradeContext, resumedBrief, invalidateChanges, basis, evaluationBasis, assertEvaluationComplete, presentationText, subjects, ideState, assertAct, confirmation, type AnyPrebuild, type Subject } from '../domain/ide.js';
+import { validateIde, upgradeContext, resumedBrief, invalidateChanges, basis, evaluationBasis, assertEvaluationComplete, presentationText, thesisBasis, thesisText, subjects, ideState, assertAct, confirmation, type AnyPrebuild, type Subject } from '../domain/ide.js';
 import type { ConfirmedActionDraft } from '../domain/contracts.js';
 import { nextIdeStep } from '../domain/guide.js';
 import { agreesWithPresentation, type ReplyInterpretation } from '../domain/reply.js';
@@ -116,13 +116,13 @@ function appendContext(db: SqliteConnection, context: AnyPrebuild, version: numb
   return { version, hash, recordedAt, context };
 }
 
-export interface IdeTransition { expectedVersion: number; operation: 'present' | 'confirm' | 'review'; subject?: Subject; presentationId?: string; quote?: string; turnId?: string; interpretation?:ReplyInterpretation }
+export interface IdeTransition { expectedVersion: number; operation: 'present' | 'confirm' | 'review' | 'present-thesis' | 'confirm-thesis'; subject?: Subject; presentationId?: string; quote?: string; turnId?: string; interpretation?:ReplyInterpretation }
 function transitionIdeState(target: string, input: unknown): SavedPrebuild {
   if (!input || typeof input !== 'object') throw new Error('Provide an IDE transition.');
   const r = input as IdeTransition;
-  if (!Number.isSafeInteger(r.expectedVersion) || !['present', 'confirm', 'review'].includes(r.operation) || Object.keys(r).some(k => !['expectedVersion', 'operation', 'subject', 'presentationId', 'quote', 'turnId','interpretation'].includes(k))) throw new Error('Invalid IDE transition.');
+  if (!Number.isSafeInteger(r.expectedVersion) || !['present', 'confirm', 'review', 'present-thesis', 'confirm-thesis'].includes(r.operation) || Object.keys(r).some(k => !['expectedVersion', 'operation', 'subject', 'presentationId', 'quote', 'turnId','interpretation'].includes(k))) throw new Error('Invalid IDE transition.');
   if (r.operation === 'present' && (!r.subject || !subjects.includes(r.subject))) throw new Error('Choose the confirmation subject.');
-  if (r.operation === 'confirm' && [r.presentationId, r.quote, r.turnId].some(x => typeof x !== 'string' || !x.trim() || x.length > 2000)) throw new Error('Confirmation needs the displayed presentation, founder reply and source turn.');
+  if (['confirm','confirm-thesis'].includes(r.operation) && [r.presentationId, r.quote, r.turnId].some(x => typeof x !== 'string' || !x.trim() || x.length > 2000)) throw new Error('Confirmation needs the displayed presentation, founder reply and source turn.');
   const location = initializeProject(target), db = openSqlite(location.database);
   try { return db.transaction(() => {
     const saved = storedPrebuild(db);
@@ -131,9 +131,20 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
     const c = structuredClone(saved.context); c.expectedVersion = saved.version;
     if (r.operation === 'review') { assertEvaluationComplete(c); c.ide.reviewBasis = evaluationBasis(c); c.ide.presentation = null; }
     if (r.operation === 'present') c.ide.presentation = { id: randomUUID(), subject: r.subject!, basis: basis(c, r.subject!), text: presentationText(c, r.subject!) };
+    if (r.operation === 'present-thesis') c.ide.presentation = {id:randomUUID(),subject:'thesis',basis:thesisBasis(c),text:thesisText(c)};
+    if (r.operation === 'confirm-thesis') {
+      const p=c.ide.presentation;
+      if(!p||p.subject!=='thesis'||p.id!==r.presentationId||p.basis!==thesisBasis(c))throw new Error('Confirm the exact current displayed thesis, not an old or unseen prompt.');
+      if(c.ide.confirmations.some(x=>x.turnId===r.turnId))throw new Error('A founder reply cannot be reused from an earlier confirmation.');
+      const quote=r.quote!.trim();
+      const agreement=agreesWithPresentation(quote,r.interpretation)||/^(yes|looks good|sounds right|that works)[,.]?\s+(?:but\s+)?(?:do not|don't)\s+build\s+yet[.!]?$/i.test(quote);
+      if(!agreement)throw new Error('Review the working thesis with clear agreement or a correction; this does not authorize Act.');
+      for(const subject of ['intention','user','problem'] as const)c.ide.confirmations.push({id:randomUUID(),subject,basis:basis(c,subject),presentationId:p.id,presentedText:p.text,turnId:r.turnId!,quote,recordedAt:new Date().toISOString()});
+      c.ide.presentation=null;
+    }
     if (r.operation === 'confirm') {
       const p = c.ide.presentation;
-      if (!p || p.id !== r.presentationId || p.basis !== basis(c, p.subject)) throw new Error('Confirm the exact current displayed statement, not an old or unseen prompt.');
+      if (!p || p.subject==='thesis' || p.id !== r.presentationId || p.basis !== basis(c, p.subject)) throw new Error('Confirm the exact current displayed statement, not an old or unseen prompt.');
       presentationText(c, p.subject);
       if (c.ide.confirmations.some(x => x.turnId === r.turnId)) throw new Error('A founder reply cannot confirm multiple statements.');
       const quote = r.quote!.trim();

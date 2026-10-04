@@ -12,7 +12,7 @@ export const extraTopics = ['workaround', 'willingness_to_pay', 'ability_to_pay'
 export const alternativeKinds = ['direct', 'adjacent', 'incumbent', 'new_ai', 'service', 'manual', 'spreadsheet', 'generic_ai', 'do_nothing'] as const;
 export const ideTopics = [...coverageTopics, ...extraTopics];
 export interface Confirmation { id: string; subject: Subject; basis: string; presentationId: string; turnId: string; quote: string; recordedAt: string; presentedText: string }
-export interface Presentation { id: string; subject: Subject; basis: string; text: string }
+export interface Presentation { id: string; subject: Subject | 'thesis'; basis: string; text: string }
 export interface IdeContext extends Omit<PrebuildContext, 'contractVersion'> {
   contractVersion: 2;
   workingContext?: FounderWorkingContext;
@@ -56,7 +56,7 @@ export const ideSchema = {
     ide: obj({
       generations: obj(Object.fromEntries(subjects.map(s => [s, { type: 'integer', minimum: 0 }]))),
       confirmations: arr(obj({ id: str(80), subject, basis: hash, presentationId: str(80), turnId: str(160), quote: str(), recordedAt: str(40), presentedText: str(6000) })),
-      presentation: nil(obj({ id: str(80), subject, basis: hash, text: str(6000) })), reviewBasis: nil(hash),
+      presentation: nil(obj({ id: str(80), subject: {enum:[...subjects,'thesis']}, basis: hash, text: str(6000) })), reviewBasis: nil(hash),
     }),
   },
   required: [...prebuildSchema.required, 'investigation', 'opportunity', 'ide'],
@@ -104,6 +104,16 @@ export function basis(c: IdeContext, s: Subject): string {
   if (s === 'act') return digest({ generation: c.ide.generations.act, evaluation: basis(c, 'evaluation') });
   return digest({ generation: c.ide.generations[s], content: foundation(c, s) });
 }
+export function thesisBasis(c: IdeContext): string { return digest({foundations:subjects.slice(0,3).map(s=>basis(c,s)),evaluation:evaluationBasis(c)}); }
+export function thesisText(c: IdeContext): string {
+  if(!c.intention.statement||!c.definition.user.text||!c.definition.problem.text)throw new Error('Draft the intention, initial user and pain before presenting a working thesis.');
+  const safe=(value:string)=>plain(value).replaceAll('<','&lt;').replaceAll('>','&gt;');
+  return [`Here is my working take: ${safe(c.intention.statement)}`,
+    `The first user is ${safe(c.definition.user.text)}. The pain is ${safe(c.definition.problem.text)}.`,
+    c.evaluation.conclusion?`What the evidence suggests: ${safe(c.evaluation.conclusion)}`:'This is a provisional direction; external evidence has not established demand.',
+    c.evaluation.unknowns[0]?`The main uncertainty: ${safe(c.evaluation.unknowns[0])}`:'The main uncertainty is whether this pain changes real behavior.',
+    'Does this capture the business direction? We can keep investigating without committing to build.'].join('\n\n').slice(0,6000);
+}
 export function confirmation(c: IdeContext, s: Subject): Confirmation | undefined { return c.ide.confirmations.findLast(r => r.subject === s && r.basis === basis(c, s)); }
 export function ideState(c: IdeContext): { intention: string; target_user: string; problem_definition: string; evaluation: string; act_readiness: string } {
   const foundationState = (s: Subject, text: string | null) => confirmation(c, s) ? 'founder_confirmed' : text ? 'drafted' : 'unknown';
@@ -130,7 +140,7 @@ export function invalidateChanges(current: IdeContext, next: IdeContext): void {
   if (first < 0) return;
   for (const s of subjects.slice(first)) next.ide.generations[s]++;
   next.ide.reviewBasis = null;
-  if (next.ide.presentation && subjects.indexOf(next.ide.presentation.subject) >= first) next.ide.presentation = null;
+  if (next.ide.presentation && (next.ide.presentation.subject==='thesis'?first<=3:subjects.indexOf(next.ide.presentation.subject)>=first)) next.ide.presentation = null;
   next.master = null;
   next.brief.choices = next.brief.choices.filter(x => !['shape_mvp', 'build_requested', 'interview', 'master'].includes(x.action));
 }
@@ -145,7 +155,8 @@ export function validateIde(input: unknown, pendingChange = false): asserts inpu
   if (c.workingContext && (JSON.stringify(c.workingContext).length>6500 || Object.values({...c.workingContext.project,...c.workingContext.founder}).some(f=>f?.status==='inferred'&&f.confidence==='high') || c.workingContext.inspected.some(x=>/(^|[\\/])(?:\.git|\.customer-evidence|\.env)(?:[\\/]|$)/i.test(x.path)))) throw new Error('Working context must stay compact, confidence-aware and free of private paths.');
   if([c.brief.next,...c.brief.questions].some(researchableQuestion))throw new Error('Crumb should investigate that first and propose a reasoned option; ask the founder only about intent or meaningful constraints.');
   if (c.buildRequest !== null) throw new Error('An early build request cannot bypass confirmed IDE.');
-  if (new Set(c.ide.confirmations.map(r => r.turnId)).size !== c.ide.confirmations.length || new Set(c.ide.confirmations.map(r => r.id)).size !== c.ide.confirmations.length) throw new Error('Confirmation replies and receipt identities cannot be reused.');
+  const byTurn=new Map<string,Confirmation[]>();for(const receipt of c.ide.confirmations)byTurn.set(receipt.turnId,[...(byTurn.get(receipt.turnId)??[]),receipt]);
+  if ([...byTurn.values()].some(group=>group.length>1&&(group.length!==3||new Set(group.map(r=>r.subject)).size!==3||!['intention','user','problem'].every(s=>group.some(r=>r.subject===s))||new Set(group.map(r=>r.presentationId)).size!==1||new Set(group.map(r=>r.presentedText)).size!==1||new Set(group.map(r=>r.quote)).size!==1)) || new Set(c.ide.confirmations.map(r => r.id)).size !== c.ide.confirmations.length) throw new Error('Confirmation replies and receipt identities cannot be reused outside one displayed thesis.');
   if (c.ide.confirmations.some(r => !Number.isFinite(Date.parse(r.recordedAt)))) throw new Error('Confirmation receipts need valid times.');
   if (!pendingChange && (c.master || c.brief.choices.some(x => ['shape_mvp', 'build_requested'].includes(x.action)))) assertAct(c);
   if (!pendingChange && c.brief.choices.some(x => ['interview', 'master'].includes(x.action)) && !['reviewed', 'founder_reviewed'].includes(ideState(c).evaluation)) throw new Error('Finish evaluation before interview or opportunity-brief choices.');
