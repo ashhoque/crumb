@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { planMarketPulse, assessOpportunity, type MarketSignal } from '../src/domain/market-intelligence.js';
-import { planFirstUsers, prepareOutreach, validationAsset } from '../src/domain/first-user-engine.js';
+import { planFirstUsers, prepareOutreach, validationAsset, learnFirstUsers } from '../src/domain/first-user-engine.js';
 import { updateWorkingContext } from '../src/domain/founder-intelligence.js';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -43,6 +43,12 @@ test('M3-R4 outreach and validation asset cannot imply send or Act approval',()=
   assert.equal(draft.status,'draft_only');assert.equal(draft.sendAllowed,false);assert.match(draft.body,/No pressure/);
   assert.equal(validationAsset(true,false,true).permission,'draft_only_until_act');
   assert.match(validationAsset(true,false,true).recommendation,/labeled as a concept/);
+});
+test('M3-R4 learning treats silence as ambiguous and conversations as limited',()=>{
+  const ignored=learnFirstUsers([{kind:'ignored',audience:'Accountants',channel:'email',observation:'No reply reported after one invite'}]);
+  assert.equal(ignored.validation,'not_established');assert.match(ignored.next,/Silence is ambiguous/);
+  const talked=learnFirstUsers([{kind:'conversation',audience:'Small practices',channel:'association',observation:'Discussed document chasing'}]);
+  assert.deepEqual(talked.segmentSignal,['Small practices']);assert.equal(talked.validation,'not_established');
 });
 test('M3-R4 compact user and market learning stays tentative',()=>{
   const context=updateWorkingContext(undefined,{project:{market_pulse:{value:'Public complaints point to a possible wedge',status:'inferred',confidence:'medium',source:'https://example.com'},buyer_process:{value:'Owner may approve tools',status:'inferred',confidence:'low',source:null},first_user_learning:{value:'Two ignored messages; channel signal unclear',status:'known',confidence:'medium',source:'founder report'}}},'conversation_123');

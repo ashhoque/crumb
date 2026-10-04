@@ -105,6 +105,7 @@ try {
       case 'first-user-plan': {const {planFirstUsers}=await import('../domain/first-user-engine.js');print(planFirstUsers(await readInput() as Parameters<typeof planFirstUsers>[0]));break;}
       case 'outreach-draft': {const {prepareOutreach}=await import('../domain/first-user-engine.js');print(prepareOutreach(await readInput() as Parameters<typeof prepareOutreach>[0]));break;}
       case 'validation-asset': {const {validationAsset}=await import('../domain/first-user-engine.js');const i=await readInput() as {painKnown:boolean;productBuilt:boolean;fastLearning:boolean};if(!i||typeof i.painKnown!=='boolean'||typeof i.productBuilt!=='boolean'||typeof i.fastLearning!=='boolean')throw new Error('Describe pain, product and learning state.');print(validationAsset(i.painKnown,i.productBuilt,i.fastLearning));break;}
+      case 'first-user-learning': {const {learnFirstUsers}=await import('../domain/first-user-engine.js');print(learnFirstUsers(await readInput() as Parameters<typeof learnFirstUsers>[0]));break;}
       case 'founder-move': {
         const {planFounderMove}=await import('../domain/founder-intelligence.js');
         print(planFounderMove(await readInput() as Parameters<typeof planFounderMove>[0]));break;

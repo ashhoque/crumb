@@ -150,6 +150,10 @@ status. It returns research and acquisition routes plus a small discovery bound.
 and routeReviewed; output is draft-only and cannot send. `validation-asset` accepts
 painKnown, productBuilt and fastLearning; it recommends a truthful concept or
 conversation, never Act approval. Host work remains subject to Act gates.
+`first-user-learning` accepts up to twenty founder-reported outcomes, each with
+kind, audience, channel and observation. It suggests a next exposure adjustment;
+silence or a conversation never becomes validation. Save only compact attributed
+learning in the current working context, and use Launch & Learn records after Act.
 `discovery-plan` returns a scope-bound plan, normally at most six queries/ten pages.
 It does not run searches. The host records actual research through existing sources,
 claims and receipts. Optional `firstUserCards` keep observed name/handle, relationship,

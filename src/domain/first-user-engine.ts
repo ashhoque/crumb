@@ -35,3 +35,12 @@ export function validationAsset(painKnown:boolean,productBuilt:boolean,fastLearn
   if(!painKnown)return {recommendation:'Clarify a real pain and user before making a concept.',permission:'no_build_authorized' as const};
   return {recommendation:fastLearning?productBuilt?'Try a pain-first landing page or small observed walkthrough with an honest current-capability description.':'Offer a pain-first mockup or concierge test labeled as a concept.':'Use one relevant conversation before building an asset.',permission:'draft_only_until_act' as const};
 }
+
+export interface FirstUserOutcome {kind:'contacted'|'replied'|'ignored'|'conversation'|'pilot'|'declined'; audience:string; channel:string; observation:string;}
+export function learnFirstUsers(outcomes:FirstUserOutcome[]){
+  if(!Array.isArray(outcomes)||outcomes.length>20||outcomes.some(o=>!o||!['contacted','replied','ignored','conversation','pilot','declined'].includes(o.kind)||!short(o.audience,120)||!short(o.channel,80)||!short(o.observation,300)))throw new Error('Use up to twenty observed, attributed first-user outcomes.');
+  const counts=Object.fromEntries(['contacted','replied','ignored','conversation','pilot','declined'].map(k=>[k,outcomes.filter(o=>o.kind===k).length]));
+  const engaged=outcomes.filter(o=>['conversation','pilot'].includes(o.kind));
+  const next=engaged.length?'Ask what happened in the real workflow and whether the old workaround changed. Revisit the ICP only from that evidence.':outcomes.some(o=>o.kind==='ignored')?'Silence is ambiguous. Check route, message, timing and trust; try one small channel or invitation change.':'Choose one specific, permitted route and invite a relevant person to discuss a recent task.';
+  return {counts,validation:'not_established' as const,segmentSignal:engaged.length?Array.from(new Set(engaged.map(o=>o.audience))):[],next,limits:'Contact, reply, silence and conversation do not establish product use, payment or market fit. Founder-reported outcomes are not independently verified.'};
+}
