@@ -1,5 +1,17 @@
 # Crumb status
 
+**M3-R5 PASS WITH WARNINGS — final Astra release gate.**
+Five completed fresh Astra Medium sessions (13 turns) have zero identity leakage.
+Founder direction/personality, linked First User Pack, stable pricing offer,
+existing-format export analysis, exact thesis receipts and blocked Act all passed.
+Full development suite: **342/342**. One offline thesis timeout, research latency,
+occasional repeated progress and synthetic-founder evidence remain warnings.
+The final founder request authorizes main merge/verification/push and exact-main
+global installation. See [final release gate](M3_R5_FINAL_RELEASE_GATE.md) and
+[exact transcripts](M3_R5_FINAL_RELEASE_TRANSCRIPTS.md). No M3-R6/M4 work.
+
+## Sol handoff (historical)
+
 **M3-R5 surgical identity fix ready for final Astra release check.**
 Overall M3-R5 remains unreleased pending that check; no main merge is authorized
 in this Sol phase. The actual assistant announcement was reproduced on Astra

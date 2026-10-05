@@ -2,15 +2,16 @@
 
 Use the M3-R5 amendments in PRODUCT_SPEC.md as current product authority;
 PLAN.md / STATUS.md record implementation state. Current authorized work is the
-M3-R5 surgical identity unblock on m3-r5-phase1. See
-M3_R5_IDENTITY_UNBLOCK_REPORT.md and M3_R5_IDENTITY_UNBLOCK_TRANSCRIPTS.md.
-The Sol fix is ready for final Astra release check; overall M3-R5 remains
-unreleased pending that review. Do not merge main in this Sol phase. Preserve
-the working R5 behavior; do not start M3-R6, M4 or another broad implementation pass.
+M3-R5 final Astra release gate. See M3_R5_FINAL_RELEASE_GATE.md and
+M3_R5_FINAL_RELEASE_TRANSCRIPTS.md. Final review is PASS WITH WARNINGS; the founder
+authorizes dev push, main merge, final main verification/push and exact-main global
+installation. Preserve the working R5 behavior; do not start M3-R6, M4 or another
+broad implementation pass without a new request.
 Preserve M3-R4 evidence and
 first-user work, M3-R2 fresh-chat isolation, confirmed IDE and Act gates.
 Do not begin M4 or merge a blocked revision into main. Preserve the Phase 1
-reports as history; record final review in M3_R5_ASTRA_REPORT.md. The R1
+reports and prior blocked Astra review as history; current final review is in
+M3_R5_FINAL_RELEASE_GATE.md. The R1
 mode/pack/checkpoint policy still governs new Act plans; legacy M2 runs retain
 their original review policy.
 On 26 September 2026 the founder accepted M1-R3 well enough to proceed and
@@ -22,7 +23,7 @@ work is preserved in M3_REPORT.md. Reuse confirmed IDE and the reviewed MVP.
 - Preserve all existing code, uncommitted work and Git history. Implement on the
   active development branch; commit and push coherent tested changes. The founder
   conditionally authorizes main merge only after final PASS. Commit and push
-  coherent tested fixes on m3-r5-phase1; the current final review is BLOCKED.
+  coherent tested fixes on m3-r5-phase1; final Astra review is PASS WITH WARNINGS.
   Never force-push or push a knowingly broken state. Review staged files for
   private data first. Do not create a replacement application.
 - Use Node 24.19.0, the existing lockfile and npm. cec.ps1 check selects the pinned

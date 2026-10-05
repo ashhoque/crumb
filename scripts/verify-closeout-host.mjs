@@ -117,6 +117,12 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'m3r5-final-founder',seed:'fresh',messages:[
+      "$crumb I want a small paid business helping independent residential cleaners in Hamilton, Ontario stop underquoting recurring jobs. My sister cleans houses and says first-visit surprises eat her margin. She has past quotes and actual times in a spreadsheet. I have evenings and know only her. Where should we put our effort? Don't contact anyone or build.",
+      "I was imagining a full AI operations assistant. Is focusing on quoting too small? Keep it short.",
+      "She will share the existing sheet, but some rows have missing actual times. I don't want to make her rebuild her records. What should I ask her for?",
+      "She agreed to share it tomorrow and one other cleaner agreed to talk. That feels like progress. Give me the next move in two sentences; don't build."
+    ]},
     {id:'m3r5-identity-casual',seed:'fresh',messages:["$crumb Hey. I'm juggling two business ideas and don't know where to start."]},
     {id:'m3r5-astra-personality',seed:'fresh',messages:[
       "$crumb I want a small paid business helping independent bike repair shops in Toronto stop losing time chasing customers to collect finished bikes. My brother owns a shop; about six repaired bikes sit there for over a week and crowd his workshop. He texts customers by hand. I have Saturdays to work on this and haven't talked to other shops.",

@@ -1,5 +1,14 @@
 # Crumb implementation plan - M3-R5 Phase 2
 
+## Final Astra release gate — 5 October 2026
+
+**PASS WITH WARNINGS.** Five fresh completed sessions, 13 turns, zero identity
+leaks; founder/pricing/first-user/export/thesis/Act acceptance passed. Full suite
+342/342. Final user authorization: commit/push dev, merge main, verify main,
+push/verify remote and synchronize exact shipped main globally. Preserve warnings
+and interrupted attempt in M3_R5_FINAL_RELEASE_GATE.md and its transcripts.
+No product correction or broad redesign was needed. No M3-R6/M4 work.
+
 ## M3-R5 surgical identity unblock — 5 October 2026
 
 Authority: founder's Sol release-unblock request; stay on m3-r5-phase1 and do not
