@@ -1,5 +1,23 @@
 # Crumb implementation plan - M3-R5 Phase 2
 
+## M3-R5 Astra final review — 5 October 2026
+
+Authority: founder's final Astra review and conditional release request. A PASS
+would authorize main merge/push/global shipping; the actual result is BLOCKED.
+
+- [x] Verify old blockers against focused tests and fresh installed-host behavior.
+- [x] Surgical canonical personality and thesis-presentation corrections.
+- [x] Correct premature manual reconstruction and assumed customer access.
+- [x] Two 12-turn personality conversations, fresh pricing, first users, export,
+  momentum and fast-path acceptance; retain actual failures in the report.
+- [x] Commit/push coherent focused-test-passing corrections to m3-r5-phase1.
+- [ ] Resolve reproduced host skill-announcement identity failure and rerun live acceptance.
+- [ ] Explain/preserve the exact pricing offer across follow-ups.
+- [ ] PASS release gate, then conditional main/global closeout. Do not merge while blocked.
+
+See M3_R5_ASTRA_REPORT.md and M3_R5_ASTRA_TRANSCRIPTS.md. Earlier phases below
+remain historical. Final suite results are in the Astra report.
+
 ## M3-R5 release unblock — 5 October 2026
 
 Authority: founder's release-unblock implementation request. Continue

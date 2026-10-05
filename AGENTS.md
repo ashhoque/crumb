@@ -2,12 +2,15 @@
 
 Use the M3-R5 amendments in PRODUCT_SPEC.md as current product authority;
 PLAN.md / STATUS.md record implementation state. Current authorized work is the
-M3-R5 release-unblock implementation on m3-r5-phase1, following Phase 2 blockers.
-Do not merge main in this pass; final product/taste acceptance belongs to Astra.
+M3-R5 after Astra final review on m3-r5-phase1. See M3_R5_ASTRA_REPORT.md and
+M3_R5_ASTRA_TRANSCRIPTS.md. The founder authorized main merge/global shipping only
+after PASS; the actual review is BLOCKED on the installed-host identity gate.
+Do not merge a blocked revision. Resolve the narrow recorded failures before
+repeating release acceptance; do not start another broad implementation pass.
 Preserve M3-R4 evidence and
 first-user work, M3-R2 fresh-chat isolation, confirmed IDE and Act gates.
 Do not begin M4 or merge a blocked revision into main. Preserve the Phase 1
-reports as history; record this pass in M3_R5_UNBLOCK_REPORT.md. The R1
+reports as history; record final review in M3_R5_ASTRA_REPORT.md. The R1
 mode/pack/checkpoint policy still governs new Act plans; legacy M2 runs retain
 their original review policy.
 On 26 September 2026 the founder accepted M1-R3 well enough to proceed and
@@ -18,8 +21,8 @@ work is preserved in M3_REPORT.md. Reuse confirmed IDE and the reviewed MVP.
 
 - Preserve all existing code, uncommitted work and Git history. Implement on the
   active development branch; commit and push coherent tested changes. The founder
-  explicitly prohibits main merge in the release-unblock pass. Commit and push
-  coherent tested fixes on m3-r5-phase1; Astra owns final revision acceptance.
+  conditionally authorizes main merge only after final PASS. Commit and push
+  coherent tested fixes on m3-r5-phase1; the current final review is BLOCKED.
   Never force-push or push a knowingly broken state. Review staged files for
   private data first. Do not create a replacement application.
 - Use Node 24.19.0, the existing lockfile and npm. cec.ps1 check selects the pinned
