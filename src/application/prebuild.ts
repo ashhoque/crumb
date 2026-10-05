@@ -116,11 +116,12 @@ function appendContext(db: SqliteConnection, context: AnyPrebuild, version: numb
   return { version, hash, recordedAt, context };
 }
 
-export interface IdeTransition { expectedVersion: number; operation: 'present' | 'confirm' | 'review' | 'present-thesis' | 'confirm-thesis'; subject?: Subject; presentationId?: string; displayedText?: string; quote?: string; turnId?: string; interpretation?:ReplyInterpretation }
+export interface IdeTransition { expectedVersion: number; operation: 'present' | 'confirm' | 'review' | 'present-thesis' | 'confirm-thesis' | 'revise-foundation'; subject?: Subject; text?: string; presentationId?: string; displayedText?: string; quote?: string; turnId?: string; interpretation?:ReplyInterpretation }
 function transitionIdeState(target: string, input: unknown): SavedPrebuild {
   if (!input || typeof input !== 'object') throw new Error('Provide an IDE transition.');
   const r = input as IdeTransition;
-  if (!Number.isSafeInteger(r.expectedVersion) || !['present', 'confirm', 'review', 'present-thesis', 'confirm-thesis'].includes(r.operation) || Object.keys(r).some(k => !['expectedVersion', 'operation', 'subject', 'presentationId', 'displayedText', 'quote', 'turnId','interpretation'].includes(k))) throw new Error('Invalid IDE transition.');
+  if (!Number.isSafeInteger(r.expectedVersion) || !['present', 'confirm', 'review', 'present-thesis', 'confirm-thesis', 'revise-foundation'].includes(r.operation) || Object.keys(r).some(k => !['expectedVersion', 'operation', 'subject', 'text', 'presentationId', 'displayedText', 'quote', 'turnId','interpretation'].includes(k))) throw new Error('Invalid IDE transition.');
+  if(r.operation==='revise-foundation'&&(!r.subject||!['intention','user','problem'].includes(r.subject)||typeof r.text!=='string'||!r.text.trim()||r.text.length>2000||typeof r.quote!=='string'||!r.quote.trim()||r.quote.length>1000||typeof r.turnId!=='string'||!r.turnId.trim()||r.turnId.length>160))throw new Error('A foundation correction needs one subject, provisional text, actual founder quote and source turn.');
   if (r.operation === 'present' && (!r.subject || !subjects.includes(r.subject))) throw new Error('Choose the confirmation subject.');
   if (['confirm','confirm-thesis'].includes(r.operation) && [r.presentationId, r.quote, r.turnId].some(x => typeof x !== 'string' || !x.trim() || x.length > 2000)) throw new Error('Confirmation needs the displayed presentation, founder reply and source turn.');
   const location = initializeProject(target), db = openSqlite(location.database);
@@ -129,6 +130,18 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
     if (!saved || saved.context.contractVersion !== 2) throw new Error('Save the current IDE context first; legacy findings remain drafts.');
     if (saved.version !== r.expectedVersion) throw new Error('IDE changed in another session. Resume the current presentation.');
     const c = structuredClone(saved.context); c.expectedVersion = saved.version;
+    if(r.operation==='revise-foundation'){
+      if(confirmation(c,'act'))throw new Error('Do not change an approved build through a conversation correction.');
+        const sourceId=randomUUID(),claimId=randomUUID();
+        const limitation='Founder correction of a working hypothesis; not independent customer or payment evidence.';
+        c.sources.push({id:sourceId,title:`Founder correction: ${r.subject}`,url:null,kind:'founder',provenance:c.synthetic?'synthetic_fixture':'founder_report',access:'provided',retrievedOn:new Date().toISOString().slice(0,10),publishedOn:null,delivery:'provided',retainedText:r.quote!,limitation,archived:false,independenceKey:r.turnId!,affiliation:'unknown'});
+        c.claims.push({id:claimId,statement:r.text!.trim(),basis:'founder_reported',sourceIds:[sourceId],supports:[],challenges:[],limitation,important:true,repetition:'not_applicable',metric:null,quote:{sourceId,text:r.quote!}});
+      if(r.subject==='intention'){c.intention.statement=r.text!.trim();c.feedbackClaimIds.push(claimId);}
+      else{
+        c.definition[r.subject as 'user'|'problem']={text:r.text!.trim(),claimIds:[claimId],basis:'observed'};
+      }
+      invalidateChanges(saved.context,c);
+    }
     if (r.operation === 'review') { assertEvaluationComplete(c); c.ide.reviewBasis = evaluationBasis(c); c.ide.presentation = null; }
     if (r.operation === 'present') c.ide.presentation = { id: randomUUID(), subject: r.subject!, basis: basis(c, r.subject!), text: presentationText(c, r.subject!) };
     if (r.operation === 'present-thesis') c.ide.presentation = {id:randomUUID(),subject:'thesis',basis:thesisBasis(c),text:thesisText(c)};

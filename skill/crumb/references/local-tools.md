@@ -62,6 +62,9 @@ existing idea or reconstruct a full prebuild dossier. Send this shape to
 {"start":true,"expectedVersion":0,"conversationId":"current_chat_123","delta":{"project":{"next_move":{"value":"Prepare a paid pilot offer","status":"inferred","confidence":"medium","source":"Current founder conversation"}},"founder":{"likely_next_need":{"value":"An invitation for the first two prospects","status":"inferred","confidence":"medium","source":"Current founder conversation"}}}}
 ```
 
+Create the unused child target directory before calling start. Each fact value
+is at most 320 characters; source must be null or a string at most 240 characters.
+Split pricing, risk and next move into separate short facts rather than one dossier.
 For synthetic acceptance only, add `"synthetic":true`. The start operation
 refuses any existing context. Later deltas omit `start` and use the returned
 version and same conversation ID. Retain this target for continuation; knowledge
@@ -142,6 +145,10 @@ private storage or credentials. Synthetic and real provenance remain separate.
 2. The older `present` and `confirm` operations remain available for a material
    correction to one foundation. Each separate reply confirms only one statement.
    Host semantic interpretation is documented in modes.md. Never rewrite a reply.
+   To save the correction itself, `ide` accepts
+   `{"operation":"revise-foundation","expectedVersion":3,"subject":"user","text":"corrected provisional user","quote":"actual founder correction","turnId":"actual source turn"}`.
+   Subjects are intention/user/problem. It preserves the founder source, invalidates
+   downstream review and refuses changes after approved Act. No new assent implied.
 3. After complete investigation send `{"expectedVersion":8,"operation":"review"}`.
    This checks coverage, alternatives, relevant attempts, counterevidence and
    confirmed foundations. If Evaluation was not included in the displayed thesis,

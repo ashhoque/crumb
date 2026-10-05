@@ -5,7 +5,7 @@ import {temporaryProject} from './helpers.js';
 import {emptyIde, assertAct, ideState, thesisText} from '../src/domain/ide.js';
 import {nextIdeStep} from '../src/domain/guide.js';
 import {savePrebuild, readPrebuild, transitionIde, saveWorkingContext} from '../src/application/prebuild.js';
-import {ideFixture} from './ide-fixtures.js';
+import {ideFixture,prepareIde} from './ide-fixtures.js';
 
 function provisional(){
   const c=emptyIde();c.project.entry='fresh';
@@ -84,6 +84,26 @@ test('M3-R5 actual displayed wording binds review; a replacement invalidates it'
   assert.equal(ideState(next.context).problem_definition,'drafted');
   assert.equal(next.context.ide.reviewBasis,null);
   assert.throws(()=>assertAct(next.context),/founder-confirmed/);
+});
+
+test('M3-R5 small founder correction preserves source and invalidates reviewed foundations',t=>{
+  const root=temporaryProject(t);savePrebuild(root,ideFixture());
+  const shown=transitionIde(root,{expectedVersion:readPrebuild(root)!.version,operation:'present-thesis'});
+  if(shown.context.contractVersion!==2)throw new Error('Expected current IDE.');
+  const p=shown.context.ide.presentation!;
+  const reviewed=transitionIde(root,{expectedVersion:shown.version,operation:'confirm-thesis',presentationId:p.id,displayedText:p.text,turnId:randomUUID(),quote:"Looks good, don't build yet."});
+  const quote='Actually narrow the user to part-time traders who review only on weekends.';
+  const changed=transitionIde(root,{expectedVersion:reviewed.version,operation:'revise-foundation',subject:'user',text:'Part-time traders reviewing only on weekends',quote,turnId:'synthetic_correction_turn'});
+  if(changed.context.contractVersion!==2)throw new Error('Expected current IDE.');
+  assert.equal(changed.context.definition.user.text,'Part-time traders reviewing only on weekends');
+  assert.equal(changed.context.sources.at(-1)!.retainedText,quote);
+  assert.equal(changed.context.claims.at(-1)!.quote!.text,quote);
+  assert.equal(ideState(changed.context).target_user,'drafted');
+  assert.equal(changed.context.ide.reviewBasis,null);
+  assert.throws(()=>assertAct(changed.context),/founder-confirmed/);
+  assert.throws(()=>transitionIde(root,{expectedVersion:reviewed.version,operation:'revise-foundation',subject:'user',text:'Stale change',quote,turnId:'other_turn'}),/another session/);
+  const approvedRoot=temporaryProject(t);const approved=prepareIde(approvedRoot,'act',ideFixture());
+  assert.throws(()=>transitionIde(approvedRoot,{expectedVersion:approved.version,operation:'revise-foundation',subject:'user',text:'Another user',quote,turnId:'another_turn'}),/approved build/);
 });
 
 test('M3-R5 fresh working notes persist without a dossier and cannot replace prior work',t=>{

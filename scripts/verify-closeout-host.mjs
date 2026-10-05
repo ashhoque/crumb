@@ -56,7 +56,6 @@ function createFixture(id,seed='evaluated'){
   if(seed==='fresh'){const c=emptyIde();c.synthetic=true;c.project.entry='fresh';savePrebuild(folder,c);}
   else if(seed==='export-app'){
     writeFileSync(join(folder,'README.md'),'# Crewledger\nSynthetic working beta for small cleaning-company owners to compare expected and actual job hours. Owner has job records in scheduling software but has not analysed margin or buyer demand. No customers or validation claimed.\n');
-    writeFileSync(join(folder,'sample-jobs.csv'),'job,quoted_hours,actual_hours,crew_hour_cost,price\nA,3,4,25,150\nB,2,3,25,100\nC,4,4,25,200\n');
     const c=emptyIde();c.synthetic=true;c.project.entry='existing';savePrebuild(folder,c);
   }
   else if(seed==='priced-app'){
@@ -145,8 +144,9 @@ try{
   for(const spec of sessions.filter(spec=>!selected||selected.includes(spec.id))){
     const s=await start(spec.id,spec.seed),record={id:spec.id,fixture:s.folder,turns:[]};results.sessions.push(record);
     for(let i=0;i<spec.messages.length;i++){
+      if(spec.id==='m3r5-unblock-export'&&i===1)writeFileSync(join(s.folder,'sample-jobs.csv'),'job,quoted_hours,actual_hours,crew_hour_cost,price\nA,3,4,25,150\nB,2,3,25,100\nC,4,4,25,200\n');
       const response=await turn(s.threadId,spec.messages[i],i===0);
-      record.turns.push({input:spec.messages[i],...response,state:state(s.folder),questionMarks:(response.output.match(/\?/g)??[]).length,webActions:response.tools.filter(t=>t.type==='webSearch').length});save();
+      record.turns.push({input:spec.messages[i],...response,state:state(s.folder),toolMetrics:toolMetrics(response.tools),questionMarks:(response.output.match(/\?/g)??[]).length,webActions:response.tools.filter(t=>t.type==='webSearch').length});save();
       console.log(`${spec.id} ${i+1}/${spec.messages.length}: ${response.status}`);
       if(response.status!=='completed')throw new Error(`Live host failed in ${spec.id}; review the retained response.`);
     }

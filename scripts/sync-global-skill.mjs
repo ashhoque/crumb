@@ -2,6 +2,7 @@ import {createHash} from 'node:crypto';
 import {copyFileSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, rmdirSync, unlinkSync, writeFileSync} from 'node:fs';
 import {join, dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
+import {projectFactKeys,founderFactKeys} from '../dist/src/domain/founder-intelligence.js';
 
 const root=dirname(dirname(fileURLToPath(import.meta.url)));
 const source=join(root,'skill','crumb');
@@ -24,7 +25,8 @@ for(const file of files){
 }
 const runtime={node:process.execPath,cli:join(root,'dist/src/cli/main.js'),input:'Write one UTF-8 JSON request to a temporary file, then use internal <operation> <target> --input-file <request-path>. No shell pipe or command discovery.',operations:{
   'project-bootstrap':{decision:'pricing',previous:[]},
-  'working-context':{start:true,expectedVersion:0,conversationId:'replace_with_current_chat_id',delta:{}},
+  'working-context':{start:true,expectedVersion:0,conversationId:'replace_with_current_chat_id',delta:{project:{next_move:{value:'replace with concise next move',status:'inferred',confidence:'medium',source:'current conversation'}}},projectFields:projectFactKeys,founderFields:founderFactKeys,limits:'Create the chosen unused child target directory before start:true. Each fact value <=320 characters; source is required (null or string <=240). Split price, risk and next_move into separate short facts. Inferred facts cannot have high confidence. Later updates omit start and use returned version.'},
+  'revise-foundation':{command:'ide',input:{operation:'revise-foundation',expectedVersion:'current version',subject:'user',text:'corrected provisional user',quote:'actual founder correction',turnId:'actual source turn'},output:'Invalidates affected review; no confirmation. Use for a founder correction instead of rebuilding the dossier.'},
   'present-thesis':{command:'ide',input:{operation:'present-thesis',expectedVersion:'current version'},output:'context.presentation: keep id, basis and exact text in chat; display text unchanged'},
   'confirm-thesis':{command:'ide',input:{operation:'confirm-thesis',expectedVersion:'returned version',presentationId:'returned id',displayedText:'exact text actually displayed',quote:'verbatim founder reply',turnId:'actual source turn'},output:'Check context.confirmations before acknowledging saved review. Never Act approval'},
   'conversation-context':{resume:'--resume only for explicit continuation',input:null}
