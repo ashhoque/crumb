@@ -108,15 +108,15 @@ export function thesisBasis(c: IdeContext): string { return digest({foundations:
 export function thesisText(c: IdeContext): string {
   if(!c.intention.statement||!c.definition.user.text||!c.definition.problem.text)throw new Error('Draft the intention, initial user and pain before presenting a working thesis.');
   const safe=(value:string)=>plain(value).replaceAll('<','&lt;').replaceAll('>','&gt;');
-  const text=[`Here is my working take: ${safe(c.intention.statement)}`,
-    `The first user is ${safe(c.definition.user.text)}. The pain is ${safe(c.definition.problem.text)}.`,
-    c.definition.buyer.text?`Likely buyer: ${safe(c.definition.buyer.text)}`:'Buyer remains unknown.',
-    c.evaluation.conclusion?`What the evidence suggests: ${safe(c.evaluation.conclusion)} ${c.evaluation.promising.slice(0,2).map(safe).join(' ')}`:'This is a provisional direction; external evidence has not established demand.',
-    `Counterevidence: ${[c.investigation.counterevidence,...c.evaluation.weak,...c.evaluation.contradictions].filter((s):s is string=>!!s).map(safe).join(' ')||'Not yet investigated.'}`,
-    `Uncertainty: ${c.evaluation.unknowns.map(safe).join(' ')||'Whether this pain changes real behavior.'}`,
-    ...(c.quality?[`Technical risk: ${safe(c.quality.technical.centralRisk)}`]:[]),
-    c.investigation.decision?`Recommended direction: ${safe(c.investigation.decision)}`:'Continue investigating before committing.',
-    'Does this capture the business direction and the evidence and uncertainty we are carrying? We can keep investigating without committing to build.'].join('\n\n');
+  const text=[`**My take:** ${c.investigation.decision?safe(c.investigation.decision):'Keep investigating before committing.'}`,
+    `**What we are building toward:** ${safe(c.intention.statement)}`,
+    `**The first user:** ${safe(c.definition.user.text)}\n\n**Their pain:** ${safe(c.definition.problem.text)}`,
+    `**Likely buyer:** ${c.definition.buyer.text?safe(c.definition.buyer.text):'Still unknown.'}`,
+    `**Why it could work:** ${c.evaluation.conclusion?[safe(c.evaluation.conclusion),...c.evaluation.promising.slice(0,2).map(safe)].join(' '):'This is provisional; external evidence has not established demand.'}`,
+    `**What could undo it:**\n\n${[c.investigation.counterevidence,...c.evaluation.weak,...c.evaluation.contradictions].filter((s):s is string=>!!s).map(s=>`- ${safe(s)}`).join('\n')||'Not yet investigated.'}`,
+    `**Still unknown:**\n\n${c.evaluation.unknowns.map(s=>`- ${safe(s)}`).join('\n')||'Whether this pain changes real behavior.'}`,
+    ...(c.quality?[`**Technical risk:** ${safe(c.quality.technical.centralRisk)}`]:[]),
+    'Does this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.'].join('\n\n');
   if(text.length>6000)throw new Error('Summarize the thesis evidence and risks before presenting it; do not truncate founder review.');
   return text;
 }

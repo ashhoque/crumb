@@ -58,6 +58,11 @@ function createFixture(id,seed='evaluated'){
     writeFileSync(join(folder,'README.md'),'# Crewledger\nSynthetic working beta for small cleaning-company owners to compare expected and actual job hours. Owner has job records in scheduling software but has not analysed margin or buyer demand. No customers or validation claimed.\n');
     const c=emptyIde();c.synthetic=true;c.project.entry='existing';savePrebuild(folder,c);
   }
+  else if(seed==='astra-priced-app'){
+    writeFileSync(join(folder,'README.md'),'# Slotnote\nSynthetic working beta for independent music teachers in Toronto: track prepaid lesson credits, cancellations and makeup lessons; parents see their remaining credits through a private link. Built for teachers with 15–40 pupils. No scheduling, payments or school administration. Founder wants a sustainable small subscription business and has no paying users yet.\n');
+    writeFileSync(join(folder,'package.json'),JSON.stringify({name:'slotnote',version:'0.1.0',description:'Lesson credits and makeup tracking for independent music teachers'}));
+    const c=emptyIde();c.synthetic=true;c.project.entry='existing';savePrebuild(folder,c);
+  }
   else if(seed==='priced-app'){
     writeFileSync(join(folder,'README.md'),'# Reviewlane\nA small app for freelance video editors to compare client revision requests, deadlines and deliverables in one board. Editors use it on each active project; clients see a shared status page. A working beta exists. Pricing and payment willingness are unknown. No real customers or sales are represented in this synthetic fixture.\n');
     writeFileSync(join(folder,'package.json'),JSON.stringify({name:'reviewlane',version:'0.1.0',description:'Revision board for freelance video editors'}));
@@ -107,6 +112,21 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'m3r5-astra-personality',seed:'fresh',messages:[
+      "$crumb I want a small paid business helping independent bike repair shops in Toronto stop losing time chasing customers to collect finished bikes. My brother owns a shop; about six repaired bikes sit there for over a week and crowd his workshop. He texts customers by hand. I have Saturdays to work on this and haven't talked to other shops.",
+      "I was thinking an AI assistant that runs the whole shop. Just collection reminders sounds tiny.",
+      "Fair. My brother says he already sends reminders. Some customers reply that they'll come Saturday, then don't turn up.",
+      "I'm not sure there's a business here. Maybe I'm just looking for an excuse to build something.",
+      "He showed me his last ten completed jobs. Four sat over a week. Three of those customers had agreed a collection day and missed it. That's all I know so far.",
+      "Could we charge a fee for every missed collection?",
+      "I'm getting a bit lost. Give me the short version.",
+      "I can speak to two owners on Saturday. I don't want to sound like I'm pitching them software.",
+      "One agreed to talk! He said they sometimes can't take in another repair because finished bikes fill the racks.",
+      "The other owner says it's no problem: he has loads of storage. Does that kill it?",
+      "The first owner is happy to share an anonymized job export, but I don't know what to ask for. Please keep it easy.",
+      "We've got the conversation booked and he will bring that export. I'm pleased we didn't spend the weekend building the wrong thing."
+    ]},
+    {id:'m3r5-astra-pricing',seed:'astra-priced-app',messages:["$crumb This is my current app. What should we charge?", "Two teachers I know have about 25 pupils each. One uses a spreadsheet and the other keeps a notebook. Neither has tried the app.", "What evidence would change that price? Keep it short and use what we already know."]},
     {id:'m3r5-unblock-thesis',seed:'pending-thesis',messages:["$crumb Continue this saved project. Show me the working business thesis for review.","Looks good, don't build yet.","Actually narrow the user to part-time swing traders who review only on weekends. Keep that correction provisional; don't build."]},
     {id:'m3r5-unblock-pricing',seed:'priced-app',messages:["$crumb Here's the current app. Let's figure out pricing.","I know two freelance editors with active client projects. I haven't contacted them yet.","What would make you change the price? Use what we already know.","One editor says revisions are fine, but deadlines change across email and WhatsApp every week. What does that change?"]},
     {id:'m3r5-unblock-users',seed:'fresh',messages:["$crumb I want a small paid business helping independent dog groomers in Ottawa manage last-minute cancellations. My friend runs a salon and has two or three empty appointment slots a week; she uses phone calls and a paper waitlist. I can work evenings. I haven't spoken with other owners.","I don't know any other owners. I can personally invite three this week, but please don't contact anyone.","Make the invitation shorter and tell me what we're trying to learn from their answers.","The first conversation says they already fill cancellations by texting regulars. The awkward part is keeping track of who accepted. What changes?"]},
