@@ -1,5 +1,54 @@
 # Crumb status
 
+**M3-R5 PASS WITH WARNINGS — final Astra release gate.**
+Five completed fresh Astra Medium sessions (13 turns) have zero identity leakage.
+Founder direction/personality, linked First User Pack, stable pricing offer,
+existing-format export analysis, exact thesis receipts and blocked Act all passed.
+Full development suite: **342/342**. One offline thesis timeout, research latency,
+occasional repeated progress and synthetic-founder evidence remain warnings.
+The final founder request authorizes main merge/verification/push and exact-main
+global installation. See [final release gate](M3_R5_FINAL_RELEASE_GATE.md) and
+[exact transcripts](M3_R5_FINAL_RELEASE_TRANSCRIPTS.md). No M3-R6/M4 work.
+
+## Sol handoff (historical)
+
+**M3-R5 surgical identity fix ready for final Astra release check.**
+Overall M3-R5 remains unreleased pending that check; no main merge is authorized
+in this Sol phase. The actual assistant announcement was reproduced on Astra
+Medium and traced to the generic host skill-announcement instruction. A narrow
+installed developer-instruction exception resolves the conflict without changing
+Crumb's personality. Four fresh Sol openings and 12-turn continuity passed;
+the same Astra failing case now passes. Focused checks: **106/106**; full suite:
+**342/342**. Pricing keeps the paid CAD9 offer across follow-ups. Global candidate
+is synchronized; main remains `f188f03`. Research latency and native Luna Low
+question duplication remain disclosed warnings. See
+[identity review packet](M3_R5_IDENTITY_UNBLOCK_REPORT.md) and
+[exact transcripts](M3_R5_IDENTITY_UNBLOCK_TRANSCRIPTS.md). Do not start M3-R6/M4.
+
+## Previous Astra review (historical)
+
+**M3-R5 BLOCKED after Astra final review on `m3-r5-phase1`.**
+The three old engineering blockers are resolved in focused and live checks.
+Astra refined the canonical voice, thesis layout and existing-artifact activation.
+Two installed-global Astra Medium replays completed **42 live turns**, including
+two 12-turn founder conversations. Both failed the existing identity gate: four
+session openings per run announced the skill. Main must remain unmerged until
+that host behavior passes acceptance. Do not weaken the gate to manufacture PASS.
+
+Corrected live behavior: exact thesis/receipt match and invalidation, explicit
+pricing range/offer, complete linked First User Pack, low-friction export analysis,
+clear momentum, zero failed commands or Core discovery, and no Crumb rereads/web
+on follow-ups. Focused checks: **19/19**, **12/12**, Act/IDE/UX **78/78**.
+Final full checks are recorded in [Astra report](M3_R5_ASTRA_REPORT.md), with the
+[complete corrected transcript](M3_R5_ASTRA_TRANSCRIPTS.md). Remaining warnings:
+price-offer drift to a free first month, repeated progress/final synthesis,
+two-minute research and synthetic-only founder evidence.
+
+Global candidate implementation is `1cfb6eb`; `main` remains M3-R4 (`f188f03`).
+No main merge/push or shipped-main global install occurred. M4 has not begun.
+
+## M3-R4 result (historical)
+
 **M3-R4 PASS WITH WARNINGS — market intelligence and first-user revision.**
 Crumb now has a bounded early Market Pulse, a calibrated opportunity map,
 user-behavior notes, separate research/acquisition habitats, source-backed public

@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 import { parseArgs } from 'node:util';
+import { readFileSync, statSync } from 'node:fs';
 import { requireTestedRuntime } from '../application/runtime.js';
 import { brand } from '../domain/brand.js';
 import { readPrebuild, savePrebuild, saveWorkingContext, compactPrebuild, exportPrebuild, importPrebuild, transitionIde } from '../application/prebuild.js';
 import { prebuildSections, renderPrebuildSummary, renderPrebuildDetail, renderStartupMaster, renderFullResearch } from './prebuild-render.js';
-import { emptyIde, ideSchema, upgradeContext } from '../domain/ide.js';
+import { emptyIde, ideSchema, ideState, upgradeContext } from '../domain/ide.js';
 import * as act from '../application/act.js';
 import { actPlanSchema } from '../domain/act.js';
 import { renderActSummary } from './act-render.js';
@@ -23,20 +24,26 @@ import type { HostSurface } from '../domain/session.js';
 
 try {
   requireTestedRuntime();
-  const { positionals, values } = parseArgs({ allowPositionals: true, strict: true, options: { json: { type: 'boolean', default: false }, section: { type: 'string' }, page: { type: 'string' }, collapsible: { type: 'boolean', default: false }, resume: { type: 'boolean', default: false } } });
+  const { positionals, values } = parseArgs({ allowPositionals: true, strict: true, options: { json: { type: 'boolean', default: false }, 'input-file': { type: 'string' }, section: { type: 'string' }, page: { type: 'string' }, collapsible: { type: 'boolean', default: false }, resume: { type: 'boolean', default: false } } });
   const [command, action, target, ...extra] = positionals;
+  if(values['input-file']!==undefined&&command!=='internal')throw new Error('JSON request files belong only to internal operations.');
   if ((values.section !== undefined || values.page !== undefined || values.collapsible) && !(command === 'internal' && action === 'detail')) throw new Error('Detail options belong only to internal detail.');
   if (values.resume && !(command === 'internal' && ['conversation-context','conversation-detail','conversation-refresh','template','working-context'].includes(action ?? ''))) throw new Error('Explicit continuation applies only to saved conversation reads or working-context transfer.');
   const print = (value: unknown): void => console.log(JSON.stringify(value, null, 2));
   const readInput = async (): Promise<unknown> => {
     let bytes = 0;
     const chunks: Buffer[] = [];
+    const limit = command === 'internal' && ['prebuild', 'restore-context'].includes(action ?? '') ? 307_200 : 65_536;
+    if(values['input-file']!==undefined){
+      if(statSync(values['input-file']).size>limit)throw new Error(`Request exceeds ${limit / 1024} KiB. Retain compact context and selected evidence.`);
+      chunks.push(readFileSync(values['input-file']));
+    }else{
     for await (const chunk of process.stdin) {
       const buffer = Buffer.from(chunk as Uint8Array);
       bytes += buffer.length;
-      const limit = command === 'internal' && ['prebuild', 'restore-context'].includes(action ?? '') ? 307_200 : 65_536;
       if (bytes > limit) throw new Error(`Request exceeds ${limit / 1024} KiB. Retain compact context and selected evidence.`);
       chunks.push(buffer);
+    }
     }
     try { return JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(Buffer.concat(chunks))); }
     catch { throw new Error('Provide one valid UTF-8 JSON request on stdin. No input was saved.'); }
@@ -128,7 +135,19 @@ try {
         const saved = values.resume ? readPrebuild(root) : null;
         print(saved ? { ...(saved.context.contractVersion === 1 ? upgradeContext(saved.context) : saved.context), expectedVersion: saved.version } : {...emptyIde(),quality:emptyQuality()}); break;
       }
-      case 'ide': { const input=await readInput();const saved = transitionIde(root,input);const confirming=!!input&&typeof input==='object'&&'operation'in input&&input.operation==='confirm';const summary=confirming&&saved.context.contractVersion===2&&saved.context.ide.confirmations.at(-1)?.subject==='act'?readyToBuild(root,{host:'codex',canExecute:true,sharedProjectFiles:true}):confirming?confirmedReply(saved):renderPrebuildSummary(saved);print({ version: saved.version, hash: saved.hash, context: compactPrebuild(saved), summary }); break; }
+      case 'ide': {
+        const input=await readInput(),saved=transitionIde(root,input);
+        const operation=input&&typeof input==='object'&&'operation'in input?input.operation:null;
+        if((operation==='present-thesis'||operation==='confirm-thesis')&&saved.context.contractVersion===2){
+          const c=saved.context;
+          print({version:saved.version,hash:saved.hash,context:{presentation:c.ide.presentation,confirmations:c.ide.confirmations.map(({subject,presentationId,basis})=>({subject,presentationId,basis})),ideState:ideState(c),reviewBasis:c.ide.reviewBasis},instruction:operation==='present-thesis'?'Display presentation.text verbatim and retain id/version. On actual clear agreement call confirm-thesis in that turn with the text actually shown, reply and source turn.':'Review receipts saved. Act remains separate; continue the next useful reversible move.'});
+        }else{
+          const confirming=operation==='confirm';
+          const summary=confirming&&saved.context.contractVersion===2&&saved.context.ide.confirmations.at(-1)?.subject==='act'?readyToBuild(root,{host:'codex',canExecute:true,sharedProjectFiles:true}):confirming?confirmedReply(saved):renderPrebuildSummary(saved);
+          print({version:saved.version,hash:saved.hash,context:compactPrebuild(saved),summary});
+        }
+        break;
+      }
       case 'prebuild': {
         const input = await readInput();
         if (!input || typeof input !== 'object' || !('contractVersion' in input) || input.contractVersion !== 2) throw new Error('Use internal template for current IDE v2. Legacy exports remain readable historical data.');

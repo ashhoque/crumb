@@ -72,9 +72,9 @@ test('Quality contract cannot be dropped; technical changes retire Evaluation an
 
 test('Quality warmth reflects intention, uses safe name once, and leads without a questionnaire',t=>{
   const root=temporaryProject(t),c=fixture();c.preferredName={value:'Sam',source:'Synthetic host explicitly exposes approved display name Sam for conversational address.'};
-  let saved=prepareIde(root,'intention',c);const first=confirmedReply(saved);assert.match(first,/Sam/);assert.match(first,/willingness to pay|support/);assert.equal(first.match(/\?/g)?.length,1);
+  let saved=prepareIde(root,'intention',c);const first=confirmedReply(saved);assert.match(first,/Sam/);assert.match(first,/willingness to pay|support/);assert.ok((first.match(/\?/g)??[]).length<=1);
   assert.doesNotMatch(first,/Executive summary|Response saved|Confirmation is required|Amazing|Great idea/);
-  saved=confirmSubject(root,'user');const second=confirmedReply(saved);assert.doesNotMatch(second,/Sam/);assert.match(second,/tighter user/);assert.equal(second.match(/\?/g)?.length,1);
+  saved=confirmSubject(root,'user');const second=confirmedReply(saved);assert.doesNotMatch(second,/Sam/);assert.match(second,/tighter user/);assert.ok((second.match(/\?/g)??[]).length<=1);
   saved=confirmSubject(root,'problem');assert.match(confirmedReply(saved),/saved research is ready for review/);assert.doesNotMatch(confirmedReply(saved),/What would you like to do next|which API/i);
   const researching=current(root);researching.evaluation.status='in_progress';assert.match(nextIdeStep(researching).text,/check the alternatives/);
 });

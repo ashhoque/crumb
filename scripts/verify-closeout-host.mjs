@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process';
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { createInterface } from 'node:readline';
 import { dirname, join } from 'node:path';
@@ -8,18 +8,20 @@ import { prepareIde } from '../dist/tests/ide-fixtures.js';
 import { emptyIde, confirmation } from '../dist/src/domain/ide.js';
 import { savePrebuild, readPrebuild, transitionIde } from '../dist/src/application/prebuild.js';
 import { inspectArtifacts } from '../dist/src/privacy/artifacts.js';
+import {assistantIdentityLeaks,openingAssistantText,composeDeveloperInstructions,mergeCrumbHostInstructions} from '../dist/src/host/codex-identity.js';
 
 // Opt-in installed-host test. Founder turns and prepared state are synthetic.
-// It uses normal host auth without reading credentials; no model override.
+// Uses normal host auth without reading credentials; optional explicit model.
 // MCP configuration is process-local, never written to the user's config.
 const root=dirname(dirname(fileURLToPath(import.meta.url))),runDir=join(root,'.m0-local',`closeout-host-${Date.now()}`);
 mkdirSync(runDir,{recursive:true});
 const fixtureDir=mkdtempSync(join(tmpdir(),'crumb-closeout-'));
-const skillPath=process.argv.includes('--global-skill')?join(process.env.USERPROFILE??'', '.agents/skills/crumb/SKILL.md'):join(root,'.agents/skills/crumb/SKILL.md'),mcp=join(root,'dist/src/cli/mcp.js');
+const skillPath=join(process.env.USERPROFILE??'', '.agents/skills/crumb/SKILL.md'),mcp=join(root,'dist/src/cli/mcp.js');
 const results={timestamp:new Date().toISOString(),syntheticInputs:true,liveModel:true,skillPath,discovery:false,mcp:[],sessions:[],status:'running'};
 const stock=()=>JSON.parse(readFileSync(join(root,'fixtures/m3r1-quality/stock.json'),'utf8'));
 const cases=JSON.parse(readFileSync(join(root,'fixtures/m3r1-closeout/conversation-cases.json'),'utf8')).cases;
 const turnTimeout=process.argv.includes('--live-web')?300000:180000;
+let selectedModel=process.argv.find(arg=>arg.startsWith('--model='))?.slice(8);
 if(process.argv.includes('--fixture-only')){const folder=createFixture('existing-fixture','existing');console.log(JSON.stringify({folder,entry:readPrebuild(folder).context.project.entry,artifacts:readPrebuild(folder).context.project.artifacts}));process.exit(0);}
 const child=spawn('codex',['app-server','--stdio'],{cwd:root,windowsHide:true,stdio:['pipe','pipe','pipe']});
 const lines=createInterface({input:child.stdout}),pending=new Map();
@@ -34,7 +36,7 @@ lines.on('line',line=>{
   if(msg.id!==undefined&&!msg.method&&pending.has(msg.id)){const p=pending.get(msg.id);pending.delete(msg.id);clearTimeout(p.timer);msg.error?p.reject(new Error(msg.error.message)):p.resolve(msg.result);}
   if(active&&msg.method==='item/completed'){
     const item=msg.params?.item;
-    if(item?.type==='agentMessage'){active.output.push(item.text??'');active.messages.push({phase:item.phase??null,text:item.text??''});}
+    if(item?.type==='agentMessage'){active.output.push(item.text??'');active.messages.push({id:item.id??null,type:item.type,phase:item.phase??null,text:item.text??''});}
     else if(item)active.tools.push({type:item.type,name:item.tool??item.name??null,command:item.command??null,status:item.status??null,...(item.status==='failed'?{failureOutput:(item.aggregatedOutput??'').slice(-4000)}:{}),...(item.type==='webSearch'?{action:item.action??null}:{})});
   }
   if(active&&msg.method==='turn/completed'){const a=active;active=null;clearTimeout(a.timer);a.resolve({status:msg.params.turn.status,error:msg.params.turn.error??null,output:a.output.join('\n\n'),messages:a.messages,tools:a.tools,elapsedMs:Date.now()-a.started});}
@@ -42,7 +44,8 @@ lines.on('line',line=>{
 });
 function request(method,params){return new Promise((resolve,reject)=>{const id=++seq,timer=setTimeout(()=>{pending.delete(id);reject(new Error(`${method} timed out`));},30000);pending.set(id,{resolve,reject,timer});child.stdin.write(JSON.stringify({id,method,params})+'\n');});}
 function save(){writeFileSync(join(runDir,'results.json'),JSON.stringify(results,null,2));}
-function state(folder){const saved=readPrebuild(folder),c=saved.context;return {version:saved.version,user:c.definition.user.text,problem:c.definition.problem.text,confirmed:['intention','user','problem','evaluation','act'].filter(subject=>confirmation(c,subject)),presentation:c.ide.presentation?.subject??null};}
+function state(folder){const saved=readPrebuild(folder),c=saved.context,notesRoot=join(folder,'crumb-contexts');const notes=existsSync(notesRoot)?readdirSync(notesRoot,{withFileTypes:true}).filter(d=>d.isDirectory()).slice(0,8).map(d=>({folder:d.name,workingContext:readPrebuild(join(notesRoot,d.name))?.context.workingContext??null})):[];return {version:saved.version,user:c.definition.user.text,problem:c.definition.problem.text,confirmed:['intention','user','problem','evaluation','act'].filter(subject=>confirmation(c,subject)),presentation:c.ide.presentation?.subject??null,presentedThesis:c.ide.presentation?.subject==='thesis'?c.ide.presentation.text:null,receipts:c.ide.confirmations.map(({subject,presentedText,quote})=>({subject,presentedText,quote})),reviewBasis:c.ide.reviewBasis,workingContext:c.workingContext??null,notes};}
+function toolMetrics(tools){const commands=tools.filter(t=>t.type==='commandExecution');const count=re=>commands.filter(t=>re.test(t.command??'')).length;return {commands:commands.length,failedCommands:commands.filter(t=>t.status==='failed').length,skillReads:count(/Get-Content[^\n]*SKILL\.md/i),referenceReads:count(/Get-Content[^\n]*references/i),runtimeReads:count(/Get-Content[^\n]*runtime\.json/i),sourceDiscovery:count(/(?:Get-Content|Select-String|rg)[^\n]*dist[\\/]/i),webEvents:tools.filter(t=>t.type==='webSearch').length,searchQueries:tools.filter(t=>t.type==='webSearch'&&t.action?.type==='search').reduce((n,t)=>n+(t.action.queries?.length??(t.action.query?1:0)),0)};}
 async function turn(threadId,text,first=false){
   const started=Date.now();
   const done=new Promise((resolve,reject)=>{active={resolve,reject,output:[],messages:[],tools:[],started,timer:setTimeout(()=>{const a=active;active=null;resolve({status:'timed_out',error:`Live turn exceeded ${turnTimeout/1000} seconds; stop and inspect partial output.`,output:a.output.join('\n\n'),messages:a.messages,tools:a.tools,elapsedMs:Date.now()-started});},turnTimeout)};});
@@ -52,6 +55,15 @@ async function turn(threadId,text,first=false){
 function createFixture(id,seed='evaluated'){
   const folder=join(fixtureDir,id);mkdirSync(folder);
   if(seed==='fresh'){const c=emptyIde();c.synthetic=true;c.project.entry='fresh';savePrebuild(folder,c);}
+  else if(seed==='export-app'){
+    writeFileSync(join(folder,'README.md'),'# Crewledger\nSynthetic working beta for small cleaning-company owners to compare expected and actual job hours. Owner has job records in scheduling software but has not analysed margin or buyer demand. No customers or validation claimed.\n');
+    const c=emptyIde();c.synthetic=true;c.project.entry='existing';savePrebuild(folder,c);
+  }
+  else if(seed==='astra-priced-app'){
+    writeFileSync(join(folder,'README.md'),'# Slotnote\nSynthetic working beta for independent music teachers in Toronto: track prepaid lesson credits, cancellations and makeup lessons; parents see their remaining credits through a private link. Built for teachers with 15–40 pupils. No scheduling, payments or school administration. Founder wants a sustainable small subscription business and has no paying users yet.\n');
+    writeFileSync(join(folder,'package.json'),JSON.stringify({name:'slotnote',version:'0.1.0',description:'Lesson credits and makeup tracking for independent music teachers'}));
+    const c=emptyIde();c.synthetic=true;c.project.entry='existing';savePrebuild(folder,c);
+  }
   else if(seed==='priced-app'){
     writeFileSync(join(folder,'README.md'),'# Reviewlane\nA small app for freelance video editors to compare client revision requests, deadlines and deliverables in one board. Editors use it on each active project; clients see a shared status page. A working beta exists. Pricing and payment willingness are unknown. No real customers or sales are represented in this synthetic fixture.\n');
     writeFileSync(join(folder,'package.json'),JSON.stringify({name:'reviewlane',version:'0.1.0',description:'Revision board for freelance video editors'}));
@@ -59,7 +71,7 @@ function createFixture(id,seed='evaluated'){
   }
   else {
     const c=stock();if(seed==='existing'){c.project.entry='existing';writeFileSync(join(folder,'parser.mjs'),'export const parse = JSON.parse;\n');c.project.permissionQuote='Synthetic fixture authorizes reading its parser.';c.project.artifacts=inspectArtifacts(folder,{paths:['parser.mjs'],permissionGranted:true,permissionQuote:c.project.permissionQuote}).map(({path,sha256})=>({path,sha256}));}
-    prepareIde(folder,seed==='build'?'act':seed==='pending-user'?'intention':'evaluation',c);
+    prepareIde(folder,seed==='pending-thesis'?'none':seed==='build'?'act':seed==='pending-user'?'intention':'evaluation',c);
     if(seed==='pending-user')transitionIde(folder,{operation:'present',subject:'user',expectedVersion:readPrebuild(folder).version});
   }
   return folder;
@@ -67,15 +79,31 @@ function createFixture(id,seed='evaluated'){
 async function start(id,seed='evaluated',existingFolder){
   const folder=existingFolder??createFixture(id,seed);
   const liveWeb=process.argv.includes('--live-web');
+  const requestedModel=selectedModel;
+  const installedConfig=await request('config/read',{cwd:folder});
+  const hostInstructions=installedConfig.config.developer_instructions??'';
+  results.hostIdentityInstructions=hostInstructions;
+  if(!process.argv.includes('--baseline')&&mergeCrumbHostInstructions(hostInstructions,readFileSync(join(dirname(skillPath),'host/codex.md'),'utf8'))!==hostInstructions)throw new Error('Installed developer identity contract is missing or stale.');
   const config={'mcp_servers.crumb_context':{command:process.execPath,args:[mcp,folder],required:true,startup_timeout_sec:15,tool_timeout_sec:15,default_tools_approval_mode:'approve'},web_search:liveWeb?'live':'disabled'};
-  const t=await request('thread/start',{cwd:folder,ephemeral:true,sandbox:'workspace-write',approvalPolicy:'never',config,
-    developerInstructions:`This is an opt-in synthetic acceptance test of the installed Crumb skill. Use the real Crumb behavior, not a critique of it. All founder statements are synthetic and all writes are limited to ${folder}. The Crumb source is the explicitly supplied skill path; pinned Node is ${process.execPath}. Use the configured read-only crumb_context MCP tools for compact saved state; use Crumb's existing internal CLI for necessary state writes. Never inspect the real installation's private customer state, credentials, or unrelated files. No external communication, deployment, paid service, code implementation, or subagents. ${liveWeb?'Public web research is authorized through available host tools; respect access restrictions and distinguish current findings from saved synthetic fixture assertions.':'Web research is disabled for this isolated replay; reuse stored research and state that test limitation.'} Do not invent a search, source, candidate, permission, interview or test. Supplied scenario backgrounds in brackets describe synthetic test conditions, not actual new research receipts.`});
-  return {folder,threadId:t.thread.id};
+  if(requestedModel)config.model_reasoning_effort=requestedModel==='gpt-5.6-sol'?'high':'medium';
+  const t=await request('thread/start',{cwd:folder,ephemeral:!process.argv.includes('--capture-instructions'),sandbox:'workspace-write',approvalPolicy:'never',config,...(requestedModel?{model:requestedModel}:{}),
+    ...(process.argv.includes('--native-instructions')?{}:{developerInstructions:composeDeveloperInstructions(hostInstructions,`This is an opt-in synthetic acceptance test of the installed Crumb skill. Use the real Crumb behavior, not a critique of it. All founder statements are synthetic and all writes are limited to ${folder}. The Crumb source is the explicitly supplied skill path; pinned Node is ${process.execPath}. Use the configured read-only crumb_context MCP tools for compact saved state; use Crumb's existing internal CLI for necessary state writes. Never inspect the real installation's private customer state, credentials, or unrelated files. No external communication, deployment, paid service, code implementation, or subagents. ${liveWeb?'Public web research is authorized through available host tools; respect access restrictions and distinguish current findings from saved synthetic fixture assertions.':'Web research is disabled for this isolated replay; reuse stored research and state that test limitation.'} Do not invent a search, source, candidate, permission, interview or test. Supplied scenario backgrounds in brackets describe synthetic test conditions, not actual new research receipts.`)})});
+  results.hostModel=t.model??t.thread.model??null;results.hostReasoningEffort=t.reasoningEffort??t.thread.reasoningEffort??null;results.requestedModel=requestedModel??null;
+  return {folder,threadId:t.thread.id,threadPath:t.thread.path};
 }
 try{
   await request('initialize',{clientInfo:{name:'crumb_closeout_test',version:'1'},capabilities:{experimentalApi:true}});child.stdin.write(JSON.stringify({method:'initialized',params:{}})+'\n');
-  const catalog=await request('skills/list',{cwds:[root],forceReload:true});results.discovery=!!catalog.data?.flatMap(x=>x.skills??[]).find(s=>s.name==='crumb'&&s.enabled&&s.path.toLowerCase()===skillPath.toLowerCase());
-  if(!results.discovery)throw new Error('Installed Crumb skill not discovered.');
+  if(selectedModel){
+    const models=await request('model/list',{limit:100});
+    results.availableModels=models.data?.map(m=>({id:m.id,model:m.model,displayName:m.displayName}))??[];
+    const available=name=>results.availableModels.some(m=>m.id===name||m.model===name);
+    if(!available(selectedModel)&&selectedModel==='gpt-6.1-sol'&&available('gpt-5.6-sol'))selectedModel='gpt-5.6-sol';
+    if(!available(selectedModel))throw new Error('Requested preferred/fallback model unavailable in installed host; see model inventory.');
+  }
+  const catalog=await request('skills/list',{cwds:[root],forceReload:true});
+  results.skillInventory=catalog.data?.flatMap(x=>x.skills??[]).filter(s=>['crumb','pruvity','pruvello','customer-evidence'].includes(s.name)).map(s=>({name:s.name,path:s.path,enabled:s.enabled,scope:s.scope}))??[];
+  results.discovery=results.skillInventory.length===1&&results.skillInventory[0].name==='crumb'&&results.skillInventory[0].enabled&&results.skillInventory[0].path.toLowerCase()===skillPath.toLowerCase();
+  if(!results.discovery)throw new Error('Expected one installed global Crumb skill and no active project-local or legacy aliases.');
   if(!process.argv.includes('--skip-mcp')){
   const probe=await start('mcp-probe','build');
   const inventory=await request('mcpServerStatus/list',{threadId:probe.threadId,serverName:'crumb_context',detail:'toolsAndAuthOnly'});
@@ -89,6 +117,38 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'m3r5-final-founder',seed:'fresh',messages:[
+      "$crumb I want a small paid business helping independent residential cleaners in Hamilton, Ontario stop underquoting recurring jobs. My sister cleans houses and says first-visit surprises eat her margin. She has past quotes and actual times in a spreadsheet. I have evenings and know only her. Where should we put our effort? Don't contact anyone or build.",
+      "I was imagining a full AI operations assistant. Is focusing on quoting too small? Keep it short.",
+      "She will share the existing sheet, but some rows have missing actual times. I don't want to make her rebuild her records. What should I ask her for?",
+      "She agreed to share it tomorrow and one other cleaner agreed to talk. That feels like progress. Give me the next move in two sentences; don't build."
+    ]},
+    {id:'m3r5-identity-casual',seed:'fresh',messages:["$crumb Hey. I'm juggling two business ideas and don't know where to start."]},
+    {id:'m3r5-astra-personality',seed:'fresh',messages:[
+      "$crumb I want a small paid business helping independent bike repair shops in Toronto stop losing time chasing customers to collect finished bikes. My brother owns a shop; about six repaired bikes sit there for over a week and crowd his workshop. He texts customers by hand. I have Saturdays to work on this and haven't talked to other shops.",
+      "I was thinking an AI assistant that runs the whole shop. Just collection reminders sounds tiny.",
+      "Fair. My brother says he already sends reminders. Some customers reply that they'll come Saturday, then don't turn up.",
+      "I'm not sure there's a business here. Maybe I'm just looking for an excuse to build something.",
+      "He showed me his last ten completed jobs. Four sat over a week. Three of those customers had agreed a collection day and missed it. That's all I know so far.",
+      "Could we charge a fee for every missed collection?",
+      "I'm getting a bit lost. Give me the short version.",
+      "I can speak to two owners on Saturday. I don't want to sound like I'm pitching them software.",
+      "One agreed to talk! He said they sometimes can't take in another repair because finished bikes fill the racks.",
+      "The other owner says it's no problem: he has loads of storage. Does that kill it?",
+      "The first owner is happy to share an anonymized job export, but I don't know what to ask for. Please keep it easy.",
+      "We've got the conversation booked and he will bring that export. I'm pleased we didn't spend the weekend building the wrong thing."
+    ]},
+    {id:'m3r5-astra-pricing',seed:'astra-priced-app',messages:["$crumb This is my current app. What should we charge?", "Two teachers I know have about 25 pupils each. One uses a spreadsheet and the other keeps a notebook. Neither has tried the app.", "What evidence would change that price? Keep it short and use what we already know."]},
+    {id:'m3r5-unblock-thesis',seed:'pending-thesis',messages:["$crumb Continue this saved project. Show me the working business thesis for review.","Looks good, don't build yet.","Actually narrow the user to part-time swing traders who review only on weekends. Keep that correction provisional; don't build."]},
+    {id:'m3r5-unblock-pricing',seed:'priced-app',messages:["$crumb Here's the current app. Let's figure out pricing.","I know two freelance editors with active client projects. I haven't contacted them yet.","What would make you change the price? Use what we already know.","One editor says revisions are fine, but deadlines change across email and WhatsApp every week. What does that change?"]},
+    {id:'m3r5-unblock-users',seed:'fresh',messages:["$crumb I want a small paid business helping independent dog groomers in Ottawa manage last-minute cancellations. My friend runs a salon and has two or three empty appointment slots a week; she uses phone calls and a paper waitlist. I can work evenings. I haven't spoken with other owners.","I don't know any other owners. I can personally invite three this week, but please don't contact anyone.","Make the invitation shorter and tell me what we're trying to learn from their answers.","The first conversation says they already fill cancellations by texting regulars. The awkward part is keeping track of who accepted. What changes?"]},
+    {id:'m3r5-unblock-export',seed:'export-app',messages:["$crumb Here's my current app. I want to understand whether job overruns are worth solving. I have last month's records in scheduling software, but haven't worked out the totals.","I exported a small synthetic example to sample-jobs.csv in this project. Please use it.","With that small sample, what is the next useful business step? Don't build."]},
+    {id:'m3r5-phase2-direction',seed:'fresh',messages:["$crumb I want a small paid business helping independent restaurant owners compare supplier quotes. My family runs a restaurant; every week they copy prices from emailed PDFs into a spreadsheet and sometimes miss pack-size changes. I have evenings to work on it."]},
+    {id:'m3r5-phase2-pricing',seed:'priced-app',messages:["$crumb Here's the current app. Let's figure out pricing.","I know two freelance editors with active client projects. I haven't contacted them yet.","Looks good, don't build yet."]},
+    {id:'m3r5-phase2-thesis',seed:'pending-thesis',messages:["$crumb Continue this saved project. Show me your working business thesis, including the evidence and the important risks, for my review.","Looks good, don't build yet."]},
+    {id:'m3r5-autonomy',seed:'fresh',messages:["$crumb I want to build a voice-assisted note-taking product for project managers.","I want this to become a large business. On construction jobs I have seen project managers leave site conversations with voice memos, then lose a decision or who owns the follow-up. I have not interviewed anyone or checked alternatives yet."]},
+    {id:'m3r5-predictive',seed:'priced-app',messages:["$crumb The Reviewlane beta is built. I can spare a few evenings. Help me turn it into a small real business.","I know two freelance editors who could look at it, but I have not asked them yet."]},
+    {id:'m3r5-no-build',seed:'evaluated',messages:["$crumb Pick up the saved stock-comparison work and recommend the next useful move. I do not want to build yet."]},
     {id:'m3r4-market',seed:'fresh',messages:["$crumb We may build a client-document chase helper for independent accountants. They currently use email and spreadsheets. Is the pain worth testing? Check a small public market pulse if you can.","Where is the strongest narrow wedge? Separate what you saw from your guess. Don't give me a made-up TAM."]},
     {id:'m3r4-pricing',seed:'priced-app',messages:["$crumb This review board already works. What should we charge freelance editors? Inspect the small project context and check current public alternatives if you can.","Would per-project beat a monthly subscription? Give your view and the cheapest price test."]},
     {id:'m3r4-first-users',seed:'fresh',messages:["$crumb We need first users for a scheduling tool for independent Toronto physiotherapy clinics. Where would you look first? Don't contact anyone.","Draft a short one-ask note for a clinic owner, and tell me what you actually verified."]},
@@ -114,12 +174,24 @@ try{
   sessions.push({id:'supplied-cases',messages:cases.map(c=>`[Independent synthetic conversation case ${c.id}. Current hypothetical background: ${c.given} This case does not replace saved approval or create research receipts.]\n${c.user_message}`)});
   const selected=process.argv.find(arg=>arg.startsWith('--sessions='))?.slice('--sessions='.length).split(',');
   for(const spec of sessions.filter(spec=>!selected||selected.includes(spec.id))){
-    const s=await start(spec.id,spec.seed),record={id:spec.id,fixture:s.folder,turns:[]};results.sessions.push(record);
-    for(let i=0;i<spec.messages.length;i++){
-      const response=await turn(s.threadId,spec.messages[i],i===0);record.turns.push({input:spec.messages[i],...response,state:state(s.folder)});save();
+    const s=await start(spec.id,spec.seed),record={id:spec.id,fixture:s.folder,threadId:s.threadId,turns:[]};results.sessions.push(record);
+    for(let i=0;i<(process.argv.includes('--opening-only')?1:spec.messages.length);i++){
+      if(spec.id==='m3r5-unblock-export'&&i===1)writeFileSync(join(s.folder,'sample-jobs.csv'),'job,quoted_hours,actual_hours,crew_hour_cost,price\nA,3,4,25,150\nB,2,3,25,100\nC,4,4,25,200\n');
+      const response=await turn(s.threadId,spec.messages[i],i===0);
+      record.turns.push({input:spec.messages[i],...response,state:state(s.folder),toolMetrics:toolMetrics(response.tools),questionMarks:(response.output.match(/\?/g)??[]).length,webActions:response.tools.filter(t=>t.type==='webSearch').length});save();
+      if(process.argv.includes('--capture-instructions')&&s.threadPath&&existsSync(s.threadPath)){
+        const entries=readFileSync(s.threadPath,'utf8').trim().split('\n').map(line=>JSON.parse(line));
+        const instructionTrace=entries.flatMap(e=>e.type==='session_meta'?[{role:'base',content:e.payload.base_instructions}]:e.type==='response_item'&&e.payload?.role==='developer'?[{role:'developer',content:e.payload.content}]:[]);
+        writeFileSync(join(runDir,`${spec.id}-instructions.json`),JSON.stringify(instructionTrace,null,2));
+        if(!process.argv.includes('--baseline')){
+          const guard=readFileSync(join(dirname(skillPath),'host/codex.md'),'utf8').trim();
+          if(!instructionTrace.some(e=>e.role==='developer'&&JSON.stringify(e.content).includes(guard)))throw new Error('The native assembled developer message is missing the installed identity guard.');
+        }
+      }
       console.log(`${spec.id} ${i+1}/${spec.messages.length}: ${response.status}`);
       if(response.status!=='completed')throw new Error(`Live host failed in ${spec.id}; review the retained response.`);
     }
+    if(process.argv.includes('--capture-instructions'))await request('thread/archive',{threadId:s.threadId});
     if(spec.id==='existing-project'){
       const resumed=await start('existing-project-resume','evaluated',s.folder);
       const input='$crumb I am back in a new session. Continue from the saved compact context; do not rebuild the history. What is the next useful decision? I have not approved building.';
@@ -127,8 +199,8 @@ try{
       console.log(`existing-project-resume: ${response.status}`);if(response.status!=='completed')throw new Error('Live resume failed; review retained response.');
     }
   }
-  const identityLeak=/(?:i(?:'ll| will| am|’ll)|i'm|i’m).{0,60}(?:crumb (?:skill|workflow|instructions|context)|skill|workflow)|(?:found|checking|reading).{0,40}crumb(?:'s|’s)? (?:skill|instructions|workflow|context)/i;
-  results.identityLeaks=results.sessions.flatMap(s=>s.turns.flatMap((t,i)=>identityLeak.test(t.output)?[{session:s.id,turn:i+1}]:[]));
+  results.openings=results.sessions.map(s=>({session:s.id,text:openingAssistantText(s.turns[0].messages)}));
+  results.identityLeaks=results.sessions.flatMap(s=>s.turns.flatMap((t,i)=>assistantIdentityLeaks(t.messages).map(leak=>({session:s.id,turn:i+1,...leak}))));
   results.timings=results.sessions.map(s=>({session:s.id,elapsedMs:s.turns.map(t=>t.elapsedMs)}));
   results.status=results.identityLeaks.length?'failed_identity_leak':'completed_needs_semantic_review';
   if(results.identityLeaks.length)process.exitCode=1;

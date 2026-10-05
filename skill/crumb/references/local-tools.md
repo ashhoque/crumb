@@ -3,9 +3,19 @@
 The founder speaks naturally. Operate the tools, then explain their meaning without
 JSON, hashes or internal state labels. Continue the explicitly selected project.
 Use the pinned Node runtime and existing launcher; do not change global runtimes.
-For JSON stdin on Windows use direct Node with UTF-8 input or a process API.
+Prefer a UTF-8 temporary request file, not Windows stdin pipelines.
 
-Command shape: `node <install>/dist/src/cli/main.js internal <operation> <target>`.
+Command shape: `node <install>/dist/src/cli/main.js internal <operation> <target> --input-file <request.json>`.
+For example, write `{"decision":"pricing"}` to a temporary UTF-8 file and call
+`project-bootstrap` with that file. Preserve actual quotes and dollars; do not
+interpolate founder content into shell code. No request file is needed for reads.
+Reuse the locator's `node`, `cli` and request contracts already loaded in this
+conversation. Opening this reference does not reset that knowledge. Read
+`../runtime.json` only if it has not yet been loaded in this conversation.
+Invoke those paths with `internal <operation> <target>`; the
+skill directory does not contain Core. Never search the home directory, plugin
+caches or customer project for Core. If the locator is absent, report that
+persistence is unavailable and continue reversible conversation work.
 
 For an existing app, `project-bootstrap` takes a JSON decision (`pricing`,
 `distribution`, `technical` or `product`), up to three targeted relative paths,
@@ -45,6 +55,36 @@ Only the installed Codex path has been tested; no Claude/Cursor/Replit support c
 
 ## Read and save
 
+For fresh conversation notes, use an unused child folder under the selected
+project, e.g. `crumb-contexts/<current-chat-id>`, as the target. Do not read the
+existing idea or reconstruct a full prebuild dossier. Send this shape to
+`internal working-context <target> --input-file <request.json>` (replace example content):
+
+```json
+{"start":true,"expectedVersion":0,"conversationId":"current_chat_123","delta":{"project":{"next_move":{"value":"Prepare a paid pilot offer","status":"inferred","confidence":"medium","source":"Current founder conversation"}},"founder":{"likely_next_need":{"value":"An invitation for the first two prospects","status":"inferred","confidence":"medium","source":"Current founder conversation"}}}}
+```
+
+Create the unused child target directory before calling start. Each fact value
+is at most 320 characters; source must be null or a string at most 240 characters.
+Split pricing, risk and next move into separate short facts rather than one dossier.
+For synthetic acceptance only, add `"synthetic":true`. The start operation
+refuses any existing context. Later deltas omit `start` and use the returned
+version and same conversation ID. Retain this target for continuation; knowledge
+notes never grant foundation or Act approval. Do not assemble full IDE state just
+to save notes. Use full `template`/`prebuild` only when actually recording formal
+evidence and preparing founder review.
+
+Optional planners need no call when the next action is already clear. If useful,
+`market-pulse` accepts this shape; `materialGap` is boolean, never prose:
+
+```json
+{"user":"specific provisional user","problem":"observed pain","decision":"one decision","externalEvidence":"none","materialGap":true,"localMarket":false}
+```
+
+Set `localMarket:true` only when location changes the decision; use a founder-
+supplied `region` or accept the planner's request for it. Never invent a region.
+Do not retry undocumented variations or inspect Core source to discover inputs.
+
 Use `conversation-context --resume` only for explicit continuation and
 `conversation-detail --resume` with selected IDs for relevant cached evidence.
 Without `--resume`, context and `template` begin cleanly; a fresh idea must use
@@ -72,9 +112,10 @@ the exact validation error, make one targeted correction, and stop if it persist
 Compact prebuild context includes `guidance`: the next useful question,
 confirmation, research, review or scope move. Follow it without asking the founder to
 manage IDE manually. It does not grant assent or mutate presentation state.
-For `kind:review`, the saved research passes completeness checks: run `ide review`,
-then present Evaluation and obtain its actual founder response. Reuse that research
-instead of repeating it; the founder has not reviewed it merely because it is ready.
+For `kind:review` with no subject, bring one working business thesis for founder
+correction; it is not Act approval. A later complete Evaluation may require
+`ide review` and its current founder receipt. Reuse research rather than repeating
+it; a tool result alone is never founder review.
 
 The old provided/skipped/ready fields describe retained data. The authoritative
 workflow is the derived ideState: confirmed intention, target_user, problem_definition,
@@ -93,25 +134,29 @@ private storage or credentials. Synthetic and real provenance remain separate.
 
 ## Present and confirm (internal ide operation)
 
-1. Save the drafted statement. Send
-   `{"expectedVersion":1,"operation":"present","subject":"intention"}`.
-   Subjects are intention, user, problem, evaluation and act. The returned summary
-   is the exact current presentation. Display it to the founder before confirming.
-2. After the founder replies, send
-   `{"expectedVersion":2,"operation":"confirm","presentationId":"returned-id","quote":"actual reply","turnId":"actual-source-turn-reference"}`.
-   Each reply confirms one statement. The tool assigns receipt identity/time.
-   Ordinary foundations and the final displayed Act commitment accept clear natural
-   agreement; no exact Yes phrase is required. Host semantic interpretation is
-   available as documented in modes.md. Edits require a revised presentation.
-   Do not rewrite an ambiguous reply to make it pass.
-3. Continue User then Problem. Existing facts can shorten discussion, not replace
-   the explicit confirmation. Save deeper research before the review transition.
-4. After meaningful investigation send
-   `{"expectedVersion":8,"operation":"review"}`. This checks all coverage,
-   alternatives, relevant attempts, counterevidence and confirmed foundations.
-   It records agent review, not founder review. Present evaluation and record its
-   actual founder assent separately, then offer interviews or the Act decision.
-5. Present act, show the concise commitment and its one question, then wait. Only its explicit
+1. Save provisional founder facts and research without inventing assent. Once the
+   intention, first user, pain, evidence, direction and main uncertainty are ready,
+   send `{"expectedVersion":1,"operation":"present-thesis"}`. Display the returned
+   exact thesis. After the founder's actual clear agreement, send
+   `{"expectedVersion":2,"operation":"confirm-thesis","presentationId":"returned-id","displayedText":"exact text actually shown","quote":"actual reply","turnId":"actual-source-turn-reference"}`.
+   Do this before acknowledging review in that reply. Core rejects changed shown
+   text; never send recorded text as displayedText if a paraphrase was shown.
+   This atomically records distinct foundation receipts from one displayed thesis.
+   Corrections require a revised thesis; ambiguity does not confirm. "Looks good,
+   but don't build yet" can confirm understanding while keeping Act locked.
+2. The older `present` and `confirm` operations remain available for a material
+   correction to one foundation. Each separate reply confirms only one statement.
+   Host semantic interpretation is documented in modes.md. Never rewrite a reply.
+   To save the correction itself, `ide` accepts
+   `{"operation":"revise-foundation","expectedVersion":3,"subject":"user","text":"corrected provisional user","quote":"actual founder correction","turnId":"actual source turn"}`.
+   Subjects are intention/user/problem. It preserves the founder source, invalidates
+   downstream review and refuses changes after approved Act. No new assent implied.
+3. After complete investigation send `{"expectedVersion":8,"operation":"review"}`.
+   This checks coverage, alternatives, relevant attempts, counterevidence and
+   confirmed foundations. If Evaluation was not included in the displayed thesis,
+   present its current conclusion and record the founder's actual response before
+   offering interviews or the Act decision.
+4. Present Act as its own exact commitment and wait. Only its explicit
    assent permits a solution proposal. Declining, opening details or choosing a
    redefinition does not confirm it. Review error messages internally and continue
    the useful conversation; don't hand validation fields to the founder.

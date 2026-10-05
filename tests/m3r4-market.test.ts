@@ -56,10 +56,10 @@ test('M3-R4 compact user and market learning stays tentative',()=>{
   assert.throws(()=>updateWorkingContext(context,{project:{trust:{value:'Certain',status:'inferred',confidence:'high',source:null}}},'conversation_123'),/inference cannot be high-confidence/);
 });
 test('M3-R4 live skill guidance retains personality, early research, continuity and send gate',()=>{
-  const skill=readFileSync(new URL('../../.agents/skills/crumb/SKILL.md',import.meta.url),'utf8');
-  const research=readFileSync(new URL('../../.agents/skills/crumb/references/research.md',import.meta.url),'utf8');
-  assert.match(skill,/hype partner with standards/);assert.match(skill,/single `\$crumb` invocation continues/);
-  assert.match(skill,/Never send a message/);assert.match(skill,/early Market Pulse/);
+  const skill=readFileSync(new URL('../../skill/crumb/SKILL.md',import.meta.url),'utf8');
+  const research=readFileSync(new URL('../../skill/crumb/references/research.md',import.meta.url),'utf8');
+  assert.match(skill,/Hype the founder's real progress/);assert.match(skill,/single `\$crumb` invocation carries/);
+  assert.match(skill,/Never send, post/);assert.match(skill,/Early Market Pulse/);
   assert.match(research,/Engagement|engagement/);assert.match(research,/research habitats and one or two acquisition routes/);
 });
 test('M3-R4 installed CLI planners run without a saved project or network',()=>{

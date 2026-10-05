@@ -1,4 +1,102 @@
-# Crumb implementation plan - M3-R4
+# Crumb implementation plan - M3-R5 Phase 2
+
+## Final Astra release gate — 5 October 2026
+
+**PASS WITH WARNINGS.** Five fresh completed sessions, 13 turns, zero identity
+leaks; founder/pricing/first-user/export/thesis/Act acceptance passed. Full suite
+342/342. Final user authorization: commit/push dev, merge main, verify main,
+push/verify remote and synchronize exact shipped main globally. Preserve warnings
+and interrupted attempt in M3_R5_FINAL_RELEASE_GATE.md and its transcripts.
+No product correction or broad redesign was needed. No M3-R6/M4 work.
+
+## M3-R5 surgical identity unblock — 5 October 2026
+
+Authority: founder's Sol release-unblock request; stay on m3-r5-phase1 and do not
+merge main until final Astra release review passes.
+
+- [x] Reproduce actual assistant leak; trace assembled host instruction conflict.
+- [x] Install narrow native developer guard; preserve canonical personality.
+- [x] Behavioral identity gates, four fresh openings, 12-turn continuity.
+- [x] Pricing consistency and incremental progress corrections; locator reuse.
+- [x] Act/personality/R5 focused checks 106/106; full suite 342/342.
+- [x] Exact transcripts and review packet; commit/push dev and sync global candidate.
+- [ ] Final Astra release check; overall M3-R5 remains unreleased pending review.
+
+See M3_R5_IDENTITY_UNBLOCK_REPORT.md and M3_R5_IDENTITY_UNBLOCK_TRANSCRIPTS.md.
+Earlier review results below remain historical. Do not begin M3-R6 or M4.
+
+## M3-R5 Astra final review — 5 October 2026
+
+Authority: founder's final Astra review and conditional release request. A PASS
+would authorize main merge/push/global shipping; the actual result is BLOCKED.
+
+- [x] Verify old blockers against focused tests and fresh installed-host behavior.
+- [x] Surgical canonical personality and thesis-presentation corrections.
+- [x] Correct premature manual reconstruction and assumed customer access.
+- [x] Two 12-turn personality conversations, fresh pricing, first users, export,
+  momentum and fast-path acceptance; retain actual failures in the report.
+- [x] Commit/push coherent focused-test-passing corrections to m3-r5-phase1.
+- [ ] Resolve reproduced host skill-announcement identity failure and rerun live acceptance.
+- [ ] Explain/preserve the exact pricing offer across follow-ups.
+- [ ] PASS release gate, then conditional main/global closeout. Do not merge while blocked.
+
+See M3_R5_ASTRA_REPORT.md and M3_R5_ASTRA_TRANSCRIPTS.md. Earlier phases below
+remain historical. Final suite results are in the Astra report.
+
+## M3-R5 release unblock — 5 October 2026
+
+Authority: founder's release-unblock implementation request. Continue
+m3-r5-phase1, commit/push tested fixes, and hand off to Astra; no main merge.
+
+- [x] Bind bundled review to the actual shown text; retain invalidation/Act gates.
+- [x] Provide file-input runtime contracts, note limits and snapshot reuse.
+- [x] Require explicit recommended pricing range and change evidence.
+- [x] Activate First User Pack/direct links, momentum close and export fallback.
+- [x] Preserve canonical personality; remove the conflicting always-question rule.
+- [x] Add small canonical founder correction after the live dossier-save failure.
+- [x] Focused tests and final full suite (339/339).
+- [x] Complete installed-skill live/UX audit (14 turns/12 substantive answers) and Astra packet.
+- [ ] Final Astra product/taste review; revision remains pending that review.
+
+See M3_R5_UNBLOCK_REPORT.md. Earlier Phase 2 findings below are historical.
+
+## M3-R5 Phase 2 — 4 October 2026
+
+Authority: founder's Phase 2 review and conditional GitHub closeout request.
+Outcome: **BLOCKED**; see [Phase 2 report](M3_R5_PHASE2_REPORT.md).
+
+- [x] Review Phase 1 packet, actual transcripts and narrow runtime/IDE surfaces.
+- [x] Patch runtime locator, provisional direction, complete thesis disclosure,
+  concrete offers and isolated founder-note persistence without new architecture.
+- [x] Focused regressions and full suite (333/333); verify installed global skill.
+- [x] Live direction, pricing, first-user, thesis and no-build semantic audit.
+- [ ] Make displayed thesis and saved review agree in actual host use.
+- [ ] Eliminate repeated runtime discovery; retest affected live flows.
+- [ ] Reach complete acceptance before merge, final main verification and push.
+
+One targeted runtime repair was attempted. Stop further repair/retest loops under
+the workspace instruction. Keep the tested development candidate and evidence;
+do not merge this blocked result. Phase 1 and earlier plans below are historical.
+
+## M3-R5 Phase 1 — 4 October 2026
+
+Authority: the founder's M3-R5 Phase 1 request. This phase remains on
+`m3-r5-phase1` for separate Astra review; do not merge `main` or begin M4.
+
+- [x] Trace the active installed skill, global wrapper, legacy aliases, IDE gate,
+  Market Pulse, first-user path and live host harness.
+- [x] Let provisional foundations trigger bounded research and one working-thesis
+  review while keeping Evaluation quality checks and Act consent separate.
+- [x] Install one direct global `$crumb` skill from version-controlled source;
+  archive aliases and remove stale invocation metadata.
+- [x] Test ordinary-language direction, independent research, pricing, first-user
+  activation and no-build safety through the installed skill.
+- [x] Run focused regressions and the full Node 24.19.0 check (331/331).
+- [ ] Separate Astra product and architecture review, followed by any requested
+  corrections and revision closeout. No `main` merge before that review.
+
+The [Phase 1 report](M3_R5_PHASE1_REPORT.md) holds the live evidence, warnings
+and review judgments. The M3-R4 plan below is historical.
 
 ## M3-R4 — 4 October 2026
 

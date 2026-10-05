@@ -13,8 +13,8 @@ research or onboarding. Select one to six evidence IDs with `conversation-detail
 and `{"ids":["saved-id"]}` when deeper support matters. Never read a giant history
 just to continue a normal turn. Sources retain dates/provenance and unknowns.
 
-Use one important question, proactive next guidance, specific warmth and optional
-detail. Preferred names must come from explicit input. Accept clear natural assent
+Use the canonical voice and momentum rules in SKILL.md; a useful next step need
+not ask a question. Preferred names must come from explicit input. Accept clear natural assent
 to the CURRENT displayed statement, including yup, agreed and sounds good. For
 other clear semantic equivalents, `ide confirm` may include
 `"interpretation":{"meaning":"agreement","explanation":"Why the actual reply agrees with the displayed statement"}`.
