@@ -1,5 +1,20 @@
 # Crumb status
 
+**M3-R5 surgical identity fix ready for final Astra release check.**
+Overall M3-R5 remains unreleased pending that check; no main merge is authorized
+in this Sol phase. The actual assistant announcement was reproduced on Astra
+Medium and traced to the generic host skill-announcement instruction. A narrow
+installed developer-instruction exception resolves the conflict without changing
+Crumb's personality. Four fresh Sol openings and 12-turn continuity passed;
+the same Astra failing case now passes. Focused checks: **106/106**; full suite:
+**342/342**. Pricing keeps the paid CAD9 offer across follow-ups. Global candidate
+is synchronized; main remains `f188f03`. Research latency and native Luna Low
+question duplication remain disclosed warnings. See
+[identity review packet](M3_R5_IDENTITY_UNBLOCK_REPORT.md) and
+[exact transcripts](M3_R5_IDENTITY_UNBLOCK_TRANSCRIPTS.md). Do not start M3-R6/M4.
+
+## Previous Astra review (historical)
+
 **M3-R5 BLOCKED after Astra final review on `m3-r5-phase1`.**
 The three old engineering blockers are resolved in focused and live checks.
 Astra refined the canonical voice, thesis layout and existing-artifact activation.

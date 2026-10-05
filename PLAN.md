@@ -1,5 +1,21 @@
 # Crumb implementation plan - M3-R5 Phase 2
 
+## M3-R5 surgical identity unblock — 5 October 2026
+
+Authority: founder's Sol release-unblock request; stay on m3-r5-phase1 and do not
+merge main until final Astra release review passes.
+
+- [x] Reproduce actual assistant leak; trace assembled host instruction conflict.
+- [x] Install narrow native developer guard; preserve canonical personality.
+- [x] Behavioral identity gates, four fresh openings, 12-turn continuity.
+- [x] Pricing consistency and incremental progress corrections; locator reuse.
+- [x] Act/personality/R5 focused checks 106/106; full suite 342/342.
+- [x] Exact transcripts and review packet; commit/push dev and sync global candidate.
+- [ ] Final Astra release check; overall M3-R5 remains unreleased pending review.
+
+See M3_R5_IDENTITY_UNBLOCK_REPORT.md and M3_R5_IDENTITY_UNBLOCK_TRANSCRIPTS.md.
+Earlier review results below remain historical. Do not begin M3-R6 or M4.
+
 ## M3-R5 Astra final review — 5 October 2026
 
 Authority: founder's final Astra review and conditional release request. A PASS

@@ -2,11 +2,11 @@
 
 Use the M3-R5 amendments in PRODUCT_SPEC.md as current product authority;
 PLAN.md / STATUS.md record implementation state. Current authorized work is the
-M3-R5 after Astra final review on m3-r5-phase1. See M3_R5_ASTRA_REPORT.md and
-M3_R5_ASTRA_TRANSCRIPTS.md. The founder authorized main merge/global shipping only
-after PASS; the actual review is BLOCKED on the installed-host identity gate.
-Do not merge a blocked revision. Resolve the narrow recorded failures before
-repeating release acceptance; do not start another broad implementation pass.
+M3-R5 surgical identity unblock on m3-r5-phase1. See
+M3_R5_IDENTITY_UNBLOCK_REPORT.md and M3_R5_IDENTITY_UNBLOCK_TRANSCRIPTS.md.
+The Sol fix is ready for final Astra release check; overall M3-R5 remains
+unreleased pending that review. Do not merge main in this Sol phase. Preserve
+the working R5 behavior; do not start M3-R6, M4 or another broad implementation pass.
 Preserve M3-R4 evidence and
 first-user work, M3-R2 fresh-chat isolation, confirmed IDE and Act gates.
 Do not begin M4 or merge a blocked revision into main. Preserve the Phase 1

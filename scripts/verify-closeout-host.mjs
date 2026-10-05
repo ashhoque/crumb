@@ -36,7 +36,7 @@ lines.on('line',line=>{
   if(msg.id!==undefined&&!msg.method&&pending.has(msg.id)){const p=pending.get(msg.id);pending.delete(msg.id);clearTimeout(p.timer);msg.error?p.reject(new Error(msg.error.message)):p.resolve(msg.result);}
   if(active&&msg.method==='item/completed'){
     const item=msg.params?.item;
-    if(item?.type==='agentMessage'){active.output.push(item.text??'');active.messages.push({type:item.type,phase:item.phase??null,text:item.text??''});}
+    if(item?.type==='agentMessage'){active.output.push(item.text??'');active.messages.push({id:item.id??null,type:item.type,phase:item.phase??null,text:item.text??''});}
     else if(item)active.tools.push({type:item.type,name:item.tool??item.name??null,command:item.command??null,status:item.status??null,...(item.status==='failed'?{failureOutput:(item.aggregatedOutput??'').slice(-4000)}:{}),...(item.type==='webSearch'?{action:item.action??null}:{})});
   }
   if(active&&msg.method==='turn/completed'){const a=active;active=null;clearTimeout(a.timer);a.resolve({status:msg.params.turn.status,error:msg.params.turn.error??null,output:a.output.join('\n\n'),messages:a.messages,tools:a.tools,elapsedMs:Date.now()-a.started});}
@@ -88,7 +88,7 @@ async function start(id,seed='evaluated',existingFolder){
   if(requestedModel)config.model_reasoning_effort=requestedModel==='gpt-5.6-sol'?'high':'medium';
   const t=await request('thread/start',{cwd:folder,ephemeral:!process.argv.includes('--capture-instructions'),sandbox:'workspace-write',approvalPolicy:'never',config,...(requestedModel?{model:requestedModel}:{}),
     ...(process.argv.includes('--native-instructions')?{}:{developerInstructions:composeDeveloperInstructions(hostInstructions,`This is an opt-in synthetic acceptance test of the installed Crumb skill. Use the real Crumb behavior, not a critique of it. All founder statements are synthetic and all writes are limited to ${folder}. The Crumb source is the explicitly supplied skill path; pinned Node is ${process.execPath}. Use the configured read-only crumb_context MCP tools for compact saved state; use Crumb's existing internal CLI for necessary state writes. Never inspect the real installation's private customer state, credentials, or unrelated files. No external communication, deployment, paid service, code implementation, or subagents. ${liveWeb?'Public web research is authorized through available host tools; respect access restrictions and distinguish current findings from saved synthetic fixture assertions.':'Web research is disabled for this isolated replay; reuse stored research and state that test limitation.'} Do not invent a search, source, candidate, permission, interview or test. Supplied scenario backgrounds in brackets describe synthetic test conditions, not actual new research receipts.`)})});
-  results.hostModel=t.thread.model??null;results.requestedModel=requestedModel??null;
+  results.hostModel=t.model??t.thread.model??null;results.hostReasoningEffort=t.reasoningEffort??t.thread.reasoningEffort??null;results.requestedModel=requestedModel??null;
   return {folder,threadId:t.thread.id,threadPath:t.thread.path};
 }
 try{
@@ -168,7 +168,7 @@ try{
   sessions.push({id:'supplied-cases',messages:cases.map(c=>`[Independent synthetic conversation case ${c.id}. Current hypothetical background: ${c.given} This case does not replace saved approval or create research receipts.]\n${c.user_message}`)});
   const selected=process.argv.find(arg=>arg.startsWith('--sessions='))?.slice('--sessions='.length).split(',');
   for(const spec of sessions.filter(spec=>!selected||selected.includes(spec.id))){
-    const s=await start(spec.id,spec.seed),record={id:spec.id,fixture:s.folder,turns:[]};results.sessions.push(record);
+    const s=await start(spec.id,spec.seed),record={id:spec.id,fixture:s.folder,threadId:s.threadId,turns:[]};results.sessions.push(record);
     for(let i=0;i<(process.argv.includes('--opening-only')?1:spec.messages.length);i++){
       if(spec.id==='m3r5-unblock-export'&&i===1)writeFileSync(join(s.folder,'sample-jobs.csv'),'job,quoted_hours,actual_hours,crew_hour_cost,price\nA,3,4,25,150\nB,2,3,25,100\nC,4,4,25,200\n');
       const response=await turn(s.threadId,spec.messages[i],i===0);
