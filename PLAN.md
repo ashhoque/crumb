@@ -1,5 +1,22 @@
 # Crumb implementation plan - M3-R5 Phase 2
 
+## M3-R5 release unblock — 5 October 2026
+
+Authority: founder's release-unblock implementation request. Continue
+m3-r5-phase1, commit/push tested fixes, and hand off to Astra; no main merge.
+
+- [x] Bind bundled review to the actual shown text; retain invalidation/Act gates.
+- [x] Provide file-input runtime contracts, note limits and snapshot reuse.
+- [x] Require explicit recommended pricing range and change evidence.
+- [x] Activate First User Pack/direct links, momentum close and export fallback.
+- [x] Preserve canonical personality; remove the conflicting always-question rule.
+- [x] Add small canonical founder correction after the live dossier-save failure.
+- [x] Focused tests and final full suite (339/339).
+- [x] Complete installed-skill live/UX audit (14 turns/12 substantive answers) and Astra packet.
+- [ ] Final Astra product/taste review; revision remains pending that review.
+
+See M3_R5_UNBLOCK_REPORT.md. Earlier Phase 2 findings below are historical.
+
 ## M3-R5 Phase 2 — 4 October 2026
 
 Authority: founder's Phase 2 review and conditional GitHub closeout request.

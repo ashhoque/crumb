@@ -1,5 +1,25 @@
 # Crumb
 
+## M3-R5 release-unblock implementation — 5 October 2026
+
+Canonical thesis confirmation includes the text actually displayed and rejects
+material mismatches. Small founder corrections use the existing IDE transition
+boundary, preserve their quote/source and invalidate affected review. Approved
+Act cannot be changed through this correction operation. No automatic build.
+
+Runtime knowledge is reused from a checked locator with bounded file-input
+contracts, allowed fact keys and limits. Fresh reversible work saves compact
+notes; formal evidence dossiers are reserved for formal review. Pricing separates
+market anchors, recommended range/model, exact test offer and change evidence.
+When customer learning blocks progress, activate the existing First User Engine
+and surface its pack and direct URLs without another founder prompt. Private
+analysis prefers existing files/connections or one small export over manual totals.
+
+The canonical personality and response contract stays in skill/crumb/SKILL.md:
+answer first, short reasons/evidence, whitespace and one clear momentum state.
+Final product/personality acceptance belongs to Astra. This pass stays on
+m3-r5-phase1; no merge to main and no M4. See M3_R5_UNBLOCK_REPORT.md.
+
 ## M3-R5 Phase 2 clarification — reliable review and local continuity
 
 The direct installed skill has a generated `runtime.json` locator beside it,

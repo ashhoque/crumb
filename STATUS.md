@@ -1,14 +1,19 @@
 # Crumb status
 
-**M3-R5 BLOCKED after Phase 2 review on `m3-r5-phase1`.**
-Direction, pricing and drafted first-user work improved; isolated founder notes
-now persist through Core. Node 24.19.0 checks pass **333/333**. However, the live
-host rewrote the recorded thesis and acknowledged review without saving a review
-receipt. Act correctly remained blocked. Repeated command discovery also remained
-after one targeted repair (pricing took 186 seconds). Passing code tests does not
-close these live acceptance failures. See [Phase 2 report](M3_R5_PHASE2_REPORT.md).
-The global installation remains the tested development candidate at `0095123`;
-`main` remains at M3-R4 (`f188f03`). No merge or main push; M4 has not begun.
+**M3-R5 implementation ready for final Astra review on `m3-r5-phase1`.**
+Release remains pending Astra acceptance. The shown thesis now matches four saved
+review receipts; a material user correction persists provisionally and invalidates
+affected review. Act remains separate. Runtime file-input/contracts eliminate
+discovery failures in the final live run; pricing provides an explicit recommended
+range and offer; first-user work provides three public routes/direct links and
+prepared invitations. Small-export analysis replaces manual totals.
+Final full checks **339/339**; final focused checks **11/11**; **14 live turns**
+completed with zero failed commands or Core-source discovery. Twelve substantive
+answers audited. Remaining warnings: long thesis/pack presentation, two-minute
+research, some 30–58 s state updates, one redundant startup locator read and
+synthetic-only founder evidence. See [Astra packet](M3_R5_UNBLOCK_REPORT.md).
+Global candidate code is `e769acf`; `main` stays at M3-R4 (`f188f03`). No merge or
+main push in this pass. M4 has not begun.
 
 ## M3-R4 result (historical)
 
