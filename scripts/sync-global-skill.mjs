@@ -22,7 +22,13 @@ for(const file of files){
   if(install){mkdirSync(dirname(to),{recursive:true});copyFileSync(from,to);}
   if(!existsSync(to)||hash(from)!==hash(to))throw new Error(`Global skill differs from version-controlled source: ${file}`);
 }
-const runtime={node:process.execPath,cli:join(root,'dist/src/cli/main.js')};
+const runtime={node:process.execPath,cli:join(root,'dist/src/cli/main.js'),input:'Write one UTF-8 JSON request to a temporary file, then use internal <operation> <target> --input-file <request-path>. No shell pipe or command discovery.',operations:{
+  'project-bootstrap':{decision:'pricing',previous:[]},
+  'working-context':{start:true,expectedVersion:0,conversationId:'replace_with_current_chat_id',delta:{}},
+  'present-thesis':{command:'ide',input:{operation:'present-thesis',expectedVersion:'current version'},output:'context.presentation: keep id, basis and exact text in chat; display text unchanged'},
+  'confirm-thesis':{command:'ide',input:{operation:'confirm-thesis',expectedVersion:'returned version',presentationId:'returned id',displayedText:'exact text actually displayed',quote:'verbatim founder reply',turnId:'actual source turn'},output:'Check context.confirmations before acknowledging saved review. Never Act approval'},
+  'conversation-context':{resume:'--resume only for explicit continuation',input:null}
+}};
 if(!existsSync(runtime.cli))throw new Error('Build Crumb Core before installing its skill.');
 const runtimePath=join(target,'runtime.json'),runtimeText=JSON.stringify(runtime,null,2)+'\n';
 if(existsSync(runtimePath)&&lstatSync(runtimePath).isSymbolicLink())throw new Error('Runtime locator must be a real file.');

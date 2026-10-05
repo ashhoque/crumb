@@ -150,9 +150,10 @@ choice; do not pivot automatically.
 
 ## Habitat map and first-user avenues
 
-Research these automatically during Evaluate after confirming the user. Mention
-the strongest specific route and why it fits before Act; offer **View first-user
-avenues** for evidence and rules. Do not wait to be asked.
+Activate these automatically whenever customer evidence blocks the next decision,
+including provisional users before formal review. Complete the First User Pack
+defined in SKILL.md; surface inspected direct URLs in that answer, not a hidden
+detail view. Do not wait for a request to find people or draft outreach.
 
 For an earlier first-user request, use `first-user-plan` and `discovery-plan` to
 pick one or two research habitats and one or two acquisition routes. The former
@@ -162,7 +163,7 @@ local business market and ask for city/region if absent. Start in focused online
 communities for a distributed role. Review roughly 5–20 high-fit public
 candidates when available; keep the three best source-backed cards in compact
 context. Named people are optional, and an inaccessible route is not a lead.
-When asked for first users, inspect public candidate pages yourself and give
+When user contact is the bottleneck, inspect public candidate pages yourself and give
 the best verified matches with observed fit and limits. Do not delegate the
 shortlist search back to the founder. If only a few can be verified within the
 bounded batch, return those few and say the shortlist is incomplete.

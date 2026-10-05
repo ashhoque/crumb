@@ -35,9 +35,10 @@ test('M3-R5 one displayed working thesis can confirm foundations but cannot appr
   assert.equal(p.subject,'thesis');assert.match(p.text,/first user/i);
   assert.ok(p.text.includes(shown.context.investigation.counterevidence!));
   for(const risk of shown.context.evaluation.unknowns)assert.ok(p.text.includes(risk));
-  const saved=transitionIde(root,{expectedVersion:shown.version,operation:'confirm-thesis',presentationId:p.id,turnId:randomUUID(),quote:"Looks good, but don't build yet."});
+  const saved=transitionIde(root,{expectedVersion:shown.version,operation:'confirm-thesis',presentationId:p.id,displayedText:p.text,turnId:randomUUID(),quote:"Looks good, but don't build yet."});
   if(saved.context.contractVersion!==2)throw new Error('Expected current IDE.');
   assert.equal(saved.context.ide.confirmations.length,4);
+  assert.ok(saved.context.ide.confirmations.every(receipt=>receipt.presentedText===p.text));
   assert.equal(ideState(saved.context).evaluation,'founder_reviewed');
   assert.equal(ideState(saved.context).act_readiness,'ready_for_confirmation');
   assert.throws(()=>assertAct(saved.context),/explicitly choose/);
@@ -48,7 +49,7 @@ test('M3-R5 ambiguous or stale thesis cannot manufacture consent',t=>{
   const shown=transitionIde(root,{expectedVersion:readPrebuild(root)!.version,operation:'present-thesis'});
   if(shown.context.contractVersion!==2)throw new Error('Expected current IDE.');
   const p=shown.context.ide.presentation!;
-  for(const quote of ['Maybe','Looks good, but change the user','No'])assert.throws(()=>transitionIde(root,{expectedVersion:shown.version,operation:'confirm-thesis',presentationId:p.id,turnId:randomUUID(),quote}),/clear agreement/);
+  for(const quote of ['Maybe','Looks good, but change the user','No'])assert.throws(()=>transitionIde(root,{expectedVersion:shown.version,operation:'confirm-thesis',presentationId:p.id,displayedText:p.text,turnId:randomUUID(),quote}),/clear agreement/);
   const edited=structuredClone(shown.context);edited.expectedVersion=shown.version;edited.definition.user.text='a different user';savePrebuild(root,edited);
   assert.throws(()=>transitionIde(root,{expectedVersion:readPrebuild(root)!.version,operation:'confirm-thesis',presentationId:p.id,turnId:randomUUID(),quote:'Yes'}),/current displayed thesis/);
 });
@@ -58,13 +59,31 @@ test('M3-R5 incomplete and oversized thesis cannot silently approve Evaluation',
   const root=temporaryProject(t);savePrebuild(root,c);
   const shown=transitionIde(root,{expectedVersion:readPrebuild(root)!.version,operation:'present-thesis'});
   if(shown.context.contractVersion!==2)throw new Error('Expected current IDE.');
-  const saved=transitionIde(root,{expectedVersion:shown.version,operation:'confirm-thesis',presentationId:shown.context.ide.presentation!.id,turnId:randomUUID(),quote:"Looks good, don't build yet."});
+  const saved=transitionIde(root,{expectedVersion:shown.version,operation:'confirm-thesis',presentationId:shown.context.ide.presentation!.id,displayedText:shown.context.ide.presentation!.text,turnId:randomUUID(),quote:"Looks good, don't build yet."});
   if(saved.context.contractVersion!==2)throw new Error('Expected current IDE.');
   assert.equal(saved.context.ide.confirmations.length,3);
   assert.equal(ideState(saved.context).evaluation,'researching');
   assert.throws(()=>assertAct(saved.context),/founder-reviewed/);
   c.evaluation.unknowns=['Material risk. '.repeat(600)];
   assert.throws(()=>thesisText(c),/do not truncate/);
+});
+
+test('M3-R5 actual displayed wording binds review; a replacement invalidates it',t=>{
+  const root=temporaryProject(t);savePrebuild(root,ideFixture());
+  const shown=transitionIde(root,{expectedVersion:readPrebuild(root)!.version,operation:'present-thesis'});
+  if(shown.context.contractVersion!==2)throw new Error('Expected current IDE.');
+  const p=shown.context.ide.presentation!;
+  const input={expectedVersion:shown.version,operation:'confirm-thesis' as const,presentationId:p.id,turnId:randomUUID(),quote:"Looks good, don't build yet."};
+  for(const displayedText of [undefined,p.text.replace('first user','only buyer')])assert.throws(()=>transitionIde(root,{...input,displayedText}),/text actually shown/);
+  assert.equal(readPrebuild(root)!.version,shown.version);
+  const reviewed=transitionIde(root,{...input,displayedText:p.text.replaceAll('\n','\r\n')});
+  if(reviewed.context.contractVersion!==2)throw new Error('Expected current IDE.');
+  const changed=structuredClone(reviewed.context);changed.expectedVersion=reviewed.version;changed.definition.problem.text='A materially different customer problem';
+  const next=savePrebuild(root,changed);
+  if(next.context.contractVersion!==2)throw new Error('Expected current IDE.');
+  assert.equal(ideState(next.context).problem_definition,'drafted');
+  assert.equal(next.context.ide.reviewBasis,null);
+  assert.throws(()=>assertAct(next.context),/founder-confirmed/);
 });
 
 test('M3-R5 fresh working notes persist without a dossier and cannot replace prior work',t=>{

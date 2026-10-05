@@ -1,12 +1,13 @@
 # Crumb repository instructions
 
 Use the M3-R5 amendments in PRODUCT_SPEC.md as current product authority;
-PLAN.md / STATUS.md record implementation state. M3-R5 Phase 2 review is BLOCKED
-on live review persistence and runtime overhead; see M3_R5_PHASE2_REPORT.md.
+PLAN.md / STATUS.md record implementation state. Current authorized work is the
+M3-R5 release-unblock implementation on m3-r5-phase1, following Phase 2 blockers.
+Do not merge main in this pass; final product/taste acceptance belongs to Astra.
 Preserve M3-R4 evidence and
 first-user work, M3-R2 fresh-chat isolation, confirmed IDE and Act gates.
 Do not begin M4 or merge a blocked revision into main. Preserve the Phase 1
-report as history; record Phase 2 work in M3_R5_PHASE2_REPORT.md. The R1
+reports as history; record this pass in M3_R5_UNBLOCK_REPORT.md. The R1
 mode/pack/checkpoint policy still governs new Act plans; legacy M2 runs retain
 their original review policy.
 On 26 September 2026 the founder accepted M1-R3 well enough to proceed and
@@ -17,8 +18,8 @@ work is preserved in M3_REPORT.md. Reuse confirmed IDE and the reviewed MVP.
 
 - Preserve all existing code, uncommitted work and Git history. Implement on the
   active development branch; commit and push coherent tested changes. The founder
-  authorizes merge, final main verification and push only after complete revision
-  acceptance reaches PASS or PASS WITH WARNINGS. M3-R5 has not reached that gate.
+  explicitly prohibits main merge in the release-unblock pass. Commit and push
+  coherent tested fixes on m3-r5-phase1; Astra owns final revision acceptance.
   Never force-push or push a knowingly broken state. Review staged files for
   private data first. Do not create a replacement application.
 - Use Node 24.19.0, the existing lockfile and npm. cec.ps1 check selects the pinned

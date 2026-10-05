@@ -116,11 +116,11 @@ function appendContext(db: SqliteConnection, context: AnyPrebuild, version: numb
   return { version, hash, recordedAt, context };
 }
 
-export interface IdeTransition { expectedVersion: number; operation: 'present' | 'confirm' | 'review' | 'present-thesis' | 'confirm-thesis'; subject?: Subject; presentationId?: string; quote?: string; turnId?: string; interpretation?:ReplyInterpretation }
+export interface IdeTransition { expectedVersion: number; operation: 'present' | 'confirm' | 'review' | 'present-thesis' | 'confirm-thesis'; subject?: Subject; presentationId?: string; displayedText?: string; quote?: string; turnId?: string; interpretation?:ReplyInterpretation }
 function transitionIdeState(target: string, input: unknown): SavedPrebuild {
   if (!input || typeof input !== 'object') throw new Error('Provide an IDE transition.');
   const r = input as IdeTransition;
-  if (!Number.isSafeInteger(r.expectedVersion) || !['present', 'confirm', 'review', 'present-thesis', 'confirm-thesis'].includes(r.operation) || Object.keys(r).some(k => !['expectedVersion', 'operation', 'subject', 'presentationId', 'quote', 'turnId','interpretation'].includes(k))) throw new Error('Invalid IDE transition.');
+  if (!Number.isSafeInteger(r.expectedVersion) || !['present', 'confirm', 'review', 'present-thesis', 'confirm-thesis'].includes(r.operation) || Object.keys(r).some(k => !['expectedVersion', 'operation', 'subject', 'presentationId', 'displayedText', 'quote', 'turnId','interpretation'].includes(k))) throw new Error('Invalid IDE transition.');
   if (r.operation === 'present' && (!r.subject || !subjects.includes(r.subject))) throw new Error('Choose the confirmation subject.');
   if (['confirm','confirm-thesis'].includes(r.operation) && [r.presentationId, r.quote, r.turnId].some(x => typeof x !== 'string' || !x.trim() || x.length > 2000)) throw new Error('Confirmation needs the displayed presentation, founder reply and source turn.');
   const location = initializeProject(target), db = openSqlite(location.database);
@@ -135,6 +135,8 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
     if (r.operation === 'confirm-thesis') {
       const p=c.ide.presentation;
       if(!p||p.subject!=='thesis'||p.id!==r.presentationId||p.basis!==thesisBasis(c))throw new Error('Confirm the exact current displayed thesis, not an old or unseen prompt.');
+      const normalized=(text:string)=>text.normalize('NFC').trim().replace(/\s+/gu,' ');
+      if(typeof r.displayedText!=='string'||r.displayedText.length>6000||normalized(r.displayedText)!==normalized(p.text))throw new Error('The text actually shown to the founder must match the recorded thesis. Present the current thesis again before requesting review.');
       if(c.ide.confirmations.some(x=>x.turnId===r.turnId))throw new Error('A founder reply cannot be reused from an earlier confirmation.');
       const quote=r.quote!.trim();
       const agreement=agreesWithPresentation(quote,r.interpretation)||/^(yes|looks good|sounds right|that works)[,.]?\s+(?:but\s+)?(?:do not|don't)\s+build\s+yet[.!]?$/i.test(quote);

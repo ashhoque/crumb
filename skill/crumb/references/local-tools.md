@@ -3,9 +3,12 @@
 The founder speaks naturally. Operate the tools, then explain their meaning without
 JSON, hashes or internal state labels. Continue the explicitly selected project.
 Use the pinned Node runtime and existing launcher; do not change global runtimes.
-For JSON stdin on Windows use direct Node with UTF-8 input or a process API.
+Prefer a UTF-8 temporary request file, not Windows stdin pipelines.
 
-Command shape: `node <install>/dist/src/cli/main.js internal <operation> <target>`.
+Command shape: `node <install>/dist/src/cli/main.js internal <operation> <target> --input-file <request.json>`.
+For example, write `{"decision":"pricing"}` to a temporary UTF-8 file and call
+`project-bootstrap` with that file. Preserve actual quotes and dollars; do not
+interpolate founder content into shell code. No request file is needed for reads.
 Read `../runtime.json` beside the installed SKILL.md once for the exact `node`
 and `cli` paths. Invoke those paths with `internal <operation> <target>`; the
 skill directory does not contain Core. Never search the home directory, plugin
@@ -53,7 +56,7 @@ Only the installed Codex path has been tested; no Claude/Cursor/Replit support c
 For fresh conversation notes, use an unused child folder under the selected
 project, e.g. `crumb-contexts/<current-chat-id>`, as the target. Do not read the
 existing idea or reconstruct a full prebuild dossier. Send this shape to
-`internal working-context <target>` on UTF-8 stdin (replace example content):
+`internal working-context <target> --input-file <request.json>` (replace example content):
 
 ```json
 {"start":true,"expectedVersion":0,"conversationId":"current_chat_123","delta":{"project":{"next_move":{"value":"Prepare a paid pilot offer","status":"inferred","confidence":"medium","source":"Current founder conversation"}},"founder":{"likely_next_need":{"value":"An invitation for the first two prospects","status":"inferred","confidence":"medium","source":"Current founder conversation"}}}}
@@ -130,7 +133,9 @@ private storage or credentials. Synthetic and real provenance remain separate.
    intention, first user, pain, evidence, direction and main uncertainty are ready,
    send `{"expectedVersion":1,"operation":"present-thesis"}`. Display the returned
    exact thesis. After the founder's actual clear agreement, send
-   `{"expectedVersion":2,"operation":"confirm-thesis","presentationId":"returned-id","quote":"actual reply","turnId":"actual-source-turn-reference"}`.
+   `{"expectedVersion":2,"operation":"confirm-thesis","presentationId":"returned-id","displayedText":"exact text actually shown","quote":"actual reply","turnId":"actual-source-turn-reference"}`.
+   Do this before acknowledging review in that reply. Core rejects changed shown
+   text; never send recorded text as displayedText if a paraphrase was shown.
    This atomically records distinct foundation receipts from one displayed thesis.
    Corrections require a revised thesis; ambiguity does not confirm. "Looks good,
    but don't build yet" can confirm understanding while keeping Act locked.
