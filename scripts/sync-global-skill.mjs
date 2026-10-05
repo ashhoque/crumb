@@ -3,13 +3,14 @@ import {copyFileSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSyn
 import {join, dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {projectFactKeys,founderFactKeys} from '../dist/src/domain/founder-intelligence.js';
+import {syncCodexIdentity} from './codex-config.mjs';
 
 const root=dirname(dirname(fileURLToPath(import.meta.url)));
 const source=join(root,'skill','crumb');
 const target=join(process.env.USERPROFILE??'', '.agents','skills','crumb');
-const args=process.argv.slice(2),install=args.includes('--install');
-if(!process.env.USERPROFILE||args.some(arg=>arg!=='--install')||args.length>1)throw new Error('Use --install to update the single global Crumb skill, or no option to check it.');
-const files=['SKILL.md',...readdirSync(join(source,'references')).map(name=>`references/${name}`).sort()];
+const args=process.argv.slice(2),install=args.includes('--install'),skillOnly=args.includes('--skill-only');
+if(!process.env.USERPROFILE||args.some(arg=>!['--install','--skill-only'].includes(arg))||new Set(args).size!==args.length)throw new Error('Use --install to update global Crumb, no option to verify, or --skill-only for isolated offline fixtures.');
+const files=['SKILL.md','host/codex.md',...readdirSync(join(source,'references')).map(name=>`references/${name}`).sort()];
 const hash=path=>createHash('sha256').update(readFileSync(path)).digest('hex');
 if(existsSync(target)&&lstatSync(target).isSymbolicLink())throw new Error('Global skill target must be a real directory.');
 const oldAgents=join(target,'agents'),oldPolicy=join(oldAgents,'openai.yaml');
@@ -36,4 +37,5 @@ const runtimePath=join(target,'runtime.json'),runtimeText=JSON.stringify(runtime
 if(existsSync(runtimePath)&&lstatSync(runtimePath).isSymbolicLink())throw new Error('Runtime locator must be a real file.');
 if(install)writeFileSync(runtimePath,runtimeText);
 if(!existsSync(runtimePath)||readFileSync(runtimePath,'utf8')!==runtimeText)throw new Error('Installed runtime locator differs from this checkout; reinstall.');
-console.log(JSON.stringify({status:'in_sync',source,target,files:files.length,runtime,skillSha256:hash(join(source,'SKILL.md'))}));
+const hostIdentity=skillOnly?null:await syncCodexIdentity(process.env.USERPROFILE,readFileSync(join(target,'host/codex.md'),'utf8'),install);
+console.log(JSON.stringify({status:'in_sync',source,target,files:files.length,runtime,hostIdentity,hostIdentitySha256:hash(join(source,'host/codex.md')),skillSha256:hash(join(source,'SKILL.md'))}));

@@ -8,6 +8,7 @@ import { prepareIde } from '../dist/tests/ide-fixtures.js';
 import { emptyIde, confirmation } from '../dist/src/domain/ide.js';
 import { savePrebuild, readPrebuild, transitionIde } from '../dist/src/application/prebuild.js';
 import { inspectArtifacts } from '../dist/src/privacy/artifacts.js';
+import {assistantIdentityLeaks,openingAssistantText,composeDeveloperInstructions,mergeCrumbHostInstructions} from '../dist/src/host/codex-identity.js';
 
 // Opt-in installed-host test. Founder turns and prepared state are synthetic.
 // Uses normal host auth without reading credentials; optional explicit model.
@@ -35,7 +36,7 @@ lines.on('line',line=>{
   if(msg.id!==undefined&&!msg.method&&pending.has(msg.id)){const p=pending.get(msg.id);pending.delete(msg.id);clearTimeout(p.timer);msg.error?p.reject(new Error(msg.error.message)):p.resolve(msg.result);}
   if(active&&msg.method==='item/completed'){
     const item=msg.params?.item;
-    if(item?.type==='agentMessage'){active.output.push(item.text??'');active.messages.push({phase:item.phase??null,text:item.text??''});}
+    if(item?.type==='agentMessage'){active.output.push(item.text??'');active.messages.push({type:item.type,phase:item.phase??null,text:item.text??''});}
     else if(item)active.tools.push({type:item.type,name:item.tool??item.name??null,command:item.command??null,status:item.status??null,...(item.status==='failed'?{failureOutput:(item.aggregatedOutput??'').slice(-4000)}:{}),...(item.type==='webSearch'?{action:item.action??null}:{})});
   }
   if(active&&msg.method==='turn/completed'){const a=active;active=null;clearTimeout(a.timer);a.resolve({status:msg.params.turn.status,error:msg.params.turn.error??null,output:a.output.join('\n\n'),messages:a.messages,tools:a.tools,elapsedMs:Date.now()-a.started});}
@@ -79,12 +80,16 @@ async function start(id,seed='evaluated',existingFolder){
   const folder=existingFolder??createFixture(id,seed);
   const liveWeb=process.argv.includes('--live-web');
   const requestedModel=selectedModel;
+  const installedConfig=await request('config/read',{cwd:folder});
+  const hostInstructions=installedConfig.config.developer_instructions??'';
+  results.hostIdentityInstructions=hostInstructions;
+  if(!process.argv.includes('--baseline')&&mergeCrumbHostInstructions(hostInstructions,readFileSync(join(dirname(skillPath),'host/codex.md'),'utf8'))!==hostInstructions)throw new Error('Installed developer identity contract is missing or stale.');
   const config={'mcp_servers.crumb_context':{command:process.execPath,args:[mcp,folder],required:true,startup_timeout_sec:15,tool_timeout_sec:15,default_tools_approval_mode:'approve'},web_search:liveWeb?'live':'disabled'};
   if(requestedModel)config.model_reasoning_effort=requestedModel==='gpt-5.6-sol'?'high':'medium';
-  const t=await request('thread/start',{cwd:folder,ephemeral:true,sandbox:'workspace-write',approvalPolicy:'never',config,...(requestedModel?{model:requestedModel}:{}),
-    developerInstructions:`This is an opt-in synthetic acceptance test of the installed Crumb skill. Use the real Crumb behavior, not a critique of it. All founder statements are synthetic and all writes are limited to ${folder}. The Crumb source is the explicitly supplied skill path; pinned Node is ${process.execPath}. Use the configured read-only crumb_context MCP tools for compact saved state; use Crumb's existing internal CLI for necessary state writes. Never inspect the real installation's private customer state, credentials, or unrelated files. No external communication, deployment, paid service, code implementation, or subagents. ${liveWeb?'Public web research is authorized through available host tools; respect access restrictions and distinguish current findings from saved synthetic fixture assertions.':'Web research is disabled for this isolated replay; reuse stored research and state that test limitation.'} Do not invent a search, source, candidate, permission, interview or test. Supplied scenario backgrounds in brackets describe synthetic test conditions, not actual new research receipts.`});
+  const t=await request('thread/start',{cwd:folder,ephemeral:!process.argv.includes('--capture-instructions'),sandbox:'workspace-write',approvalPolicy:'never',config,...(requestedModel?{model:requestedModel}:{}),
+    developerInstructions:composeDeveloperInstructions(hostInstructions,`This is an opt-in synthetic acceptance test of the installed Crumb skill. Use the real Crumb behavior, not a critique of it. All founder statements are synthetic and all writes are limited to ${folder}. The Crumb source is the explicitly supplied skill path; pinned Node is ${process.execPath}. Use the configured read-only crumb_context MCP tools for compact saved state; use Crumb's existing internal CLI for necessary state writes. Never inspect the real installation's private customer state, credentials, or unrelated files. No external communication, deployment, paid service, code implementation, or subagents. ${liveWeb?'Public web research is authorized through available host tools; respect access restrictions and distinguish current findings from saved synthetic fixture assertions.':'Web research is disabled for this isolated replay; reuse stored research and state that test limitation.'} Do not invent a search, source, candidate, permission, interview or test. Supplied scenario backgrounds in brackets describe synthetic test conditions, not actual new research receipts.`)});
   results.hostModel=t.thread.model??null;results.requestedModel=requestedModel??null;
-  return {folder,threadId:t.thread.id};
+  return {folder,threadId:t.thread.id,threadPath:t.thread.path};
 }
 try{
   await request('initialize',{clientInfo:{name:'crumb_closeout_test',version:'1'},capabilities:{experimentalApi:true}});child.stdin.write(JSON.stringify({method:'initialized',params:{}})+'\n');
@@ -112,6 +117,7 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'m3r5-identity-casual',seed:'fresh',messages:["$crumb Hey. I'm juggling two business ideas and don't know where to start."]},
     {id:'m3r5-astra-personality',seed:'fresh',messages:[
       "$crumb I want a small paid business helping independent bike repair shops in Toronto stop losing time chasing customers to collect finished bikes. My brother owns a shop; about six repaired bikes sit there for over a week and crowd his workshop. He texts customers by hand. I have Saturdays to work on this and haven't talked to other shops.",
       "I was thinking an AI assistant that runs the whole shop. Just collection reminders sounds tiny.",
@@ -163,13 +169,18 @@ try{
   const selected=process.argv.find(arg=>arg.startsWith('--sessions='))?.slice('--sessions='.length).split(',');
   for(const spec of sessions.filter(spec=>!selected||selected.includes(spec.id))){
     const s=await start(spec.id,spec.seed),record={id:spec.id,fixture:s.folder,turns:[]};results.sessions.push(record);
-    for(let i=0;i<spec.messages.length;i++){
+    for(let i=0;i<(process.argv.includes('--opening-only')?1:spec.messages.length);i++){
       if(spec.id==='m3r5-unblock-export'&&i===1)writeFileSync(join(s.folder,'sample-jobs.csv'),'job,quoted_hours,actual_hours,crew_hour_cost,price\nA,3,4,25,150\nB,2,3,25,100\nC,4,4,25,200\n');
       const response=await turn(s.threadId,spec.messages[i],i===0);
       record.turns.push({input:spec.messages[i],...response,state:state(s.folder),toolMetrics:toolMetrics(response.tools),questionMarks:(response.output.match(/\?/g)??[]).length,webActions:response.tools.filter(t=>t.type==='webSearch').length});save();
+      if(process.argv.includes('--capture-instructions')&&s.threadPath&&existsSync(s.threadPath)){
+        const entries=readFileSync(s.threadPath,'utf8').trim().split('\n').map(line=>JSON.parse(line));
+        writeFileSync(join(runDir,`${spec.id}-instructions.json`),JSON.stringify(entries.filter(e=>e.type==='session_meta'||e.type==='response_item'&&e.payload?.role==='developer'),null,2));
+      }
       console.log(`${spec.id} ${i+1}/${spec.messages.length}: ${response.status}`);
       if(response.status!=='completed')throw new Error(`Live host failed in ${spec.id}; review the retained response.`);
     }
+    if(process.argv.includes('--capture-instructions'))await request('thread/archive',{threadId:s.threadId});
     if(spec.id==='existing-project'){
       const resumed=await start('existing-project-resume','evaluated',s.folder);
       const input='$crumb I am back in a new session. Continue from the saved compact context; do not rebuild the history. What is the next useful decision? I have not approved building.';
@@ -177,8 +188,8 @@ try{
       console.log(`existing-project-resume: ${response.status}`);if(response.status!=='completed')throw new Error('Live resume failed; review retained response.');
     }
   }
-  const identityLeak=/\b(?:Crumb(?:'s|’s)? (?:skill|workflow|instructions|context)|skill instructions|skill file|installed skill|global skill|I(?:'m| am|’m) (?:checking|reading|loading) (?:the )?skill)\b/i;
-  results.identityLeaks=results.sessions.flatMap(s=>s.turns.flatMap((t,i)=>identityLeak.test(t.output)?[{session:s.id,turn:i+1}]:[]));
+  results.openings=results.sessions.map(s=>({session:s.id,text:openingAssistantText(s.turns[0].messages)}));
+  results.identityLeaks=results.sessions.flatMap(s=>s.turns.flatMap((t,i)=>assistantIdentityLeaks(t.messages).map(leak=>({session:s.id,turn:i+1,...leak}))));
   results.timings=results.sessions.map(s=>({session:s.id,elapsedMs:s.turns.map(t=>t.elapsedMs)}));
   results.status=results.identityLeaks.length?'failed_identity_leak':'completed_needs_semantic_review';
   if(results.identityLeaks.length)process.exitCode=1;

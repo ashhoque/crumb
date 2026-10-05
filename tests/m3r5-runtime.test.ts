@@ -37,7 +37,7 @@ test('M3-R5 request files avoid shell input discovery and retain literal founder
 
 test('M3-R5 installed locator provides reusable contracts and detects stale runtime paths',t=>{
   const root=temporaryProject(t),script=fileURLToPath(new URL('../../scripts/sync-global-skill.mjs',import.meta.url));
-  const run=(...args:string[])=>spawnSync(process.execPath,[script,...args],{env:{...process.env,USERPROFILE:root},encoding:'utf8',windowsHide:true,timeout:15000});
+  const run=(...args:string[])=>spawnSync(process.execPath,[script,'--skill-only',...args],{env:{...process.env,USERPROFILE:root},encoding:'utf8',windowsHide:true,timeout:15000});
   const installed=run('--install');assert.equal(installed.status,0,installed.stderr);
   const path=join(root,'.agents/skills/crumb/runtime.json'),runtime=JSON.parse(readFileSync(path,'utf8'));
   assert.equal(runtime.node,process.execPath);
