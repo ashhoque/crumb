@@ -9,8 +9,10 @@ Command shape: `node <install>/dist/src/cli/main.js internal <operation> <target
 For example, write `{"decision":"pricing"}` to a temporary UTF-8 file and call
 `project-bootstrap` with that file. Preserve actual quotes and dollars; do not
 interpolate founder content into shell code. No request file is needed for reads.
-Read `../runtime.json` beside the installed SKILL.md once for the exact `node`
-and `cli` paths. Invoke those paths with `internal <operation> <target>`; the
+Reuse the locator's `node`, `cli` and request contracts already loaded in this
+conversation. Opening this reference does not reset that knowledge. Read
+`../runtime.json` only if it has not yet been loaded in this conversation.
+Invoke those paths with `internal <operation> <target>`; the
 skill directory does not contain Core. Never search the home directory, plugin
 caches or customer project for Core. If the locator is absent, report that
 persistence is unavailable and continue reversible conversation work.
