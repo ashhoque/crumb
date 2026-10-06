@@ -10,15 +10,16 @@ export interface EvaluationQuality {
     recommendation: {option:string;reason:string}|null;
   };
   founderFit: {edge:string;limitation:string;claimIds:string[]};
-  learning: {uncertainty:'pain'|'frequency'|'workaround'|'buyer'|'switching'|'technical'|'none';reason:string;recommendation:'interviews'|'research'|'build_decision'};
+  learning: {uncertainty:'pain'|'frequency'|'workaround'|'buyer'|'switching'|'technical'|'none';reason:string;recommendation:'interviews'|'research'|'build_decision';decision?:'go'|'one_gap'|'pivot_stop';experiment?:{promise:string;capabilities:string[];cuts:string[];limitations:string;success:string;failure:string;testDate:string}};
 }
 const obj=(properties:Record<string,object>)=>({type:'object',properties,required:Object.keys(properties),additionalProperties:false});
 const str=(maxLength=1200)=>({type:'string',minLength:1,maxLength,pattern:'\\S'});
 const refs={type:'array',items:str(80),maxItems:16,uniqueItems:true};
+const learningProperties={uncertainty:{enum:['pain','frequency','workaround','buyer','switching','technical','none']},reason:str(),recommendation:{enum:['interviews','research','build_decision']},decision:{enum:['go','one_gap','pivot_stop']},experiment:obj({promise:str(500),capabilities:{type:'array',minItems:1,maxItems:3,uniqueItems:true,items:str(160)},cuts:{type:'array',minItems:1,maxItems:8,uniqueItems:true,items:str(160)},limitations:str(700),success:str(500),failure:str(500),testDate:{type:'string',pattern:'^\\d{4}-\\d{2}-\\d{2}$'}})};
 export const qualitySchema=obj({
   technical:obj({material:{type:'boolean'},summary:str(700),centralRisk:str(700),coverage:{type:'array',maxItems:technicalTopics.length,items:obj({topic:{enum:technicalTopics},status:{enum:['unexamined','findings','unknown_after_search','not_relevant']},claimIds:refs,runIds:refs,reason:str()})},options:{type:'array',maxItems:3,items:obj({name:str(120),approach:str(),tradeoff:str(),claimIds:refs})},recommendation:{anyOf:[obj({option:str(120),reason:str()}),{type:'null'}]}}),
   founderFit:obj({edge:str(),limitation:str(),claimIds:refs}),
-  learning:obj({uncertainty:{enum:['pain','frequency','workaround','buyer','switching','technical','none']},reason:str(),recommendation:{enum:['interviews','research','build_decision']}}),
+  learning:{...obj(learningProperties),required:['uncertainty','reason','recommendation']},
 });
 export function emptyQuality():EvaluationQuality {return {
   technical:{material:true,summary:'Technical feasibility has not been investigated yet.',centralRisk:'Unknown until the central capability and its dependencies are investigated.',coverage:technicalTopics.map(topic=>({topic,status:'unexamined',claimIds:[],runIds:[],reason:'Investigate if material; explain relevance otherwise.'})),options:[],recommendation:null},
@@ -30,6 +31,8 @@ export function emptyQuality():EvaluationQuality {return {
  * source-linked contract; the core never invents research or personal facts. */
 export function validateQuality(c:IdeContext,complete=false):void {
   const q=c.quality;if(!q)return;
+  if(q.learning.experiment&&(q.learning.decision!=='go'||q.learning.recommendation!=='build_decision'))throw new Error('A bounded learning MVP requires an explicit GO decision, retained uncertainty and a build recommendation.');
+  if(q.learning.decision&&q.learning.decision!=='go'&&q.learning.recommendation==='build_decision')throw new Error('ONE GAP or PIVOT/STOP cannot authorize a build decision.');
   const claims=new Set(c.claims.map(x=>x.id)),runs=new Set(c.research.map(x=>x.id));
   const check=(ids:string[],set:Set<string>)=>{if(ids.some(id=>!set.has(id)))throw new Error('Quality findings must reference retained claims/research.');};
   check(q.founderFit.claimIds,claims);
@@ -47,8 +50,11 @@ export function validateQuality(c:IdeContext,complete=false):void {
   }
   if(q.technical.material&&(!q.technical.recommendation||q.technical.coverage.every(x=>x.status==='not_relevant')))throw new Error('A material technical dependency needs investigated options and a reasoned recommendation.');
   if(c.project.entry==='existing'&&!c.project.artifacts.length)throw new Error('Inspect relevant permitted repository files before concluding technical feasibility for this existing project.');
-  if(q.learning.uncertainty!=='none'&&q.learning.uncertainty!=='technical'&&q.learning.recommendation==='build_decision')throw new Error('Recommend the useful user conversations; the founder may still choose the existing Act commitment.');
+  if(q.learning.uncertainty!=='none'&&q.learning.uncertainty!=='technical'&&q.learning.recommendation==='build_decision'&&!q.learning.experiment)throw new Error('Recommend the useful user conversations or specify the bounded learning MVP; the founder may still choose the existing Act commitment.');
 }
+
+export const learningTopics=['frequency','pain','buyer','reachability','competitors','user_language','habitats','workaround','technical_feasibility'] as const;
+export function boundedLearning(c:IdeContext):boolean {return c.quality?.learning.decision==='go'&&!!c.quality.learning.experiment;}
 
 /** Route researchable questions back to the host, without asking the founder
  * to choose databases, vendors, communities or technical definitions. This

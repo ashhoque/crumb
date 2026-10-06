@@ -98,9 +98,9 @@ test('Quality cached detail keeps provenance without repeating research or loadi
 
 test('Quality interviews retain all five past-behavior concepts, disregard hypothetical freeform overrides',t=>{
   const root=temporaryProject(t),input=fixture();input.opportunity!.interviewPlan='Would you buy this? What features should we add?';prepareIde(root,'evaluation',input);const c=current(root);
-  const text=interviewGuide(c).join('\n');assert.match(text,/most trouble/);assert.match(text,/most recent occasion/);assert.match(text,/particular occasion difficult/);assert.match(text,/already tried/);assert.match(text,/let you down/);
+  const text=interviewGuide(c).join('\n');assert.match(text,/hardest part/);assert.match(text,/last time/);assert.match(text,/problem hard/);assert.match(text,/done to solve/);assert.match(text,/solutions you tried/);
   assert.equal((text.match(/^\d\./gm)??[]).length,5);assert.doesNotMatch(text,/Would you buy|What features|\$20/);assert.match(text,/listen/);assert.match(text,/Compare|compare/);
-  assert.match(renderPrebuildDetail(readPrebuild(root)!,'interview'),/1\. Thinking/);
+  assert.match(renderPrebuildDetail(readPrebuild(root)!,'interview'),/1\. What is the hardest/);
   for(const answer of ['I used a spreadsheet.','The manager needed it.','It cost two hours.','It was confusing.']){const follow=interviewFollowUp(answer);assert.equal(follow.match(/\?/g)?.length,1);assert.doesNotMatch(follow,/would you buy|features/i);}
   const response=run(root,'interview-followup',{answer:'I lost two hours.'});assert.equal(response.status,0,response.stderr);assert.equal(JSON.parse(response.stdout).recorded,false);assert.match(response.stdout,/most recent/);
 });

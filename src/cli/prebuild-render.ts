@@ -38,7 +38,6 @@ function claimText(c: AnyPrebuild, claim: ResearchClaim): string {
 const selectedClaims = (c: AnyPrebuild, ids: string[]): string[] => [...new Set(ids)].map(id => claimText(c, c.claims.find(item => item.id === id)!));
 
 export function interviewGuide(c: AnyPrebuild): string[] {
-  if (c.contractVersion === 2 ? !['reviewed', 'founder_reviewed'].includes(ideState(c).evaluation) : c.evaluation.status !== 'ready') return ['Finish the current user and problem evaluation before preparing interviews. Act remains locked until its explicit confirmation.'];
   return problemInterview(c).map(paragraph=>paragraph.split('\n').map(safe).join('\n'));
 }
 

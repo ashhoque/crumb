@@ -132,6 +132,15 @@ point every topic at a generic search. Retain findings or justified unknowns, no
 invented evidence. Use redefinition when learning changes a foundation; revise and
 reconfirm the affected statements before completing evaluation.
 
+For a bounded learning MVP, existing `quality.learning` accepts optional `decision`
+(`go` / `one_gap` / `pivot_stop`) and `experiment`: promise, 1–3 capabilities,
+cuts, limitations, success, failure and testDate (YYYY-MM-DD). Keep uncertainty and
+reason honest. An experiment requires go + build_decision. Review still checks
+all technical topics and material evidence/alternatives; unrelated business topics
+may remain unexamined rather than be falsely marked irrelevant. Full builds keep
+the full coverage gate. Negative decisions cannot enter Act and need no positive
+reasons. The Act display includes the experiment; material edits invalidate it.
+
 `inspect` accepts paths, permissionGranted:true and the actual permissionQuote.
 Only inspect covered selections; store returned path/hash pairs. Never inspect
 private storage or credentials. Synthetic and real provenance remain separate.
@@ -159,9 +168,9 @@ private storage or credentials. Synthetic and real provenance remain separate.
    This checks coverage, alternatives, relevant attempts, counterevidence and
    confirmed foundations. If Evaluation was not included in the displayed thesis,
    present its current conclusion and record the founder's actual response before
-   offering interviews or the Act decision.
+   offering the Act decision. Interviews and provisional MVP documents are available before evaluation and can inform it.
 4. Present Act as its own exact commitment and wait. Only its explicit
-   assent permits a solution proposal. Declining, opening details or choosing a
+   assent permits actual scoped product work; provisional solution plans need no Act approval. Declining, opening details or choosing a
    redefinition does not confirm it. Review error messages internally and continue
    the useful conversation; don't hand validation fields to the founder.
 
@@ -214,7 +223,7 @@ explicit relevant context. Refreshed receipts must preserve opted-out subject ke
 `research` returns the full dossier. `master` returns an opportunity brief after
 review; no MVP or architecture before Act. Pre-Act opportunity fields contain only
 business model, economics, interview preparation and risks. Solution master fields
-are permitted only after Act. Legacy masters are historical, not current permission.
+may be provisional before Act; label them as hypotheses, never implementation permission. Legacy masters are historical, not current permission.
 
 ## Approved action and receipts
 

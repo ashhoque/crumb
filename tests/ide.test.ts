@@ -208,15 +208,17 @@ test('R3 interviews and opportunity brief are available before Act, with no solu
   const root = temporaryProject(t), saved = prepareIde(root, 'evaluation');
   const brief = renderStartupMaster(saved);
   assert.match(brief, /Opportunity brief/); assert.doesNotMatch(brief, /## MVP hypothesis|## Technical strategy/);
-  assert.match(renderPrebuildDetail(saved, 'interview'), /recent occasion/);
+  assert.match(renderPrebuildDetail(saved, 'interview'), /last time/);
   assert.equal(readWorkflow(root).draft, null);
   assert.throws(() => assertAct(saved.context), /explicitly choose/);
 });
 
-test('R3 pre-Act solution choices and master are rejected, including build_requested', t => {
+test('Alpha pre-Act provisional scope is permitted while build_requested stays locked', t => {
   for (const action of ['shape_mvp', 'build_requested'] as const) {
     const root = temporaryProject(t); prepareIde(root, 'evaluation'); const c = current(root);
-    c.brief.choices = [{ label: 'Build a prototype', action }]; assert.throws(() => savePrebuild(root, c), /Act is locked/);
+    c.brief.choices = [{ label: action==='shape_mvp'?'Draft provisional scope':'Build a prototype', action }];
+    if(action==='shape_mvp'){assert.doesNotThrow(()=>savePrebuild(root,c));assert.throws(()=>assertAct(current(root)),/Act is locked/);}
+    else assert.throws(() => savePrebuild(root, c), /Act is locked/);
   }
 });
 

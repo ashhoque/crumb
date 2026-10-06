@@ -61,7 +61,8 @@ Show all Building capabilities and the first stage, a short reason for the small
 scope, and "Approve build / Adjust scope / View build plan". Make the full plan
 available without requiring it in chat. After actual approval send `act-approve`:
 `{"expectedVersion":1,"planHash":"returned planHash","quote":"actual approval"}`.
-This authorizes the first stage only. Never synthesize a founder reply.
+For native R1 this approves the displayed pack and its preapproved stage policy;
+only legacy M2 authorizes the first stage alone. Never synthesize a founder reply.
 
 ## Persist and execute
 

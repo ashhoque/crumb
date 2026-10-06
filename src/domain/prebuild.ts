@@ -123,7 +123,7 @@ export function validatePublicUrl(value: string): void {
   for (const key of url!.searchParams.keys()) if (/^(token|access_token|api[-_]?key|authorization|password|secret|signature|x-amz-credential|x-amz-signature)$/i.test(key)) fail('Do not retain secret-bearing source URLs.');
 }
 
-export function validatePrebuild(input: unknown): asserts input is PrebuildContext {
+export function validatePrebuild(input: unknown, policy:{bounded?:boolean;negative?:boolean;provisionalMaster?:boolean}={}): asserts input is PrebuildContext {
   if (Buffer.byteLength(JSON.stringify(input) ?? '') > 262_144) fail('Keep the research dossier below 256 KiB; retain selected observations, not scraped pages.');
   if (!validateShape(input)) fail(`Invalid pre-build context: ${validateShape.errors?.slice(0, 4).map(e => `${e.instancePath || '/'} ${e.message}`).join('; ')}. Nothing was saved.`);
   const c = input as PrebuildContext;
@@ -211,22 +211,22 @@ export function validatePrebuild(input: unknown): asserts input is PrebuildConte
   }
   if (c.evaluation.status === 'ready') {
     if (c.stage !== 'evaluate' || intent.status !== 'provided' || !c.definition.problem.text || !c.evaluation.conclusion) fail('Normal action readiness needs understood intention, a defined problem and an evaluation synthesis.');
-    if (c.evaluation.coverage.length !== coverageTopics.length || c.evaluation.coverage.some(item => item.status === 'unexamined')) fail('Evaluate the relevant coverage before recommending an action; unknowns need attempted research or a relevance reason.');
+    if (c.evaluation.coverage.length !== coverageTopics.length || (!policy.bounded && c.evaluation.coverage.some(item => item.status === 'unexamined'))) fail('Evaluate the relevant coverage before recommending an action; unknowns need attempted research or a relevance reason.');
     if (!c.research.some(run => run.inspectedSourceIds.length && run.stopReason !== 'unavailable')) fail('A brief assessment without inspected research is not meaningful Evaluate.');
     for (const topic of ['competitors', 'user_language', 'habitats'] as const) {
       const coverage = c.evaluation.coverage.find(item => item.topic === topic)!;
-      if (coverage.status === 'not_relevant') fail('Competitor, user-language and habitat investigation are core Evaluate work. Record an attempted limitation rather than skipping them.');
+      if (['not_relevant','unexamined'].includes(coverage.status)) fail('Competitor, user-language and habitat investigation are core Evaluate work. Record an attempted limitation rather than skipping them.');
       if (!coverage.runIds.length) fail('Core Evaluate coverage needs a research receipt.');
     }
     const inspected = c.research.flatMap(run => run.inspectedSourceIds).map(id => sourceMap.get(id)!);
     if (!inspected.some(s => ['discussion', 'review', 'founder'].includes(s.kind))) {
       if (c.evaluation.coverage.find(item => item.topic === 'user_language')!.status !== 'unknown_after_search') fail('Vendor marketing alone does not establish user-language research.');
     }
-    if (!c.competitors.length || !c.evaluation.promising.length || !c.evaluation.weak.length || !c.evaluation.unknowns.length) fail('Retain considered alternatives, promising/weak findings and unknowns in the synthesis.');
+    if (!c.competitors.length || (!policy.negative&&!c.evaluation.promising.length) || !c.evaluation.weak.length || !c.evaluation.unknowns.length) fail('Retain considered alternatives, promising/weak findings and unknowns in the synthesis.');
   }
-  if (c.master && (c.evaluation.status !== 'ready' || c.claims.filter(item => item.important).some(item => !c.redTeam.some(review => review.claimId === item.id)))) fail('A startup master requires a ready evaluation and red-team review of important claims.');
+  if (c.master && ((!policy.provisionalMaster&&c.evaluation.status !== 'ready') || c.claims.filter(item => item.important).some(item => !c.redTeam.some(review => review.claimId === item.id)))) fail('A startup master requires reviewed important claims; a provisional plan is not build authorization.');
   for (const choice of c.brief.choices) {
-    if (['interview', 'shape_mvp', 'master'].includes(choice.action) && c.evaluation.status !== 'ready') fail('Finish meaningful Evaluate before normal interview, MVP or master choices. An explicit build request remains possible.');
+    if(!policy.provisionalMaster&&['interview','shape_mvp','master'].includes(choice.action)&&c.evaluation.status!=='ready')fail('Finish meaningful Evaluate before legacy interview, MVP or master choices. Current provisional preparation uses the v2 contract.');
     if (choice.action === 'build_requested' && !c.buildRequest) fail('Do not promote Build now before an actual explicit request.');
   }
   const briefText = [c.brief.summary, ...c.brief.seeing, ...c.brief.matters, c.brief.next, ...c.brief.questions, ...c.brief.choices.map(item => item.label)].join(' ');

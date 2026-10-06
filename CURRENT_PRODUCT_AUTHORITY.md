@@ -20,6 +20,16 @@ a move and advances it. The founder can override the business judgment.
 
 ## Agency and the fastest credible learning path
 
+The October 7 closed-alpha target is one first-user journey, not completion of
+every earlier R6 proposal: context → bounded pulse → one user/≤3 ranked pains →
+GO / ONE GAP / PIVOT → reachable users and neutral interview kit → provisional
+MVP plan → specific authorization → runnable tested product → observed feedback.
+Do the worthwhile authorized work for the current objective before yielding.
+Public evidence supports hypotheses, not demand. A bounded learning MVP can carry
+behavioral uncertainty; its exact promise, capabilities, cuts, limitations and
+observable success/failure must be shown before approval. Negative decisions need
+no manufactured positive findings. Source, technical, privacy and Act guards remain.
+
 Reuse → infer tentatively → inspect → research → ask. Infer provisional customer
 and problem from credible sourced context; do not repeat intake because formal
 fields are empty. Missing firsthand context warrants one combined plain-language

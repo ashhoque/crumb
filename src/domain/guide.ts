@@ -32,6 +32,7 @@ export function nextIdeStep(c: AnyPrebuild): Guidance {
   }
   if (state.evaluation === 'researching' || state.evaluation === 'not_started') return { kind: 'research', subject: null, text: 'That gives us something concrete to investigate. I’ll check the alternatives, what users love or find frustrating, the technical constraints, and where these users already gather. Then I’ll bring back the useful differences and the uncertainty that matters most.' };
   if (state.evaluation === 'reviewed') return { kind: 'confirm', subject: 'evaluation', text: presentationText(c, 'evaluation') };
+  if(state.evaluation==='founder_reviewed'&&c.quality?.learning.decision&&c.quality.learning.decision!=='go')return {kind:c.quality.learning.decision==='one_gap'?'research':'pause',subject:null,text:`${c.quality.learning.decision==='one_gap'?'ONE GAP':'PIVOT/STOP'}: ${c.quality.learning.reason} No product build is approved.`};
   if (state.act_readiness !== 'founder_confirmed') {
     const scopeQuestion = firstUserScopeQuestion(c);
     if (scopeQuestion) return { kind: 'question', subject: null, text: [firstUserDiscoveryNotice(c), scopeQuestion].filter(Boolean).join('\n\n') };

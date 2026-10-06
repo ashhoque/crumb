@@ -8,7 +8,7 @@ export function problemInterview(c:AnyPrebuild):string[] {
   const job=plain(c.definition.job.text??c.definition.problem.text??'the confirmed workflow').replace(/[.!?]+$/u,'');
   return [
     `Let's learn about their experience with: ${job}. Talk about their life and listen; this is not a product pitch.`,
-    '1. Thinking about that work, which part causes you the most trouble?\n2. Take me through the most recent occasion when you ran into it.\n3. What made that particular occasion difficult?\n4. Which approaches have you already tried, if any?\n5. Where did those approaches let you down?',
+    `1. What is the hardest part about ${job}?\n2. When was the last time you encountered this issue?\n3. Why was this problem hard?\n4. What, if anything, have you done to solve it?\n5. What don't you love about the solutions you tried?`,
     'Follow their answer, one question at a time. If timing is unclear, ask how often it happened recently. If the consequence is unclear, ask what happened afterward. If a workaround is mentioned, ask what it cost in time or effort and who else was involved.',
     `Adapted from Eric Migicovsky's YC user-interview guidance: ${interviewSource}. A guide is not a sent invitation, completed interview or customer validation.`,
   ];

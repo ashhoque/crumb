@@ -1,4 +1,5 @@
 import { join } from 'node:path';
+import { assertFounderProject } from './project-bootstrap.js';
 import { randomUUID } from 'node:crypto';
 import { initializeProject, DATABASE_NAME } from './initialize.js';
 import { openSqlite, type SqliteConnection } from '../persistence/sqlite.js';
@@ -202,6 +203,7 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
 export function savePrebuild(target:string,input:unknown):SavedPrebuild {const saved=savePrebuildState(target,input);syncConversationArtifacts(target,saved);return saved;}
 /** Conversation notes are knowledge, never confirmation or Act permission. */
 export function saveWorkingContext(target:string,input:{expectedVersion:number;conversationId:string;start?:boolean;synthetic?:boolean;delta:Partial<Pick<FounderWorkingContext,'project'|'founder'|'inspected'|'opportunity'>>},allowResume=false):SavedPrebuild {
+  assertFounderProject(target);
   if(!input || !Number.isInteger(input.expectedVersion) || typeof input.conversationId!=='string')throw new Error('Working context needs the current revision and conversation identifier.');
   if((input.start!==undefined&&typeof input.start!=='boolean')||(input.synthetic!==undefined&&typeof input.synthetic!=='boolean'))throw new Error('Working context start flags must be boolean.');
   const saved=readPrebuild(target);
