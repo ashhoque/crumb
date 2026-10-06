@@ -69,6 +69,11 @@ function createFixture(id,seed='evaluated'){
     writeFileSync(join(folder,'package.json'),JSON.stringify({name:'benchkeep',version:'0.1.0',description:'Ready-for-pickup reminders for bicycle repair shops'}));
     const c=emptyIde();c.synthetic=true;c.project.entry='existing';savePrebuild(folder,c);
   }
+  else if(seed==='r6-astra-built'){
+    writeFileSync(join(folder,'README.md'),'# Proofnest\nSynthetic working beta for independent wedding photographers in Bristol, UK: couples select album photos from a private shortlist and photographer sees outstanding selections. No photo hosting, editing, payments or automatic messages. Founder wants a small subscription business. Zero users, no interviews or sales. No known photographer contacts.\n');
+    writeFileSync(join(folder,'package.json'),JSON.stringify({name:'proofnest',version:'0.1.0',description:'Album selection follow-up for independent wedding photographers'}));
+    const c=emptyIde();c.synthetic=true;c.project.entry='existing';savePrebuild(folder,c);
+  }
   else if(seed==='priced-app'){
     writeFileSync(join(folder,'README.md'),'# Reviewlane\nA small app for freelance video editors to compare client revision requests, deadlines and deliverables in one board. Editors use it on each active project; clients see a shared status page. A working beta exists. Pricing and payment willingness are unknown. No real customers or sales are represented in this synthetic fixture.\n');
     writeFileSync(join(folder,'package.json'),JSON.stringify({name:'reviewlane',version:'0.1.0',description:'Revision board for freelance video editors'}));
@@ -122,6 +127,33 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'m3r6-astra-personality',seed:'fresh',messages:[
+      "$crumb I want a small paid business helping independent wedding florists in York avoid spending evenings on bespoke quotes that go nowhere. My friend runs a studio and rewrites flower proposals after couples change their budget. I have Saturdays and want side income. Where would you put our effort? Don't contact anyone or build.",
+      "I was imagining an AI that designs the whole wedding. Quotes sound a bit boring.",
+      "She says weddings are booked months ahead, so we won't know whether this works until next season. Are we stuck waiting?",
+      "She has last year's enquiries and quote PDFs, including ones that went nowhere. I don't want to make her assemble a new spreadsheet.",
+      "I'm overwhelmed. What's the one thing I should ask her for?",
+      "She said yes to sharing a small existing export and the quote files. I'm quite pleased with that.",
+      "Here's the complication: sometimes she rewrites the quote because the couple gets excited and increases the budget. That isn't wasted effort.",
+      "Now I feel like I misunderstood the whole problem. Should we drop it?",
+      "Another florist said she'll talk Saturday. She says chasing decisions bothers her more than writing the proposal.",
+      "Can we have the short invitation and questions ready? I don't want either of them doing homework.",
+      "I still want to build the automatic design tool this weekend. Talk me out of it if that's a bad idea.",
+      "Keep the direction and what could kill it to two sentences.",
+      "We have files coming and a conversation booked. While we wait, prepare whatever you can safely do now. Don't send or build.",
+      "Looks good, don't build yet. What's happening next? Keep it short."
+    ]},
+    {id:'m3r6-astra-built-pricing',seed:'r6-astra-built',messages:[
+      "$crumb The beta is built but nobody uses it. What should we charge, and how do we get useful customer evidence? I don't know any photographers. Don't contact anyone or build.",
+      "One photographer tells me couples already get reminders from their gallery service. Does that change the offer?",
+      "What exactly am I doing personally next? Use the routes you already found.",
+      "Looks good, don't build yet. Keep the offer consistent unless the evidence justifies changing it."
+    ]},
+    {id:'m3r6-astra-market-thesis',seed:'fresh',messages:[
+      "$crumb I want a small paid business helping independent portrait artists in Leeds prevent custom commissions getting stuck in endless sketch revisions. My friend keeps approval messages across email and Instagram and sometimes paints before the client has agreed the sketch. I have evenings. Check relevant alternatives and evidence, then show me the working business thesis with your take and doubts for review. Don't contact anyone or build.",
+      "Looks good, don't build yet.",
+      "Actually the artists I know only take a handful of commissions a year. Keep that correction provisional and tell me what changes."
+    ]},
     {id:'m3r6-market-thesis',seed:'fresh',messages:[
       "$crumb I want a small paid business helping independent event-hire companies in Leeds avoid losing small items like cables and adapters when equipment comes back. My cousin runs one and repeatedly finds missing parts after the next booking is prepared; she tracks returns on paper and can share past collection sheets. I have weekends. Research the important alternatives and user evidence, then bring me a working business thesis for review with the decisive findings and doubts first. Don't contact anyone or build.",
       "Looks good, don't build yet. What can we do safely next?"

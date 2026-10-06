@@ -4,7 +4,7 @@ import { emptyPrebuild, prebuildSchema, validatePrebuild, coverageTopics, type P
 import { plain } from './conversation.js';
 import { qualitySchema, validateQuality, researchableQuestion, evaluationHighlights, type EvaluationQuality } from './evaluation-quality.js';
 import { validateFirstUserCards, type FirstUserCard, type FirstUserDiscovery } from './first-user-discovery.js';
-import { projectFactKeys, founderFactKeys, type FounderWorkingContext } from './founder-intelligence.js';
+import { projectFactKeys, founderFactKeys, credibleWorkingFact, type WorkingFact, type FounderWorkingContext } from './founder-intelligence.js';
 
 export const subjects = ['intention', 'user', 'problem', 'evaluation', 'act'] as const;
 export type Subject = typeof subjects[number];
@@ -97,7 +97,16 @@ function foundation(c: IdeContext, s: Subject): unknown {
   }
 }
 export function evaluationBasis(c: IdeContext): string {
-  return digest({ foundations: subjects.slice(0, 3).map(s => basis(c, s)), synthetic: c.synthetic, project: c.project, sources: c.sources, claims: c.claims, research: c.research, evaluation: c.evaluation, investigation: c.investigation, competitors: c.competitors, adjacent: c.adjacent, habitats: c.habitats, avenues: c.firstUserAvenues, firstUserCards:c.firstUserCards, discovery:c.discovery, redTeam: c.redTeam, feedback: c.feedbackClaimIds, opportunity: c.opportunity, quality:c.quality });
+  const notes=thesisNotes(c);
+  return digest({ foundations: subjects.slice(0, 3).map(s => basis(c, s)), synthetic: c.synthetic, project: c.project, sources: c.sources, claims: c.claims, research: c.research, evaluation: c.evaluation, investigation: c.investigation, competitors: c.competitors, adjacent: c.adjacent, habitats: c.habitats, avenues: c.firstUserAvenues, firstUserCards:c.firstUserCards, discovery:c.discovery, redTeam: c.redTeam, feedback: c.feedbackClaimIds, opportunity: c.opportunity, quality:c.quality, ...(Object.keys(notes).length?{thesisNotes:notes}:{}) });
+}
+/** Only notes actually used in the review participate in its evidence basis. */
+function thesisNotes(c: IdeContext): Partial<Record<'decision'|'market_pulse'|'risk'|'assumptions',WorkingFact>> {
+  const needed={decision:!c.investigation.decision,market_pulse:!c.evaluation.conclusion,risk:!c.investigation.counterevidence&&!c.evaluation.weak.length&&!c.evaluation.contradictions.length,assumptions:!c.evaluation.unknowns.length};
+  return Object.fromEntries(Object.entries(needed).flatMap(([key,use])=>{
+    const fact=c.workingContext?.project[key as keyof typeof needed];
+    return use&&credibleWorkingFact(fact)?[[key,fact]]:[];
+  }));
 }
 export function basis(c: IdeContext, s: Subject): string {
   if (s === 'evaluation') return digest({ generation: c.ide.generations.evaluation, content: evaluationBasis(c) });
@@ -108,13 +117,15 @@ export function thesisBasis(c: IdeContext): string { return digest({foundations:
 export function thesisText(c: IdeContext): string {
   if(!c.intention.statement||!c.definition.user.text||!c.definition.problem.text)throw new Error('Draft the intention, initial user and pain before presenting a working thesis.');
   const safe=(value:string)=>plain(value).replaceAll('<','&lt;').replaceAll('>','&gt;');
-  const text=[`**My take:** ${c.investigation.decision?safe(c.investigation.decision):'Keep investigating before committing.'}`,
+  const notes=thesisNotes(c);
+  const note=(fact:WorkingFact)=>`${safe(fact.value)} (${fact.status==='inferred'?'Inference':'Reported'}; source: ${safe(fact.source!)}.)`;
+  const text=[`**My take:** ${c.investigation.decision?safe(c.investigation.decision):notes.decision?note(notes.decision):'Keep investigating before committing.'}`,
     `**What we are building toward:** ${safe(c.intention.statement)}`,
     `**The first user:** ${safe(c.definition.user.text)}\n\n**Their pain:** ${safe(c.definition.problem.text)}`,
-    `**Likely buyer:** ${c.definition.buyer.text?safe(c.definition.buyer.text):'Still unknown.'}`,
-    `**Why it could work:** ${c.evaluation.conclusion?[safe(c.evaluation.conclusion),...c.evaluation.promising.slice(0,2).map(safe)].join(' '):'This is provisional; external evidence has not established demand.'}`,
-    `**What could undo it:**\n\n${[c.investigation.counterevidence,...c.evaluation.weak,...c.evaluation.contradictions].filter((s):s is string=>!!s).map(s=>`- ${safe(s)}`).join('\n')||'Not yet investigated.'}`,
-    `**Still unknown:**\n\n${c.evaluation.unknowns.map(s=>`- ${safe(s)}`).join('\n')||'Whether this pain changes real behavior.'}`,
+    ...(c.definition.buyer.text?[`**Likely buyer:** ${safe(c.definition.buyer.text)}`]:[]),
+    `**Evidence so far:** ${c.evaluation.conclusion?[safe(c.evaluation.conclusion),...c.evaluation.promising.slice(0,2).map(safe)].join(' '):notes.market_pulse?`${note(notes.market_pulse)} This does not establish demand.`:'This is provisional; external evidence has not established demand.'}`,
+    `**What could undo it:**\n\n${[c.investigation.counterevidence,...c.evaluation.weak,...c.evaluation.contradictions].filter((s):s is string=>!!s).map(s=>`- ${safe(s)}`).join('\n')||(notes.risk?note(notes.risk):'No specific counterevidence is captured in this review yet; do not treat that as a cleared risk.')}`,
+    `**Still unknown:**\n\n${c.evaluation.unknowns.map(s=>`- ${safe(s)}`).join('\n')||(notes.assumptions?note(notes.assumptions):'Whether this pain changes real behavior and who will pay to solve it.')}`,
     ...(c.quality?[`**Technical risk:** ${safe(c.quality.technical.centralRisk)}`]:[]),
     'Does this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.'].join('\n\n');
   if(text.length>6000)throw new Error('Summarize the thesis evidence and risks before presenting it; do not truncate founder review.');
