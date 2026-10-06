@@ -1,6 +1,15 @@
 # Crumb implementation plan — M3-R6
 
-## M3-R6 CEO Operator Mode — implementation
+## M3-R6 final Astra release — 6 October 2026
+
+PASS WITH WARNINGS. Attributed compact thesis evidence now participates in review
+invalidation, and bundled review replaces duplicate summaries. 21/21 focused,
+352/352 full, six final installed Astra sessions/29 turns passed.
+See M3_R6_ASTRA_RELEASE_GATE.md and exact release transcripts. Complete authorized
+dev push/main merge/main verification/remote verification/exact-global sync.
+Preserve earlier evidence and warnings. No M4.
+
+## M3-R6 CEO Operator Mode — implementation (historical)
 
 From verified shipped main `9e0c8bf`; branch m3-r6, no main merge in Sol phase.
 Current authority, active payload/locator and existing planner/guide are patched.

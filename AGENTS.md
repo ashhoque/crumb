@@ -5,12 +5,13 @@ cumulative historical design context, consulted only for needed compatibility/hi
 PLAN.md / STATUS.md record implementation state. Current authorized work is M3-R6
 CEO Operator Mode on m3-r6, from shipped M3-R5 main. Commit/push coherent tested
 changes; synchronize a labelled development candidate for installed live acceptance.
-Do not merge main during this Sol phase. Separate Astra release review is mandatory.
+M3-R6 Astra review passed with warnings; the founder authorized verified main
+merge and exact global synchronization. See M3_R6_ASTRA_RELEASE_GATE.md.
 Preserve M3-R4 evidence and
 first-user work, M3-R2 fresh-chat isolation, confirmed IDE and Act gates.
 Do not begin M4 or merge a blocked revision into main. Preserve the Phase 1
-reports and prior blocked Astra review as history; current final review is in
-M3_R5_FINAL_RELEASE_GATE.md. The R1
+reports and prior blocked Astra reviews as history; current final review is in
+M3_R6_ASTRA_RELEASE_GATE.md. The R1
 mode/pack/checkpoint policy still governs new Act plans; legacy M2 runs retain
 their original review policy.
 On 26 September 2026 the founder accepted M1-R3 well enough to proceed and
@@ -22,7 +23,7 @@ work is preserved in M3_REPORT.md. Reuse confirmed IDE and the reviewed MVP.
 - Preserve all existing code, uncommitted work and Git history. Implement on the
   active development branch; commit and push coherent tested changes. The founder
   conditionally authorizes main merge only after final PASS. Commit and push
-  coherent tested fixes on m3-r6; main merge awaits a separate Astra review.
+  coherent tested fixes on m3-r6; main merge requires the current passing release gate.
   Never force-push or push a knowingly broken state. Review staged files for
   private data first. Do not create a replacement application.
 - Use Node 24.19.0, the existing lockfile and npm. cec.ps1 check selects the pinned

@@ -127,6 +127,10 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'m3r6-astra-fresh-users',seed:'fresh',messages:[
+      "$crumb I want a small paid business helping independent vintage furniture dealers in Glasgow avoid selling the same one-off piece twice through Instagram and their shop floor. A friend refunded a buyer last week after that happened. I have Saturdays, no product and no other dealer contacts. What should we do next? Don't contact anyone or build.",
+      "The friend says refunds are rare, but she checks all her listings every evening. What changes? Keep it short."
+    ]},
     {id:'m3r6-astra-personality',seed:'fresh',messages:[
       "$crumb I want a small paid business helping independent wedding florists in York avoid spending evenings on bespoke quotes that go nowhere. My friend runs a studio and rewrites flower proposals after couples change their budget. I have Saturdays and want side income. Where would you put our effort? Don't contact anyone or build.",
       "I was imagining an AI that designs the whole wedding. Quotes sound a bit boring.",

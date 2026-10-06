@@ -1,17 +1,17 @@
 # Crumb status
 
-**M3-R6 Sol implementation ready for Astra review on `m3-r6`.** Baseline is shipped M3-R5
-main `9e0c8bf`, verified against remote main and global runtime, one native-discovered
-Crumb skill, Node 24.19.0. Current product authority is CURRENT_PRODUCT_AUTHORITY.md.
-Current authority, active payload, runtime/planner/guide and compact thesis-draft
-bridge are implemented. Final full suite **351/351**. Installed TEXT acceptance:
-14-turn personality/learning flow, built/zero-users, model advisor and final thesis
-receipt checks completed; Act remained blocked. Review presentation still needs
-Astra judgment: formal fallback understates working-note research and the thesis
-response is long. Exact failures/warnings remain in
-[review packet](M3_R6_ASTRA_REVIEW_PACKET.md) and [transcripts](M3_R6_LIVE_TRANSCRIPTS.md).
-Global installation is an R6 development candidate. Main remains shipped R5;
-separate Astra release review is required before merge.
+**M3-R6 PASS WITH WARNINGS — Astra release gate, 6 October 2026.**
+Full Node 24.19.0 suite **352/352**; six final installed Astra Medium sessions,
+29 turns, zero assistant identity leaks. Personality, learning velocity, fresh/built
+First User Packs, pricing, exports, exact thesis receipts and Act protection pass.
+Current product authority is CURRENT_PRODUCT_AUTHORITY.md.
+The only Astra changes bind compact thesis evidence to its approval basis and
+remove unnecessary duplicate thesis presentation. Personality/host guard preserved.
+Authorized release: push m3-r6, merge/verify/push main and sync exact main globally.
+See [final gate](M3_R6_ASTRA_RELEASE_GATE.md) and
+[exact transcripts](M3_R6_ASTRA_RELEASE_TRANSCRIPTS.md) for proof and warnings.
+Synthetic founders, variable latency, residual reference rereads and occasional
+long replies remain warnings. No M4. Earlier Sol evidence is preserved unchanged.
 
 ## Shipped M3-R5 (historical)
 
