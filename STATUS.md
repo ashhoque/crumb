@@ -1,10 +1,17 @@
 # Crumb status
 
-**M3-R6 Sol implementation in progress on `m3-r6`.** Baseline is shipped M3-R5
+**M3-R6 Sol implementation ready for Astra review on `m3-r6`.** Baseline is shipped M3-R5
 main `9e0c8bf`, verified against remote main and global runtime, one native-discovered
 Crumb skill, Node 24.19.0. Current product authority is CURRENT_PRODUCT_AUTHORITY.md.
-This phase patches authority, active payload, bounded runtime/planner/guide policy
-and live semantic acceptance. No main merge; separate Astra release review required.
+Current authority, active payload, runtime/planner/guide and compact thesis-draft
+bridge are implemented. Final full suite **351/351**. Installed TEXT acceptance:
+14-turn personality/learning flow, built/zero-users, model advisor and final thesis
+receipt checks completed; Act remained blocked. Review presentation still needs
+Astra judgment: formal fallback understates working-note research and the thesis
+response is long. Exact failures/warnings remain in
+[review packet](M3_R6_ASTRA_REVIEW_PACKET.md) and [transcripts](M3_R6_LIVE_TRANSCRIPTS.md).
+Global installation is an R6 development candidate. Main remains shipped R5;
+separate Astra release review is required before merge.
 
 ## Shipped M3-R5 (historical)
 
