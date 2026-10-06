@@ -8,6 +8,7 @@ import {temporaryProject} from './helpers.js';
 import {planFounderMove} from '../src/domain/founder-intelligence.js';
 import {nextIdeStep} from '../src/domain/guide.js';
 import {emptyIde,assertAct,ideState} from '../src/domain/ide.js';
+import {saveWorkingContext,readPrebuild,transitionIde,savePrebuild} from '../src/application/prebuild.js';
 const repo=fileURLToPath(new URL('../../',import.meta.url));
 const base={kind:'evidence_decision' as const,hasCurrentSnapshot:true,materialExternalGap:false,existingEvidence:'current' as const};
 
@@ -86,4 +87,41 @@ test('R6 sourced credible working context prevents duplicate intake without gran
   assert.equal(nextIdeStep(c).kind,'question');
   delete c.workingContext;const question=nextIdeStep(c);
   assert.match(question.text,/Who.*what happened/);assert.equal(question.subject,null);
+});
+
+test('R6 explicit thesis presentation reuses sourced missing drafts; exact review still gates consent',t=>{
+  const root=temporaryProject(t);
+  const fact={value:'Independent equipment-hire managers',status:'inferred' as const,confidence:'medium' as const,source:'Founder firsthand context'};
+  const saved=saveWorkingContext(root,{start:true,synthetic:true,expectedVersion:0,conversationId:'operator_thesis_123',delta:{project:{customer:fact,problem:{...fact,value:'Small accessories disappear between returns and next hires'}},founder:{objective:{...fact,status:'known',value:'Build a small paid service'}}}});
+  const shown=transitionIde(root,{operation:'present-thesis',expectedVersion:saved.version});
+  if(shown.context.contractVersion!==2)throw new Error('Current IDE required');
+  const p=shown.context.ide.presentation!;
+  assert.ok(p.text.includes(fact.value));assert.equal(shown.context.ide.confirmations.length,0);
+  assert.throws(()=>assertAct(shown.context),/founder-confirmed/);
+  const reviewed=transitionIde(root,{operation:'confirm-thesis',expectedVersion:shown.version,presentationId:p.id,displayedText:p.text,quote:"Looks good, don't build yet",turnId:'operator_review_turn_2'});
+  if(reviewed.context.contractVersion!==2)throw new Error('Current IDE required');
+  assert.equal(reviewed.context.ide.confirmations.length,3);
+  assert.ok(reviewed.context.ide.confirmations.every(r=>r.presentedText===p.text));
+  assert.throws(()=>assertAct(reviewed.context),/founder-reviewed/);
+  assert.equal(reviewed.context.workingContext!.project.customer!.source,fact.source);
+});
+
+test('R6 thesis draft reuse refuses stale/weak/unsourced facts and does not replace existing truth',t=>{
+  for(const bad of [{status:'stale' as const},{confidence:'low' as const},{source:null}]){
+    const root=temporaryProject(t),c=emptyIde();c.project.entry='fresh';c.synthetic=true;
+    const fact={value:'A sourced provisional buyer',status:'inferred' as const,confidence:'medium' as const,source:'Founder report'};
+    c.intention.statement='A small business';c.intention.status='provided';c.intention.goal='custom';c.intention.advice='Keep the test small';
+    c.workingContext={conversationId:'invalid_draft_123',founder:{},project:{customer:{...fact,...bad},problem:{...fact,value:'Missing return accessories'}},inspected:[],opportunity:null};
+    savePrebuild(root,c);assert.throws(()=>transitionIde(root,{operation:'present-thesis',expectedVersion:readPrebuild(root)!.version}),/Draft the intention/);
+    assert.equal(readPrebuild(root)!.context.definition.user.text,null);
+  }
+  const root=temporaryProject(t),c=emptyIde();c.synthetic=true;c.intention.statement='Existing intention';c.intention.status='provided';c.intention.goal='custom';c.intention.advice='Keep the current direction';
+  for(const [key,text] of [['user','Existing user'],['problem','Existing pain']] as const){
+    const claimId=`existing_${key}_123`;
+    c.claims.push({id:claimId,statement:text,basis:'assumption',sourceIds:[],supports:[],challenges:[],limitation:'Synthetic existing premise',important:true,repetition:'not_applicable',metric:null,quote:null});
+    c.definition[key]={text,claimIds:[claimId],basis:'inferred'};
+  }
+  c.workingContext={conversationId:'existing_draft_123',founder:{},project:{customer:{value:'Different note user',status:'known',confidence:'high',source:'Later note'}},inspected:[],opportunity:null};
+  savePrebuild(root,c);const shown=transitionIde(root,{operation:'present-thesis',expectedVersion:readPrebuild(root)!.version});
+  assert.equal(shown.context.definition.user.text,'Existing user');
 });

@@ -83,6 +83,11 @@ export interface FounderTurnDecision {
   fasterEvidence?: boolean;
   founderEffort?: 'low' | 'high';
 }
+
+/** Usable for a provisional draft, never consent or independent evidence. */
+export function credibleWorkingFact(fact: WorkingFact | undefined): fact is WorkingFact {
+  return !!fact?.value.trim()&&['known','inferred'].includes(fact.status)&&['medium','high'].includes(fact.confidence)&&!!fact.source?.trim();
+}
 export function planFounderMove(input:FounderTurnDecision) {
   if(!input || !['clarification','project_decision','evidence_decision','deep_request'].includes(input.kind) || typeof input.hasCurrentSnapshot!=='boolean' || typeof input.materialExternalGap!=='boolean' || !['current','stale','none'].includes(input.existingEvidence))throw new Error('Describe the current decision and evidence gap.');
   for(const [key,values] of Object.entries({productStage:['idea','prototype','built','live','unknown'],customerEvidence:['none','weak','current'],evidenceHorizon:['immediate','short','long'],founderEffort:['low','high']})){

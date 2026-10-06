@@ -1,6 +1,7 @@
 import { assertEvaluationComplete, ideState, presentationText, type AnyPrebuild, type Subject } from './ide.js';
 import { interviewRecommendation } from './evaluation-quality.js';
 import { firstUserDiscoveryNotice, firstUserScopeQuestion } from './first-user-discovery.js';
+import { credibleWorkingFact } from './founder-intelligence.js';
 
 export interface Guidance { kind: 'question' | 'confirm' | 'research' | 'review' | 'redefine' | 'scope' | 'pause'; subject: Subject | null; text: string }
 
@@ -9,9 +10,8 @@ export function nextIdeStep(c: AnyPrebuild): Guidance {
   const question = (text: string): Guidance => ({ kind: 'question', subject: null, text });
   if (c.contractVersion === 1) return { kind: 'confirm', subject: 'intention', text: 'We have your earlier context. I’ll use it to confirm the current intention before the next build decision.' };
   const state = ideState(c);
-  const credible=(fact:NonNullable<typeof c.workingContext>['project']['customer'])=>!!fact?.value.trim()&&['known','inferred'].includes(fact.status)&&['medium','high'].includes(fact.confidence)&&!!fact.source?.trim();
-  const hasUser=!!c.definition.user.text||credible(c.workingContext?.project.customer);
-  const hasProblem=!!c.definition.problem.text||credible(c.workingContext?.project.problem);
+  const hasUser=!!c.definition.user.text||credibleWorkingFact(c.workingContext?.project.customer);
+  const hasProblem=!!c.definition.problem.text||credibleWorkingFact(c.workingContext?.project.problem);
   if (c.project.entry === 'unknown' && !c.intention.statement && !hasUser && !hasProblem) return question('Are you starting fresh, or do you already have a project in progress?');
   if(hasUser&&hasProblem&&(!c.intention.statement||['skipped','undecided'].includes(c.intention.status)))return {kind:'research',subject:null,text:'The user and pain give us enough for reversible investigation. I’ll check the alternatives and prepare a small test; your broader goal stays open and no build is approved.'};
   if (['skipped','undecided'].includes(c.intention.status)) return {kind:'pause',subject:'intention',text:"Your intention is still open. We can explore what matters to you when you are ready; I will keep the saved context and hold the build decision until you choose a direction."};

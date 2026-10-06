@@ -12,7 +12,7 @@ import type { ConfirmedActionDraft } from '../domain/contracts.js';
 import { nextIdeStep } from '../domain/guide.js';
 import { agreesWithPresentation, type ReplyInterpretation } from '../domain/reply.js';
 import { syncConversationArtifacts } from './session.js';
-import { updateWorkingContext, type FounderWorkingContext } from '../domain/founder-intelligence.js';
+import { updateWorkingContext, credibleWorkingFact, type FounderWorkingContext } from '../domain/founder-intelligence.js';
 
 export function storedPrebuild(db: SqliteConnection): SavedPrebuild | null {
   if (Number(db.get('PRAGMA user_version')?.['user_version']) < 2) return null;
@@ -144,7 +144,27 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
     }
     if (r.operation === 'review') { assertEvaluationComplete(c); c.ide.reviewBasis = evaluationBasis(c); c.ide.presentation = null; }
     if (r.operation === 'present') c.ide.presentation = { id: randomUUID(), subject: r.subject!, basis: basis(c, r.subject!), text: presentationText(c, r.subject!) };
-    if (r.operation === 'present-thesis') c.ide.presentation = {id:randomUUID(),subject:'thesis',basis:thesisBasis(c),text:thesisText(c)};
+    if (r.operation === 'present-thesis') {
+      // Notes become missing provisional drafts only at this explicit review boundary.
+      // Preserve existing definitions and open/skipped intention; never grant receipts.
+      const notes=c.workingContext;
+      const objective=notes?.founder.objective;
+      if(!c.intention.statement&&!['skipped','undecided'].includes(c.intention.status)&&credibleWorkingFact(objective)){
+        c.intention.statement=objective.value;c.intention.status='provided';
+        if(c.intention.goal==='unknown')c.intention.goal='custom';
+        c.intention.advice??='Keep the first reversible test aligned with the stated objective and constraints.';
+      }
+      for(const [subject,key] of [['user','customer'],['problem','problem']] as const){
+        const fact=notes?.project[key];
+        if(!c.definition[subject].text&&credibleWorkingFact(fact)){
+          const claimId=randomUUID();
+          c.claims.push({id:claimId,statement:fact.value,basis:'assumption',sourceIds:[],supports:[],challenges:[],limitation:`Provisional working note attributed to ${fact.source}; not independently verified.`,important:true,repetition:'not_applicable',metric:null,quote:null});
+          c.definition[subject]={text:fact.value,claimIds:[claimId],basis:'inferred'};
+        }
+      }
+      invalidateChanges(saved.context,c);
+      c.ide.presentation = {id:randomUUID(),subject:'thesis',basis:thesisBasis(c),text:thesisText(c)};
+    }
     if (r.operation === 'confirm-thesis') {
       const p=c.ide.presentation;
       if(!p||p.subject!=='thesis'||p.id!==r.presentationId||p.basis!==thesisBasis(c))throw new Error('Confirm the exact current displayed thesis, not an old or unseen prompt.');

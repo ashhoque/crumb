@@ -122,6 +122,10 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'m3r6-market-thesis',seed:'fresh',messages:[
+      "$crumb I want a small paid business helping independent event-hire companies in Leeds avoid losing small items like cables and adapters when equipment comes back. My cousin runs one and repeatedly finds missing parts after the next booking is prepared; she tracks returns on paper and can share past collection sheets. I have weekends. Research the important alternatives and user evidence, then bring me a working business thesis for review with the decisive findings and doubts first. Don't contact anyone or build.",
+      "Looks good, don't build yet. What can we do safely next?"
+    ]},
     {id:'m3r6-ceo-personality',seed:'fresh',messages:[
       "$crumb I want a small paid business helping independent pottery studios in Manchester keep kiln firings full. A friend runs a studio and sometimes fires a half-full kiln because members' pieces arrive late. I have evenings, and I want side income. Where should we focus? Don't contact anyone or build.",
       "I'm excited because she spends a lot of time chasing pieces. I was picturing a whole AI studio manager.",
