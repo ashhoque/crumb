@@ -1,5 +1,13 @@
 # Crumb status
 
+**M3-R6 Sol implementation in progress on `m3-r6`.** Baseline is shipped M3-R5
+main `9e0c8bf`, verified against remote main and global runtime, one native-discovered
+Crumb skill, Node 24.19.0. Current product authority is CURRENT_PRODUCT_AUTHORITY.md.
+This phase patches authority, active payload, bounded runtime/planner/guide policy
+and live semantic acceptance. No main merge; separate Astra release review required.
+
+## Shipped M3-R5 (historical)
+
 **M3-R5 PASS WITH WARNINGS — final Astra release gate.**
 Five completed fresh Astra Medium sessions (13 turns) have zero identity leakage.
 Founder direction/personality, linked First User Pack, stable pricing offer,

@@ -1,5 +1,14 @@
 # Crumb implementation plan - M3-R5 Phase 2
 
+## M3-R6 CEO Operator Mode — implementation
+
+From verified shipped main `9e0c8bf`; branch m3-r6, no main merge in Sol phase.
+Current authority, active payload/locator and existing planner/guide are patched;
+focused behavioral checks precede thesis/Act/context/pricing/identity regressions,
+full suite and installed-global TEXT acceptance. Reuse existing engines and consent
+semantics. Final M3_R6_ASTRA_REVIEW_PACKET.md records actual outcomes and limitations.
+Do not start M4. Separate Astra release review remains mandatory.
+
 ## Final Astra release gate — 5 October 2026
 
 **PASS WITH WARNINGS.** Five fresh completed sessions, 13 turns, zero identity

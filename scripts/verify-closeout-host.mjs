@@ -64,6 +64,11 @@ function createFixture(id,seed='evaluated'){
     writeFileSync(join(folder,'package.json'),JSON.stringify({name:'slotnote',version:'0.1.0',description:'Lesson credits and makeup tracking for independent music teachers'}));
     const c=emptyIde();c.synthetic=true;c.project.entry='existing';savePrebuild(folder,c);
   }
+  else if(seed==='r6-built-app'){
+    writeFileSync(join(folder,'README.md'),'# Benchkeep\nSynthetic working beta for independent bicycle repair shops in Bristol, UK. Tracks promised pickup dates and drafts a reminder when a repaired bike is ready. No automatic texts, scheduling, invoicing or payments. Built by a solo founder seeking a modest paid business. Zero users, no interviews or paying customers.\n');
+    writeFileSync(join(folder,'package.json'),JSON.stringify({name:'benchkeep',version:'0.1.0',description:'Ready-for-pickup reminders for bicycle repair shops'}));
+    const c=emptyIde();c.synthetic=true;c.project.entry='existing';savePrebuild(folder,c);
+  }
   else if(seed==='priced-app'){
     writeFileSync(join(folder,'README.md'),'# Reviewlane\nA small app for freelance video editors to compare client revision requests, deadlines and deliverables in one board. Editors use it on each active project; clients see a shared status page. A working beta exists. Pricing and payment willingness are unknown. No real customers or sales are represented in this synthetic fixture.\n');
     writeFileSync(join(folder,'package.json'),JSON.stringify({name:'reviewlane',version:'0.1.0',description:'Revision board for freelance video editors'}));
@@ -117,6 +122,32 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'m3r6-ceo-personality',seed:'fresh',messages:[
+      "$crumb I want a small paid business helping independent pottery studios in Manchester keep kiln firings full. A friend runs a studio and sometimes fires a half-full kiln because members' pieces arrive late. I have evenings, and I want side income. Where should we focus? Don't contact anyone or build.",
+      "I'm excited because she spends a lot of time chasing pieces. I was picturing a whole AI studio manager.",
+      "She says we'd need three monthly electricity bills before we know if anything saves money. Does that mean we wait three months?",
+      "She has firing logs and member booking exports from last year, with some gaps. I don't want to give her a data-cleaning project.",
+      "I'm feeling swamped. Give me the smallest ask for her, in one sentence.",
+      "She agreed to share the existing files! Small win, but it feels more real now.",
+      "Her other surprise was that glazes sometimes need different temperatures, so half-full doesn't always mean wasted capacity.",
+      "So should we abandon the idea? I don't know how much that changes things.",
+      "Before seeing the export, can you prepare the short interview invitation and questions we need, rather than give me homework?",
+      "One other owner agreed to talk. I haven't shown anything or asked for money yet.",
+      "I want to add predictive firing schedules already. Too soon? Be candid.",
+      "Keep the direction and biggest unknown in two sentences. Use what we know.",
+      "I'm pleased we didn't spend the weekend building a scheduling empire. What can you safely prepare while we wait for her file? Do that part.",
+      "Looks good, don't build yet. What's happening next? Keep it short."
+    ]},
+    {id:'m3r6-built-users',seed:'r6-built-app',messages:[
+      "$crumb This beta is already built but has zero users. Help me make progress toward a small real business. I don't know any other shop owners. Don't contact anyone or build.",
+      "One shop says customers often ignore reminders. Does that change our first test?",
+      "What's the single thing I need to do personally? Keep it crisp."
+    ]},
+    {id:'m3r6-model-advisor',seed:'fresh',messages:[
+      "$crumb Help me shorten this invitation: Could we spend 15 minutes discussing the last time you had to chase a customer to collect repaired equipment? I just need a natural two-sentence version.",
+      "I have 600 pages of conflicting supplier contracts and want you to compare obligations across all of them before we commit to a business model. Nothing has been uploaded yet. Could a narrower path answer the immediate question? Don't claim to switch models.",
+      "For now, the only decision is whether we can resell one supplier's service. Give me the smallest useful next input."
+    ]},
     {id:'m3r5-final-founder',seed:'fresh',messages:[
       "$crumb I want a small paid business helping independent residential cleaners in Hamilton, Ontario stop underquoting recurring jobs. My sister cleans houses and says first-visit surprises eat her margin. She has past quotes and actual times in a spreadsheet. I have evenings and know only her. Where should we put our effort? Don't contact anyone or build.",
       "I was imagining a full AI operations assistant. Is focusing on quoting too small? Keep it short.",

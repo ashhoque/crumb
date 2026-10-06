@@ -77,12 +77,26 @@ export interface FounderTurnDecision {
   hasCurrentSnapshot: boolean;
   materialExternalGap: boolean;
   existingEvidence: 'current' | 'stale' | 'none';
+  productStage?: 'idea' | 'prototype' | 'built' | 'live' | 'unknown';
+  customerEvidence?: 'none' | 'weak' | 'current';
+  evidenceHorizon?: 'immediate' | 'short' | 'long';
+  fasterEvidence?: boolean;
+  founderEffort?: 'low' | 'high';
 }
 export function planFounderMove(input:FounderTurnDecision) {
   if(!input || !['clarification','project_decision','evidence_decision','deep_request'].includes(input.kind) || typeof input.hasCurrentSnapshot!=='boolean' || typeof input.materialExternalGap!=='boolean' || !['current','stale','none'].includes(input.existingEvidence))throw new Error('Describe the current decision and evidence gap.');
-  if(input.kind==='clarification')return {path:'fast' as const,projectPasses:0,researchBatches:0,followUpBatches:0,next:'Answer directly and offer one useful next move.'};
+  for(const [key,values] of Object.entries({productStage:['idea','prototype','built','live','unknown'],customerEvidence:['none','weak','current'],evidenceHorizon:['immediate','short','long'],founderEffort:['low','high']})){
+    const value=input[key as keyof FounderTurnDecision];
+    if(value!==undefined&&(typeof value!=='string'||!values.includes(value)))throw new Error('Use bounded stage, evidence horizon and founder effort values.');
+  }
+  if(input.fasterEvidence!==undefined&&typeof input.fasterEvidence!=='boolean')throw new Error('Faster evidence must be boolean.');
+  if(input.kind==='clarification')return {path:'fast' as const,projectPasses:0,researchBatches:0,followUpBatches:0,next:'Answer directly and do the known reversible next move; ask only for blocking firsthand truth.'};
   const projectPasses=input.kind==='project_decision'&&!input.hasCurrentSnapshot?2:0;
   const needResearch=input.materialExternalGap&&input.existingEvidence!=='current';
+  const budget={projectPasses,researchBatches:needResearch?1:0,followUpBatches:needResearch?1:0};
+  if(input.evidenceHorizon==='long'&&input.fasterEvidence)return {path:'parallel_learning' as const,...budget,next:'Use credible existing, historical or proxy evidence now; state what it can and cannot establish. Prepare reversible work while direct outcome validation runs in parallel. No build, send or Act approval is implied.'};
+  if(['prototype','built','live'].includes(input.productStage??'unknown')&&['none','weak'].includes(input.customerEvidence??'current'))return {path:'first_users' as const,...budget,next:'Complete the First User Pack now: problem, user, pain, verified habitats, 3–5 public starting points where feasible, direct links, invitation, 3–5 past-behavior questions and decision signal. No send or build is authorized.'};
+  if(input.founderEffort==='high'&&needResearch)return {path:'research' as const,...budget,next:'Crumb investigates the researchable gap instead of assigning founder homework; use accessible context or a compact export for private facts. Return evidence, a recommendation and work advanced.'};
   return {path:projectPasses?'bootstrap' as const:needResearch?'research' as const:'fast' as const,
     projectPasses,researchBatches:needResearch?1:0,followUpBatches:needResearch?1:0,
     next:needResearch?'Research the material gap, stop when the decision is supported, then recommend one action.':'Use current evidence, make a reasoned recommendation, then offer one next move.'};
