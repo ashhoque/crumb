@@ -182,14 +182,14 @@ export function validatePrebuild(input: unknown, policy:{bounded?:boolean;negati
     if (run.capability === 'unavailable' && (run.inspectedSourceIds.length || run.stopReason !== 'unavailable')) fail('Unavailable research cannot claim inspected results.');
     if (!c.synthetic && run.capability === 'synthetic_fixture') fail('Synthetic research runs cannot establish a real evaluation.');
   }
-  const checkView = (v: FindingView): void => {
+  const checkView = (v: FindingView, path:string): void => {
     claimRefs(v.claimIds);
-    if ((v.text === null) !== (v.basis === 'unknown')) fail('Unknown views retain null instead of invented findings.');
-    if (v.basis !== 'unknown' && !v.claimIds.length) fail('A finding view needs its supporting claims.');
-    if (v.basis === 'observed' && !v.claimIds.some(id => ['public_observation', 'reported_metric', 'public_proxy', 'founder_reported', 'artifact_observation'].includes(claimMap.get(id)!.basis))) fail('An assumption or inference alone is not an observed finding.');
+    if ((v.text === null) !== (v.basis === 'unknown')) fail(`Unknown views retain null instead of invented findings (${path}).`);
+    if (v.basis !== 'unknown' && !v.claimIds.length) fail(`A finding view needs its supporting claims (${path}).`);
+    if (v.basis === 'observed' && !v.claimIds.some(id => ['public_observation', 'reported_metric', 'public_proxy', 'founder_reported', 'artifact_observation'].includes(claimMap.get(id)!.basis))) fail(`An assumption or inference alone is not an observed finding (${path}).`);
   };
-  Object.values(c.definition).forEach(checkView);
-  for (const competitor of c.competitors) { Object.values(competitor.fields).forEach(checkView); claimRefs(competitor.tractionClaimIds); if (competitor.tractionClaimIds.some(id => !['reported_metric', 'public_proxy', 'unknown'].includes(claimMap.get(id)!.basis))) fail('Keep traction metrics/proxies distinct from general observations.'); }
+  for(const [key,view] of Object.entries(c.definition))checkView(view,`definition.${key}`);
+  for (const competitor of c.competitors) { for(const [key,view] of Object.entries(competitor.fields))checkView(view,`competitors.${competitor.id}.${key}`); claimRefs(competitor.tractionClaimIds); if (competitor.tractionClaimIds.some(id => !['reported_metric', 'public_proxy', 'unknown'].includes(claimMap.get(id)!.basis))) fail('Keep traction metrics/proxies distinct from general observations.'); }
   claimRefs(c.feedbackClaimIds);
   if (c.feedbackClaimIds.some(id => claimMap.get(id)!.basis !== 'founder_reported')) fail('Feedback must retain its founder-reported provenance.');
   c.adjacent.forEach(item => claimRefs(item.reasonClaimIds));

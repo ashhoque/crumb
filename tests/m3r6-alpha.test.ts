@@ -6,8 +6,10 @@ import { fileURLToPath } from 'node:url';
 import { temporaryProject } from './helpers.js';
 import { ideFixture, prepareIde, confirmSubject } from './ide-fixtures.js';
 import { validateIde, assertAct, type IdeContext, presentationText } from '../src/domain/ide.js';
-import { validateQuality } from '../src/domain/evaluation-quality.js';
-import { interviewGuide } from '../src/cli/prebuild-render.js';
+import { validateQuality, learningTopics } from '../src/domain/evaluation-quality.js';
+import { planFor } from './act-fixtures.js';
+import { validateActPlan } from '../src/domain/act.js';
+import { interviewGuide, renderStartupMaster } from '../src/cli/prebuild-render.js';
 import { bootstrapProject } from '../src/application/project-bootstrap.js';
 import { saveWorkingContext, readPrebuild } from '../src/application/prebuild.js';
 
@@ -68,4 +70,37 @@ test('Alpha honest negative evaluation needs no manufactured positive reasons an
   const current=readPrebuild(root)!.context as IdeContext;
   assert.throws(()=>presentationText(current,'act'),/PIVOT/);
   assert.throws(()=>assertAct(current),/PIVOT/);
+});
+
+test('Alpha bounded review leaves unrelated dimensions unexamined without weakening material coverage',t=>{
+  const c=learningFixture(),root=temporaryProject(t);
+  for(const row of [...c.evaluation.coverage,...c.investigation.coverage])if(!learningTopics.some(topic=>topic===row.topic)){row.status='unexamined';row.claimIds=[];row.runIds=[];row.reason='Not investigated for this bounded learning action.';}
+  c.investigation.alternatives=c.investigation.alternatives.filter(x=>['direct','manual','do_nothing'].includes(x.kind));
+  assert.doesNotThrow(()=>prepareIde(root,'evaluation',c));
+  const unsafe=structuredClone(c);unsafe.evaluation.coverage.find(x=>x.topic==='pain')!.status='unexamined';
+  assert.throws(()=>prepareIde(temporaryProject(t),'evaluation',unsafe),/decision-relevant/);
+});
+
+test('Alpha approved learning scope cannot silently expand into the default larger build pack',t=>{
+  const root=temporaryProject(t),saved=prepareIde(root,'act',learningFixture());
+  assert.throws(()=>validateActPlan(planFor(saved),saved.context as IdeContext),/exact approved experiment/);
+});
+
+test('Alpha a failed evidence write identifies the actual field without saving or relaxing source guards',t=>{
+  const root=temporaryProject(t),c=learningFixture();
+  c.definition.pain={basis:'inferred',text:'An unsupported pain',claimIds:[]};
+  assert.throws(()=>prepareIde(root,'none',c),/supporting claims \(definition.pain\)/);
+  assert.equal(readPrebuild(root),null);
+  c.definition.pain={basis:'unknown',text:'An invented unknown finding',claimIds:[]};
+  assert.throws(()=>prepareIde(root,'none',c),/Unknown views.*definition.pain/);
+  assert.equal(readPrebuild(root),null);
+});
+
+test('Alpha existing master renderer exposes honest provisional MVP artifacts before evaluation or Act',t=>{
+  const root=temporaryProject(t),c=ideFixture();c.evaluation.status='in_progress';
+  c.master={thesis:'Synthetic printing workflow hypothesis.',interviewPlan:'Use the canonical guide.',mvpHypothesis:'Observe a local proof approval.',nonGoals:['No sends'],technicalStrategy:'Local synthetic prototype.',businessModel:'Unproven subscription hypothesis.',economics:'Payment unknown.',validationPlan:'Observe two fitting operators; no demand claimed.',risks:['No customers observed.']};
+  const saved=prepareIde(root,'none',c),text=renderStartupMaster(saved);
+  assert.match(text,/Provisional MVP plan/);assert.match(text,/Observe a local proof approval/);
+  assert.throws(()=>assertAct(saved.context));
+  assert.equal(readPrebuild(root)!.hash,saved.hash);
 });

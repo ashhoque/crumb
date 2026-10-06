@@ -2,7 +2,7 @@ import { spawn } from 'node:child_process';
 import { existsSync, readdirSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { createInterface } from 'node:readline';
-import { dirname, join } from 'node:path';
+import { dirname, join, relative, resolve, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { prepareIde } from '../dist/tests/ide-fixtures.js';
 import { emptyIde, confirmation } from '../dist/src/domain/ide.js';
@@ -53,6 +53,12 @@ async function turn(threadId,text,first=false){
   return done;
 }
 function createFixture(id,seed='evaluated'){
+  if(id==='alpha-resume'){
+    const selected=process.argv.find(x=>x.startsWith('--resume-fixture='))?.slice(17);
+    const folder=selected&&resolve(selected),rel=folder&&relative(tmpdir(),folder);
+    if(!folder||!rel||rel.startsWith('..')||/^[A-Za-z]:/.test(rel)||basename(folder)!=='alpha-built'||!existsSync(folder))throw new Error('Resume only the existing disposable alpha-built test fixture inside the temporary directory.');
+    return folder;
+  }
   const folder=join(fixtureDir,id);mkdirSync(folder);
   if(seed==='fresh'){const c=emptyIde();c.synthetic=true;c.project.entry='fresh';savePrebuild(folder,c);}
   else if(seed==='export-app'){
@@ -133,6 +139,7 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'alpha-resume',messages:['$crumb I am back in a fresh session. Continue the same built print-shop project from its saved context. I have not approved building or contacting anyone. What is the next useful move?']},
     {id:'alpha-build',seed:'fresh',messages:[
       '$crumb I want a small B2B business for independent print shops. Three shop owners I worked with report chasing emailed PDF approvals, but that is synthetic firsthand context, not real validation. Prepare a bounded local learning prototype: enter one proof reference, approve or reject it with a note, and see outstanding approvals. No PDF hosting, accounts, messages, payments, deployment or real customer data. I can test with two fitting colleagues tomorrow. Investigate material gaps and prepare the exact MVP scope, limits and runnable test plan before asking me to authorize building. Do not build yet.',
       'Yes, I authorize building the exact local learning scope you just displayed, including its limitations and cuts. Only synthetic local data, no sending or deployment.',
