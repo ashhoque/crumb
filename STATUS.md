@@ -1,5 +1,20 @@
 # Crumb status
 
+**M3-R6 PASS WITH WARNINGS — Astra release gate, 6 October 2026.**
+Full Node 24.19.0 suite **352/352**; six final installed Astra Medium sessions,
+29 turns, zero assistant identity leaks. Personality, learning velocity, fresh/built
+First User Packs, pricing, exports, exact thesis receipts and Act protection pass.
+Current product authority is CURRENT_PRODUCT_AUTHORITY.md.
+The only Astra changes bind compact thesis evidence to its approval basis and
+remove unnecessary duplicate thesis presentation. Personality/host guard preserved.
+Authorized release: push m3-r6, merge/verify/push main and sync exact main globally.
+See [final gate](M3_R6_ASTRA_RELEASE_GATE.md) and
+[exact transcripts](M3_R6_ASTRA_RELEASE_TRANSCRIPTS.md) for proof and warnings.
+Synthetic founders, variable latency, residual reference rereads and occasional
+long replies remain warnings. No M4. Earlier Sol evidence is preserved unchanged.
+
+## Shipped M3-R5 (historical)
+
 **M3-R5 PASS WITH WARNINGS — final Astra release gate.**
 Five completed fresh Astra Medium sessions (13 turns) have zero identity leakage.
 Founder direction/personality, linked First User Pack, stable pricing offer,

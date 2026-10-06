@@ -1,6 +1,6 @@
 # Research for a useful Evaluate decision
 
-Use the M3-R2 decision policy before a new search: decision → missing external
+Use the decision policy before a new search: decision → missing external
 evidence → materiality → bounded research → concise synthesis. A simple
 clarification with no material external gap stays on the fast path: compact current
 context, no history reload, repository scan or research call. When evidence matters,
@@ -61,7 +61,7 @@ Act still require the current founder-confirmed foundations. Do not spend a
 personal-tool founder's time proving venture scale. Conversely, one founder's
 inconvenience does not establish a reachable commercial buyer.
 
-Crumb owns this investigation. Use `internal evaluation-plan` at the start or for
+Crumb owns this investigation. Use `internal evaluation-plan` only for formal Evaluation preparation or
 a material refresh, reuse current sources, and save populated `quality` alongside
 the dossier. The tool plans/validates; it does not browse. Actually use permitted
 host research tools. Never ask the founder which API, database, competitors or
@@ -79,7 +79,7 @@ a reasoned recommendation and source/run-linked coverage. Unknown after research
 differs from unexamined. Explain irrelevance. Vendor docs do not prove runtime
 reliability; record needed authorized checks honestly. No invented prices/benchmarks.
 Show the judgment and main constraint briefly, then **View technical evaluation**.
-Propose an interpretation, not a pre-Act feature plan. Delayed holdings, for example,
+Prepare reversible briefs and concept drafts before Act; actual product implementation requires the applicable Act approval. Delayed holdings, for example,
 describe a reported period, not current buying. Confirm whether that fits intent.
 
 ## Startup discipline in decisions
@@ -90,7 +90,7 @@ switching, reachability and AI substitution to the decision. `quality.founderFit
 records a reported/supported edge, its limits and claims. Experience, code and
 access may help; none establishes demand or an unfair advantage.
 
-Choose the cheapest important learning step. Recommend direct conversations for
+Choose the fastest credible learning path that can materially improve the next decision while minimizing founder effort. Compare elapsed time, founder labour, evidence quality, relevance, reversibility and monetary/tool cost. Recommend direct conversations for
 lived-behavior uncertainty rather than endless desk research. Interviews remain
 optional. After explicit Act, compare manual/existing-tool delivery before adding
 automation; keep the smallest complete path that tests the pain. No YC lecture.
@@ -98,6 +98,14 @@ See [Kevin Hale's problem lenses](https://www.ycombinator.com/blog/startup-schoo
 and [YC's early-stage advice](https://www.ycombinator.com/blog/ycs-essential-startup-advice/).
 
 ## Bounded investigation
+
+When direct outcome validation takes weeks/months, check public/historical evidence,
+retrospective analysis, valid simulations/backtests/benchmarks, observed competitor
+behavior, focused conversations and honest mockup/concierge proxies. Explain what
+the faster evidence can establish, cannot establish and what direct validation must
+still prove. Run the slow track in parallel with reversible research, pricing, user
+discovery and preparation; prototypes require the applicable Act approval. Never
+turn a simulation or proxy into proven retention, payment, safety or demand.
 
 Normally allow up to 12 queries and 24 inspected pages in a research run, stopping
 earlier when two successive useful searches add no material information. They are
@@ -161,7 +169,8 @@ shows where people discuss pain; the latter is where founder-controlled contact
 may be appropriate after rules and permissions are checked. Start locally for a
 local business market and ask for city/region if absent. Start in focused online
 communities for a distributed role. Review roughly 5–20 high-fit public
-candidates when available; keep the three best source-backed cards in compact
+candidates when available; shortlist roughly five and present normally 3–5 strong
+starting points. Keep the three best source-backed cards in compact
 context. Named people are optional, and an inaccessible route is not a lead.
 When user contact is the bottleneck, inspect public candidate pages yourself and give
 the best verified matches with observed fit and limits. Do not delegate the
@@ -221,40 +230,3 @@ Finish with a concise answer that changes the decision: promising, weak, known,
 inferred and unknown. If tools fail, preserve `limited` status and offer supplied
 sources or resumed research. It cannot unlock Act; supplied sources or resumed research can continue IDE. The
 founder does not need to read the dossier to choose the next path.
-
-## M1-R3 depth and review
-
-Evaluation belongs to the exact confirmed foundation versions. Investigate frequency,
-urgency, severity/cost, mandatory/optional work, workaround, spend, buyer, willingness
-and ability to pay, prevalence/category direction, reachability/competition/switching,
-founder insight/expertise/access, feasibility, generic AI substitution, business-model
-fit and Intention alignment. A topic name or page count is not a completed inquiry.
-
-Use a landscape pass, cohort-specific user love/hate/pain investigation and a challenge
-pass where useful. A run ceiling or diminishing returns stops that run, not necessarily
-Evaluation. If a decision-critical question remains unexamined, pursue an appropriate
-bounded follow-up or retain researching. Unknown-after-search needs a relevant attempt.
-Public access failure is a capability limitation, never proof of no market.
-
-Look for what people love, hate, tolerate, find missing, build themselves and still do
-manually. Separate consequential complaints from cosmetic preferences and count
-independent observations, not repeated posts. Check current official documentation
-before treating an old complaint as an open gap. Explicitly compare satisfied users
-and adequate alternatives, not only supporting evidence. Preserve specific prices
-and billing terms, sales/distribution, onboarding and switching evidence when available.
-
-Compare direct/adjacent/incumbent/AI products, services, manual work, spreadsheets,
-generic AI and doing nothing. Unknown findings are legitimate; unsupported filled
-fields are not. Consider at most two adjacent problems and the founder's choice.
-
-When the evidence changes a foundation, explain the proposed change, return to Define
-and reconfirm it. Retain relevant old sources while reassessing conclusions. After
-research, qualify the decision and ask whether the founder agrees with that reading
-and its uncertainty. This is founder review, still separate from final Act consent.
-
-For stocks, distinguish self-directed swing traders doing scheduled shortlist reviews
-from long-term investors or intraday alert users. Investigate screeners, technical
-and fundamental research, journals, ranking, AI alternatives, manual comparison,
-actual praise/complaints, public candidate-selection language, traction facts/proxies,
-gaps, adjacency, founder fit and habitats. No promised trading return. No prototype,
-MVP, feature scope or architecture until explicit final Act confirmation.

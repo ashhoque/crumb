@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 import { parseArgs } from 'node:util';
+import { join, dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
 import { readFileSync, statSync } from 'node:fs';
 import { requireTestedRuntime } from '../application/runtime.js';
 import { brand } from '../domain/brand.js';
@@ -50,7 +53,9 @@ try {
   };
   if (command === 'doctor' && action === undefined) {
     const { sqliteVersion } = await import('../persistence/sqlite.js');
-    print({ product: brand.name, milestone: 'M3-R1', node: process.versions.node, sqlite: sqliteVersion(), platform: process.platform, architecture: process.arch, customerWorkflow: 'conversation IDE; portable handoff; reviewed Work Build Pack; approved stages and human checkpoints; founder-controlled Launch & Learn', customerValidation: 'not established' });
+    const sourceRoot=join(dirname(fileURLToPath(import.meta.url)),'../../..');
+    const revision=spawnSync('git',['rev-parse','HEAD'],{cwd:sourceRoot,encoding:'utf8',windowsHide:true});
+    print({ product: brand.name, node: process.versions.node, sqlite: sqliteVersion(), platform: process.platform, architecture: process.arch, globalSkill:process.env.USERPROFILE?join(process.env.USERPROFILE,'.agents/skills/crumb'):null,runtimeRevision:revision.status===0?revision.stdout.trim():null,statusSource:join(sourceRoot,'STATUS.md'), customerWorkflow: 'conversation IDE; portable handoff; reviewed Work Build Pack; approved stages and human checkpoints; founder-controlled Launch & Learn', customerValidation: 'not established' });
   } else if (command === 'demo' && target === undefined && action !== undefined) {
     const { prepareDemo } = await import('../application/demo.js');
     print(prepareDemo(action));

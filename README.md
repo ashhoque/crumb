@@ -3,12 +3,9 @@
 **The business copilot for AI builders.**
 
 Crumb helps clarify an idea or existing project, investigate the problem and
-alternatives, then choose a considered next step. Current milestone:
-**M3-R1 - Conversation Mode to Work/Build Mode**. See [status](STATUS.md),
-[implementation report](M3_R1_REPORT.md) and [focused quality trial](M3_R1_QUALITY_TEST_GUIDE.md).
-The focused correction strengthens research ownership, technical feasibility,
-proactive first-user avenues and past-behavior interviews within the same architecture.
-The existing project was preserved and pushed to GitHub before this work.
+alternatives, find reachable users and carry the next reversible business work forward.
+See [status](STATUS.md) for exact revision state and
+[current product authority](CURRENT_PRODUCT_AUTHORITY.md) for behavioral invariants.
 [Development decisions](docs/development/README.md) retain the approved proposal.
 
 ## Founder experience
@@ -25,9 +22,9 @@ A personal tool does not need a venture-scale business case. Skipped intention
 remains unknown without repeated prompting. Existing code is preserved and read
 within permission. Raw confidential customer-source import is outside this milestone.
 
-Crumb explicitly confirms your Intention, initial User and Problem, then investigates
-the opportunity. Research may send the conversation back to Define and reconfirm.
-You review the evaluation before a concise commitment summary asks:
+Crumb uses provisional foundations and research, then brings the decisive evidence
+and uncertainty into one bundled working-thesis review. Corrections invalidate
+affected review. Consequential build approval remains a separate commitment:
 **Are you ready to commit a build cycle to this?** Clear natural agreement with
 that current commitment saves a portable handoff. An early request cannot bypass this
 guided workflow. The concrete implementation scope still requires approval.
@@ -38,7 +35,8 @@ Say **View competitors**, **View what users are saying**, **View market gaps**,
 or **Open full research** when useful. Details are contextual and paginated.
 **The extra detail is optional — you can continue without reading it.**
 An optional opportunity brief retains research and challenges important claims.
-Before Act it excludes solution scope; after Act a startup master may include it.
+Before Act it can prepare reversible concepts and business briefs; implementation
+still requires the applicable build approval.
 Skipping the document does not bypass confirmation. Founders do not fill JSON forms or run tools.
 
 After explicit Act readiness, Crumb saves compact context and a Build Handoff.

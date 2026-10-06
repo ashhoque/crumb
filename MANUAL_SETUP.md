@@ -1,32 +1,25 @@
-# Current Codex installation (M3-R5 candidate for final Astra review)
+# Current Codex installation
 
-The only discoverable Crumb skill is installed directly at
-`C:\Users\Ash\.agents\skills\crumb\SKILL.md`; it is not a wrapper. Its
-version-controlled source is `skill/crumb/SKILL.md` in the Crumb repository, with
-specialist references alongside it. Repository-local skill entries and the old
-`pruvity`, `pruvello` and `customer-evidence` aliases are archived in
-`docs/legacy-skills/` and are not discoverable. Stable persistence identifiers
-remain unchanged.
+The sole active skill is `C:\Users\Ash\.agents\skills\crumb\SKILL.md`.
+Canonical source is `skill/crumb/SKILL.md`; the installer uses an explicit active
+reference allowlist. Historical skills/references live in `docs/legacy-skills/`
+and are not runtime entries. Stable persistence identifiers remain unchanged.
 
-For the current candidate, use the pushed `m3-r5-phase1` branch in the canonical source
-checkout `C:\Users\Ash\Documents\Codex\CEC`. Build with pinned Node 24.19.0,
-run `node scripts/sync-global-skill.mjs --install`, then run it without arguments
-to compare hashes. Installation also writes/checks `runtime.json` beside SKILL.md,
-with the actual pinned Node and built Core CLI paths; never commit this local locator.
-The installed read-only MCP points to that checkout's compiled
-`dist/src/cli/mcp.js`. Run the live host acceptance against the installed global
-skill. Common request contracts and note limits are in runtime.json; Core accepts
-bounded UTF-8 request files with --input-file. Reuse the locator and unchanged
-references. The installed implementation is `e769acf`; see M3_R5_UNBLOCK_REPORT.md.
-Release remains pending final Astra review. No main merge is authorized in this
-implementation pass. Preserve untracked GLOBAL_CRUMB_SETUP.md.
+Use the shipped `main` checkout at `C:\Users\Ash\Documents\Codex\CEC` for releases.
+A development candidate is installed only for an authorized revision acceptance;
+see STATUS.md for its exact state. Build with pinned Node 24.19.0, run
+`node scripts/sync-global-skill.mjs --install`, then run without options to verify
+all active file hashes, the generated runtime locator and native identity guard.
+Preserve unrelated untracked GLOBAL_CRUMB_SETUP.md.
 
-Codex also reads `C:\Users\Ash\.codex\AGENTS.md` at host level. Its scoped
-Crumb entry rule makes every visible message, including progress, speak as Crumb
-and directs the host to use a supplied skill path without a repository search.
-The product method remains in the installed skill. A live disposable-host probe
-is required after installation; source-string checks alone do not prove the
-visible voice. See `scripts/verify-closeout-host.mjs` and M3_R3_REPORT.md.
+`runtime.json` contains exact pinned Node/Core paths and compact common operation
+inputs. Read it once; reuse contracts. Progressive local-tools guidance covers
+uncommon operations. The read-only MCP uses the same checkout's built CLI/MCP.
+The installed scoped developer exception makes the first assistant message speak
+as Crumb despite generic skill-announcement instructions. Detailed personality
+remains canonical in SKILL.md. Clients replacing developer instructions must retain
+this exception. Use real installed-host text acceptance; string guards alone do
+not prove conversation behavior. Current authority is CURRENT_PRODUCT_AUTHORITY.md.
 
 ## Historical setup after M1-R2
 

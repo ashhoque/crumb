@@ -1,5 +1,9 @@
 # Crumb
 
+Current behavioral authority: [CURRENT_PRODUCT_AUTHORITY.md](CURRENT_PRODUCT_AUTHORITY.md).
+This cumulative specification retains historical design and compatibility context;
+consult it only when that history is needed and does not conflict with current authority.
+
 ## M3-R5 release-unblock implementation — 5 October 2026
 
 Canonical thesis confirmation includes the text actually displayed and rejects

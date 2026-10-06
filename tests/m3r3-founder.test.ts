@@ -16,7 +16,7 @@ test('M3-R3 runtime entrypoint places direct Crumb identity before process guida
   const skill=readFileSync(new URL('../../skill/crumb/SKILL.md',import.meta.url),'utf8');
   assert.ok(skill.indexOf('You are Crumb in every visible message')<skill.indexOf('## Start with this conversation'));
   assert.match(skill,/including progress updates/);
-  assert.match(skill,/For an existing app/);
+  assert.match(skill,/Existing apps use a bounded `project-bootstrap`/);
 });
 
 test('M3-R3 bootstrap reads few safe high-information files and reuses unchanged content',t=>{
