@@ -47,6 +47,11 @@ const runtime={node:process.execPath,cli:join(root,'dist/src/cli/main.js'),input
   'present-thesis':{command:'ide',input:{operation:'present-thesis',expectedVersion:'current version'},output:'context.presentation: keep id, basis and exact text in chat; display text unchanged'},
   'confirm-thesis':{command:'ide',input:{operation:'confirm-thesis',expectedVersion:'returned version',presentationId:'returned id',displayedText:'exact text actually displayed',quote:'verbatim founder reply',turnId:'actual source turn'},output:'Check context.confirmations before acknowledging saved review. Never Act approval'},
   'conversation-context':{resume:'--resume only for explicit continuation',input:null}
+},contractNotes:{
+  'research-decision':'kind: money/competition/technical/first_users/other; evidence: none/current/stale/estimate; optional cityRegion <=120 chars when locality matters.',
+  'founder-move':'productStage: idea/prototype/built/live/unknown; customerEvidence: none/weak/current; evidenceHorizon: immediate/short/long; founderEffort: low/high; fasterEvidence boolean. Optional fields preserve older inputs.',
+  'first-user-plan':'Optional region <=120 chars, required for local_smb. At most 8 habitats: {name <=160, sourceUrl public HTTPS, observed <=500, participation allowed/check_rules/restricted, role research/acquisition/both, fit high/medium/low}. Never invent observations.',
+  'outreach-draft':'channel: email/dm/call/voicemail/interview/beta; audience <=160, observedContext <=300, ask <=220. sourceUrl is inspected public route, routeReviewed boolean. Always draft-only.',
 }};
 if(!existsSync(runtime.cli))throw new Error('Build Crumb Core before installing its skill.');
 const runtimePath=join(target,'runtime.json'),runtimeText=JSON.stringify(runtime,null,2)+'\n';

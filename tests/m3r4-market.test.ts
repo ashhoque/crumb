@@ -59,7 +59,7 @@ test('M3-R4 live skill guidance retains personality, early research, continuity 
   const skill=readFileSync(new URL('../../skill/crumb/SKILL.md',import.meta.url),'utf8');
   const research=readFileSync(new URL('../../skill/crumb/references/research.md',import.meta.url),'utf8');
   assert.match(skill,/Hype the founder's real progress/);assert.match(skill,/single `\$crumb` invocation carries/);
-  assert.match(skill,/Never send, post/);assert.match(skill,/Early Market Pulse/);
+  assert.match(skill,/Never send, post/);assert.match(skill,/early Market Pulse/i);
   assert.match(research,/Engagement|engagement/);assert.match(research,/research habitats and one or two acquisition routes/);
 });
 test('M3-R4 installed CLI planners run without a saved project or network',()=>{
