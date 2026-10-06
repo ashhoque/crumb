@@ -6,7 +6,8 @@ import { spawnSync } from 'node:child_process';
 import { readFileSync, statSync } from 'node:fs';
 import { requireTestedRuntime } from '../application/runtime.js';
 import { brand } from '../domain/brand.js';
-import { readPrebuild, savePrebuild, saveWorkingContext, compactPrebuild, exportPrebuild, importPrebuild, transitionIde } from '../application/prebuild.js';
+import { readPrebuild, savePrebuild, saveEvaluationUpdate, saveWorkingContext, compactPrebuild, exportPrebuild, importPrebuild, transitionIde } from '../application/prebuild.js';
+import { evaluationUpdateSchema } from '../domain/evaluation-update.js';
 import { prebuildSections, renderPrebuildSummary, renderPrebuildDetail, renderStartupMaster, renderFullResearch } from './prebuild-render.js';
 import { emptyIde, ideSchema, ideState, upgradeContext } from '../domain/ide.js';
 import * as act from '../application/act.js';
@@ -36,7 +37,7 @@ try {
   const readInput = async (): Promise<unknown> => {
     let bytes = 0;
     const chunks: Buffer[] = [];
-    const limit = command === 'internal' && ['prebuild', 'restore-context'].includes(action ?? '') ? 307_200 : 65_536;
+    const limit = command === 'internal' && ['prebuild', 'evaluation-update', 'restore-context'].includes(action ?? '') ? 307_200 : 65_536;
     if(values['input-file']!==undefined){
       if(statSync(values['input-file']).size>limit)throw new Error(`Request exceeds ${limit / 1024} KiB. Retain compact context and selected evidence.`);
       chunks.push(readFileSync(values['input-file']));
@@ -110,6 +111,11 @@ try {
       case 'act-context': {const saved=act.readAct(root);print(saved?compactAct(saved):null);break;}
       case 'act-dossier': print(act.readAct(root)); break;
       case 'schema': print(ideSchema); break;
+      case 'evaluation-update-schema': print(evaluationUpdateSchema); break;
+      case 'evaluation-update': {
+        const saved=saveEvaluationUpdate(root,await readInput());
+        print({version:saved.version,hash:saved.hash,context:compactPrebuild(saved),summary:renderPrebuildSummary(saved)});break;
+      }
       case 'evaluation-plan': {const s=readPrebuild(root);if(!s||s.context.contractVersion!==2)throw new Error('Use the saved intention, user and problem to begin the research plan.');print(researchPlan(s.context));break;}
       case 'research-decision': print(planDecisionResearch(await readInput() as ResearchDecision)); break;
       case 'market-pulse': {const {planMarketPulse}=await import('../domain/market-intelligence.js');print(planMarketPulse(await readInput() as Parameters<typeof planMarketPulse>[0]));break;}

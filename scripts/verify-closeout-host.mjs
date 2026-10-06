@@ -101,7 +101,7 @@ async function start(id,seed='evaluated',existingFolder){
   const folder=existingFolder??createFixture(id,seed);
   const liveWeb=process.argv.includes('--live-web');
   const requestedModel=selectedModel;
-  const implementationPolicy=id==='alpha-build'?'Product code writes are permitted only inside this disposable project after the actual founder reply authorizes the exact displayed scope and existing Act checks pass. No permission is supplied by this test instruction.':'No product code implementation.';
+  const implementationPolicy=['alpha-build','alpha-repair'].includes(id)?'Product code writes are permitted only inside this disposable project after the actual founder reply authorizes the exact displayed scope and existing Act checks pass. No permission is supplied by this test instruction.':'No product code implementation.';
   const installedConfig=await request('config/read',{cwd:folder});
   const hostInstructions=installedConfig.config.developer_instructions??'';
   results.hostIdentityInstructions=hostInstructions;
@@ -139,6 +139,12 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'alpha-repair',seed:'fresh',messages:[
+      '$crumb I want a small B2B business for independent electronics repair shops. In this synthetic scenario three shop managers I know report losing track of loaned bench tools; this is supplied test context, not verified demand. Prepare a small local learning MVP: record a tool loan with borrower and due date, mark it returned, and see outstanding loans. No accounts, payments, messaging, deployment or real customer data. I can observe two fitting colleagues trying it tomorrow. Investigate only material gaps, retain an honest evaluation, and prepare a concise scope and runnable test plan. Do not build yet.',
+      "Looks good, don't build yet. I agree with the working user, problem and evaluation you displayed. Finish the reversible preparation and show the exact local scope and limitations for my build decision.",
+      'Yes, I authorize building exactly the local tool-loan scope and limitations you just displayed. Only synthetic local data; no sends or deployment.',
+      'Continue that unchanged authorized scope, run it and exercise the main loan/return task. Prepare the first-user observation plan. Do not add features.'
+    ]},
     {id:'alpha-resume',messages:['$crumb I am back in a fresh session. Continue the same built print-shop project from its saved context. I have not approved building or contacting anyone. What is the next useful move?']},
     {id:'alpha-build',seed:'fresh',messages:[
       '$crumb I want a small B2B business for independent print shops. Three shop owners I worked with report chasing emailed PDF approvals, but that is synthetic firsthand context, not real validation. Prepare a bounded local learning prototype: enter one proof reference, approve or reject it with a note, and see outstanding approvals. No PDF hosting, accounts, messages, payments, deployment or real customer data. I can test with two fitting colleagues tomorrow. Investigate material gaps and prepare the exact MVP scope, limits and runnable test plan before asking me to authorize building. Do not build yet.',

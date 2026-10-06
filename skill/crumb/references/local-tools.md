@@ -96,6 +96,19 @@ separate project context before any save so the older idea is not overwritten.
 `conversation-refresh --resume` derives
 missing artifacts for older saved IDE. See [modes](modes.md) for handoff/Work Pack.
 `context` retains the older compact contract; `dossier` is full saved context.
+`evaluation-update` accepts `{expectedVersion,changes}` through `--input-file`.
+Changes contain only changed evidence sections: project, intention, definition,
+feedbackClaimIds, sources, claims, research, competitors, adjacent, habitats,
+firstUserAvenues, redTeam, evaluation, investigation, opportunity or quality.
+Sections are replaced, not appended or recursively merged; retain existing
+evidence when adding more. `evaluation-update-schema` gives those exact schemas.
+The runtime constructs stage/presentation and retains working notes, receipts,
+project identity and unrelated sections. All ordinary validation, version checks
+and material-change invalidation still apply. A reported_metric requires metric
+{name,value,unit,period,reportedBy}; metric:null is not a reported numeric metric.
+Never fill missing evidence to make a save pass. Use this boundary for formal
+evaluation rather than freehand reconstruction of the full dossier.
+
 `template` returns
 editable v2 prebuild data with the correct expectedVersion without writing. Legacy
 knowledge becomes draft foundations, with no automatic confirmations. `schema`

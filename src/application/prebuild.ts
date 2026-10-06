@@ -14,6 +14,14 @@ import { nextIdeStep } from '../domain/guide.js';
 import { agreesWithPresentation, type ReplyInterpretation } from '../domain/reply.js';
 import { syncConversationArtifacts } from './session.js';
 import { updateWorkingContext, credibleWorkingFact, type FounderWorkingContext } from '../domain/founder-intelligence.js';
+import { assembleEvaluationUpdate } from '../domain/evaluation-update.js';
+import { emptyQuality } from '../domain/evaluation-quality.js';
+
+export function saveEvaluationUpdate(target:string,input:unknown):SavedPrebuild {
+  const saved=readPrebuild(target);
+  const current=saved?.context.contractVersion===2?saved.context:saved?upgradeContext(saved.context):{...emptyIde(),quality:emptyQuality()};
+  return savePrebuild(target,assembleEvaluationUpdate(current,input));
+}
 
 export function storedPrebuild(db: SqliteConnection): SavedPrebuild | null {
   if (Number(db.get('PRAGMA user_version')?.['user_version']) < 2) return null;
