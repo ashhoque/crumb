@@ -40,6 +40,15 @@ test('Recorded incomplete closeout exposes all material omissions together and w
  assert.ok(missing.every(x=>x.owner==='crumb'));
  assert.throws(()=>transitionIde(root,{operation:'review',expectedVersion:saved.version}),error=>error instanceof CompletionError&&error.requirements.length>10);
  assert.equal(readPrebuild(root)!.hash,saved.hash);assert.throws(()=>assertAct(c));
+ // Live host confused finding IDs with source IDs, then with habitat IDs.
+ // Report the actual rejected namespace/ID without accepting invented records.
+ const sourceMixup=completion(c,saved.version,saved.hash);
+ sourceMixup.changes.habitats[0]!.participation.sourceIds=['c-scenario'];
+ assert.throws(()=>transitionIde(root,{...sourceMixup,contextHash:saved.hash} as Parameters<typeof transitionIde>[1]),/Unknown source reference c-scenario.*sources/);
+ const habitatMixup=completion(c,saved.version,saved.hash);
+ habitatMixup.changes.firstUserAvenues=['c-scenario'];
+ assert.throws(()=>transitionIde(root,{...habitatMixup,contextHash:saved.hash} as Parameters<typeof transitionIde>[1]),/Unknown habitat reference c-scenario.*habitats/);
+ assert.equal(readPrebuild(root)!.hash,saved.hash);
 });
 
 test('Actual scoped host agreement records review and Act without granting excluded actions; refusal and changed basis still block',t=>{

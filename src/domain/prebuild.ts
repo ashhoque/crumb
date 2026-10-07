@@ -132,7 +132,7 @@ export function validatePrebuild(input: unknown, policy:{bounded?:boolean;negati
   const claimMap = new Map(c.claims.map(item => [item.id, item]));
   const runs = new Map(c.research.map(run => [run.id, run]));
   for (const [name, items] of [['sources', c.sources], ['claims', c.claims], ['research', c.research], ['competitors', c.competitors], ['adjacent opportunities', c.adjacent], ['habitats', c.habitats]] as const) unique(items.map(item => item.id), name);
-  const refs = (values: string[], map: Map<string, unknown>, label: string) => { unique(values, `${label} references`); for (const id of values) if (!map.has(id)) fail(`Unknown ${label} reference. Preserve evidence links before saving.`); };
+  const refs = (values: string[], map: Map<string, unknown>, label: string) => { unique(values, `${label} references`); for (const id of values) if (!map.has(id)) fail(`Unknown ${label} reference ${id}. Link only an ID retained in ${label === 'source' ? 'sources' : label === 'claim' ? 'claims' : 'habitats'}; do not substitute another evidence kind or invent a record.`); };
   for (const key of [...sourceMap.keys(), ...claimMap.keys(), ...runs.keys(), ...c.competitors.map(item => item.id), ...c.adjacent.map(item => item.id), ...c.habitats.map(item => item.id)]) if (!/^[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}$/.test(key)) fail('Use plain stable identifiers for evidence references.');
   const claimRefs = (values: string[]) => refs(values, claimMap, 'claim');
   const sourceRefs = (values: string[]) => refs(values, sourceMap, 'source');

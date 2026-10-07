@@ -184,6 +184,12 @@ private storage or credentials. Synthetic and real provenance remain separate.
    by stable IDs; assessments use {scope:business|technical,topic,status,claimIds,runIds,reason,question}
    with status findings/unknown_after_search/not_relevant. The adapter links coverage
    and inquiry references once. Use actual relevant attempts, never generic placeholders.
+   Reference namespaces are distinct: sourceIds/inspectedSourceIds contain sources[].id,
+   claimIds contain claims[].id, runIds contain research[].id, and firstUserAvenues
+   contains habitats[].id. A finding ID is not a source or habitat. On a rejected
+   reference, inspect the named ID in the submitted payload against retained records;
+   correct the link from actual evidence and retry before handing off. Never invent
+   a source or recruitment permission to satisfy a reference.
    This existing review operation validates the prospective complete state and saves
    atomically. Exact retries do not duplicate receipts. Read `dossier` to verify readiness.
    This checks coverage, alternatives, relevant attempts, counterevidence and
