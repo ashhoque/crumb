@@ -15,11 +15,11 @@ import {assistantIdentityLeaks,openingAssistantText,composeDeveloperInstructions
 // MCP configuration is process-local, never written to the user's config.
 const root=dirname(dirname(fileURLToPath(import.meta.url))),runDir=join(root,'.m0-local',`closeout-host-${Date.now()}`);
 mkdirSync(runDir,{recursive:true});
-const fixtureDir=mkdtempSync(join(tmpdir(),'crumb-closeout-'));
+const fixtureDir=mkdtempSync(join(process.argv.includes('--interviews')?dirname(root):tmpdir(),process.argv.includes('--interviews')?'crumb-interview-dry-run-':'crumb-closeout-'));
 const skillPath=join(process.env.USERPROFILE??'', '.agents/skills/crumb/SKILL.md'),mcp=join(root,'dist/src/cli/mcp.js');
 const results={timestamp:new Date().toISOString(),syntheticInputs:true,liveModel:true,skillPath,discovery:false,mcp:[],sessions:[],status:'running'};
 const stock=()=>JSON.parse(readFileSync(join(root,'fixtures/m3r1-quality/stock.json'),'utf8'));
-const cases=JSON.parse(readFileSync(join(root,'fixtures/m3r1-closeout/conversation-cases.json'),'utf8')).cases;
+const cases=JSON.parse(readFileSync(join(root,process.argv.includes('--interviews')?'fixtures/interview-delivery/conversation-cases.json':'fixtures/m3r1-closeout/conversation-cases.json'),'utf8')).cases;
 const turnTimeout=process.argv.includes('--live-web')?300000:180000;
 let selectedModel=process.argv.find(arg=>arg.startsWith('--model='))?.slice(8);
 if(process.argv.includes('--fixture-only')){const folder=createFixture('existing-fixture','existing');console.log(JSON.stringify({folder,entry:readPrebuild(folder).context.project.entry,artifacts:readPrebuild(folder).context.project.artifacts}));process.exit(0);}
@@ -63,6 +63,10 @@ function createFixture(id,seed='evaluated'){
   }
   const folder=join(fixtureDir,id);mkdirSync(folder);
   if(seed==='fresh'){const c=emptyIde();c.synthetic=true;c.project.entry='fresh';savePrebuild(folder,c);}
+  else if(seed==='interview-app'){
+    writeFileSync(join(folder,'README.md'),'# Tagreturn\nSynthetic built beta for independent equipment rental shops in Glasgow: import returned-equipment checklists and highlight missing inspection signoffs. No automated outreach, deployment or payments. Solo technical founder, zero customers/interviews. Target is workshop/service managers. Actual recurring pain, buyer and willingness to pay are unknown; public routes support hypotheses, not demand.\n');
+    const c=emptyIde();c.synthetic=true;c.project.entry='existing';c.project.name='Tagreturn';savePrebuild(folder,c);
+  }
   else if(seed==='export-app'){
     writeFileSync(join(folder,'README.md'),'# Crewledger\nSynthetic working beta for small cleaning-company owners to compare expected and actual job hours. Owner has job records in scheduling software but has not analysed margin or buyer demand. No customers or validation claimed.\n');
     const c=emptyIde();c.synthetic=true;c.project.entry='existing';savePrebuild(folder,c);
@@ -140,7 +144,7 @@ try{
   }
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
-  const sessions=[
+  const sessions=process.argv.includes('--interviews')?cases:[
     {id:'alpha-completion-finalize',messages:[
       '$crumb Continue the same built CSV handover-checker project from its saved stage and actual outputs. Give me the verified result, runnable command and ready first-user observation plan, then the one real dependency. Reuse current evidence and checks. Do not rebuild, expand, contact or deploy.',
       'So what do these checks actually prove about the business? Keep it short.',
@@ -314,7 +318,7 @@ try{
   ];
   // All supplied cases are exercised through actual model turns, not asserted
   // by repeating a renderer string. Backgrounds stay explicitly synthetic.
-  sessions.push({id:'supplied-cases',messages:cases.map(c=>`[Independent synthetic conversation case ${c.id}. Current hypothetical background: ${c.given} This case does not replace saved approval or create research receipts.]\n${c.user_message}`)});
+  if(!process.argv.includes('--interviews'))sessions.push({id:'supplied-cases',messages:cases.map(c=>`[Independent synthetic conversation case ${c.id}. Current hypothetical background: ${c.given} This case does not replace saved approval or create research receipts.]\n${c.user_message}`)});
   const selected=process.argv.find(arg=>arg.startsWith('--sessions='))?.slice('--sessions='.length).split(',');
   for(const spec of sessions.filter(spec=>!selected||selected.includes(spec.id))){
     const s=await start(spec.id,spec.seed),record={id:spec.id,fixture:s.folder,threadId:s.threadId,turns:[]};results.sessions.push(record);
@@ -348,5 +352,19 @@ try{
   results.timings=results.sessions.map(s=>({session:s.id,elapsedMs:s.turns.map(t=>t.elapsedMs)}));
   results.status=results.identityLeaks.length?'failed_identity_leak':'completed_needs_semantic_review';
   if(results.identityLeaks.length)process.exitCode=1;
+  if(process.argv.includes('--interviews')){
+    results.interviewDelivery=results.sessions.map(s=>{
+      const notes=join(s.fixture,'crumb-contexts');
+      const roots=[s.fixture,...(existsSync(notes)?readdirSync(notes,{withFileTypes:true}).filter(x=>x.isDirectory()).slice(0,16).map(x=>join(notes,x.name)):[])];
+      const requests=roots.flatMap(r=>{
+        const packs=join(r,'crumb-interviews');
+        return existsSync(packs)?readdirSync(packs,{withFileTypes:true}).filter(x=>x.isDirectory()).slice(0,16).map(x=>join(packs,x.name,'REQUEST.json')).filter(existsSync):[];
+      });
+      return {session:s.id,requests,packOperations:s.turns.flatMap(t=>t.tools).filter(t=>/internal\s+interview-pack\b/u.test(t.command??'')).length};
+    });
+    if(results.interviewDelivery.some(s=>!s.requests.length||!s.packOperations)){
+      results.status='blocked_interview_delivery';results.error='Ordinary installed host did not demonstrate supported interview packaging and actual request artifacts; inspect tool failures and transcript. Completed prose is not delivery proof.';process.exitCode=1;
+    }
+  }
 }catch(error){results.status='blocked';results.error=error.message;results.homeDirectoryUnavailable=/Could not find home directory/i.test(diagnostic);process.exitCode=1;}
 finally{save();console.log(JSON.stringify({status:results.status,path:join(runDir,'results.json'),error:results.error}));child.stdin.end();child.kill();lines.close();cancel('Test ended.');}

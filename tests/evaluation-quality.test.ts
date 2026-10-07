@@ -107,7 +107,7 @@ test('Quality interviews retain all five past-behavior concepts, disregard hypot
 
 test('Quality recommends conversations for behavioral uncertainty without adding an Act gate',t=>{
   const root=temporaryProject(t);prepareIde(root,'evaluation',fixture());const c=current(root);
-  assert.match(interviewRecommendation(c)!,/few people|short guide/);assert.match(nextIdeStep(c).text,/still choose to build/);
+  assert.match(interviewRecommendation(c)!,/2–4 completed real interviews/);assert.match(nextIdeStep(c).text,/still choose to build/);
   assert.equal(nextIdeStep(c).text.match(/Are you ready to commit a build cycle to this\?/g)?.length,1);assert.doesNotMatch(nextIdeStep(c).text,/Executive summary|Yes — let's build · Change the user · Change the problem · Review evaluation/);
   assert.equal(c.feedbackClaimIds.length,0);confirmSubject(root,'act');assert.doesNotThrow(()=>assertAct(current(root)));
   const skip=fixture();skip.quality!.learning.recommendation='build_decision';assert.throws(()=>validateQuality(skip,true),/user conversations/);

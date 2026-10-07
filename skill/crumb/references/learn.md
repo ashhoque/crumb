@@ -36,7 +36,10 @@ Explain why the selected route matches this confirmed user. Do not default to
 generic startup launch sites. Present the concise pack and a clear next action.
 
 Prepare messages or follow-ups for the founder to review. Do not send DMs/email,
-post, scrape contacts, create accounts or deploy. A prepared message is not sent.
+post, scrape contacts, create accounts or deploy through these learning commands.
+The approved interview-package email exception uses the separate exact scoped
+approval and real host Gmail capability in [interview delivery](interview-delivery.md).
+A prepared message is not sent.
 Only the founder's supplied report can record outreach. No autonomous outreach
 capability exists in these commands.
 

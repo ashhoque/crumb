@@ -1,0 +1,47 @@
+{
+  "kind": "development_candidate_not_shipped",
+  "files": [
+    {
+      "file": "SKILL.md",
+      "source": "d35a0476962c0e0f11da2ed298ab0680145ec23093700354ff15a6b6db09d525",
+      "installed": "d35a0476962c0e0f11da2ed298ab0680145ec23093700354ff15a6b6db09d525"
+    },
+    {
+      "file": "host/codex.md",
+      "source": "0d9e88092535a68e9c23cbb82b1da2114324113f10483a316b89d2ed6a835ffb",
+      "installed": "0d9e88092535a68e9c23cbb82b1da2114324113f10483a316b89d2ed6a835ffb"
+    },
+    {
+      "file": "references/research.md",
+      "source": "be4f74038599e3e775a0be4faaf79e5a9cb627056590c7af96beebb5361cdeba",
+      "installed": "be4f74038599e3e775a0be4faaf79e5a9cb627056590c7af96beebb5361cdeba"
+    },
+    {
+      "file": "references/local-tools.md",
+      "source": "4bb494895c66a74e0d4b1c6423ffd99b0969f2395f5fa70b454b2b9842a0d72b",
+      "installed": "4bb494895c66a74e0d4b1c6423ffd99b0969f2395f5fa70b454b2b9842a0d72b"
+    },
+    {
+      "file": "references/act.md",
+      "source": "b43e4ce662aa7435a4d3fe3dd9a283a1c126169c8398002f0377143b7118caaf",
+      "installed": "b43e4ce662aa7435a4d3fe3dd9a283a1c126169c8398002f0377143b7118caaf"
+    },
+    {
+      "file": "references/modes.md",
+      "source": "e72f89aeae8da3ea5ee713855a89f26517710e68e3504ba0033c8c66eb565494",
+      "installed": "e72f89aeae8da3ea5ee713855a89f26517710e68e3504ba0033c8c66eb565494"
+    },
+    {
+      "file": "references/learn.md",
+      "source": "55445de7a0bf9f6dbefe210d027a8b644a460ac11b807602d44b46dbf966d116",
+      "installed": "55445de7a0bf9f6dbefe210d027a8b644a460ac11b807602d44b46dbf966d116"
+    },
+    {
+      "file": "references/interview-delivery.md",
+      "source": "355234687e4404ef9a69fa6b0ad7471035499634a53848bf1c0cb0cd2418278c",
+      "installed": "355234687e4404ef9a69fa6b0ad7471035499634a53848bf1c0cb0cd2418278c"
+    }
+  ],
+  "runtimeLocatorSha256": "21bd110acb08985b8a0b9b94016152b9c8da61dd8fdb6ff595a33451d44bc075",
+  "runtime": "C:\\Users\\Ash\\.codex\\.chatgpt-projects\\g-p-6ac1da47a3e48191b05023e7662b2815\\crumb\\dist\\src\\cli\\main.js"
+}

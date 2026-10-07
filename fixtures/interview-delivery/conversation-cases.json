@@ -1,0 +1,23 @@
+{
+  "cases": [
+    {
+      "id": "alpha-interview-founder",
+      "seed": "interview-app",
+      "messages": [
+        "$crumb I built Tagreturn for independent equipment rental shops in Glasgow. It flags missing inspection signoffs when equipment comes back. No users or interviews yet. I'm a solo technical founder and want a small B2B business. Help me learn whether this pain matters; don't build or send anything. I'm Sam and my return email is sam@example.com. This is a synthetic acceptance case, not actual customer evidence.",
+        "I'll run the interviews myself. Gmail isn't connected. Give me the complete package here; keep every email/invitation unsent.",
+        "For rehearsal only, imagine two managers: one loses half an hour chasing these signoffs every week; the other has never had trouble because inspections are recorded immediately. These are fictional, not interviews I completed. How should that change our next move?"
+      ]
+    },
+    {
+      "id": "alpha-interview-team",
+      "seed": "interview-app",
+      "messages": [
+        "$crumb I have a working Tagreturn beta for equipment rental workshop managers in Glasgow, checking returned-equipment inspection signoffs. Zero users/interviews. Help me reach relevant people and learn whether missing signoffs are painful. Don't build or send anything. I'm Sam. This is a synthetic acceptance case with no actual customer evidence.",
+        "Crumb's team should take the interviews off my plate. Prepare the request only; no sending or prospect contact in this dry run.",
+        "sam@example.com. Gmail is unavailable. Keep the request and email draft ready; do not send anything.",
+        "Suppose the team isn't available during the alpha. Give me the useful fallback without making me reconstruct the package."
+      ]
+    }
+  ]
+}

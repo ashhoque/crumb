@@ -85,7 +85,7 @@ export function habitatNotice(c:AnyPrebuild):string {
 export function interviewRecommendation(c:AnyPrebuild):string|null {
   const q=c.contractVersion===2?c.quality:undefined;
   const warranted=q?q.learning.recommendation==='interviews':!c.feedbackClaimIds.length&&c.evaluation.unknowns.some(x=>/pain|frequency|workaround|buyer|pay|switch|behavior/i.test(x));
-  return warranted?`I'd talk with a few people like this before committing code. ${q?plain(q.learning.reason):'Desk research cannot tell us how this problem feels in their actual workflow.'} I can prepare a short guide around their last experience. You can still choose to build with that uncertainty.`:null;
+  return warranted?`I'd learn from approximately 2–4 completed real interviews before committing code. ${q?plain(q.learning.reason):'Desk research cannot tell us how this problem feels in their actual workflow.'} A request or scheduled call is not evidence. You can still choose to build with that uncertainty.`:null;
 }
 
 export function evaluationHighlights(c:IdeContext):string[] {

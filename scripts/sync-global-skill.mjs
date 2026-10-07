@@ -10,7 +10,7 @@ const source=join(root,'skill','crumb');
 const target=join(process.env.USERPROFILE??'', '.agents','skills','crumb');
 const args=process.argv.slice(2),install=args.includes('--install'),skillOnly=args.includes('--skill-only');
 if(!process.env.USERPROFILE||args.some(arg=>!['--install','--skill-only'].includes(arg))||new Set(args).size!==args.length)throw new Error('Use --install to update global Crumb, no option to verify, or --skill-only for isolated offline fixtures.');
-const files=['SKILL.md','host/codex.md',...['research','local-tools','act','modes','learn'].map(name=>`references/${name}.md`)];
+const files=['SKILL.md','host/codex.md',...['research','local-tools','act','modes','learn','interview-delivery'].map(name=>`references/${name}.md`)];
 const hash=path=>createHash('sha256').update(readFileSync(path)).digest('hex');
 if(existsSync(target)&&lstatSync(target).isSymbolicLink())throw new Error('Global skill target must be a real directory.');
 // Remove only known formerly installed historical files, never arbitrary user files.
@@ -39,6 +39,9 @@ const runtime={node:process.execPath,cli:join(root,'dist/src/cli/main.js'),input
   'market-pulse':{user:'specific provisional user',problem:'observed pain',decision:'one decision',materialGap:true,externalEvidence:'none',localMarket:false},
   'founder-move':{kind:'evidence_decision',hasCurrentSnapshot:true,materialExternalGap:false,existingEvidence:'current',productStage:'built',customerEvidence:'none',evidenceHorizon:'short',fasterEvidence:false,founderEffort:'low'},
   'first-user-plan':{user:'specific provisional user',pain:'strongest pain',market:'distributed',habitats:[]},
+  'interview-pack':{input:{expectedVersion:'current version',contextHash:'current hash',path:'founder or team',founderName:'known name or Not provided',returnEmail:null,emailSource:null,problem:'one-line problem',user:'specific user',topPain:'ranked top pain',thesis:'current hypothesis',reason:'why real interviews now',routes:[{sourceId:'retained actually inspected source id',name:'public starting point',fit:'observed reason',restrictions:'actual rules/access limitations',participation:'allowed/check_rules/restricted',role:'research/acquisition/both',contact:null}],outreach:'exact neutral invitation draft',strengthens:'behavioral signals',weakens:'contradicting signals',identityDisclosure:false,constraints:'actual constraints or None supplied'},output:'Private ignored crumb-interviews/<id>/REQUEST.md + REQUEST.json + ROUTES.csv. Draft-only, no interviews or approval. Support inbox configured by CRUMB_INTERVIEW_SUPPORT_EMAIL.'},
+  'interview-email':{input:{id:'returned request id',operation:'preview'},output:'Exact displayedText and mail; show unchanged before approve. approve input {id,operation,displayedText,quote,turnId,optional interpretation {meaning:agreement,explanation}}. Return email source connected_account/verified_context/founder_supplied. Read references/interview-delivery.md for native Gmail/fallback and submission/result contract.'},
+  'interview-results':{input:{id:'returned request id',results:'Attributed records described in references/interview-delivery.md'},output:'Counts real completed interviews separately; returned source layers remain attributed and not independent validation. Qualitatively reconcile through existing evaluation-update/finish-evaluation, read back. No automatic GO or approval.'},
   'outreach-draft':{audience:'specific role',observedContext:'observed public workflow',ask:'Could we discuss your last example',channel:'interview',sourceUrl:'https://example.com/replace-with-inspected-route',routeReviewed:false},
   'validation-asset':{painKnown:true,productBuilt:false,fastLearning:true},
   'project-bootstrap':{decision:'pricing',previous:[]},
