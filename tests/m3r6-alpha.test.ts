@@ -11,7 +11,7 @@ import { planFor } from './act-fixtures.js';
 import { validateActPlan } from '../src/domain/act.js';
 import { interviewGuide, renderStartupMaster } from '../src/cli/prebuild-render.js';
 import { bootstrapProject } from '../src/application/project-bootstrap.js';
-import { saveWorkingContext, readPrebuild } from '../src/application/prebuild.js';
+import { saveWorkingContext, readPrebuild, transitionIde } from '../src/application/prebuild.js';
 
 test('Alpha interviews and provisional scope are usable before review without authorizing a build',()=>{
   const c=ideFixture();c.evaluation.status='in_progress';
@@ -103,4 +103,13 @@ test('Alpha existing master renderer exposes honest provisional MVP artifacts be
   assert.match(text,/Provisional MVP plan/);assert.match(text,/Observe a local proof approval/);
   assert.throws(()=>assertAct(saved.context));
   assert.equal(readPrebuild(root)!.hash,saved.hash);
+});
+
+test('Complete in-progress dossier joins its exact thesis review without a second Evaluation reply',t=>{
+  const root=temporaryProject(t),c=learningFixture();c.evaluation.status='in_progress';
+  const saved=prepareIde(root,'none',c),shown=transitionIde(root,{expectedVersion:saved.version,operation:'present-thesis'}),p=(shown.context as IdeContext).ide.presentation!;
+  const reviewed=transitionIde(root,{expectedVersion:shown.version,operation:'confirm-thesis',presentationId:p.id,displayedText:p.text,quote:"Looks good, don't build yet.",turnId:'one_complete_thesis_review'}),result=reviewed.context as IdeContext;
+  assert.equal(result.evaluation.status,'ready');assert.deepEqual(result.ide.confirmations.map(x=>x.subject),['intention','user','problem','evaluation']);
+  assert.ok(result.ide.confirmations.every(x=>x.presentedText===p.text&&x.turnId==='one_complete_thesis_review'));
+  assert.throws(()=>assertAct(result));assert.ok(presentationText(result,'act'));
 });

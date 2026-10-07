@@ -1,0 +1,434 @@
+{
+  "observed": "2026-10-07T03:45:54.674Z",
+  "prebuild": {
+    "version": 2,
+    "hash": "2f846e5d185c3c397094477419d7ff98249faf296d17f54f58a5466beb08e489",
+    "recordedAt": "2026-10-07T03:40:09.947Z",
+    "context": {
+      "contractVersion": 2,
+      "expectedVersion": 1,
+      "synthetic": false,
+      "stage": "intention",
+      "project": {
+        "name": "Current project",
+        "entry": "unknown",
+        "artifacts": [],
+        "permissionQuote": null
+      },
+      "preferredName": null,
+      "intention": {
+        "status": "unasked",
+        "goal": "unknown",
+        "statement": null,
+        "advice": null
+      },
+      "definition": {
+        "user": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "buyer": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "problem": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "trigger": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "job": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "workaround": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "pain": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "consequence": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "frequency": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        },
+        "reason_for_belief": {
+          "text": null,
+          "claimIds": [],
+          "basis": "unknown"
+        }
+      },
+      "feedbackClaimIds": [],
+      "sources": [],
+      "claims": [],
+      "research": [],
+      "competitors": [],
+      "adjacent": [],
+      "habitats": [],
+      "firstUserAvenues": [],
+      "redTeam": [],
+      "master": null,
+      "buildRequest": null,
+      "evaluation": {
+        "status": "not_started",
+        "coverage": [
+          {
+            "topic": "frequency",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "urgency",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "pain",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "necessity",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "prevalence",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "category_direction",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "buyer",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "existing_spend",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "reachability",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "founder_fit",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "ai_substitutes",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "dedicated_value",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "competitors",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "user_language",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "traction",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "gaps",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "adjacency",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "habitats",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          }
+        ],
+        "promising": [],
+        "weak": [],
+        "unknowns": [],
+        "contradictions": [],
+        "conclusion": null
+      },
+      "brief": {
+        "kind": "conversation",
+        "summary": "We will start from where you are. First, let’s make the problem and your ambition clearer.",
+        "seeing": [],
+        "matters": [],
+        "next": "Describe what you have in mind.",
+        "questions": [
+          "Are you starting fresh, or do you have a project in progress?"
+        ],
+        "choices": [
+          {
+            "label": "Starting fresh",
+            "action": "respond"
+          },
+          {
+            "label": "Existing project",
+            "action": "respond"
+          }
+        ]
+      },
+      "opportunity": null,
+      "discovery": {
+        "channels": "online",
+        "region": null,
+        "outcome": "not_run",
+        "runIds": [],
+        "limitation": "No first-user discovery has been run for this context yet."
+      },
+      "investigation": {
+        "coverage": [
+          {
+            "topic": "workaround",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "willingness_to_pay",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "ability_to_pay",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "switching_cost",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "founder_insight",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "founder_expertise",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "founder_access",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "technical_feasibility",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "business_model_fit",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "intention_alignment",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          }
+        ],
+        "questions": [],
+        "alternatives": [],
+        "counterevidence": null,
+        "decision": null,
+        "redefinition": null
+      },
+      "ide": {
+        "generations": {
+          "intention": 0,
+          "user": 0,
+          "problem": 0,
+          "evaluation": 1,
+          "act": 1
+        },
+        "confirmations": [],
+        "presentation": null,
+        "reviewBasis": null
+      },
+      "workingContext": {
+        "conversationId": "embroidery-first-test-20261006-01",
+        "project": {
+          "customer": {
+            "value": "Provisional first user: CSV-checking office staff at known Ontario embroidery shop; owner is likely buyer; machine operator benefits.",
+            "status": "inferred",
+            "confidence": "medium",
+            "source": "Current founder message and Friday preparation"
+          },
+          "problem": {
+            "value": "Blank or whitespace-only garment_size or thread_colour is incomplete. Filled-value correctness excluded. Last week two customer orders stopped at machine; roughly 100 order lines/week.",
+            "status": "known",
+            "confidence": "high",
+            "source": "Initial founder report plus current clarification"
+          },
+          "decision": {
+            "value": "GO for one bounded workflow test, not proven demand or build permission. Compare exception checking with normal skim and existing spreadsheet filtering.",
+            "status": "inferred",
+            "confidence": "medium",
+            "source": "Prepared friday-test.txt; founder observation and inspected substitutes"
+          },
+          "capabilities": {
+            "value": "Proposed local Windows browser page, no terminal. Select CSV with order_id, garment_size, thread_colour, quantity; flag empty/whitespace-only size or colour; show row/order context; reselect corrected export.",
+            "status": "inferred",
+            "confidence": "medium",
+            "source": "Founder clarification and updated friday-test.txt"
+          },
+          "risk": {
+            "value": "One shop only; no others agreed. Filled values may be wrong and are outside scope. Encoding not observed. Quoted commas must parse correctly; invalid input cannot yield false clean result. Original file unchanged.",
+            "status": "inferred",
+            "confidence": "medium",
+            "source": "Founder clarification and provisional verification brief"
+          },
+          "market_pulse": {
+            "value": "InkSoft covers thread details; Printavo lists $109/$244 monthly broad plans, currency unspecified. Excel supports blank filters. Recurring value versus existing tools and willingness to pay unknown.",
+            "status": "inferred",
+            "confidence": "medium",
+            "source": "Opened 2026-10-06: printavo.com/pricing; inksoft.com/embroidery-software; support.microsoft.com Excel filtering"
+          },
+          "pricing": {
+            "value": "Hypothesis: CAD15–40/shop/month; first paid-continuation test CAD25 for one month, no auto-renewal, after observed pilot. Friday observation no fee; no offer sent or agreed.",
+            "status": "inferred",
+            "confidence": "low",
+            "source": "friday-test.txt; imperfect broad-suite comparator, value unmeasured"
+          },
+          "validation": {
+            "value": "Friday 2026-10-09: observe normal skim, exception check and correction; independently audit batch. Synthetic mechanics separate. Next real-batch repeat use then payment test; spreadsheet fallback if no app approved.",
+            "status": "inferred",
+            "confidence": "medium",
+            "source": "friday-test.txt, prepared protocol only"
+          },
+          "next_move": {
+            "value": "Friday pack refined to exact columns and no-terminal Windows delivery. Preparation only; no build, execution, sending or product authorization. Optional shop-permitted de-identified example can clarify encoding.",
+            "status": "inferred",
+            "confidence": "medium",
+            "source": "Current founder clarification and updated friday-test.txt"
+          },
+          "workflow": {
+            "value": "Office user on Windows can open local browser page, not terminal. CSV under 100 rows, sometimes quoted commas. Original stays untouched. Exact headers: order_id, garment_size, thread_colour, quantity.",
+            "status": "known",
+            "confidence": "high",
+            "source": "Current founder clarification"
+          }
+        },
+        "founder": {
+          "objective": {
+            "value": "Solo developer wants a small sustainable business serving small commercial embroidery shops in Ontario.",
+            "status": "known",
+            "confidence": "high",
+            "source": "Current founder message, October 6, 2026"
+          },
+          "knowledge": {
+            "value": "Previously scheduled production at a friend's shop; relevant workflow experience and one owner relationship, with relationship bias.",
+            "status": "known",
+            "confidence": "high",
+            "source": "Current founder message, October 6, 2026"
+          },
+          "constraints": {
+            "value": "No build or sending yet. Owner can try October 9, 2026; nobody outside known shop agreed. Original CSV untouched; office uses Windows local browser page and will not use terminal.",
+            "status": "known",
+            "confidence": "high",
+            "source": "Current founder clarification"
+          }
+        },
+        "inspected": [],
+        "opportunity": null
+      }
+    }
+  },
+  "act": null,
+  "finding": "No product or Act run after no-build reply; no recorded thesis or Act decision offered; incomplete journey retained as failure."
+}

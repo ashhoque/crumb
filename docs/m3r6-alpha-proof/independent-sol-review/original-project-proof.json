@@ -1,0 +1,11 @@
+{
+  "originalExists": true,
+  "originalHash": "3abe05d6140121c7c6d101d77d534aa78c001e55832d511fb5f45555ca340542",
+  "archiveHash": "3abe05d6140121c7c6d101d77d534aa78c001e55832d511fb5f45555ca340542",
+  "identical": true,
+  "exit": 0,
+  "stdout": "Accepted task records: 6\nIncomplete records: 4\nDraft for manual review: <USER>\\.codex\\.chatgpt-projects\\g-p-6ac1da47a3e48191b05023e7662b2815\\crumb\\.m0-local\\independent-alpha-review\\actual-original-project-output\\follow-up.txt\n",
+  "stderr": "",
+  "actual": "source_record,task,owner,due_date,missing_fields\r\n2,\"Quoted, task\",,2026-10-10,owner\r\n3,Date missing,Sam,,due_date\r\n4,Both missing,,,owner;due_date\r\n5,Whitespace,   ,2026-10-11,owner\r\n",
+  "matchesIndependentResult": true
+}

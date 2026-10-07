@@ -1,0 +1,408 @@
+{
+  "observedAt": "2026-10-07T03:15:27.659Z",
+  "version": 15,
+  "hash": "fb93ec15a251207c44b6fc26b9dbc1aff7c388313cb190051049a2865bf97cc5",
+  "receipts": [
+    {
+      "id": "f0a801b7-0c21-4eab-ae7e-ffbd8a013017",
+      "subject": "intention",
+      "basis": "552e78fa091272bbc9fc9daaef2f266be58463d87871f8b13c4e0c9d03172b01",
+      "presentationId": "770a0437-375f-465b-a0eb-860503a6f8f0",
+      "presentedText": "**My take:** GO to review the tiny helper rehearsal scope, not to implement: one local screen, four fixed after-cleaning slots, manual photo assignment and human confirmation. Synthetic October 9 rehearsal. Full limits and acceptance cases in scope-review.md. (Inference; source: Founder requests exact small scope for review; Crumb proposal.)\n\n**What we are building toward:** Explore whether a tiny local tool can catch missing commercial window-cleaning completion photos before departure; find strongest first use and prepare next step.\n\n**The first user:** Provisional first user: founder as departure-check supervisor of one small commercial window-cleaning crew, on repeat sites with explicit property-manager photo requirements.\n\n**Their pain:** For this property's fixed north, south, west and east after-cleaning photos, gathering onto the supervisor's laptop through the existing shared folder is easy. The painful task is checking all four required views while packing up; a missed east view caused a return. The founder reports two roughly 45-minute returns in their last ten jobs; other supervisors' experience is unknown.\n\n**Evidence so far:** CompanyCam already offers required-photo checklist fields and reference images; Core USD63/month for 1 user, Crew USD129/month for 3, billed annually. Vendor capabilities do not prove demand for this tool. (Reported; source: https://companycam.com/pricing ; https://help.companycam.com/en/articles/6828391-creating-a-checklist ; opened 2026-10-06.) This does not establish demand.\n\n**What could undo it:**\n\nHuman must identify the correct current view and usability; the helper cannot judge cleaning quality or manager acceptance. Synthetic rehearsal proves only checking behavior/usability. Session resets on reload; existing shared-folder sync is outside helper. (Inference; source: Crumb proposed limits; founder requires local images and no quality claim.)\n\n**Still unknown:**\n\nKnown fixed shot labels and easy laptop gathering. Unknown: browser, file types, actual helper usability, persistence expectations and real-job benefit. Proposed JPEG/PNG, session-only local HTML; no execution evidence. (Inference; source: Founder facts plus explicit Crumb implementation hypotheses.)\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+      "turnId": "founder-thesis-agreement-no-build",
+      "quote": "Looks good, don't build yet.",
+      "recordedAt": "2026-10-07T03:01:12.552Z"
+    },
+    {
+      "id": "08d176f1-f50d-487b-8774-704cb2eff96a",
+      "subject": "user",
+      "basis": "f664f808762dbc4669870405346a68b316d4064bc77dddb99f6ac2b32a37aa56",
+      "presentationId": "770a0437-375f-465b-a0eb-860503a6f8f0",
+      "presentedText": "**My take:** GO to review the tiny helper rehearsal scope, not to implement: one local screen, four fixed after-cleaning slots, manual photo assignment and human confirmation. Synthetic October 9 rehearsal. Full limits and acceptance cases in scope-review.md. (Inference; source: Founder requests exact small scope for review; Crumb proposal.)\n\n**What we are building toward:** Explore whether a tiny local tool can catch missing commercial window-cleaning completion photos before departure; find strongest first use and prepare next step.\n\n**The first user:** Provisional first user: founder as departure-check supervisor of one small commercial window-cleaning crew, on repeat sites with explicit property-manager photo requirements.\n\n**Their pain:** For this property's fixed north, south, west and east after-cleaning photos, gathering onto the supervisor's laptop through the existing shared folder is easy. The painful task is checking all four required views while packing up; a missed east view caused a return. The founder reports two roughly 45-minute returns in their last ten jobs; other supervisors' experience is unknown.\n\n**Evidence so far:** CompanyCam already offers required-photo checklist fields and reference images; Core USD63/month for 1 user, Crew USD129/month for 3, billed annually. Vendor capabilities do not prove demand for this tool. (Reported; source: https://companycam.com/pricing ; https://help.companycam.com/en/articles/6828391-creating-a-checklist ; opened 2026-10-06.) This does not establish demand.\n\n**What could undo it:**\n\nHuman must identify the correct current view and usability; the helper cannot judge cleaning quality or manager acceptance. Synthetic rehearsal proves only checking behavior/usability. Session resets on reload; existing shared-folder sync is outside helper. (Inference; source: Crumb proposed limits; founder requires local images and no quality claim.)\n\n**Still unknown:**\n\nKnown fixed shot labels and easy laptop gathering. Unknown: browser, file types, actual helper usability, persistence expectations and real-job benefit. Proposed JPEG/PNG, session-only local HTML; no execution evidence. (Inference; source: Founder facts plus explicit Crumb implementation hypotheses.)\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+      "turnId": "founder-thesis-agreement-no-build",
+      "quote": "Looks good, don't build yet.",
+      "recordedAt": "2026-10-07T03:01:12.553Z"
+    },
+    {
+      "id": "a751e701-496f-4f1e-a919-c7ba8c2e9030",
+      "subject": "problem",
+      "basis": "e477ec56bd8dee653917884812abe2c5b1217eacd841e059cce0f4e38ead3086",
+      "presentationId": "770a0437-375f-465b-a0eb-860503a6f8f0",
+      "presentedText": "**My take:** GO to review the tiny helper rehearsal scope, not to implement: one local screen, four fixed after-cleaning slots, manual photo assignment and human confirmation. Synthetic October 9 rehearsal. Full limits and acceptance cases in scope-review.md. (Inference; source: Founder requests exact small scope for review; Crumb proposal.)\n\n**What we are building toward:** Explore whether a tiny local tool can catch missing commercial window-cleaning completion photos before departure; find strongest first use and prepare next step.\n\n**The first user:** Provisional first user: founder as departure-check supervisor of one small commercial window-cleaning crew, on repeat sites with explicit property-manager photo requirements.\n\n**Their pain:** For this property's fixed north, south, west and east after-cleaning photos, gathering onto the supervisor's laptop through the existing shared folder is easy. The painful task is checking all four required views while packing up; a missed east view caused a return. The founder reports two roughly 45-minute returns in their last ten jobs; other supervisors' experience is unknown.\n\n**Evidence so far:** CompanyCam already offers required-photo checklist fields and reference images; Core USD63/month for 1 user, Crew USD129/month for 3, billed annually. Vendor capabilities do not prove demand for this tool. (Reported; source: https://companycam.com/pricing ; https://help.companycam.com/en/articles/6828391-creating-a-checklist ; opened 2026-10-06.) This does not establish demand.\n\n**What could undo it:**\n\nHuman must identify the correct current view and usability; the helper cannot judge cleaning quality or manager acceptance. Synthetic rehearsal proves only checking behavior/usability. Session resets on reload; existing shared-folder sync is outside helper. (Inference; source: Crumb proposed limits; founder requires local images and no quality claim.)\n\n**Still unknown:**\n\nKnown fixed shot labels and easy laptop gathering. Unknown: browser, file types, actual helper usability, persistence expectations and real-job benefit. Proposed JPEG/PNG, session-only local HTML; no execution evidence. (Inference; source: Founder facts plus explicit Crumb implementation hypotheses.)\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+      "turnId": "founder-thesis-agreement-no-build",
+      "quote": "Looks good, don't build yet.",
+      "recordedAt": "2026-10-07T03:01:12.553Z"
+    },
+    {
+      "id": "e0322a9d-1d44-451c-aa7a-66a3b68ac858",
+      "subject": "evaluation",
+      "basis": "aecf34716f72ce365f4dd684ff98040d03651cb8ea5cbaf21b1e31a1bc4e9273",
+      "presentationId": "e296c57c-d272-45ae-9455-d6a73e6cf525",
+      "presentedText": "GO for a separately authorized synthetic four-slot local helper rehearsal only. No build or execution permission yet.\n\nStandard File API/object URLs support session-only local thumbnails; no product execution Main technical uncertainty: Human misclassification or added selection clicks may erase benefit; reload intentionally clears View technical evaluation is optional.\n\nI also found a possible first-user avenue: Founder at this property. First self-rehearsal without recruitment. Check current rules before participating. View first-user avenues is optional.\n\nThe main thing still uncertain is Actual laptop speed/preference..\n\nDoes that fairly capture what we learned and the uncertainty we are carrying?",
+      "turnId": "founder-evaluation-agreement",
+      "quote": "Yes.",
+      "recordedAt": "2026-10-07T03:10:10.103Z"
+    },
+    {
+      "id": "a8911f29-f698-498c-91ac-bc22f448e89d",
+      "subject": "act",
+      "basis": "138f50bd7b1db7cc8bd3104c6524d9921d688ba0895bbe5bcd802eefa9d66c32",
+      "presentationId": "573aadb8-7b32-462b-9937-4cb751c839be",
+      "presentedText": "For Provisional first user: founder as departure-check supervisor of one small commercial window-cleaning crew, on repeat sites with explicit property-manager photo requirements., this is a bounded learning MVP: Show which north, south, west and east after-cleaning photo slots remain missing or unreviewed before departure.\n\nCapabilities: Four fixed named after-cleaning slots.; Manual local JPEG/PNG selection, thumbnails/filenames, replacement/removal.; MISSING/REVIEW/READY with human confirmation, reset and same-file duplicate warning..\nCuts: No uploads, backend, external libraries, analytics or network calls.; No AI classification, cleaning-quality or manager-approval claims.; No reports, exports, sending, accounts or other properties.; No persistence; originals untouched; JPEG/PNG only..\nLimits: Session-only; reload clears. Human checks view/recency/usability. Same-file warning cannot catch all duplicates. Existing shared-folder sync outside helper. Synthetic rehearsal cannot establish field adoption, avoided returns or demand.\nSuccess: Missing-east, duplicate, wrong-view human review, all-correct, reset, unreadable and reload cases behave as specified; founder sees remaining slots and checks four correct views within 90 seconds, preferring it to current process.\nFailure: False READY or missing/unreviewed slots hidden; confusing/reset/privacy behavior or more effort than plain checklist. Simplify or retain checklist.\nProposed first-user test: 2026-10-09.\nRemaining uncertainty: Test whether visual four-slot check reduces comparison effort; field usefulness remains later evidence.\n\nDo you authorize building this exact scope?",
+      "turnId": "founder-exact-act-agreement",
+      "quote": "Yes.",
+      "recordedAt": "2026-10-07T03:12:30.150Z"
+    }
+  ],
+  "scope": {
+    "promise": "Show which north, south, west and east after-cleaning photo slots remain missing or unreviewed before departure.",
+    "capabilities": [
+      "Four fixed named after-cleaning slots.",
+      "Manual local JPEG/PNG selection, thumbnails/filenames, replacement/removal.",
+      "MISSING/REVIEW/READY with human confirmation, reset and same-file duplicate warning."
+    ],
+    "cuts": [
+      "No uploads, backend, external libraries, analytics or network calls.",
+      "No AI classification, cleaning-quality or manager-approval claims.",
+      "No reports, exports, sending, accounts or other properties.",
+      "No persistence; originals untouched; JPEG/PNG only."
+    ],
+    "limitations": "Session-only; reload clears. Human checks view/recency/usability. Same-file warning cannot catch all duplicates. Existing shared-folder sync outside helper. Synthetic rehearsal cannot establish field adoption, avoided returns or demand.",
+    "success": "Missing-east, duplicate, wrong-view human review, all-correct, reset, unreadable and reload cases behave as specified; founder sees remaining slots and checks four correct views within 90 seconds, preferring it to current process.",
+    "failure": "False READY or missing/unreviewed slots hidden; confusing/reset/privacy behavior or more effort than plain checklist. Simplify or retain checklist.",
+    "testDate": "2026-10-09"
+  },
+  "act": {
+    "version": 2,
+    "hash": "dc8aee1d1437fcaa6acb64f294797e786b7b7d19026229c7521200a0badf2336",
+    "recordedAt": "2026-10-07T03:13:49.147Z",
+    "record": {
+      "id": "ce7350b1-0bc8-4b3d-b752-360f75837655",
+      "plan": {
+        "contractVersion": 1,
+        "expectedVersion": 0,
+        "scope": {
+          "contractVersion": 5,
+          "synthetic": false,
+          "expectedVersion": 0,
+          "foundation": {
+            "name": "Four-shot local rehearsal",
+            "stage": "idea",
+            "contactState": "none_reported",
+            "targetUser": {
+              "value": "Provisional first user: founder as departure-check supervisor of one small commercial window-cleaning crew, on repeat sites with explicit property-manager photo requirements.",
+              "basis": "founder_statement",
+              "source": "Current founder conversation"
+            },
+            "buyer": {
+              "value": null,
+              "basis": "unknown",
+              "source": null
+            },
+            "problem": {
+              "value": "For this property's fixed north, south, west and east after-cleaning photos, gathering onto the supervisor's laptop through the existing shared folder is easy. The painful task is checking all four required views while packing up; a missed east view caused a return. The founder reports two roughly 45-minute returns in their last ten jobs; other supervisors' experience is unknown.",
+              "basis": "founder_statement",
+              "source": "Current founder conversation"
+            },
+            "trigger": {
+              "value": "Checking required photos while packing up before leaving this property.",
+              "basis": "founder_statement",
+              "source": "Current founder conversation"
+            },
+            "workaround": {
+              "value": "Written four-shot list and photos gathered through the existing shared folder.",
+              "basis": "founder_statement",
+              "source": "Current founder conversation"
+            },
+            "desiredOutcome": {
+              "value": "Catch any missing required completion photo before departure.",
+              "basis": "founder_statement",
+              "source": "Current founder conversation"
+            },
+            "solution": {
+              "value": "One local screen with four named slots, manual JPEG/PNG assignment, previews/warnings and supervisor visual confirmation.",
+              "basis": "assumption",
+              "source": "Reviewed scope and exact approved commitment"
+            },
+            "constraints": [
+              "No uploads, backend, external libraries, analytics or network calls.",
+              "No AI classification, cleaning-quality or manager-approval claims.",
+              "No reports, exports, sending, accounts or other properties.",
+              "No persistence; originals untouched; JPEG/PNG only.",
+              "No sending, payments or deployment.",
+              "Stop at completed local helper and synthetic checks, before founder rehearsal."
+            ],
+            "unknowns": [
+              "Actual laptop usability and preference.",
+              "Real departure usefulness and avoided returns.",
+              "Other supervisors' experience and demand are unknown."
+            ]
+          },
+          "proposal": {
+            "title": "Single-stage local four-shot rehearsal",
+            "method": "build",
+            "journey": "Open local HTML, manually assign local images to fixed four elevation slots, review thumbnails, confirm each usable current view, see missing/unreviewed names and ready count.",
+            "criticalUnknown": "Does selecting and confirming four photos beat current list comparison while packing?",
+            "why": "Fixed required views and reported return trips support a bounded personal rehearsal; existing checklist remains an alternative.",
+            "nextAction": "Prepare one local HTML helper and focused synthetic verification; stop for founder rehearsal.",
+            "capabilities": [
+              "Four fixed named after-cleaning slots.",
+              "Manual local JPEG/PNG selection, thumbnails/filenames, replacement/removal.",
+              "MISSING/REVIEW/READY with human confirmation, reset and same-file duplicate warning."
+            ],
+            "keep": [
+              "Existing shared-folder workflow and image originals"
+            ],
+            "park": [
+              "Reporting, AI, cloud services and external actions"
+            ],
+            "technicalAcceptance": [
+              "Missing/unreviewed slots cannot appear READY; four confirmations required.",
+              "Same-file duplicate assignment warns; replacement/removal resets confirmation.",
+              "Unsupported/unreadable images remain unready; reload clears.",
+              "No uploads/network services/external resources; originals unchanged."
+            ],
+            "learningAcceptance": [
+              "Founder synthetic rehearsal finds remaining views clearly and checks correct set within 90 seconds.",
+              "Founder prefers helper to current comparison; no demand or avoided-return claim."
+            ],
+            "observationWindow": "Synthetic founder rehearsal proposed October 9, 2026; no external participants.",
+            "cashSpend": 0
+          },
+          "artifacts": [],
+          "artifactPermission": {
+            "granted": true,
+            "quote": "Okay, I authorize building exactly the local four-shot rehearsal scope you displayed: manual photo assignment, previews and warnings, and my visual confirmation."
+          },
+          "ideal": {
+            "intention": {
+              "goal": "custom",
+              "statement": "Explore whether a tiny local tool can catch missing commercial window-cleaning completion photos before departure; find strongest first use and prepare next step.",
+              "status": "provided"
+            },
+            "consequence": {
+              "value": "Founder reports two roughly 45-minute returns among last ten jobs; elapsed time, not measured crew-hours.",
+              "basis": "founder_statement",
+              "source": "Current founder conversation"
+            },
+            "feedback": [],
+            "evaluation": {
+              "state": "not_run",
+              "question": null,
+              "unavailableReason": null,
+              "findings": []
+            },
+            "assessment": {
+              "promising": "Specific missed east view with fixed requirements and easy shared-folder gathering.",
+              "weak": "Plain checklist and CompanyCam can already cover required shots.",
+              "criticalUnknown": "Whether local visual matching is faster/easier.",
+              "cheapestCheck": "Synthetic local four-slot rehearsal after executable-stage approval."
+            }
+          },
+          "brief": {
+            "summary": "Build exactly the reviewed local four-shot rehearsal. Keep manual photo assignment, previews, warnings and human confirmation. Preserve all cuts and limitations, and stop after synthetic verification for the founder's rehearsal.",
+            "nextAction": "Review single-stage build pack before product writes or execution.",
+            "questions": []
+          },
+          "phase": "proposal",
+          "decision": {
+            "basis": "act_confirmed",
+            "source": "Exact displayed commitment approved by founder Yes.",
+            "confirmationId": "a8911f29-f698-498c-91ac-bc22f448e89d"
+          },
+          "context": {
+            "version": 15,
+            "hash": "fb93ec15a251207c44b6fc26b9dbc1aff7c388313cb190051049a2865bf97cc5"
+          }
+        },
+        "outcome": {
+          "input": "User-selected local JPEG/PNG for fixed north, south, west and east after-cleaning slots.",
+          "output": "Thumbnails/filenames, missing/unreviewed slot names, READY count after individual human confirmations.",
+          "failureBehavior": "Duplicate/unsupported/unreadable input stays unready with warning; replacing/removing resets confirmation; no automatic quality/view judgment.",
+          "persistence": {
+            "mode": "none",
+            "reason": "Assignments and confirmations exist in current browser session only; visible reload/close warning."
+          }
+        },
+        "capabilities": [
+          {
+            "name": "Four fixed named after-cleaning slots.",
+            "userBasis": "f664f808762dbc4669870405346a68b316d4064bc77dddb99f6ac2b32a37aa56",
+            "problemBasis": "e477ec56bd8dee653917884812abe2c5b1217eacd841e059cce0f4e38ead3086",
+            "evidenceClaimIds": [
+              "bdbd7b26-aa5d-4076-9aef-28571f66fe58",
+              "local_feasible",
+              "limits"
+            ],
+            "learningObjective": "Determine whether four-slot visual checking reduces founder comparison effort."
+          },
+          {
+            "name": "Manual local JPEG/PNG selection, thumbnails/filenames, replacement/removal.",
+            "userBasis": "f664f808762dbc4669870405346a68b316d4064bc77dddb99f6ac2b32a37aa56",
+            "problemBasis": "e477ec56bd8dee653917884812abe2c5b1217eacd841e059cce0f4e38ead3086",
+            "evidenceClaimIds": [
+              "bdbd7b26-aa5d-4076-9aef-28571f66fe58",
+              "local_feasible",
+              "limits"
+            ],
+            "learningObjective": "Determine whether four-slot visual checking reduces founder comparison effort."
+          },
+          {
+            "name": "MISSING/REVIEW/READY with human confirmation, reset and same-file duplicate warning.",
+            "userBasis": "f664f808762dbc4669870405346a68b316d4064bc77dddb99f6ac2b32a37aa56",
+            "problemBasis": "e477ec56bd8dee653917884812abe2c5b1217eacd841e059cce0f4e38ead3086",
+            "evidenceClaimIds": [
+              "bdbd7b26-aa5d-4076-9aef-28571f66fe58",
+              "local_feasible",
+              "limits"
+            ],
+            "learningObjective": "Determine whether four-slot visual checking reduces founder comparison effort."
+          }
+        ],
+        "repository": {
+          "permissionQuote": "Okay, I authorize building exactly the local four-shot rehearsal scope you displayed: manual photo assignment, previews and warnings, and my visual confirmation. Keep the cuts and limitations unchanged. No sending, uploads, payments, deployment or extra features.",
+          "inspectedPaths": [],
+          "environment": "known",
+          "stack": "Standalone HTML/CSS/JavaScript, Node v24.19.0 focused verification; no dependencies or backend.",
+          "constraints": [
+            "No uploads, backend, external libraries, analytics or network calls.",
+            "No AI classification, cleaning-quality or manager-approval claims.",
+            "No reports, exports, sending, accounts or other properties.",
+            "No persistence; originals untouched; JPEG/PNG only.",
+            "No sending, payments or deployment; synthetic inputs only for verification.",
+            "Preserve existing preparation and original images."
+          ]
+        },
+        "keep": [
+          {
+            "label": "Existing shared-folder workflow and image originals",
+            "paths": [],
+            "reason": "Reuse existing gathering/delivery; do not change originals."
+          }
+        ],
+        "park": [
+          {
+            "label": "Reporting, AI, cloud services and external actions",
+            "paths": [],
+            "reason": "Outside approved local four-shot scope."
+          }
+        ],
+        "stages": [
+          {
+            "id": "mvp",
+            "title": "Local four-shot rehearsal helper",
+            "kind": "mvp",
+            "goal": "Complete local four-slot journey with focused synthetic checks, then stop for founder review.",
+            "capabilities": [
+              "Four fixed named after-cleaning slots.",
+              "Manual local JPEG/PNG selection, thumbnails/filenames, replacement/removal.",
+              "MISSING/REVIEW/READY with human confirmation, reset and same-file duplicate warning."
+            ],
+            "writes": [
+              "four-shot-rehearsal.html",
+              "verify-rehearsal.cjs"
+            ],
+            "checks": [
+              {
+                "id": "slot_flow",
+                "description": "Synthetic empty/missing-east/duplicate/all-correct/human-review/reset/error/reload behavior.",
+                "commandHint": "Use pinned Node to run verify-rehearsal.cjs and inspect/browser-check the local HTML with synthetic inputs."
+              },
+              {
+                "id": "local_boundary",
+                "description": "Verify no network/external resources, persistence or original-file writes; quality/approval claims absent.",
+                "commandHint": "Use focused source audit and available local browser inspection; record actual limits."
+              }
+            ]
+          }
+        ],
+        "stopAfterStageId": "mvp",
+        "packDirectory": "build-pack",
+        "execution": {
+          "mode": "build",
+          "handoffHash": "2163e9aedb52331d6fb314d6b00ccd4ed83ec49b762643274eb56fb016658ffa",
+          "automaticStages": true,
+          "humanCheckpoints": [
+            "mvp"
+          ]
+        }
+      },
+      "planHash": "e067e4c177d8dd3840aa4a5d40bd22411be7403e874f0e1620e84490c64c4340",
+      "ideBasis": "138f50bd7b1db7cc8bd3104c6524d9921d688ba0895bbe5bcd802eefa9d66c32",
+      "approval": null,
+      "pack": {
+        "directory": "build-pack/ce7350b1-0bc8-4b3d-b752-360f75837655/revision-e067e4c177d8",
+        "files": [
+          {
+            "path": "build-pack/ce7350b1-0bc8-4b3d-b752-360f75837655/revision-e067e4c177d8/STARTUP_MASTER.md",
+            "sha256": "d6a714fb994c9f8d702aebb05dca39d95b6460a033b00ce98daabba573a752b0"
+          },
+          {
+            "path": "build-pack/ce7350b1-0bc8-4b3d-b752-360f75837655/revision-e067e4c177d8/BUILD_PLAN.md",
+            "sha256": "5763921e353358a2ab15656efd65af34dd627084af8169e72912d8c49946d1c6"
+          },
+          {
+            "path": "build-pack/ce7350b1-0bc8-4b3d-b752-360f75837655/revision-e067e4c177d8/GROUNDWORK.md",
+            "sha256": "c608d50b947161392ae474058967cc87340f3fa2029843a296d1d0bbfd4fe277"
+          },
+          {
+            "path": "build-pack/ce7350b1-0bc8-4b3d-b752-360f75837655/revision-e067e4c177d8/STAGE_1.md",
+            "sha256": "96871dc6cb67a0a7e27130980bf937895ab09c29b6a4a130ffa429662ac2b105"
+          },
+          {
+            "path": "build-pack/ce7350b1-0bc8-4b3d-b752-360f75837655/revision-e067e4c177d8/RED_TEAM_REVIEW.md",
+            "sha256": "7125c9a97befed113f7e156082b7237dbdbffe5cc109de3b4666dc77e7829666"
+          },
+          {
+            "path": "build-pack/ce7350b1-0bc8-4b3d-b752-360f75837655/revision-e067e4c177d8/TECHNICAL_MASTER.md",
+            "sha256": "1ff633de73dc964f1740813dd8fb9b3ad25a97c248e3fbf75237fccfba24854e"
+          },
+          {
+            "path": "build-pack/ce7350b1-0bc8-4b3d-b752-360f75837655/revision-e067e4c177d8/BUSINESS_MASTER.md",
+            "sha256": "53d717aa1cb1659b44de0235b148922dce5dd38d8db1ef77324509ab49abf784"
+          }
+        ]
+      },
+      "currentStage": 0,
+      "status": "proposed",
+      "baseline": {
+        "four-shot-rehearsal.html": null,
+        "verify-rehearsal.cjs": null
+      },
+      "receipts": [],
+      "reviews": []
+    }
+  },
+  "rootEntries": [
+    ".customer-evidence",
+    ".gitignore",
+    "after-review-notes.json",
+    "build-pack",
+    "build-stage-proposal.md",
+    "BUILD_HANDOFF.json",
+    "BUILD_HANDOFF.md",
+    "confirm-act.json",
+    "confirm-evaluation.json",
+    "confirm-scope.json",
+    "continue-request.json",
+    "COPILOT_SESSION.json",
+    "CRUMB_CONTEXT.json",
+    "CRUMB_CONTEXT.md",
+    "CRUMB_RESEARCH.json",
+    "finish-evaluation.json",
+    "first-use-pack.md",
+    "founder-correction.json",
+    "notes-refine.json",
+    "notes-start.json",
+    "october-9-check.md",
+    "october-9-notes.json",
+    "present-act.json",
+    "present-evaluation.json",
+    "present-request.json",
+    "scope-notes.json",
+    "scope-present.json",
+    "scope-problem-correction.json",
+    "scope-review.md",
+    "work-pack-request.json"
+  ]
+}

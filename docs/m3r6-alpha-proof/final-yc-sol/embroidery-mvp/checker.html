@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; img-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Embroidery order check</title>
+<style>
+:root{font-family:Segoe UI,Arial,sans-serif;color:#203039;background:#f3f5f3;font-size:17px}*{box-sizing:border-box}body{margin:0}main{max-width:940px;margin:48px auto;padding:0 24px}.eyebrow{color:#526861;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}h1{font-size:2.3rem;letter-spacing:-.04em;margin:12px 0}p{line-height:1.6}.card{background:white;border:1px solid #d7dfda;border-radius:16px;padding:26px;margin:24px 0;box-shadow:0 4px 16px #20303908}label{display:block;font-weight:650;margin-bottom:14px}input{max-width:100%;font:inherit}input::file-selector-button,button{font:inherit;background:#195d4d;color:white;border:0;border-radius:8px;padding:12px 18px;cursor:pointer;margin-right:12px}button{background:#edf2ee;color:#203039}button:focus-visible,input:focus-visible{outline:3px solid #dd941d;outline-offset:4px}.muted{color:#53665e;font-size:.9rem}#status{font-weight:650;white-space:pre-wrap}#status[data-kind=error]{color:#a22e26}#status[data-kind=flagged]{color:#765308}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;margin-top:20px}caption{text-align:left;font-weight:650;margin:10px 0}th,td{text-align:left;padding:14px 12px;border-bottom:1px solid #e2e8e4;vertical-align:top;white-space:pre-wrap;overflow-wrap:anywhere}th{font-size:.85rem;background:#f3f6f3}footer{font-size:.85rem;color:#53665e;margin:24px 0 40px} [hidden]{display:none}@media(max-width:600px){main{margin-top:28px;padding:0 16px}h1{font-size:1.9rem}.card{padding:20px}}
+</style></head><body><main>
+<div class="eyebrow">Before production</div><h1>Catch the missing details.</h1>
+<p>Check your order export for missing <strong>garment sizes</strong> and <strong>thread colours</strong> before it reaches the machine.</p>
+<section class="card" aria-label="Select export"><label for="csv">1. Choose the CSV export</label><input id="csv" type="file" accept=".csv,text/csv"><p class="muted">Works locally. Your CSV stays on this laptop and is never changed.</p><button id="clear" type="button">Clear check</button></section>
+<section class="card" aria-label="Check result"><h2>2. Review the result</h2><p id="status" role="status" aria-live="polite">Choose a CSV to start.</p><div id="report" class="table-wrap" hidden><table><caption>Incomplete order lines</caption><thead><tr><th scope="col">CSV record</th><th scope="col">Order ID</th><th scope="col">Missing details</th></tr></thead><tbody id="rows"></tbody></table></div><p id="next" hidden>Resolve missing details in your usual office process. Then choose the new export to check again.</p></section>
+<footer>Checks blank or whitespace-only size and colour only. Filled values and quantity are not checked. A clean result does not mean the orders are production-ready.<br>Use a comma-separated UTF-8 CSV with order_id, garment_size, thread_colour and quantity headers, and fewer than 100 order lines.</footer>
+</main>
+<script id="core">
+"use strict";
+// Strict comma-delimited CSV: quoted commas, escaped quotes and newlines are data.
+function parseCSV(text) {
+  text=text.replace(/^\uFEFF/, '');
+  if (text.includes('\0')) throw new Error('The file contains unsupported characters. Export a UTF-8 CSV and try again.');
+  const rows=[]; let row=[],field='',state='start',active=false;
+  const finishField=()=>{row.push(field);field='';state='start';};
+  const finishRow=()=>{finishField();rows.push(row);row=[];active=false;};
+  for(let i=0;i<text.length;i++){
+    const ch=text[i];
+    if(state==='quoted'){
+      if(ch==='"'){if(text[i+1]==='"'){field+='"';i++;}else state='closed';}
+      else field+=ch;
+      continue;
+    }
+    if(ch===','){finishField();active=true;continue;}
+    if(ch==='\r'||ch==='\n'){finishRow();if(ch==='\r'&&text[i+1]==='\n')i++;continue;}
+    if(state==='closed')throw new Error('Invalid CSV: unexpected text after a closing quote.');
+    if(ch==='"'){if(state!=='start')throw new Error('Invalid CSV: quote inside an unquoted field.');state='quoted';active=true;}
+    else{field+=ch;state='unquoted';active=true;}
+  }
+  if(state==='quoted')throw new Error('Invalid CSV: a quoted field is not closed.');
+  if(active||row.length||field.length||state==='closed')finishRow();
+  return rows;
+}
+function checkCSV(text){
+  const records=parseCSV(text);
+  if(!records.length)throw new Error('No order lines found. Choose an export containing the headers and order lines.');
+  const headers=records.shift();
+  if(new Set(headers).size!==headers.length)throw new Error('Duplicate CSV headers. Use each header once and try again.');
+  const required=['order_id','garment_size','thread_colour','quantity'];
+  const missing=required.filter(h=>!headers.includes(h));
+  if(missing.length)throw new Error('Missing required header(s): '+missing.join(', ')+'.');
+  if(!records.length)throw new Error('No order lines found. This export has headers only.');
+  if(records.length>=100)throw new Error('This pilot supports fewer than 100 order lines per export. Choose a smaller export.');
+  const incomplete=[];
+  records.forEach((row,index)=>{
+    if(row.length!==headers.length)throw new Error('Invalid CSV: record '+(index+1)+' has '+row.length+' fields; expected '+headers.length+'.');
+    const fields=['garment_size','thread_colour'].filter(h=>row[headers.indexOf(h)].trim()==='');
+    if(fields.length)incomplete.push({record:index+1,orderId:row[headers.indexOf('order_id')],missing:fields});
+  });
+  return {total:records.length,incomplete};
+}
+</script>
+<script>
+const input=document.getElementById('csv'),status=document.getElementById('status'),body=document.getElementById('rows'),report=document.getElementById('report'),next=document.getElementById('next');
+let generation=0;
+function reset(message='Choose a CSV to start.',kind='idle'){body.replaceChildren();report.hidden=true;next.hidden=true;status.textContent=message;status.dataset.kind=kind;}
+input.addEventListener('change',async()=>{
+  const current=++generation,file=input.files[0];reset();if(!file)return;
+  reset('Checking '+file.name+'…','loading');
+  try{
+    if(file.size>2*1024*1024)throw new Error('This file is too large for the pilot. Choose a CSV under 2 MB.');
+    const buffer=await file.arrayBuffer();if(current!==generation)return;
+    let text;try{text=new TextDecoder('utf-8',{fatal:true}).decode(buffer);}catch{throw new Error('Cannot read this file as UTF-8. Export a UTF-8 CSV and try again.');}
+    const result=checkCSV(text);if(current!==generation)return;
+    const count=result.incomplete.length;
+    reset(file.name+' — '+result.total+' order line(s) checked.\n'+(count?count+' incomplete line(s) need attention.':'No missing garment size or thread colour found.'),count?'flagged':'clean');
+    for(const item of result.incomplete){const tr=document.createElement('tr');for(const value of [item.record,item.orderId||'(blank order ID)',item.missing.map(h=>h==='garment_size'?'Garment size':'Thread colour').join(', ')]){const td=document.createElement('td');td.textContent=value;tr.appendChild(td);}body.appendChild(tr);}
+    report.hidden=!count;next.hidden=!count;
+  }catch(error){if(current===generation)reset('Check stopped. '+error.message,'error');}
+});
+document.getElementById('clear').addEventListener('click',()=>{generation++;input.value='';reset();input.focus();});
+</script></body></html>

@@ -1,0 +1,172 @@
+{
+  "threadSetupMs": 828,
+  "timings": [
+    {
+      "session": "independent-retest",
+      "turns": [
+        {
+          "turn": 1,
+          "elapsedMs": 152299,
+          "toolMetrics": {
+            "commands": 8,
+            "failedCommands": 0,
+            "skillReads": 1,
+            "referenceReads": 3,
+            "runtimeReads": 2,
+            "sourceDiscovery": 0,
+            "webEvents": 4,
+            "searchQueries": 6
+          },
+          "actualToolEvents": {
+            "commandExecution": 8,
+            "webSearch": 4,
+            "fileChange": 2
+          }
+        },
+        {
+          "turn": 2,
+          "elapsedMs": 90964,
+          "toolMetrics": {
+            "commands": 2,
+            "failedCommands": 0,
+            "skillReads": 0,
+            "referenceReads": 0,
+            "runtimeReads": 0,
+            "sourceDiscovery": 0,
+            "webEvents": 0,
+            "searchQueries": 0
+          },
+          "actualToolEvents": {
+            "fileChange": 2,
+            "commandExecution": 2
+          }
+        },
+        {
+          "turn": 3,
+          "elapsedMs": 75473,
+          "toolMetrics": {
+            "commands": 3,
+            "failedCommands": 0,
+            "skillReads": 0,
+            "referenceReads": 0,
+            "runtimeReads": 0,
+            "sourceDiscovery": 0,
+            "webEvents": 0,
+            "searchQueries": 0
+          },
+          "actualToolEvents": {
+            "fileChange": 2,
+            "commandExecution": 3
+          }
+        },
+        {
+          "turn": 4,
+          "elapsedMs": 241086,
+          "toolMetrics": {
+            "commands": 9,
+            "failedCommands": 0,
+            "skillReads": 0,
+            "referenceReads": 0,
+            "runtimeReads": 0,
+            "sourceDiscovery": 0,
+            "webEvents": 1,
+            "searchQueries": 0
+          },
+          "actualToolEvents": {
+            "fileChange": 3,
+            "commandExecution": 9,
+            "webSearch": 1
+          }
+        },
+        {
+          "turn": 5,
+          "elapsedMs": 68341,
+          "toolMetrics": {
+            "commands": 5,
+            "failedCommands": 0,
+            "skillReads": 0,
+            "referenceReads": 2,
+            "runtimeReads": 0,
+            "sourceDiscovery": 0,
+            "webEvents": 0,
+            "searchQueries": 0
+          },
+          "actualToolEvents": {
+            "commandExecution": 5,
+            "fileChange": 2
+          }
+        },
+        {
+          "turn": 6,
+          "elapsedMs": 23619,
+          "toolMetrics": {
+            "commands": 2,
+            "failedCommands": 0,
+            "skillReads": 0,
+            "referenceReads": 0,
+            "runtimeReads": 0,
+            "sourceDiscovery": 0,
+            "webEvents": 0,
+            "searchQueries": 0
+          },
+          "actualToolEvents": {
+            "fileChange": 1,
+            "commandExecution": 2
+          }
+        },
+        {
+          "turn": 7,
+          "elapsedMs": 122404,
+          "toolMetrics": {
+            "commands": 23,
+            "failedCommands": 2,
+            "skillReads": 0,
+            "referenceReads": 0,
+            "runtimeReads": 0,
+            "sourceDiscovery": 0,
+            "webEvents": 0,
+            "searchQueries": 0
+          },
+          "actualToolEvents": {
+            "fileChange": 3,
+            "commandExecution": 23
+          }
+        },
+        {
+          "turn": 8,
+          "elapsedMs": 247435,
+          "toolMetrics": {
+            "commands": 12,
+            "failedCommands": 4,
+            "skillReads": 1,
+            "referenceReads": 0,
+            "runtimeReads": 0,
+            "sourceDiscovery": 0,
+            "webEvents": 0,
+            "searchQueries": 0
+          },
+          "actualToolEvents": {
+            "fileChange": 6,
+            "commandExecution": 12
+          }
+        },
+        {
+          "turn": 9,
+          "elapsedMs": 4547,
+          "toolMetrics": {
+            "commands": 0,
+            "failedCommands": 0,
+            "skillReads": 0,
+            "referenceReads": 0,
+            "runtimeReads": 0,
+            "sourceDiscovery": 0,
+            "webEvents": 0,
+            "searchQueries": 0
+          },
+          "actualToolEvents": {}
+        }
+      ]
+    }
+  ],
+  "tokenCounts": "Not exposed; not invented"
+}

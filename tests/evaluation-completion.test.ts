@@ -61,6 +61,8 @@ test('Actual scoped host agreement records review and Act without granting exclu
  const interpretation={meaning:'agreement' as const,explanation:'Clear assent to the displayed current statement; external actions and extra scope remain excluded.'};
  assert.equal(agreesWithPresentation(quote),false);
  assert.equal(agreesWithPresentation(recordedQuote,interpretation),true);
+ assert.equal(agreesWithPresentation("Okay, I authorize building exactly the local four-shot rehearsal scope you displayed, with the filename convention, previews, warnings, and human visual check. Keep it local and synthetic, with the cuts and limitations unchanged. No sending, uploads, payments, deployment or extra features.",interpretation),true);
+ assert.equal(agreesWithPresentation("Okay, but do not build yet; no uploads.",interpretation),false);
  const resumedPermission='$crumb Continue the same CSV handover-checker project. My approval of the exact displayed local scope and limitations is unchanged: I authorize building that bounded local MVP now. Finish the authorized work, run the real task and leave its observation plan ready. Stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.';
  assert.equal(agreesWithPresentation(resumedPermission,interpretation),true);
  assert.equal(agreesWithPresentation(resumedPermission+' Do not build yet.',interpretation),false);

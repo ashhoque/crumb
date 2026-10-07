@@ -18,7 +18,7 @@ export function agreesWithPresentation(quote:string,interpretation?:ReplyInterpr
   // refusals to build, corrections and conditional agreement remain vetoes.
   // This records only the currently presented subject, never excluded actions.
   if(interpretation!==undefined){
-    const excluded='(?:sending|deployment|publishing|spending|payments|accounts|messaging|external communication|extra features)';
+    const excluded='(?:sending|uploads|deployment|publishing|spending|payments|accounts|messaging|external communication|extra features)';
     text=text.replace(new RegExp(`([.;]\\s*)no ${excluded}(?:(?:,\\s*|\\s+(?:and|or)\\s+)${excluded})*[.!]?$`,'u'),'$1');
     if(/^(?:yes|i approve|i authorize)\b/u.test(text)||/(?:^|[.:]\s+)i authorize building\b/u.test(text))text=text.replace(/\bstop at (?:the )?(?:(?:runnable|usable|local|approved|intended|final)\s+)*mvp\b/gu,'finish at the approved endpoint');
   }

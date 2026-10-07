@@ -1,0 +1,1826 @@
+{
+  "observed": "2026-10-07T04:07:33.566Z",
+  "prebuild": {
+    "version": 6,
+    "hash": "5b404da0ff2bfd5a2224be59aa386c85cb0289af94c8a4efc18a44ba45a3fa0f",
+    "recordedAt": "2026-10-07T04:06:22.802Z",
+    "context": {
+      "contractVersion": 2,
+      "expectedVersion": 5,
+      "synthetic": false,
+      "stage": "evaluate",
+      "project": {
+        "name": "Ontario embroidery CSV preflight",
+        "entry": "fresh",
+        "artifacts": [],
+        "permissionQuote": null
+      },
+      "preferredName": null,
+      "intention": {
+        "status": "provided",
+        "goal": "solo_profit",
+        "statement": "Build a small sustainable business as a solo developer serving small Ontario commercial embroidery shops.",
+        "advice": "Start with one bounded office preflight experiment; keep support burden and repeat use visible."
+      },
+      "definition": {
+        "user": {
+          "text": "Office person at the friend's small Ontario commercial embroidery shop who checks CSV order lines before production",
+          "claimIds": [
+            "workflow",
+            "access"
+          ],
+          "basis": "observed"
+        },
+        "buyer": {
+          "text": "Shop owner; payer hypothesis, not demonstrated purchase authority or budget",
+          "claimIds": [
+            "access"
+          ],
+          "basis": "inferred"
+        },
+        "problem": {
+          "text": "Rushed manual CSV checking misses missing garment sizes or thread colours, so operators stop machines and call the office.",
+          "claimIds": [
+            "pain",
+            "workflow"
+          ],
+          "basis": "observed"
+        },
+        "trigger": {
+          "text": "CSV arrives before production release",
+          "claimIds": [
+            "workflow"
+          ],
+          "basis": "inferred"
+        },
+        "job": {
+          "text": "Identify incomplete lines and arrange corrections before handing orders to production",
+          "claimIds": [
+            "pain",
+            "workflow"
+          ],
+          "basis": "inferred"
+        },
+        "workaround": {
+          "text": "Rushed manual skim, followed by operator calls when omissions reach the machine",
+          "claimIds": [
+            "pain",
+            "workflow"
+          ],
+          "basis": "observed"
+        },
+        "pain": {
+          "text": "Unexpected interruption for operator and office",
+          "claimIds": [
+            "pain"
+          ],
+          "basis": "observed"
+        },
+        "consequence": {
+          "text": "Machine stops while missing order details are resolved; duration/cost unknown",
+          "claimIds": [
+            "pain"
+          ],
+          "basis": "observed"
+        },
+        "frequency": {
+          "text": "Two reported orders last week; roughly 100 order lines/week, not a measured failure rate",
+          "claimIds": [
+            "pain",
+            "workflow"
+          ],
+          "basis": "observed"
+        },
+        "reason_for_belief": {
+          "text": "Founder scheduled at this shop and has one owner available to try it October 9",
+          "claimIds": [
+            "access"
+          ],
+          "basis": "observed"
+        }
+      },
+      "feedbackClaimIds": [
+        "pain",
+        "workflow",
+        "access"
+      ],
+      "sources": [
+        {
+          "id": "founder",
+          "title": "Founder context and garment-size clarification",
+          "url": null,
+          "kind": "founder",
+          "provenance": "founder_report",
+          "access": "provided",
+          "retrievedOn": "2026-10-06",
+          "publishedOn": null,
+          "delivery": "provided",
+          "retainedText": "Solo developer; former production scheduler at friend shop; two orders last week missing size or thread colour caused machine stoppage and office call. About 100 lines/week, fewer than 100 rows/export, CSV with quoted commas. Windows local browser; no terminal; original unchanged. Owner available October 9, 2026. No other customers or interviews. No build or contact yet.",
+          "limitation": "One relationship-biased shop, founder report rather than independently observed use.",
+          "archived": false,
+          "independenceKey": "founder",
+          "affiliation": "unknown"
+        },
+        {
+          "id": "printavo",
+          "title": "Printavo pricing",
+          "url": "https://www.printavo.com/pricing/",
+          "kind": "vendor",
+          "provenance": "public",
+          "access": "inspected",
+          "retrievedOn": "2026-10-06",
+          "publishedOn": null,
+          "delivery": "live",
+          "retainedText": "Lite $109/mo, 20 quotes/invoices per month and 2 users; Standard $244/mo with unlimited quotes/invoices and 5 users. Broader cloud order tracking, tasks and approvals. Currency not identified in inspected page.",
+          "limitation": "Public page; does not establish demand for our checker.",
+          "archived": false,
+          "independenceKey": "printavo",
+          "affiliation": "vendor"
+        },
+        {
+          "id": "discussion",
+          "title": "Shop & Order Management",
+          "url": "https://www.reddit.com/r/CommercialPrinting/comments/1ozhvsq/shop_order_management/",
+          "kind": "discussion",
+          "provenance": "public",
+          "access": "inspected",
+          "retrievedOn": "2026-10-06",
+          "publishedOn": null,
+          "delivery": "live",
+          "retainedText": "A mixed embroidery/workwear, print and signage shop reports paper order tracking and delays; comments include both praise for ShopVox organization and complaints about setup/complexity.",
+          "limitation": "Self-reported mixed-shop discussion, not Ontario-specific blank-field evidence; research only, posting rules unreviewed.",
+          "archived": false,
+          "independenceKey": "discussion",
+          "affiliation": "unknown"
+        },
+        {
+          "id": "stitch",
+          "title": "Stitch Wizard contact",
+          "url": "https://www.stitchwizard.ca/contact/",
+          "kind": "vendor",
+          "provenance": "public",
+          "access": "inspected",
+          "retrievedOn": "2026-10-06",
+          "publishedOn": null,
+          "delivery": "live",
+          "retainedText": "Cambridge Ontario company serves wholesale and retail embroidery markets; public contact page.",
+          "limitation": "Public page; does not establish demand for our checker.",
+          "archived": false,
+          "independenceKey": "stitch",
+          "affiliation": "vendor"
+        },
+        {
+          "id": "bossa",
+          "title": "Bossa contact",
+          "url": "https://bossaembroidery.com/contact",
+          "kind": "vendor",
+          "provenance": "public",
+          "access": "inspected",
+          "retrievedOn": "2026-10-06",
+          "publishedOn": null,
+          "delivery": "live",
+          "retainedText": "Toronto custom decoration studio, embroidery and public contact/quote route.",
+          "limitation": "Public page; does not establish demand for our checker.",
+          "archived": false,
+          "independenceKey": "bossa",
+          "affiliation": "vendor"
+        },
+        {
+          "id": "embbrosia",
+          "title": "Embbrosia contact",
+          "url": "https://www.embbrosia.com/contact-us",
+          "kind": "vendor",
+          "provenance": "public",
+          "access": "inspected",
+          "retrievedOn": "2026-10-06",
+          "publishedOn": null,
+          "delivery": "live",
+          "retainedText": "Mississauga Ontario address, public email/phone and project contact form; embroidery business.",
+          "limitation": "Public page; does not establish demand for our checker.",
+          "archived": false,
+          "independenceKey": "embbrosia",
+          "affiliation": "vendor"
+        },
+        {
+          "id": "parse",
+          "title": "Papa Parse documentation",
+          "url": "https://www.papaparse.com/docs",
+          "kind": "vendor",
+          "provenance": "public",
+          "access": "inspected",
+          "retrievedOn": "2026-10-06",
+          "publishedOn": null,
+          "delivery": "live",
+          "retainedText": "Browser local-file CSV parsing, configurable delimiter/quote handling, parse results with errors and metadata.",
+          "limitation": "Public page; does not establish demand for our checker.",
+          "archived": false,
+          "independenceKey": "parse",
+          "affiliation": "vendor"
+        },
+        {
+          "id": "file",
+          "title": "MDN File API",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications",
+          "kind": "industry",
+          "provenance": "public",
+          "access": "inspected",
+          "retrievedOn": "2026-10-06",
+          "publishedOn": null,
+          "delivery": "live",
+          "retainedText": "Browser File API allows user-selected local files to be read with a file input.",
+          "limitation": "API feasibility is not proof of a tested local application.",
+          "archived": false,
+          "independenceKey": "file",
+          "affiliation": "unknown"
+        },
+        {
+          "id": "license",
+          "title": "Papa Parse MIT license",
+          "url": "https://github.com/mholt/PapaParse/blob/master/LICENSE",
+          "kind": "vendor",
+          "provenance": "public",
+          "access": "inspected",
+          "retrievedOn": "2026-10-06",
+          "publishedOn": null,
+          "delivery": "live",
+          "retainedText": "MIT license grants use, modification and distribution with copyright and permission notice.",
+          "limitation": "Public page; does not establish demand for our checker.",
+          "archived": false,
+          "independenceKey": "license",
+          "affiliation": "unknown"
+        }
+      ],
+      "claims": [
+        {
+          "id": "pain",
+          "statement": "Two customer orders last week reached the embroidery machine with missing garment size or thread colour, stopping the operator for an office call.",
+          "basis": "founder_reported",
+          "sourceIds": [
+            "founder"
+          ],
+          "supports": [],
+          "challenges": [],
+          "limitation": "No duration, financial cost or category prevalence established.",
+          "important": true,
+          "repetition": "single",
+          "metric": null,
+          "quote": null
+        },
+        {
+          "id": "workflow",
+          "statement": "Office person skims exports of under 100 rows, roughly 100 lines/week; columns order_id, garment_size, thread_colour, quantity; quoted commas occur. Blank and whitespace-only size/colour are incomplete.",
+          "basis": "founder_reported",
+          "sourceIds": [
+            "founder"
+          ],
+          "supports": [],
+          "challenges": [],
+          "limitation": "Not evidence of willingness to pay for this checker.",
+          "important": true,
+          "repetition": "single",
+          "metric": null,
+          "quote": null
+        },
+        {
+          "id": "access",
+          "statement": "Owner at friend shop can try October 9; founder has scheduling experience there. No other agreed users or interviews; Windows browser and no terminal. No build or sending authorized.",
+          "basis": "founder_reported",
+          "sourceIds": [
+            "founder"
+          ],
+          "supports": [],
+          "challenges": [],
+          "limitation": "Not evidence of willingness to pay for this checker.",
+          "important": true,
+          "repetition": "single",
+          "metric": null,
+          "quote": null
+        },
+        {
+          "id": "suite",
+          "statement": "Printavo publicly lists Lite at $109/month and Standard at $244/month for broader shop management; Lite has 20 quotes/invoices per month and 2 users. Currency unspecified on inspected page.",
+          "basis": "public_observation",
+          "sourceIds": [
+            "printavo"
+          ],
+          "supports": [],
+          "challenges": [],
+          "limitation": "Not evidence of willingness to pay for this checker.",
+          "important": true,
+          "repetition": "single",
+          "metric": null,
+          "quote": null
+        },
+        {
+          "id": "language",
+          "statement": "A public mixed-shop discussion reports paper production tracking delays and differing experiences with broader tools, including praise and complexity concerns.",
+          "basis": "public_observation",
+          "sourceIds": [
+            "discussion"
+          ],
+          "supports": [],
+          "challenges": [],
+          "limitation": "Not evidence of willingness to pay for this checker.",
+          "important": true,
+          "repetition": "single",
+          "metric": null,
+          "quote": null
+        },
+        {
+          "id": "route_stitch",
+          "statement": "Stitch Wizard publicly identifies Cambridge Ontario and wholesale/retail embroidery with a contact route.",
+          "basis": "public_observation",
+          "sourceIds": [
+            "stitch"
+          ],
+          "supports": [],
+          "challenges": [],
+          "limitation": "Not evidence of willingness to pay for this checker.",
+          "important": true,
+          "repetition": "single",
+          "metric": null,
+          "quote": null
+        },
+        {
+          "id": "route_bossa",
+          "statement": "Bossa has a Toronto custom embroidery/decoration contact route.",
+          "basis": "public_observation",
+          "sourceIds": [
+            "bossa"
+          ],
+          "supports": [],
+          "challenges": [],
+          "limitation": "Not evidence of willingness to pay for this checker.",
+          "important": true,
+          "repetition": "single",
+          "metric": null,
+          "quote": null
+        },
+        {
+          "id": "route_embbrosia",
+          "statement": "Embbrosia publishes a Mississauga Ontario embroidery business contact page.",
+          "basis": "public_observation",
+          "sourceIds": [
+            "embbrosia"
+          ],
+          "supports": [],
+          "challenges": [],
+          "limitation": "Not evidence of willingness to pay for this checker.",
+          "important": true,
+          "repetition": "single",
+          "metric": null,
+          "quote": null
+        },
+        {
+          "id": "technical",
+          "statement": "Browser file selection and CSV parser documentation support a local deterministic checker; quoted fields and parse errors must be handled; bundling avoids runtime network dependence. MIT notice must be retained.",
+          "basis": "inference",
+          "sourceIds": [
+            "parse",
+            "file",
+            "license"
+          ],
+          "supports": [],
+          "challenges": [],
+          "limitation": "Not implemented or executed; local-browser behavior, malformed inputs, no network and unchanged source still require authorized verification.",
+          "important": true,
+          "repetition": "single",
+          "metric": null,
+          "quote": null
+        },
+        {
+          "id": "substitute",
+          "statement": "A spreadsheet rule on trimmed size and colour, a manual checklist, or upstream required fields may remove the pain without a separate tool. Generic AI is unnecessary for exact empty-string checks.",
+          "basis": "inference",
+          "sourceIds": [
+            "founder",
+            "parse"
+          ],
+          "supports": [],
+          "challenges": [],
+          "limitation": "Spreadsheet capability is an engineering inference, not observed adoption at this shop.",
+          "important": true,
+          "repetition": "single",
+          "metric": null,
+          "quote": null
+        }
+      ],
+      "research": [
+        {
+          "id": "pulse",
+          "question": "Do embroidery shop workflows, substitutes and Ontario public routes justify a narrow pilot rather than a suite?",
+          "capability": "host_research",
+          "queryBudget": 3,
+          "pageBudget": 8,
+          "budgetReason": "Bounded initial public investigation; eight pages opened plus relevant ranges.",
+          "queries": [
+            {
+              "text": "embroidery shop production work orders missing information Printavo pricing",
+              "materialFinding": true
+            },
+            {
+              "text": "Ontario commercial embroidery contact embroidery shop",
+              "materialFinding": true
+            },
+            {
+              "text": "embroidery production work order missing thread color size CSV",
+              "materialFinding": true
+            }
+          ],
+          "inspectedSourceIds": [
+            "printavo",
+            "discussion",
+            "stitch",
+            "bossa",
+            "embbrosia"
+          ],
+          "stopReason": "coverage_sufficient",
+          "limitation": "No independent exact blank-field complaint frequency or willingness to pay established; public routes are not recruitment consent."
+        },
+        {
+          "id": "feasibility",
+          "question": "Can a local Windows browser read quoted CSV and report missing values without writing the source or using AI?",
+          "capability": "host_research",
+          "queryBudget": 0,
+          "pageBudget": 3,
+          "budgetReason": "Direct primary documentation opens; included within eight unique pages total.",
+          "queries": [],
+          "inspectedSourceIds": [
+            "parse",
+            "file",
+            "license"
+          ],
+          "stopReason": "coverage_sufficient",
+          "limitation": "Documentation only; execution held until approved."
+        },
+        {
+          "id": "context_frequency",
+          "question": "How often did this happen at the pilot shop in the reported week?",
+          "capability": "provided_sources",
+          "queryBudget": 0,
+          "pageBudget": 1,
+          "budgetReason": "Inspect current founder statements only, not a completed customer interview.",
+          "queries": [],
+          "inspectedSourceIds": [
+            "founder"
+          ],
+          "stopReason": "coverage_sufficient",
+          "limitation": "Founder-reported current conversation only; relationship bias and no independent verification."
+        },
+        {
+          "id": "context_urgency",
+          "question": "What consequence and dated pilot access make this worth testing now?",
+          "capability": "provided_sources",
+          "queryBudget": 0,
+          "pageBudget": 1,
+          "budgetReason": "Inspect current founder statements only, not a completed customer interview.",
+          "queries": [],
+          "inspectedSourceIds": [
+            "founder"
+          ],
+          "stopReason": "coverage_sufficient",
+          "limitation": "Founder-reported current conversation only; relationship bias and no independent verification."
+        },
+        {
+          "id": "context_pain",
+          "question": "What happened when a missing detail reached production?",
+          "capability": "provided_sources",
+          "queryBudget": 0,
+          "pageBudget": 1,
+          "budgetReason": "Inspect current founder statements only, not a completed customer interview.",
+          "queries": [],
+          "inspectedSourceIds": [
+            "founder"
+          ],
+          "stopReason": "coverage_sufficient",
+          "limitation": "Founder-reported current conversation only; relationship bias and no independent verification."
+        },
+        {
+          "id": "context_necessity",
+          "question": "Which missing details had to be resolved before work resumed?",
+          "capability": "provided_sources",
+          "queryBudget": 0,
+          "pageBudget": 1,
+          "budgetReason": "Inspect current founder statements only, not a completed customer interview.",
+          "queries": [],
+          "inspectedSourceIds": [
+            "founder"
+          ],
+          "stopReason": "coverage_sufficient",
+          "limitation": "Founder-reported current conversation only; relationship bias and no independent verification."
+        },
+        {
+          "id": "context_buyer",
+          "question": "Who has agreed to a pilot, and what evidence exists about payment?",
+          "capability": "provided_sources",
+          "queryBudget": 0,
+          "pageBudget": 1,
+          "budgetReason": "Inspect current founder statements only, not a completed customer interview.",
+          "queries": [],
+          "inspectedSourceIds": [
+            "founder"
+          ],
+          "stopReason": "coverage_sufficient",
+          "limitation": "Owner available; willingness to pay and budget unknown."
+        },
+        {
+          "id": "context_founder_fit",
+          "question": "What firsthand production experience and access does the founder report?",
+          "capability": "provided_sources",
+          "queryBudget": 0,
+          "pageBudget": 1,
+          "budgetReason": "Inspect current founder statements only, not a completed customer interview.",
+          "queries": [],
+          "inspectedSourceIds": [
+            "founder"
+          ],
+          "stopReason": "coverage_sufficient",
+          "limitation": "Founder-reported current conversation only; relationship bias and no independent verification."
+        }
+      ],
+      "competitors": [
+        {
+          "id": "suite",
+          "name": "Printavo",
+          "categories": [
+            "incumbent",
+            "indirect"
+          ],
+          "fields": {
+            "target": {
+              "text": "Print and embroidery shops",
+              "claimIds": [
+                "suite"
+              ],
+              "basis": "observed"
+            },
+            "workflow": {
+              "text": "Cloud order tracking, tasks, quotes and approvals",
+              "claimIds": [
+                "suite"
+              ],
+              "basis": "observed"
+            },
+            "positioning": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "pricing": {
+              "text": "$109/month Lite, $244/month Standard; currency unverified",
+              "claimIds": [
+                "suite"
+              ],
+              "basis": "observed"
+            },
+            "capabilities": {
+              "text": "Broader shop management rather than a standalone CSV check",
+              "claimIds": [
+                "suite"
+              ],
+              "basis": "observed"
+            },
+            "love": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "hate": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "complexity": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "onboarding": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "missing_workflows": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "switching": {
+              "text": "Replacing workflow is larger than adding a local preflight check",
+              "claimIds": [
+                "suite",
+                "workflow"
+              ],
+              "basis": "inferred"
+            },
+            "underserved": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "gaps": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            }
+          },
+          "tractionClaimIds": []
+        },
+        {
+          "id": "manual",
+          "name": "Manual skim / spreadsheet / upstream required fields",
+          "categories": [
+            "manual",
+            "direct"
+          ],
+          "fields": {
+            "target": {
+              "text": "Office person already handling the export",
+              "claimIds": [
+                "workflow"
+              ],
+              "basis": "observed"
+            },
+            "workflow": {
+              "text": "Skim manually or configure whitespace-aware spreadsheet rule",
+              "claimIds": [
+                "workflow",
+                "substitute"
+              ],
+              "basis": "inferred"
+            },
+            "positioning": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "pricing": {
+              "text": "Incremental software cost unknown; labour and existing spreadsheet licensing not measured",
+              "claimIds": [
+                "substitute"
+              ],
+              "basis": "inferred"
+            },
+            "capabilities": {
+              "text": "Can cover exact blank-field rule; workflow discipline still needed",
+              "claimIds": [
+                "substitute"
+              ],
+              "basis": "inferred"
+            },
+            "love": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "hate": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "complexity": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "onboarding": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "missing_workflows": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "switching": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "underserved": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "gaps": {
+              "text": "Rushed skim already missed two orders",
+              "claimIds": [
+                "pain"
+              ],
+              "basis": "observed"
+            }
+          },
+          "tractionClaimIds": []
+        },
+        {
+          "id": "ai",
+          "name": "Generic AI or AI-generated checker",
+          "categories": [
+            "generic_ai",
+            "new_ai"
+          ],
+          "fields": {
+            "target": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "workflow": {
+              "text": "Could help generate a rule, but runtime AI is unnecessary",
+              "claimIds": [
+                "substitute",
+                "technical"
+              ],
+              "basis": "inferred"
+            },
+            "positioning": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "pricing": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "capabilities": {
+              "text": "Exact trimmed-empty check is deterministic",
+              "claimIds": [
+                "technical"
+              ],
+              "basis": "inferred"
+            },
+            "love": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "hate": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "complexity": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "onboarding": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "missing_workflows": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "switching": {
+              "text": "Private CSV upload is avoidable with local checking",
+              "claimIds": [
+                "technical"
+              ],
+              "basis": "inferred"
+            },
+            "underserved": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            },
+            "gaps": {
+              "text": null,
+              "claimIds": [],
+              "basis": "unknown"
+            }
+          },
+          "tractionClaimIds": []
+        }
+      ],
+      "adjacent": [],
+      "habitats": [
+        {
+          "id": "hab_stitch",
+          "kind": "professional",
+          "place": "Stitch Wizard contact",
+          "observedClaimIds": [
+            "route_stitch"
+          ],
+          "likelyUsers": "Owner or office production administrator; fit inferred, CSV workflow unknown.",
+          "relevance": "Independent Ontario embroidery research candidate to reduce friendship bias.",
+          "participation": {
+            "route": "https://www.stitchwizard.ca/contact/",
+            "verified": true,
+            "sourceIds": [
+              "stitch"
+            ]
+          },
+          "limitation": "Public business inquiry route only; no consent, interest, customer status or permission to send inferred. Project forms are not research signup forms."
+        },
+        {
+          "id": "hab_bossa",
+          "kind": "professional",
+          "place": "Bossa contact",
+          "observedClaimIds": [
+            "route_bossa"
+          ],
+          "likelyUsers": "Owner or office production administrator; fit inferred, CSV workflow unknown.",
+          "relevance": "Independent Ontario embroidery research candidate to reduce friendship bias.",
+          "participation": {
+            "route": "https://bossaembroidery.com/contact",
+            "verified": true,
+            "sourceIds": [
+              "bossa"
+            ]
+          },
+          "limitation": "Public business inquiry route only; no consent, interest, customer status or permission to send inferred. Project forms are not research signup forms."
+        },
+        {
+          "id": "hab_embbrosia",
+          "kind": "professional",
+          "place": "Embbrosia contact",
+          "observedClaimIds": [
+            "route_embbrosia"
+          ],
+          "likelyUsers": "Owner or office production administrator; fit inferred, CSV workflow unknown.",
+          "relevance": "Independent Ontario embroidery research candidate to reduce friendship bias.",
+          "participation": {
+            "route": "https://www.embbrosia.com/contact-us",
+            "verified": true,
+            "sourceIds": [
+              "embbrosia"
+            ]
+          },
+          "limitation": "Public business inquiry route only; no consent, interest, customer status or permission to send inferred. Project forms are not research signup forms."
+        }
+      ],
+      "firstUserAvenues": [
+        "hab_stitch",
+        "hab_bossa",
+        "hab_embbrosia"
+      ],
+      "redTeam": [
+        {
+          "claimId": "pain",
+          "evidence": "Two founder-reported machine interruptions last week.",
+          "inference": "Earlier blank detection may avoid avoidable interruptions.",
+          "assumption": "Office will check before production and act on flags.",
+          "contradiction": "Spreadsheet or upstream validation may already be enough; friend support may masquerade as demand.",
+          "disproof": "Office does not reuse, flags cannot be acted on, or existing tool solves with less effort.",
+          "cheapestLearning": "Known-answer checks then observe one uncoached office run and next-export reuse; measure interruption impact later."
+        },
+        {
+          "claimId": "workflow",
+          "evidence": "Small CSV and exact blanks rule are founder-reported.",
+          "inference": "Simple rule may reduce missed records.",
+          "assumption": "Office will select the right export before release.",
+          "contradiction": "Small files may make a spreadsheet adequate.",
+          "disproof": "Correct parser output that office cannot act on.",
+          "cheapestLearning": "Observe uncoached selection and correction route on Friday."
+        },
+        {
+          "claimId": "access",
+          "evidence": "Owner at friend shop can try Friday.",
+          "inference": "Pilot is reachable.",
+          "assumption": "Office participation and honest feedback will follow.",
+          "contradiction": "Friendship may create courtesy use.",
+          "disproof": "Owner available but office does not adopt.",
+          "cheapestLearning": "Observe office use, then independent conversations only when authorized."
+        },
+        {
+          "claimId": "suite",
+          "evidence": "Vendor lists broad suite prices and features.",
+          "inference": "A narrow checker avoids migration.",
+          "assumption": "Price packaging leaves room for smaller offer.",
+          "contradiction": "Suite may already prevent this error.",
+          "disproof": "Existing required fields solve it comfortably.",
+          "cheapestLearning": "Ask what existing setup checks before proposing replacement."
+        },
+        {
+          "claimId": "language",
+          "evidence": "Public mixed-shop tracking discussion inspected.",
+          "inference": "Operational friction exists in adjacent workflows.",
+          "assumption": "That friction relates to missing size/colour.",
+          "contradiction": "Discussion concerns broader mixed-workflow tracking.",
+          "disproof": "Independent shops do not report this specific problem.",
+          "cheapestLearning": "Use neutral past-behavior guide later."
+        },
+        {
+          "claimId": "route_stitch",
+          "evidence": "Public embroidery contact page inspected.",
+          "inference": "Relevant Ontario learning starting point.",
+          "assumption": "Their workflow resembles pilot.",
+          "contradiction": "Size, CSV use, pain and interest unknown.",
+          "disproof": "Business lacks this workflow or declines research.",
+          "cheapestLearning": "Do not count as customer; only later authorized neutral inquiry."
+        },
+        {
+          "claimId": "route_bossa",
+          "evidence": "Public embroidery contact page inspected.",
+          "inference": "Relevant Ontario learning starting point.",
+          "assumption": "Their workflow resembles pilot.",
+          "contradiction": "Size, CSV use, pain and interest unknown.",
+          "disproof": "Business lacks this workflow or declines research.",
+          "cheapestLearning": "Do not count as customer; only later authorized neutral inquiry."
+        },
+        {
+          "claimId": "route_embbrosia",
+          "evidence": "Public embroidery contact page inspected.",
+          "inference": "Relevant Ontario learning starting point.",
+          "assumption": "Their workflow resembles pilot.",
+          "contradiction": "Size, CSV use, pain and interest unknown.",
+          "disproof": "Business lacks this workflow or declines research.",
+          "cheapestLearning": "Do not count as customer; only later authorized neutral inquiry."
+        },
+        {
+          "claimId": "technical",
+          "evidence": "Primary File API, parser docs and MIT licence inspected.",
+          "inference": "Local checker is feasible.",
+          "assumption": "Implementation handles malformed and quoted data safely.",
+          "contradiction": "Docs do not test a local Windows app.",
+          "disproof": "Missed blank, false clean, altered original or network dependency.",
+          "cheapestLearning": "Authorized known-answer and actual browser checks before pilot."
+        },
+        {
+          "claimId": "substitute",
+          "evidence": "Exact blanks rule and existing skim.",
+          "inference": "Spreadsheet or upstream rule could substitute.",
+          "assumption": "Office tolerates configuration.",
+          "contradiction": "No observed spreadsheet availability or skill.",
+          "disproof": "Configured spreadsheet produces same outcome with less effort.",
+          "cheapestLearning": "Compare current workflow and available rule before expanding."
+        }
+      ],
+      "master": null,
+      "buildRequest": null,
+      "evaluation": {
+        "status": "ready",
+        "coverage": [
+          {
+            "topic": "frequency",
+            "status": "findings",
+            "claimIds": [
+              "pain",
+              "workflow"
+            ],
+            "runIds": [
+              "context_frequency"
+            ],
+            "reason": "One reported week supports a test; not category recurrence."
+          },
+          {
+            "topic": "urgency",
+            "status": "findings",
+            "claimIds": [
+              "pain",
+              "access"
+            ],
+            "runIds": [
+              "context_urgency"
+            ],
+            "reason": "Machine stoppage and Friday access support bounded urgency."
+          },
+          {
+            "topic": "pain",
+            "status": "findings",
+            "claimIds": [
+              "pain"
+            ],
+            "runIds": [
+              "context_pain"
+            ],
+            "reason": "Office call and machine interruption; cost unmeasured."
+          },
+          {
+            "topic": "necessity",
+            "status": "findings",
+            "claimIds": [
+              "pain",
+              "workflow"
+            ],
+            "runIds": [
+              "context_necessity"
+            ],
+            "reason": "Order details must be resolved; checker itself is optional."
+          },
+          {
+            "topic": "buyer",
+            "status": "findings",
+            "claimIds": [
+              "access"
+            ],
+            "runIds": [
+              "context_buyer"
+            ],
+            "reason": "Owner is pilot sponsor; willingness to pay not established."
+          },
+          {
+            "topic": "reachability",
+            "status": "findings",
+            "claimIds": [
+              "access",
+              "route_stitch",
+              "route_bossa",
+              "route_embbrosia"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "reason": "Known pilot plus public independent routes; no outreach authorized."
+          },
+          {
+            "topic": "founder_fit",
+            "status": "findings",
+            "claimIds": [
+              "access"
+            ],
+            "runIds": [
+              "context_founder_fit"
+            ],
+            "reason": "Relevant production experience and one relationship-biased pilot."
+          },
+          {
+            "topic": "ai_substitutes",
+            "status": "findings",
+            "claimIds": [
+              "substitute",
+              "technical"
+            ],
+            "runIds": [
+              "feasibility"
+            ],
+            "reason": "Deterministic rule; generic AI adds no needed capability."
+          },
+          {
+            "topic": "dedicated_value",
+            "status": "findings",
+            "claimIds": [
+              "pain",
+              "substitute"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "reason": "Value hypothesis: fewer missed blanks with less office effort than skim or spreadsheet."
+          },
+          {
+            "topic": "competitors",
+            "status": "findings",
+            "claimIds": [
+              "suite",
+              "substitute"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "reason": "Suite, manual/spreadsheet and upstream fixes are substitutes."
+          },
+          {
+            "topic": "user_language",
+            "status": "findings",
+            "claimIds": [
+              "language",
+              "pain"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "reason": "Direct founder incident and adjacent mixed-shop discussion; exact independent prevalence unknown."
+          },
+          {
+            "topic": "gaps",
+            "status": "findings",
+            "claimIds": [
+              "pain",
+              "substitute"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "reason": "Gap exists in this skim workflow; incumbent gap not established."
+          },
+          {
+            "topic": "adjacency",
+            "status": "findings",
+            "claimIds": [
+              "suite",
+              "substitute"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "reason": "Production scheduling suite and upstream required-field validation adjacent; broader build premature."
+          },
+          {
+            "topic": "habitats",
+            "status": "findings",
+            "claimIds": [
+              "route_stitch",
+              "route_bossa",
+              "route_embbrosia"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "reason": "Three inspected Ontario public contacts; relationship pilot remains fastest."
+          },
+          {
+            "topic": "prevalence",
+            "status": "unknown_after_search",
+            "claimIds": [],
+            "runIds": [
+              "pulse"
+            ],
+            "reason": "Public batch does not establish prevalence for Ontario blank-field checking. Unknown is retained; not needed to prove demand before one bounded learning pilot."
+          },
+          {
+            "topic": "category_direction",
+            "status": "unknown_after_search",
+            "claimIds": [],
+            "runIds": [
+              "pulse"
+            ],
+            "reason": "Public batch does not establish category_direction for Ontario blank-field checking. Unknown is retained; not needed to prove demand before one bounded learning pilot."
+          },
+          {
+            "topic": "existing_spend",
+            "status": "unknown_after_search",
+            "claimIds": [],
+            "runIds": [
+              "pulse"
+            ],
+            "reason": "Public batch does not establish existing_spend for Ontario blank-field checking. Unknown is retained; not needed to prove demand before one bounded learning pilot."
+          },
+          {
+            "topic": "traction",
+            "status": "unknown_after_search",
+            "claimIds": [],
+            "runIds": [
+              "pulse"
+            ],
+            "reason": "Public batch does not establish traction for Ontario blank-field checking. Unknown is retained; not needed to prove demand before one bounded learning pilot."
+          }
+        ],
+        "promising": [
+          "Specific reported stoppage and reachable Friday pilot.",
+          "Tiny exact deterministic rule with no cloud dependency."
+        ],
+        "weak": [
+          "One friend shop only; easy spreadsheet substitute."
+        ],
+        "unknowns": [
+          "Independent prevalence, stoppage duration/cost, repeat use and willingness to pay."
+        ],
+        "contradictions": [
+          "Useful rule may be insufficient as a sustainable standalone business."
+        ],
+        "conclusion": "GO for the bounded October 9 missing-field experiment, not validated demand or permission to build."
+      },
+      "brief": {
+        "kind": "research",
+        "summary": "GO for the bounded October 9 missing-field experiment, not validated demand or permission to build. Review and build permission remain separate.",
+        "seeing": [],
+        "matters": [],
+        "next": "Continue the current evaluation and its required review; this save is not build approval.",
+        "questions": [],
+        "choices": []
+      },
+      "opportunity": null,
+      "discovery": {
+        "channels": "online",
+        "region": null,
+        "outcome": "not_run",
+        "runIds": [],
+        "limitation": "No first-user discovery has been run for this context yet."
+      },
+      "investigation": {
+        "coverage": [
+          {
+            "topic": "workaround",
+            "status": "findings",
+            "claimIds": [
+              "workflow",
+              "substitute"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "reason": "Rushed skim is observed via founder; spreadsheet/upstream validation are inferred alternatives; Friday must compare effort and reuse."
+          },
+          {
+            "topic": "willingness_to_pay",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "ability_to_pay",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "switching_cost",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "founder_insight",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "founder_expertise",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "founder_access",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "technical_feasibility",
+            "status": "findings",
+            "claimIds": [
+              "technical",
+              "workflow"
+            ],
+            "runIds": [
+              "feasibility"
+            ],
+            "reason": "Documented local file selection and CSV parser support bounded feasibility, not proof of a working app; essential verification remains in build scope."
+          },
+          {
+            "topic": "business_model_fit",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          },
+          {
+            "topic": "intention_alignment",
+            "status": "unexamined",
+            "claimIds": [],
+            "runIds": [],
+            "reason": "Not examined yet."
+          }
+        ],
+        "questions": [
+          {
+            "topic": "frequency",
+            "runIds": [
+              "context_frequency"
+            ],
+            "relevance": "How often did this happen at the pilot shop in the reported week?"
+          },
+          {
+            "topic": "urgency",
+            "runIds": [
+              "context_urgency"
+            ],
+            "relevance": "What consequence and dated pilot access make this worth testing now?"
+          },
+          {
+            "topic": "pain",
+            "runIds": [
+              "context_pain"
+            ],
+            "relevance": "What happened when a missing detail reached production?"
+          },
+          {
+            "topic": "necessity",
+            "runIds": [
+              "context_necessity"
+            ],
+            "relevance": "Which missing details had to be resolved before work resumed?"
+          },
+          {
+            "topic": "buyer",
+            "runIds": [
+              "context_buyer"
+            ],
+            "relevance": "Who has agreed to a pilot, and what evidence exists about payment?"
+          },
+          {
+            "topic": "reachability",
+            "runIds": [
+              "pulse"
+            ],
+            "relevance": "What does reachability imply for this one-shop learning experiment?"
+          },
+          {
+            "topic": "founder_fit",
+            "runIds": [
+              "context_founder_fit"
+            ],
+            "relevance": "What firsthand production experience and access does the founder report?"
+          },
+          {
+            "topic": "ai_substitutes",
+            "runIds": [
+              "feasibility"
+            ],
+            "relevance": "What does ai_substitutes imply for this one-shop learning experiment?"
+          },
+          {
+            "topic": "dedicated_value",
+            "runIds": [
+              "pulse"
+            ],
+            "relevance": "What does dedicated_value imply for this one-shop learning experiment?"
+          },
+          {
+            "topic": "competitors",
+            "runIds": [
+              "pulse"
+            ],
+            "relevance": "What does competitors imply for this one-shop learning experiment?"
+          },
+          {
+            "topic": "user_language",
+            "runIds": [
+              "pulse"
+            ],
+            "relevance": "What does user_language imply for this one-shop learning experiment?"
+          },
+          {
+            "topic": "gaps",
+            "runIds": [
+              "pulse"
+            ],
+            "relevance": "What does gaps imply for this one-shop learning experiment?"
+          },
+          {
+            "topic": "adjacency",
+            "runIds": [
+              "pulse"
+            ],
+            "relevance": "What does adjacency imply for this one-shop learning experiment?"
+          },
+          {
+            "topic": "habitats",
+            "runIds": [
+              "pulse"
+            ],
+            "relevance": "What does habitats imply for this one-shop learning experiment?"
+          },
+          {
+            "topic": "prevalence",
+            "runIds": [
+              "pulse"
+            ],
+            "relevance": "What does prevalence imply for this one-shop learning experiment?"
+          },
+          {
+            "topic": "category_direction",
+            "runIds": [
+              "pulse"
+            ],
+            "relevance": "What does category_direction imply for this one-shop learning experiment?"
+          },
+          {
+            "topic": "existing_spend",
+            "runIds": [
+              "pulse"
+            ],
+            "relevance": "What does existing_spend imply for this one-shop learning experiment?"
+          },
+          {
+            "topic": "traction",
+            "runIds": [
+              "pulse"
+            ],
+            "relevance": "What does traction imply for this one-shop learning experiment?"
+          },
+          {
+            "topic": "workaround",
+            "runIds": [
+              "pulse"
+            ],
+            "relevance": "What is the current workaround and could an existing rule be sufficient?"
+          },
+          {
+            "topic": "technical_feasibility",
+            "runIds": [
+              "feasibility"
+            ],
+            "relevance": "Is a local Windows-browser CSV check feasible without writing the input?"
+          }
+        ],
+        "alternatives": [
+          {
+            "kind": "direct",
+            "competitorIds": [
+              "manual"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "conclusion": "Compare direct against narrow checker; no claim of a market-wide incumbent gap."
+          },
+          {
+            "kind": "adjacent",
+            "competitorIds": [
+              "suite"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "conclusion": "Upstream required fields could prevent omissions; do not pivot into scheduling."
+          },
+          {
+            "kind": "incumbent",
+            "competitorIds": [
+              "suite"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "conclusion": "Compare incumbent against narrow checker; no claim of a market-wide incumbent gap."
+          },
+          {
+            "kind": "new_ai",
+            "competitorIds": [
+              "ai"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "conclusion": "Compare new_ai against narrow checker; no claim of a market-wide incumbent gap."
+          },
+          {
+            "kind": "service",
+            "competitorIds": [
+              "manual"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "conclusion": "Founder-assisted manual preflight could test usefulness but masks independent office adoption."
+          },
+          {
+            "kind": "manual",
+            "competitorIds": [
+              "manual"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "conclusion": "Compare manual against narrow checker; no claim of a market-wide incumbent gap."
+          },
+          {
+            "kind": "spreadsheet",
+            "competitorIds": [
+              "manual"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "conclusion": "Compare spreadsheet against narrow checker; no claim of a market-wide incumbent gap."
+          },
+          {
+            "kind": "generic_ai",
+            "competitorIds": [
+              "ai"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "conclusion": "Compare generic_ai against narrow checker; no claim of a market-wide incumbent gap."
+          },
+          {
+            "kind": "do_nothing",
+            "competitorIds": [
+              "manual"
+            ],
+            "runIds": [
+              "pulse"
+            ],
+            "conclusion": "Continue skim and operator calls; zero new software but observed interruption remains."
+          }
+        ],
+        "counterevidence": "Spreadsheet or upstream required fields may solve this adequately. Public mixed-shop discussion includes satisfied suite users. Friend pilot may use it as a favour. Two incidents do not prove repeat demand or payment.",
+        "decision": "GO for one bounded local missing-field learning MVP, pending thesis review and separate product authorization; do not claim validated business.",
+        "redefinition": null
+      },
+      "ide": {
+        "generations": {
+          "intention": 1,
+          "user": 1,
+          "problem": 1,
+          "evaluation": 2,
+          "act": 2
+        },
+        "confirmations": [
+          {
+            "id": "9084fe78-9bc6-4599-b255-df24197cae17",
+            "subject": "intention",
+            "basis": "170c0b14442e5d00d0bfd44a8148519aae3e23196bb3a0db7dbc6f79cfaa58a6",
+            "presentationId": "08307142-7874-4d07-ab9d-4d6483e42043",
+            "presentedText": "**My take:** GO for one bounded local missing-field learning MVP, pending thesis review and separate product authorization; do not claim validated business.\n\n**What we are building toward:** Build a small sustainable business as a solo developer serving small Ontario commercial embroidery shops.\n\n**The first user:** Office person at the friend's small Ontario commercial embroidery shop who checks CSV order lines before production\n\n**Their pain:** Rushed manual CSV checking misses missing garment sizes or thread colours, so operators stop machines and call the office.\n\n**Likely buyer:** Shop owner; payer hypothesis, not demonstrated purchase authority or budget\n\n**Evidence so far:** GO for the bounded October 9 missing-field experiment, not validated demand or permission to build. Specific reported stoppage and reachable Friday pilot. Tiny exact deterministic rule with no cloud dependency.\n\n**What could undo it:**\n\n- Spreadsheet or upstream required fields may solve this adequately. Public mixed-shop discussion includes satisfied suite users. Friend pilot may use it as a favour. Two incidents do not prove repeat demand or payment.\n- One friend shop only; easy spreadsheet substitute.\n- Useful rule may be insufficient as a sustainable standalone business.\n\n**Still unknown:**\n\n- Independent prevalence, stoppage duration/cost, repeat use and willingness to pay.\n\n**Technical risk:** False reassurance from malformed parsing or confusing a no-blank result with correct order details.\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+            "turnId": "user_reply_looks_good_dont_build_yet",
+            "quote": "Looks good, don't build yet.",
+            "recordedAt": "2026-10-07T04:06:05.668Z"
+          },
+          {
+            "id": "9983b9ce-d9b9-4896-a1eb-6884c027405b",
+            "subject": "user",
+            "basis": "b880031548cf1bd6441388342f6dee54aa793316ddc0246f130126a907f257e4",
+            "presentationId": "08307142-7874-4d07-ab9d-4d6483e42043",
+            "presentedText": "**My take:** GO for one bounded local missing-field learning MVP, pending thesis review and separate product authorization; do not claim validated business.\n\n**What we are building toward:** Build a small sustainable business as a solo developer serving small Ontario commercial embroidery shops.\n\n**The first user:** Office person at the friend's small Ontario commercial embroidery shop who checks CSV order lines before production\n\n**Their pain:** Rushed manual CSV checking misses missing garment sizes or thread colours, so operators stop machines and call the office.\n\n**Likely buyer:** Shop owner; payer hypothesis, not demonstrated purchase authority or budget\n\n**Evidence so far:** GO for the bounded October 9 missing-field experiment, not validated demand or permission to build. Specific reported stoppage and reachable Friday pilot. Tiny exact deterministic rule with no cloud dependency.\n\n**What could undo it:**\n\n- Spreadsheet or upstream required fields may solve this adequately. Public mixed-shop discussion includes satisfied suite users. Friend pilot may use it as a favour. Two incidents do not prove repeat demand or payment.\n- One friend shop only; easy spreadsheet substitute.\n- Useful rule may be insufficient as a sustainable standalone business.\n\n**Still unknown:**\n\n- Independent prevalence, stoppage duration/cost, repeat use and willingness to pay.\n\n**Technical risk:** False reassurance from malformed parsing or confusing a no-blank result with correct order details.\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+            "turnId": "user_reply_looks_good_dont_build_yet",
+            "quote": "Looks good, don't build yet.",
+            "recordedAt": "2026-10-07T04:06:05.668Z"
+          },
+          {
+            "id": "e67acfd7-c55b-4c78-9c76-15ba6195f0aa",
+            "subject": "problem",
+            "basis": "7e2f8cfead55336744515e2c923362c29d1364dd3d3eccd45193eee70dd6972c",
+            "presentationId": "08307142-7874-4d07-ab9d-4d6483e42043",
+            "presentedText": "**My take:** GO for one bounded local missing-field learning MVP, pending thesis review and separate product authorization; do not claim validated business.\n\n**What we are building toward:** Build a small sustainable business as a solo developer serving small Ontario commercial embroidery shops.\n\n**The first user:** Office person at the friend's small Ontario commercial embroidery shop who checks CSV order lines before production\n\n**Their pain:** Rushed manual CSV checking misses missing garment sizes or thread colours, so operators stop machines and call the office.\n\n**Likely buyer:** Shop owner; payer hypothesis, not demonstrated purchase authority or budget\n\n**Evidence so far:** GO for the bounded October 9 missing-field experiment, not validated demand or permission to build. Specific reported stoppage and reachable Friday pilot. Tiny exact deterministic rule with no cloud dependency.\n\n**What could undo it:**\n\n- Spreadsheet or upstream required fields may solve this adequately. Public mixed-shop discussion includes satisfied suite users. Friend pilot may use it as a favour. Two incidents do not prove repeat demand or payment.\n- One friend shop only; easy spreadsheet substitute.\n- Useful rule may be insufficient as a sustainable standalone business.\n\n**Still unknown:**\n\n- Independent prevalence, stoppage duration/cost, repeat use and willingness to pay.\n\n**Technical risk:** False reassurance from malformed parsing or confusing a no-blank result with correct order details.\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+            "turnId": "user_reply_looks_good_dont_build_yet",
+            "quote": "Looks good, don't build yet.",
+            "recordedAt": "2026-10-07T04:06:05.668Z"
+          },
+          {
+            "id": "6f08d682-188c-410c-81d8-4c7acbd5c6c5",
+            "subject": "evaluation",
+            "basis": "1efbcca79265c044fde50e73ca1e359fe6cfec0f504b2d13e56a0939a4283462",
+            "presentationId": "08307142-7874-4d07-ab9d-4d6483e42043",
+            "presentedText": "**My take:** GO for one bounded local missing-field learning MVP, pending thesis review and separate product authorization; do not claim validated business.\n\n**What we are building toward:** Build a small sustainable business as a solo developer serving small Ontario commercial embroidery shops.\n\n**The first user:** Office person at the friend's small Ontario commercial embroidery shop who checks CSV order lines before production\n\n**Their pain:** Rushed manual CSV checking misses missing garment sizes or thread colours, so operators stop machines and call the office.\n\n**Likely buyer:** Shop owner; payer hypothesis, not demonstrated purchase authority or budget\n\n**Evidence so far:** GO for the bounded October 9 missing-field experiment, not validated demand or permission to build. Specific reported stoppage and reachable Friday pilot. Tiny exact deterministic rule with no cloud dependency.\n\n**What could undo it:**\n\n- Spreadsheet or upstream required fields may solve this adequately. Public mixed-shop discussion includes satisfied suite users. Friend pilot may use it as a favour. Two incidents do not prove repeat demand or payment.\n- One friend shop only; easy spreadsheet substitute.\n- Useful rule may be insufficient as a sustainable standalone business.\n\n**Still unknown:**\n\n- Independent prevalence, stoppage duration/cost, repeat use and willingness to pay.\n\n**Technical risk:** False reassurance from malformed parsing or confusing a no-blank result with correct order details.\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+            "turnId": "user_reply_looks_good_dont_build_yet",
+            "quote": "Looks good, don't build yet.",
+            "recordedAt": "2026-10-07T04:06:05.721Z"
+          }
+        ],
+        "presentation": {
+          "id": "74977035-17fa-44db-bb5c-0aaa24997668",
+          "subject": "act",
+          "basis": "f53da90c9ec0e1c043e01942f25240eee3fea12a7389f65938d65f072432c326",
+          "text": "For Office person at the friend's small Ontario commercial embroidery shop who checks CSV order lines before production, this is a bounded learning MVP: Before production release, let the office identify every CSV line with blank or whitespace-only garment_size or thread_colour without changing the original file.\n\nCapabilities: Open a local CSV from a Windows browser without a terminal; List incomplete records by CSV record number, order_id and missing fields; Show checked totals or a clear input error; never call a failed check clean.\nCuts: No correctness checks on filled values or quantity; No CSV editing, downloads or writeback; No AI, cloud, accounts, integrations or scheduling; No contact, deployment or publication.\nLimits: Under 100 data rows/export, exact four supplied headers, comma-delimited quoted CSV. Reads only the chosen snapshot. Clean means no missing size/colour, not production-ready. One friend-shop pilot; repeat use and payment unproven.\nSuccess: Known-answer cases all correct, no clean result on invalid input, original unchanged and no network. On October 9 office independently opens/selects/checks and locates a flagged line within 2 minutes; resolves an actual omission if present and chooses next-export reuse.\nFailure: Any missed blank, spurious split from quoted commas, altered original, upload or false all-clear blocks pilot. If office needs coaching or will not use next export, revise workflow; clean live export alone is inconclusive.\nProposed first-user test: 2026-10-09.\nRemaining uncertainty: Observed incident justifies a narrow experiment; unknown whether office inserts checking into release workflow and uses it again.\nBuilding includes internal build stages, local tests, actual core-flow verification and ordinary fixes within this scope. Material scope, privacy, access or external-action changes need a new decision.\n\nDo you authorize building this exact scope?"
+        },
+        "reviewBasis": "f9303120a274ed6ef239d9c11f4ed9ef232bc5785cceba9e65a1b771ec4c7185"
+      },
+      "workingContext": {
+        "conversationId": "embroidery_oct9_current_conversation",
+        "project": {
+          "customer": {
+            "value": "Office person at friend's Ontario commercial embroidery shop; owner can pilot Friday October 9, 2026. No other agreed users.",
+            "status": "known",
+            "confidence": "high",
+            "source": "Current founder message"
+          },
+          "problem": {
+            "value": "Rushed CSV skim misses blank garment_size or thread_colour; two orders last week reached machine and caused office calls and stoppages.",
+            "status": "known",
+            "confidence": "high",
+            "source": "Current founder message"
+          },
+          "constraints": {
+            "value": "No build or contact yet. Windows local browser, no terminal; under 100 rows/export, quoted commas; original untouched; whitespace-only values incomplete.",
+            "status": "known",
+            "confidence": "high",
+            "source": "Current founder clarification"
+          },
+          "decision": {
+            "value": "GO hypothesis for bounded missing-field pilot; repeat use, independent demand and willingness to pay remain unproven.",
+            "status": "inferred",
+            "confidence": "medium",
+            "source": "Crumb interpretation of current founder evidence"
+          },
+          "next_move": {
+            "value": "Prepare sourced Evaluation and Friday test, then display thesis for correction/agreement; hold product work and all outreach.",
+            "status": "inferred",
+            "confidence": "medium",
+            "source": "Crumb recommendation"
+          }
+        },
+        "founder": {
+          "objective": {
+            "value": "Solo developer seeking a small sustainable business for Ontario commercial embroidery shops.",
+            "status": "known",
+            "confidence": "high",
+            "source": "Current founder message"
+          }
+        },
+        "inspected": [],
+        "opportunity": null
+      },
+      "quality": {
+        "technical": {
+          "material": true,
+          "summary": "Local deterministic browser check is feasible from documented File API and CSV parser capabilities; execution remains untested.",
+          "centralRisk": "False reassurance from malformed parsing or confusing a no-blank result with correct order details.",
+          "coverage": [
+            {
+              "topic": "data_apis",
+              "status": "findings",
+              "claimIds": [
+                "technical",
+                "workflow",
+                "substitute"
+              ],
+              "runIds": [
+                "feasibility"
+              ],
+              "reason": "User-selected export only; no API/server. Four exact headers required; missing/duplicate headers stop check."
+            },
+            {
+              "topic": "freshness_quality",
+              "status": "findings",
+              "claimIds": [
+                "technical",
+                "workflow",
+                "substitute"
+              ],
+              "runIds": [
+                "feasibility"
+              ],
+              "reason": "Check selected snapshot only; corrections require re-export and rerun. Quantity not validated. Filled values may be wrong."
+            },
+            {
+              "topic": "access_licensing",
+              "status": "findings",
+              "claimIds": [
+                "technical",
+                "workflow",
+                "substitute"
+              ],
+              "runIds": [
+                "feasibility"
+              ],
+              "reason": "Local file chosen by user; no private data imported now. If bundling Papa Parse, retain MIT notice."
+            },
+            {
+              "topic": "rate_cost",
+              "status": "findings",
+              "claimIds": [
+                "technical",
+                "workflow",
+                "substitute"
+              ],
+              "runIds": [
+                "feasibility"
+              ],
+              "reason": "No network API or AI bill; founder development/support time unknown and material to sustainability."
+            },
+            {
+              "topic": "integrations",
+              "status": "findings",
+              "claimIds": [
+                "technical",
+                "workflow",
+                "substitute"
+              ],
+              "runIds": [
+                "feasibility"
+              ],
+              "reason": "CSV selection only, no writeback or production system integration."
+            },
+            {
+              "topic": "complexity_latency",
+              "status": "findings",
+              "claimIds": [
+                "technical",
+                "workflow",
+                "substitute"
+              ],
+              "runIds": [
+                "feasibility"
+              ],
+              "reason": "Under 100 rows keeps workload bounded; performance unmeasured until authorized."
+            },
+            {
+              "topic": "ai_deterministic",
+              "status": "findings",
+              "claimIds": [
+                "technical",
+                "workflow",
+                "substitute"
+              ],
+              "runIds": [
+                "feasibility"
+              ],
+              "reason": "Trim strings and compare with empty string; no runtime model."
+            },
+            {
+              "topic": "reliability_failures",
+              "status": "findings",
+              "claimIds": [
+                "technical",
+                "workflow",
+                "substitute"
+              ],
+              "runIds": [
+                "feasibility"
+              ],
+              "reason": "Quoted commas/escaped quotes, whitespace, malformed CSV, empty/header-only, duplicate/missing headers, repeat order IDs and stale results need checks. Error cannot produce all-clear."
+            },
+            {
+              "topic": "security_privacy",
+              "status": "findings",
+              "claimIds": [
+                "technical",
+                "workflow",
+                "substitute"
+              ],
+              "runIds": [
+                "feasibility"
+              ],
+              "reason": "No uploads, telemetry, storage or external assets. Render CSV as text, clear previous result on new file, never modify input."
+            },
+            {
+              "topic": "vendor_build_buy",
+              "status": "findings",
+              "claimIds": [
+                "technical",
+                "workflow",
+                "substitute"
+              ],
+              "runIds": [
+                "feasibility"
+              ],
+              "reason": "Local checker versus spreadsheet and suite; bundled parser lowers CSV risk but retains license/update responsibility."
+            }
+          ],
+          "options": [
+            {
+              "name": "Local browser checker",
+              "approach": "Offline user-selected CSV, robust parsing, trimmed-empty check and text-only report.",
+              "tradeoff": "Minimal workflow change; distribution and local-browser behavior require actual verification.",
+              "claimIds": [
+                "technical",
+                "workflow"
+              ]
+            },
+            {
+              "name": "Spreadsheet rule",
+              "approach": "Whitespace-aware conditional flag in existing office spreadsheet.",
+              "tradeoff": "May be adequate and cheaper; formulas/import discipline and licensing not observed.",
+              "claimIds": [
+                "substitute"
+              ]
+            },
+            {
+              "name": "Existing suite / upstream form",
+              "approach": "Use existing required fields or broader management software.",
+              "tradeoff": "Potentially prevents errors but may require workflow migration; exact shop setup unknown.",
+              "claimIds": [
+                "suite",
+                "substitute"
+              ]
+            }
+          ],
+          "recommendation": {
+            "option": "Local browser checker",
+            "reason": "Fits stated Windows/browser constraint and tiny export; compare office burden against spreadsheet during pilot. No claim it beats an already-configured rule."
+          }
+        },
+        "founderFit": {
+          "edge": "Former production scheduler at pilot shop and solo developer with direct owner access.",
+          "limitation": "One friendship-biased shop, no other interviews/customers or verified willingness to pay.",
+          "claimIds": [
+            "access"
+          ]
+        },
+        "learning": {
+          "uncertainty": "workaround",
+          "reason": "Observed incident justifies a narrow experiment; unknown whether office inserts checking into release workflow and uses it again.",
+          "recommendation": "build_decision",
+          "decision": "go",
+          "experiment": {
+            "promise": "Before production release, let the office identify every CSV line with blank or whitespace-only garment_size or thread_colour without changing the original file.",
+            "capabilities": [
+              "Open a local CSV from a Windows browser without a terminal",
+              "List incomplete records by CSV record number, order_id and missing fields",
+              "Show checked totals or a clear input error; never call a failed check clean"
+            ],
+            "cuts": [
+              "No correctness checks on filled values or quantity",
+              "No CSV editing, downloads or writeback",
+              "No AI, cloud, accounts, integrations or scheduling",
+              "No contact, deployment or publication"
+            ],
+            "limitations": "Under 100 data rows/export, exact four supplied headers, comma-delimited quoted CSV. Reads only the chosen snapshot. Clean means no missing size/colour, not production-ready. One friend-shop pilot; repeat use and payment unproven.",
+            "success": "Known-answer cases all correct, no clean result on invalid input, original unchanged and no network. On October 9 office independently opens/selects/checks and locates a flagged line within 2 minutes; resolves an actual omission if present and chooses next-export reuse.",
+            "failure": "Any missed blank, spurious split from quoted commas, altered original, upload or false all-clear blocks pilot. If office needs coaching or will not use next export, revise workflow; clean live export alone is inconclusive.",
+            "testDate": "2026-10-09"
+          }
+        }
+      }
+    }
+  },
+  "act": null,
+  "reviewerReadOnly": true
+}

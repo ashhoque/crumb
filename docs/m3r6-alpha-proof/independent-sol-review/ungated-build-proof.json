@@ -1,0 +1,17 @@
+{
+  "observedAt": "2026-10-07T02:46:54.937Z",
+  "rootEntries": [
+    ".verification",
+    "crumb-contexts",
+    "four-shot-rehearsal.html",
+    "REHEARSAL.txt",
+    "synthetic-photos",
+    "verify_rehearsal.py"
+  ],
+  "htmlSha256": "fe6c3f0b20eb9dd2a1b73e03f2c41d4b1af3aad05ee063b43990cf3687fb93d0",
+  "version": 3,
+  "hash": "0f5b7f68bd47f22cd27b3d59678d945ddbb64766c09ccc40e6b87b21e36a445a",
+  "evaluation": "not_started",
+  "receipts": [],
+  "presentation": null
+}

@@ -1,0 +1,38 @@
+{
+  "kind": "Uncommitted development review repair; not shipped main",
+  "baseCandidate": "2f2c5c7c2198f1d387e0177637b3dfe97f767e88",
+  "installed": "<USER>/.agents/skills/crumb",
+  "files": {
+    "SKILL.md": {
+      "source": "632031f603c3139e45290849ac05c6d9b04411d50503ad1606a0a70b661316eb",
+      "installed": "632031f603c3139e45290849ac05c6d9b04411d50503ad1606a0a70b661316eb"
+    },
+    "host/codex.md": {
+      "source": "9a9f2af398ad5912a889143b0004c7d681b8af3e60de54f9cd756bf9800f0a3e",
+      "installed": "9a9f2af398ad5912a889143b0004c7d681b8af3e60de54f9cd756bf9800f0a3e"
+    },
+    "references/research.md": {
+      "source": "be4f74038599e3e775a0be4faaf79e5a9cb627056590c7af96beebb5361cdeba",
+      "installed": "be4f74038599e3e775a0be4faaf79e5a9cb627056590c7af96beebb5361cdeba"
+    },
+    "references/local-tools.md": {
+      "source": "72e3de4924d0300baa813e2544d19baa4cce2b492a2dec02289898fb8fe4f7df",
+      "installed": "72e3de4924d0300baa813e2544d19baa4cce2b492a2dec02289898fb8fe4f7df"
+    },
+    "references/act.md": {
+      "source": "8c28e9b8f179259a89d209bb867694a2db834eb4ea00d2e2f2078bd6e2145e4e",
+      "installed": "8c28e9b8f179259a89d209bb867694a2db834eb4ea00d2e2f2078bd6e2145e4e"
+    },
+    "references/modes.md": {
+      "source": "29e30a363e9c98b27c76dd9ef4b3deafc97bde036527d834e015eba6ccfdb6db",
+      "installed": "29e30a363e9c98b27c76dd9ef4b3deafc97bde036527d834e015eba6ccfdb6db"
+    },
+    "references/learn.md": {
+      "source": "f78046967fe8bf1c14524d38a0564ab856fdba4cc4b081fabc3bad7422c0e3aa",
+      "installed": "f78046967fe8bf1c14524d38a0564ab856fdba4cc4b081fabc3bad7422c0e3aa"
+    }
+  },
+  "locator": "b31d8204ba6743d3975ffe194b64ef4fe9da5c93164d6419cb5ca718293fe284",
+  "compiledRuntime": "32dac7ef57dcd29940e99f96ae44258d23798a9750d73bcfb0a59f9351be265e",
+  "definition": "Sorted repository-relative dist/src/path:SHA256(content), newline joined, no trailing newline"
+}

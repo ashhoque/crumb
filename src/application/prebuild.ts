@@ -210,7 +210,14 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
       const agreement=agreesWithThesis(quote,r.interpretation);
       if(!agreement)throw new Error('Review the working thesis with clear agreement or a correction; this does not authorize Act.');
       for(const subject of ['intention','user','problem'] as const)c.ide.confirmations.push({id:randomUUID(),subject,basis:basis(c,subject),presentationId:p.id,presentedText:p.text,turnId:r.turnId!,quote,recordedAt:new Date().toISOString()});
-      if(c.evaluation.status==='ready'){
+      if((c.evaluation.status==='ready'||c.quality?.learning.experiment)&&!evaluationRequirements(c,true).length){
+        // The same visible complete thesis reviews Evaluation; an advisory draft
+        // status must not force reuse of the founder reply or another ceremony.
+        if(c.project.artifacts.length){
+          const actual=inspectArtifacts(resolveProjectRoot(target),{paths:c.project.artifacts.map(x=>x.path),permissionGranted:true,permissionQuote:c.project.permissionQuote});
+          if(actual.some((x,i)=>x.sha256!==c.project.artifacts[i]?.sha256))throw new Error('Selected project files changed. Revisit the code observations before review.');
+        }
+        c.evaluation.status='ready';
         try{
           assertEvaluationComplete(c);
           c.ide.reviewBasis=evaluationBasis(c);

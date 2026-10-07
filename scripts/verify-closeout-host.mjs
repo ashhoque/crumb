@@ -329,7 +329,7 @@ try{
         writeFileSync(join(runDir,`${spec.id}-instructions.json`),JSON.stringify(instructionTrace,null,2));
         if(!process.argv.includes('--baseline')){
           const guard=readFileSync(join(dirname(skillPath),'host/codex.md'),'utf8').trim();
-          if(!instructionTrace.some(e=>e.role==='developer'&&JSON.stringify(e.content).includes(guard)))throw new Error('The native assembled developer message is missing the installed identity guard.');
+          if(!instructionTrace.some(e=>e.role==='developer'&&JSON.stringify(e.content).includes(JSON.stringify(guard).slice(1,-1))))throw new Error('The native assembled developer message is missing the installed identity guard.');
         }
       }
       console.log(`${spec.id} ${i+1}/${spec.messages.length}: ${response.status}`);

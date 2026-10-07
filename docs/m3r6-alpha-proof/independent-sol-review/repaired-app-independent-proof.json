@@ -1,0 +1,23 @@
+{
+  "observed": "2026-10-07T03:21:49.806Z",
+  "command": "Pinned Node v24.19.0: node verify-rehearsal.cjs",
+  "exitCode": 0,
+  "reviewerChangedApplication": false,
+  "sourceHash": "d4cceb2dd88c01ec0921e6edc551710df5d88426457c294e17c2301479f58b9f",
+  "actualBrowserCases": [
+    "Initial four slots MISSING",
+    "Three confirmed photos leave East MISSING",
+    "Duplicate North cannot fill East",
+    "Selected fourth photo REVIEW before human confirmation",
+    "All four READY after four confirmations",
+    "Uncheck/replacement clear READY",
+    "Removal clears assignment/preview/confirmation",
+    "Unsupported/unreadable files remain MISSING",
+    "Reload clears session",
+    "Zero observed page HTTP(S) requests and browser exceptions"
+  ],
+  "limits": [
+    "Synthetic images; no field usefulness, preference, time or demand proof",
+    "Host stage remains partial; reviewer rerun does not backfill receipts"
+  ]
+}

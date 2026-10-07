@@ -1,5 +1,13 @@
 # Crumb implementation plan — M3-R6
 
+**Current M3-R6 closed-alpha decision — PASS WITH WARNINGS, 7 October 2026.**
+The founder authorized release without another manual browser smoke. Development
+build/typecheck, targeted approval regressions and full 369/369 suite passed.
+One exact Act approval covers unchanged implementation/testing; external actions
+and material changes remain gated. Browser interaction in the restricted review
+host remains unverified. See [closeout](M3_R6_ALPHA_RELEASE_CLOSEOUT.md).
+Earlier gates below are historical; exact main verification follows the merge.
+
 ## M3-R6 final Astra release — 6 October 2026
 
 PASS WITH WARNINGS. Attributed compact thesis evidence now participates in review

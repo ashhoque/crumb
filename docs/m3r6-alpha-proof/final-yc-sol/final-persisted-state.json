@@ -1,0 +1,439 @@
+{
+  "prebuildVersion": 7,
+  "prebuildHash": "0c336a8e18744604b19ed94f2917235dc8e2dc11f29377fd84a0565352c311b7",
+  "evaluationStatus": "ready",
+  "confirmations": [
+    {
+      "id": "9084fe78-9bc6-4599-b255-df24197cae17",
+      "subject": "intention",
+      "basis": "170c0b14442e5d00d0bfd44a8148519aae3e23196bb3a0db7dbc6f79cfaa58a6",
+      "presentationId": "08307142-7874-4d07-ab9d-4d6483e42043",
+      "presentedText": "**My take:** GO for one bounded local missing-field learning MVP, pending thesis review and separate product authorization; do not claim validated business.\n\n**What we are building toward:** Build a small sustainable business as a solo developer serving small Ontario commercial embroidery shops.\n\n**The first user:** Office person at the friend's small Ontario commercial embroidery shop who checks CSV order lines before production\n\n**Their pain:** Rushed manual CSV checking misses missing garment sizes or thread colours, so operators stop machines and call the office.\n\n**Likely buyer:** Shop owner; payer hypothesis, not demonstrated purchase authority or budget\n\n**Evidence so far:** GO for the bounded October 9 missing-field experiment, not validated demand or permission to build. Specific reported stoppage and reachable Friday pilot. Tiny exact deterministic rule with no cloud dependency.\n\n**What could undo it:**\n\n- Spreadsheet or upstream required fields may solve this adequately. Public mixed-shop discussion includes satisfied suite users. Friend pilot may use it as a favour. Two incidents do not prove repeat demand or payment.\n- One friend shop only; easy spreadsheet substitute.\n- Useful rule may be insufficient as a sustainable standalone business.\n\n**Still unknown:**\n\n- Independent prevalence, stoppage duration/cost, repeat use and willingness to pay.\n\n**Technical risk:** False reassurance from malformed parsing or confusing a no-blank result with correct order details.\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+      "turnId": "user_reply_looks_good_dont_build_yet",
+      "quote": "Looks good, don't build yet.",
+      "recordedAt": "2026-10-07T04:06:05.668Z"
+    },
+    {
+      "id": "9983b9ce-d9b9-4896-a1eb-6884c027405b",
+      "subject": "user",
+      "basis": "b880031548cf1bd6441388342f6dee54aa793316ddc0246f130126a907f257e4",
+      "presentationId": "08307142-7874-4d07-ab9d-4d6483e42043",
+      "presentedText": "**My take:** GO for one bounded local missing-field learning MVP, pending thesis review and separate product authorization; do not claim validated business.\n\n**What we are building toward:** Build a small sustainable business as a solo developer serving small Ontario commercial embroidery shops.\n\n**The first user:** Office person at the friend's small Ontario commercial embroidery shop who checks CSV order lines before production\n\n**Their pain:** Rushed manual CSV checking misses missing garment sizes or thread colours, so operators stop machines and call the office.\n\n**Likely buyer:** Shop owner; payer hypothesis, not demonstrated purchase authority or budget\n\n**Evidence so far:** GO for the bounded October 9 missing-field experiment, not validated demand or permission to build. Specific reported stoppage and reachable Friday pilot. Tiny exact deterministic rule with no cloud dependency.\n\n**What could undo it:**\n\n- Spreadsheet or upstream required fields may solve this adequately. Public mixed-shop discussion includes satisfied suite users. Friend pilot may use it as a favour. Two incidents do not prove repeat demand or payment.\n- One friend shop only; easy spreadsheet substitute.\n- Useful rule may be insufficient as a sustainable standalone business.\n\n**Still unknown:**\n\n- Independent prevalence, stoppage duration/cost, repeat use and willingness to pay.\n\n**Technical risk:** False reassurance from malformed parsing or confusing a no-blank result with correct order details.\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+      "turnId": "user_reply_looks_good_dont_build_yet",
+      "quote": "Looks good, don't build yet.",
+      "recordedAt": "2026-10-07T04:06:05.668Z"
+    },
+    {
+      "id": "e67acfd7-c55b-4c78-9c76-15ba6195f0aa",
+      "subject": "problem",
+      "basis": "7e2f8cfead55336744515e2c923362c29d1364dd3d3eccd45193eee70dd6972c",
+      "presentationId": "08307142-7874-4d07-ab9d-4d6483e42043",
+      "presentedText": "**My take:** GO for one bounded local missing-field learning MVP, pending thesis review and separate product authorization; do not claim validated business.\n\n**What we are building toward:** Build a small sustainable business as a solo developer serving small Ontario commercial embroidery shops.\n\n**The first user:** Office person at the friend's small Ontario commercial embroidery shop who checks CSV order lines before production\n\n**Their pain:** Rushed manual CSV checking misses missing garment sizes or thread colours, so operators stop machines and call the office.\n\n**Likely buyer:** Shop owner; payer hypothesis, not demonstrated purchase authority or budget\n\n**Evidence so far:** GO for the bounded October 9 missing-field experiment, not validated demand or permission to build. Specific reported stoppage and reachable Friday pilot. Tiny exact deterministic rule with no cloud dependency.\n\n**What could undo it:**\n\n- Spreadsheet or upstream required fields may solve this adequately. Public mixed-shop discussion includes satisfied suite users. Friend pilot may use it as a favour. Two incidents do not prove repeat demand or payment.\n- One friend shop only; easy spreadsheet substitute.\n- Useful rule may be insufficient as a sustainable standalone business.\n\n**Still unknown:**\n\n- Independent prevalence, stoppage duration/cost, repeat use and willingness to pay.\n\n**Technical risk:** False reassurance from malformed parsing or confusing a no-blank result with correct order details.\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+      "turnId": "user_reply_looks_good_dont_build_yet",
+      "quote": "Looks good, don't build yet.",
+      "recordedAt": "2026-10-07T04:06:05.668Z"
+    },
+    {
+      "id": "6f08d682-188c-410c-81d8-4c7acbd5c6c5",
+      "subject": "evaluation",
+      "basis": "1efbcca79265c044fde50e73ca1e359fe6cfec0f504b2d13e56a0939a4283462",
+      "presentationId": "08307142-7874-4d07-ab9d-4d6483e42043",
+      "presentedText": "**My take:** GO for one bounded local missing-field learning MVP, pending thesis review and separate product authorization; do not claim validated business.\n\n**What we are building toward:** Build a small sustainable business as a solo developer serving small Ontario commercial embroidery shops.\n\n**The first user:** Office person at the friend's small Ontario commercial embroidery shop who checks CSV order lines before production\n\n**Their pain:** Rushed manual CSV checking misses missing garment sizes or thread colours, so operators stop machines and call the office.\n\n**Likely buyer:** Shop owner; payer hypothesis, not demonstrated purchase authority or budget\n\n**Evidence so far:** GO for the bounded October 9 missing-field experiment, not validated demand or permission to build. Specific reported stoppage and reachable Friday pilot. Tiny exact deterministic rule with no cloud dependency.\n\n**What could undo it:**\n\n- Spreadsheet or upstream required fields may solve this adequately. Public mixed-shop discussion includes satisfied suite users. Friend pilot may use it as a favour. Two incidents do not prove repeat demand or payment.\n- One friend shop only; easy spreadsheet substitute.\n- Useful rule may be insufficient as a sustainable standalone business.\n\n**Still unknown:**\n\n- Independent prevalence, stoppage duration/cost, repeat use and willingness to pay.\n\n**Technical risk:** False reassurance from malformed parsing or confusing a no-blank result with correct order details.\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+      "turnId": "user_reply_looks_good_dont_build_yet",
+      "quote": "Looks good, don't build yet.",
+      "recordedAt": "2026-10-07T04:06:05.721Z"
+    },
+    {
+      "id": "836815fe-b6bf-4eeb-bec6-b3fd8e8069be",
+      "subject": "act",
+      "basis": "f53da90c9ec0e1c043e01942f25240eee3fea12a7389f65938d65f072432c326",
+      "presentationId": "74977035-17fa-44db-bb5c-0aaa24997668",
+      "presentedText": "For Office person at the friend's small Ontario commercial embroidery shop who checks CSV order lines before production, this is a bounded learning MVP: Before production release, let the office identify every CSV line with blank or whitespace-only garment_size or thread_colour without changing the original file.\n\nCapabilities: Open a local CSV from a Windows browser without a terminal; List incomplete records by CSV record number, order_id and missing fields; Show checked totals or a clear input error; never call a failed check clean.\nCuts: No correctness checks on filled values or quantity; No CSV editing, downloads or writeback; No AI, cloud, accounts, integrations or scheduling; No contact, deployment or publication.\nLimits: Under 100 data rows/export, exact four supplied headers, comma-delimited quoted CSV. Reads only the chosen snapshot. Clean means no missing size/colour, not production-ready. One friend-shop pilot; repeat use and payment unproven.\nSuccess: Known-answer cases all correct, no clean result on invalid input, original unchanged and no network. On October 9 office independently opens/selects/checks and locates a flagged line within 2 minutes; resolves an actual omission if present and chooses next-export reuse.\nFailure: Any missed blank, spurious split from quoted commas, altered original, upload or false all-clear blocks pilot. If office needs coaching or will not use next export, revise workflow; clean live export alone is inconclusive.\nProposed first-user test: 2026-10-09.\nRemaining uncertainty: Observed incident justifies a narrow experiment; unknown whether office inserts checking into release workflow and uses it again.\nBuilding includes internal build stages, local tests, actual core-flow verification and ordinary fixes within this scope. Material scope, privacy, access or external-action changes need a new decision.\n\nDo you authorize building this exact scope?",
+      "turnId": "user_reply_yes_build_exact_scope",
+      "quote": "Yes.",
+      "recordedAt": "2026-10-07T04:07:54.101Z"
+    }
+  ],
+  "act": {
+    "version": 4,
+    "hash": "09be5a6524c6ba4869cfed4f3b44a1d9b87496964c5ebc290d4ad052c98041bb",
+    "recordedAt": "2026-10-07T04:13:33.967Z",
+    "record": {
+      "id": "563eb882-20de-41a2-93a0-a92f2d357403",
+      "plan": {
+        "contractVersion": 1,
+        "expectedVersion": 0,
+        "scope": {
+          "contractVersion": 5,
+          "synthetic": false,
+          "expectedVersion": 0,
+          "foundation": {
+            "name": "Ontario embroidery CSV preflight",
+            "stage": "idea",
+            "contactState": "contact_reported",
+            "targetUser": {
+              "value": "Office person at the friend's small Ontario commercial embroidery shop who checks CSV order lines before production",
+              "basis": "founder_statement",
+              "source": "Current founder conversation and confirmed thesis"
+            },
+            "buyer": {
+              "value": "Shop owner; payer hypothesis, not demonstrated purchase authority or budget",
+              "basis": "assumption",
+              "source": "Current founder conversation and confirmed thesis"
+            },
+            "problem": {
+              "value": "Rushed manual CSV checking misses missing garment sizes or thread colours, so operators stop machines and call the office.",
+              "basis": "founder_statement",
+              "source": "Current founder conversation and confirmed thesis"
+            },
+            "trigger": {
+              "value": "CSV export before production release",
+              "basis": "assumption",
+              "source": "Current founder conversation and confirmed thesis"
+            },
+            "workaround": {
+              "value": "Rushed manual skim; operator calls office when blanks reach machine",
+              "basis": "founder_statement",
+              "source": "Current founder conversation and confirmed thesis"
+            },
+            "desiredOutcome": {
+              "value": "Before production release, let the office identify every CSV line with blank or whitespace-only garment_size or thread_colour without changing the original file.",
+              "basis": "assumption",
+              "source": "Current founder conversation and confirmed thesis"
+            },
+            "solution": {
+              "value": "Single local HTML checker with deterministic CSV parsing",
+              "basis": "assumption",
+              "source": "Current founder conversation and confirmed thesis"
+            },
+            "constraints": [
+              "Windows browser; no terminal",
+              "Under 100 rows per export, quoted CSV",
+              "Original unchanged; no upload or storage",
+              "No contact, deployment or publication"
+            ],
+            "unknowns": [
+              "Independent office adoption, repeat use, payment and support burden"
+            ]
+          },
+          "proposal": {
+            "title": "Local missing-field CSV checker",
+            "method": "build",
+            "journey": "Open local page, choose CSV, see counts and missing fields by record/order ID, correct upstream and rerun.",
+            "criticalUnknown": "Will office use it before production and reuse it?",
+            "why": "Two reported machine interruptions and one Friday pilot justify a bounded experiment.",
+            "nextAction": "Build and verify within the approved scope, then stop at usable MVP.",
+            "capabilities": [
+              "Open a local CSV from a Windows browser without a terminal",
+              "List incomplete records by CSV record number, order_id and missing fields",
+              "Show checked totals or a clear input error; never call a failed check clean"
+            ],
+            "keep": [
+              "Original export and office correction process"
+            ],
+            "park": [
+              "Editing, value correctness, quantity checks, scheduling, cloud and integrations"
+            ],
+            "technicalAcceptance": [
+              "All known-answer blank and quoted CSV cases pass",
+              "Malformed or unsupported input never shows all-clear",
+              "Source unchanged, no network or persistence",
+              "Actual local browser flow, stale-result clearing and text-safe rendering pass"
+            ],
+            "learningAcceptance": [
+              "Office completes uncoached task; repeat use and payment remain unproven"
+            ],
+            "observationWindow": "Friday October 9, 2026, then next-export reuse",
+            "cashSpend": 0
+          },
+          "artifacts": [],
+          "artifactPermission": {
+            "granted": true,
+            "quote": "Yes."
+          },
+          "ideal": {
+            "intention": {
+              "goal": "solo_profit",
+              "statement": "Build a small sustainable business as a solo developer serving small Ontario commercial embroidery shops.",
+              "status": "provided"
+            },
+            "consequence": {
+              "value": "Machine stops and office receives call",
+              "basis": "founder_statement",
+              "source": "Current founder conversation and confirmed thesis"
+            },
+            "feedback": [],
+            "evaluation": {
+              "state": "not_run",
+              "question": null,
+              "unavailableReason": null,
+              "findings": []
+            },
+            "assessment": {
+              "promising": "Observed interruption and reachable pilot",
+              "weak": "Friend bias and spreadsheet substitute",
+              "criticalUnknown": "Independent reuse and payment",
+              "cheapestCheck": "Known-answer verification followed by one uncoached office task"
+            }
+          },
+          "brief": {
+            "summary": "Build the approved local missing-field checker for the office person. Stop at a verified usable MVP before any contact or publication.",
+            "nextAction": "Implement and verify the complete journey.",
+            "questions": []
+          },
+          "phase": "proposal",
+          "decision": {
+            "basis": "act_confirmed",
+            "source": "Founder Yes. to exact displayed scope",
+            "confirmationId": "836815fe-b6bf-4eeb-bec6-b3fd8e8069be"
+          },
+          "context": {
+            "version": 7,
+            "hash": "0c336a8e18744604b19ed94f2917235dc8e2dc11f29377fd84a0565352c311b7"
+          }
+        },
+        "outcome": {
+          "input": "User-selected comma-delimited UTF-8 CSV under 100 data rows, exact four headers.",
+          "output": "Checked totals and missing size/colour by record number and order ID.",
+          "failureBehavior": "Clear old result; explicit input error or no-data message; never false all-clear.",
+          "persistence": {
+            "mode": "none",
+            "reason": "Original unchanged; data exists only in page memory until reset/close."
+          }
+        },
+        "capabilities": [
+          {
+            "name": "Open a local CSV from a Windows browser without a terminal",
+            "userBasis": "b880031548cf1bd6441388342f6dee54aa793316ddc0246f130126a907f257e4",
+            "problemBasis": "7e2f8cfead55336744515e2c923362c29d1364dd3d3eccd45193eee70dd6972c",
+            "evidenceClaimIds": [
+              "pain",
+              "workflow",
+              "technical"
+            ],
+            "learningObjective": "Can office identify and correct missing details without coaching before production?"
+          },
+          {
+            "name": "List incomplete records by CSV record number, order_id and missing fields",
+            "userBasis": "b880031548cf1bd6441388342f6dee54aa793316ddc0246f130126a907f257e4",
+            "problemBasis": "7e2f8cfead55336744515e2c923362c29d1364dd3d3eccd45193eee70dd6972c",
+            "evidenceClaimIds": [
+              "pain",
+              "workflow",
+              "technical"
+            ],
+            "learningObjective": "Can office identify and correct missing details without coaching before production?"
+          },
+          {
+            "name": "Show checked totals or a clear input error; never call a failed check clean",
+            "userBasis": "b880031548cf1bd6441388342f6dee54aa793316ddc0246f130126a907f257e4",
+            "problemBasis": "7e2f8cfead55336744515e2c923362c29d1364dd3d3eccd45193eee70dd6972c",
+            "evidenceClaimIds": [
+              "pain",
+              "workflow",
+              "technical"
+            ],
+            "learningObjective": "Can office identify and correct missing details without coaching before production?"
+          }
+        ],
+        "repository": {
+          "permissionQuote": "Yes.",
+          "inspectedPaths": [],
+          "environment": "known",
+          "stack": "Single HTML file with inline JavaScript/CSS; Node built-in tests; Windows Edge headless CDP verification.",
+          "constraints": [
+            "No product exists; preserve notes",
+            "No dependencies, servers, external assets or data writes",
+            "Only approved blank-field checks; quantity is unchecked"
+          ]
+        },
+        "keep": [
+          {
+            "label": "Original export and office correction process",
+            "paths": [],
+            "reason": "Do not alter source or correction workflow."
+          }
+        ],
+        "park": [
+          {
+            "label": "Editing, value correctness, quantity checks, scheduling, cloud and integrations",
+            "paths": [],
+            "reason": "Outside approved learning promise."
+          }
+        ],
+        "stages": [
+          {
+            "id": "mvp",
+            "title": "Complete local checker and verify",
+            "kind": "mvp",
+            "goal": "Usable local Windows browser journey with honest errors and verified CSV parsing.",
+            "capabilities": [
+              "Open a local CSV from a Windows browser without a terminal",
+              "List incomplete records by CSV record number, order_id and missing fields",
+              "Show checked totals or a clear input error; never call a failed check clean"
+            ],
+            "writes": [
+              "checker.html",
+              "tests/checker.test.cjs",
+              "tests/browser-check.cjs",
+              "tests/sample.csv",
+              "tests/malformed.csv",
+              "tests/empty.csv",
+              "tests/README.md"
+            ],
+            "checks": [
+              {
+                "id": "rules",
+                "description": "Known-answer CSV parsing, blank rules and failure behavior pass.",
+                "commandHint": "node tests/checker.test.cjs"
+              },
+              {
+                "id": "browser",
+                "description": "Actual file selection, result rendering, stale clearing, no network, text safety and unchanged source pass in Windows Edge.",
+                "commandHint": "node tests/browser-check.cjs"
+              }
+            ]
+          }
+        ],
+        "stopAfterStageId": "mvp",
+        "packDirectory": "build-pack",
+        "execution": {
+          "mode": "build",
+          "handoffHash": "fc1d722c2ca2e17881b3b5607a693960064aa77ff396a4a1af54f9e4923311b1",
+          "automaticStages": true,
+          "humanCheckpoints": [
+            "mvp"
+          ]
+        }
+      },
+      "planHash": "a0c4479ac987d84d809a089f679ada852171615b3c0c2afe8e1aa20df528d6b5",
+      "ideBasis": "f53da90c9ec0e1c043e01942f25240eee3fea12a7389f65938d65f072432c326",
+      "approval": {
+        "quote": "Yes.",
+        "recordedAt": "2026-10-07T04:09:19.928Z"
+      },
+      "pack": {
+        "directory": "build-pack/563eb882-20de-41a2-93a0-a92f2d357403/revision-a0c4479ac987",
+        "files": [
+          {
+            "path": "build-pack/563eb882-20de-41a2-93a0-a92f2d357403/revision-a0c4479ac987/STARTUP_MASTER.md",
+            "sha256": "e723683d99aab957a6464b21402f68d077875f903b898580fd3bb2c93848e358"
+          },
+          {
+            "path": "build-pack/563eb882-20de-41a2-93a0-a92f2d357403/revision-a0c4479ac987/BUILD_PLAN.md",
+            "sha256": "d6ea419cbb0e36a9dd24539c0a907cb3c0726a9172a8b89e7b85ec3391450ceb"
+          },
+          {
+            "path": "build-pack/563eb882-20de-41a2-93a0-a92f2d357403/revision-a0c4479ac987/GROUNDWORK.md",
+            "sha256": "e1412f338d1d0e471ae7dddc5d71c5bc3f9e1f5d4e3ad74ada18f02fe0743332"
+          },
+          {
+            "path": "build-pack/563eb882-20de-41a2-93a0-a92f2d357403/revision-a0c4479ac987/STAGE_1.md",
+            "sha256": "ff4203c72ddb1382abfc78a196ac5e3fea4087d7501c255ef707d77ee7bbad02"
+          },
+          {
+            "path": "build-pack/563eb882-20de-41a2-93a0-a92f2d357403/revision-a0c4479ac987/RED_TEAM_REVIEW.md",
+            "sha256": "fe7f04bbb4d02efc92e9efa8d192d5c5da467a5059fbe07e6299b5c9b91c6de6"
+          },
+          {
+            "path": "build-pack/563eb882-20de-41a2-93a0-a92f2d357403/revision-a0c4479ac987/TECHNICAL_MASTER.md",
+            "sha256": "e5501fbb0f79a4e6405d26d7a34d759517b179b36e6fc4cf15ac4d86d5c260fa"
+          },
+          {
+            "path": "build-pack/563eb882-20de-41a2-93a0-a92f2d357403/revision-a0c4479ac987/BUSINESS_MASTER.md",
+            "sha256": "368e30f725c2392733f64ea6de97ff96f3ded54e478088947cd012474f336563"
+          }
+        ]
+      },
+      "currentStage": 0,
+      "status": "authorized",
+      "baseline": {
+        "checker.html": null,
+        "tests/checker.test.cjs": null,
+        "tests/browser-check.cjs": null,
+        "tests/sample.csv": null,
+        "tests/malformed.csv": null,
+        "tests/empty.csv": null,
+        "tests/README.md": null
+      },
+      "receipts": [
+        {
+          "expectedVersion": 3,
+          "stageId": "mvp",
+          "implementation": "partial",
+          "changes": [
+            {
+              "path": "checker.html",
+              "kind": "created"
+            },
+            {
+              "path": "tests/checker.test.cjs",
+              "kind": "created"
+            },
+            {
+              "path": "tests/browser-check.cjs",
+              "kind": "created"
+            },
+            {
+              "path": "tests/sample.csv",
+              "kind": "created"
+            },
+            {
+              "path": "tests/malformed.csv",
+              "kind": "created"
+            },
+            {
+              "path": "tests/empty.csv",
+              "kind": "created"
+            },
+            {
+              "path": "tests/README.md",
+              "kind": "created"
+            }
+          ],
+          "checks": [
+            {
+              "criterionId": "rules",
+              "label": "Known-answer CSV logic",
+              "command": "Node 24 tests/checker.test.cjs",
+              "executed": true,
+              "exitCode": 0,
+              "result": "passed",
+              "output": "20 known-answer tests passed: size/colour blanks, whitespace, quoted commas, escaped quotes, newlines, headers, malformed rows and 99/100 record boundary."
+            },
+            {
+              "criterionId": "browser",
+              "label": "Actual Windows browser flow",
+              "command": "Node 24 tests/browser-check.cjs; then CUA Edge local file navigation",
+              "executed": true,
+              "exitCode": 1,
+              "result": "failed",
+              "output": "Headless Edge CDP stalled at Network.enable before exercising the app; fresh isolated retry and alternate transport did not resolve it. Interactive browser rejected file: navigation and explicitly prohibited workarounds. No actual user-flow, unchanged-original or no-network browser pass claimed."
+            }
+          ],
+          "runInstructions": [
+            "Double-click checker.html on Windows and choose tests/sample.csv; expect 4 checked lines, 3 incomplete records. Then choose tests/malformed.csv and confirm old results clear and an error appears. Browser verification remains incomplete; do not call pilot-ready."
+          ],
+          "gaps": [
+            "Actual browser file selection, rendered results, stale clearing, unchanged source and no network remain unverified because headless automation stalled and interactive browser policy blocked local file navigation. Founder can manually try the local page and provide observed results; no contact or publication performed."
+          ],
+          "id": "069d3e08-5cf4-4bda-a603-77ce54b3b4be",
+          "recordedAt": "2026-10-07T04:13:33.966Z",
+          "fileHashes": {
+            "checker.html": "9a0d47f14251eea4c5fc2b20d3060473b2efe205ef1e3eb95108ec9dfd38ff7f",
+            "tests/checker.test.cjs": "a52ab4cf9f56f0c42a33d250c7f46731ed5dee8658abe157f770b5f2c65af7a1",
+            "tests/browser-check.cjs": "4fe84493a4f597d56379ee3fa60511283ca91b6505217b3c21d8a788247d27e6",
+            "tests/sample.csv": "9eadb4bbf3904e5394ddca4e653a0ca3ead4d9d1bcfcebb8bbf8567fad68d6ac",
+            "tests/malformed.csv": "464756ed0b37bc573191ba581768063a9efbcbb8b2a7676323654389a226b3d3",
+            "tests/empty.csv": "b25dd0c4721c54d7b6a3ef4d65464ca5bf9fd6b81c9e4dc54109a9b865face81",
+            "tests/README.md": "71c7e747ea3d341596b90e33d21afeccb342a9a1bcfee9dd76005a6a11a9977f"
+          },
+          "customerValidation": "not_established",
+          "release": "not_released",
+          "provenance": "host_report_with_local_file_hashes"
+        }
+      ],
+      "reviews": []
+    }
+  }
+}

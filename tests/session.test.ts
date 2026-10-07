@@ -144,3 +144,22 @@ test('R1 CLI continuation and compact context run without a transcript',t=>{
   assert.equal(resumed.status,0,resumed.stderr);const s=JSON.parse(resumed.stdout);const p=planFor(readPrebuild(root)!);p.execution={mode:'build',handoffHash:s.handoffHash,automaticStages:false,humanCheckpoints:['mvp']};
   const pack=run('work-pack',p);assert.equal(pack.status,0,pack.stderr);assert.match(pack.stdout,/Approve Build Pack/);
 });
+
+test('Bounded Act receipt authorizes the unchanged native build once and rejects refusal, foreign receipt and changed promise',t=>{
+  const root=temporaryProject(t),c=JSON.parse(readFileSync(new URL('../../fixtures/m3r1-quality/stock.json',import.meta.url),'utf8')) as IdeContext;
+  c.quality!.learning={uncertainty:'pain',reason:'Synthetic demand remains unknown; only local task completion is tested.',recommendation:'build_decision',decision:'go',experiment:{promise:'Compare supplied facts and retain one review note locally.',capabilities:['Compare supplied facts','Save one review note'],cuts:['No network, accounts, external messages or deployment'],limitations:'Synthetic local task; no demand or customer validation.',success:'Supplied input produces a comparison and one saved note.',failure:'The task cannot be completed or existing work changes.',testDate:'2026-10-08'}};
+  const evaluated=prepareIde(root,'evaluation',c);
+  const shown=transitionIde(root,{expectedVersion:evaluated.version,operation:'present',subject:'act'}),presentation=(shown.context as IdeContext).ide.presentation!;
+  assert.throws(()=>transitionIde(root,{expectedVersion:shown.version,operation:'confirm',presentationId:presentation.id,quote:"Looks good, don't build yet.",turnId:'refusal'}));
+  assert.equal(readAct(root),null);
+  const approved=transitionIde(root,{expectedVersion:shown.version,operation:'confirm',presentationId:presentation.id,quote:'Yes.',turnId:'one_build_approval'});
+  const receipt=(approved.context as IdeContext).ide.confirmations.findLast(x=>x.subject==='act')!;
+  const p=planFor(approved),session=resume(root);p.execution={mode:'build',handoffHash:session.handoffHash,automaticStages:true,humanCheckpoints:['mvp']};
+  let saved=prepareWorkPack(root,p);
+  const request={expectedVersion:saved.version,planHash:saved.record.planHash,scopeConfirmationId:receipt.id};
+  assert.throws(()=>approveActPlan(root,{...request,scopeConfirmationId:'another-founders-receipt'}),/current exact-scope/);
+  assert.throws(()=>approveActPlan(root,{...request,quote:'Invented second approval'}),/current exact-scope/);
+  saved=approveActPlan(root,request);assert.equal(saved.record.approval!.quote,'Yes.');assert.equal(actHandoff(root).stage.id,'mvp');
+  const before=readPrebuild(root)!,changed=structuredClone(before.context) as IdeContext;changed.expectedVersion=before.version;changed.quality!.learning.experiment!.promise='Send the comparison to customers automatically.';
+  savePrebuild(root,changed);assert.throws(()=>actHandoff(root),/IDE|foundation|Confirm|review|Act/i);
+});

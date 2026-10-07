@@ -1,5 +1,5 @@
 import type { SavedAct } from '../domain/act.js';
-import { basis, ideState, type AnyPrebuild } from '../domain/ide.js';
+import { basis, ideState, confirmation, presentationText, type AnyPrebuild } from '../domain/ide.js';
 import { nextIdeStep } from '../domain/guide.js';
 import { OPTIONAL_DETAIL, plain } from '../domain/conversation.js';
 
@@ -8,6 +8,7 @@ export function renderActSummary(saved: SavedAct, context: AnyPrebuild): string 
   if (context.contractVersion !== 2 || ideState(context).act_readiness !== 'founder_confirmed' || basis(context, 'act') !== r.ideBasis) {
     return `The foundation has changed, so this build is on hold. ${nextIdeStep(context).text}`;
   }
+  const scopeApproval=p.execution&&context.quality?.learning.experiment&&confirmation(context,'act')?.presentedText===presentationText(context,'act')?confirmation(context,'act'):undefined;
   if (r.status === 'proposed') return [
     'Executive summary',
     `We're building for ${plain(p.scope.foundation.targetUser.value!)}.`,
@@ -19,7 +20,7 @@ export function renderActSummary(saved: SavedAct, context: AnyPrebuild): string 
     '', `First build stage: ${plain(stage.title)}. ${plain(stage.goal)}`,
     ...(p.execution?['',p.execution.automaticStages?'Approval lets passing checks advance the planned stages until a defined human checkpoint. I will stop at the completed core workflow.':'I will stop for your review after each stage.']:[]),
     '', 'These capabilities test the core pain. Extra features would add work without answering that question.',
-    '', p.execution?'Approve Build Pack | Adjust scope | View full Build Pack':'Approve build | Adjust scope | View build plan', OPTIONAL_DETAIL,
+    '', scopeApproval?`The exact scope already has founder approval. Verify this unchanged internal pack, use act-approve with scopeConfirmationId ${scopeApproval.id}, obtain act-handoff and finish implementation and actual core-flow verification; no repeated founder permission. Material changes need a new decision.`:p.execution?'Approve Build Pack | Adjust scope | View full Build Pack':'Approve build | Adjust scope | View build plan', OPTIONAL_DETAIL,
   ].join('\n');
 
   const receipt = r.receipts.findLast(x => x.stageId === stage.id);

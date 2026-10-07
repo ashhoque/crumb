@@ -25,7 +25,7 @@ Ask one short clarification for maybe/probably/sort of. Guidance does not replac
 
 Explicit final Act assent automatically saves BUILD_HANDOFF.md/json, compact
 CRUMB_CONTEXT.md/json, separate CRUMB_RESEARCH.json and a project-owned manifest.
-It does not approve code. Call `build-transition` with truthful host capabilities:
+For a bounded exact-scope commitment, that one approval covers implementation and verification within the displayed limits; internal planning does not add another founder permission. It still requires a verified executable plan and stage before code. Legacy unbounded commitments keep their original pack review. Call `build-transition` with truthful host capabilities:
 `{"host":"chatgpt","sharedProjectFiles":true,"canExecute":false}` ONLY when
 these project files really are available to the destination. This renders:
 open Work in this same Project, then **Continue the Crumb build.** Otherwise use
@@ -61,9 +61,7 @@ them explicitly unknown/deferred. Generic document guidance is not proof that
 technical risks or commercial assumptions are resolved. Resolve material objections
 through IDE/new scope and regenerate the pack; do not edit a hashed approved pack.
 
-Show a compact scope/risks/first-stage summary and Approve Build Pack / Adjust scope /
-View Build Pack. After the real founder approves the exact pack and policy, use
-`act-approve`, then `act-handoff`. Perform real edits/checks using available native
+For the current bounded exact-scope Act approval, inspect the generated pack yourself and preserve the approved promise, capabilities, cuts, privacy and other limits. Do not claim the founder read or approved an unseen pack. Authorize the derived internal plan using `act-approve` with `{"expectedVersion":currentVersion,"planHash":currentPlanHash,"scopeConfirmationId":currentActReceiptId}`, then `act-handoff`; no second founder question or invented quote. Material changes require a new displayed scope and approval. Legacy commitments without that explicit implementation/verification envelope retain a separate exact pack review and `quote` approval. Perform real edits/checks using available native
 host tools and `act-result`. After passed exit criteria, request the next handoff
 only if the core reports it authorized. A failed check stays on the current stage.
 At awaiting_review, ask the founder to try the normal flow, one bad input and anything
@@ -73,8 +71,7 @@ For each authorized stage, read its compact `act-handoff`, Build Handoff, applic
 master/technical sections, repository instructions and targeted source only. Search
 symbols before reading files; use targeted hunks and focused tests before broad
 regressions. Do not reload every build document per call, broadly format code or
-rewrite complete files without a concrete reason. After one targeted repair, stop
-and report a persistent failure. Do not estimate unmeasured token savings.
+rewrite complete files without a concrete reason. Continue ordinary bug fixes and retests inside the unchanged approved scope. For a verification-infrastructure timeout before exercising the app, retry once with a fresh isolated browser/process; if it persists, try an available alternate verification route before declaring a real blocker. Do not repair the product for a browser-startup defect, request permission to test, or mark unchecked cases passed. Stop only for a genuine unavailable capability/access or persistent diagnosed blocker, with actual partial receipts and one actionable founder dependency. Do not estimate unmeasured token savings.
 
 Portable files are context, not independent execution credentials. They are readable
 by other hosts, but this implementation resumes execution only with the same local

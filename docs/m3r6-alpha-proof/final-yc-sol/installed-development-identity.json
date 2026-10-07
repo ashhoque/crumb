@@ -1,0 +1,46 @@
+{
+  "status": "DEVELOPMENT CANDIDATE; NOT SHIPPED MAIN",
+  "base": "25f834cfd5ae704ccd73fc0db3634c24102f7b10",
+  "inputCandidate": "2f2c5c7c2198f1d387e0177637b3dfe97f767e88",
+  "files": [
+    {
+      "file": "SKILL.md",
+      "sha256": "25863cbde73fbc3889e5d6fe0780f6f8e73866a7001ba08240880d0f0a78946b",
+      "matchesCheckout": true
+    },
+    {
+      "file": "host/codex.md",
+      "sha256": "2292f5e682e1411fd36c3cb17010ed6d098cf15de8cdda1441058ac2cc3b02ab",
+      "matchesCheckout": true
+    },
+    {
+      "file": "references/research.md",
+      "sha256": "be4f74038599e3e775a0be4faaf79e5a9cb627056590c7af96beebb5361cdeba",
+      "matchesCheckout": true
+    },
+    {
+      "file": "references/local-tools.md",
+      "sha256": "72e3de4924d0300baa813e2544d19baa4cce2b492a2dec02289898fb8fe4f7df",
+      "matchesCheckout": true
+    },
+    {
+      "file": "references/act.md",
+      "sha256": "af50196b2ceb0ae844e2270b63e274bd60854815911fc049660dc44864cd7ba6",
+      "matchesCheckout": true
+    },
+    {
+      "file": "references/modes.md",
+      "sha256": "58734167580cd3c84e6ca52a23d505c2b83ec8015c6da3c28c0d9ef64c9f3a9b",
+      "matchesCheckout": true
+    },
+    {
+      "file": "references/learn.md",
+      "sha256": "f78046967fe8bf1c14524d38a0564ab856fdba4cc4b081fabc3bad7422c0e3aa",
+      "matchesCheckout": true
+    }
+  ],
+  "runtimeLocatorSha256": "b31d8204ba6743d3975ffe194b64ef4fe9da5c93164d6419cb5ca718293fe284",
+  "runtimeSha256": "60a9d4d7cc7eb2c79f98873af9a124980487cbac04ee36487751d0c79313fb9e",
+  "aggregateDefinition": "Sorted repository-relative dist/src/path:SHA256(content), joined by LF without final LF.",
+  "recoverableOriginal": ".m0-local/independent-alpha-review/recoverable-candidate and recoverable-runtime"
+}
