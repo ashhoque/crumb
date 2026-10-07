@@ -54,10 +54,10 @@ async function turn(threadId,text,first=false){
   return done;
 }
 function createFixture(id,seed='evaluated'){
-  if(id==='alpha-resume'||id==='alpha-repair-resume'){
+  if(id==='alpha-resume'||id==='alpha-repair-resume'||id==='alpha-completion-resume'){
     const selected=process.argv.find(x=>x.startsWith('--resume-fixture='))?.slice(17);
     const folder=selected&&resolve(selected),rel=folder&&relative(tmpdir(),folder);
-    const expected=id==='alpha-resume'?'alpha-built':'alpha-repair';
+    const expected=id==='alpha-resume'?'alpha-built':id==='alpha-completion-resume'?'alpha-completion':'alpha-repair';
     if(!folder||!rel||rel.startsWith('..')||/^[A-Za-z]:/.test(rel)||basename(folder)!==expected||!existsSync(folder))throw new Error(`Resume only the existing disposable ${expected} test fixture inside the temporary directory.`);
     return folder;
   }
@@ -103,7 +103,7 @@ async function start(id,seed='evaluated',existingFolder){
   const folder=existingFolder??createFixture(id,seed);
   const liveWeb=process.argv.includes('--live-web');
   const requestedModel=selectedModel;
-  const implementationPolicy=['alpha-build','alpha-repair','alpha-completion'].includes(id)?'Product code writes are permitted only inside this disposable project after the actual founder reply authorizes the exact displayed scope and existing Act checks pass. No permission is supplied by this test instruction.':'No product code implementation.';
+  const implementationPolicy=['alpha-build','alpha-repair','alpha-completion','alpha-completion-resume'].includes(id)?'Product code writes are permitted only inside this disposable project after the actual founder reply authorizes the exact displayed scope and existing Act checks pass. No permission is supplied by this test instruction.':'No product code implementation.';
   const installedConfig=await request('config/read',{cwd:folder});
   const hostInstructions=installedConfig.config.developer_instructions??'';
   results.hostIdentityInstructions=hostInstructions;
@@ -141,6 +141,12 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'alpha-completion-resume',messages:[
+      '$crumb Continue the same agency CSV handover-checker project from its saved evaluation and prepared scope. Do not build or contact anyone yet. Show the current exact local commitment and its limitations; reuse the existing investigation.',
+      'Yes, I authorize building exactly the current local CSV handover commitment and limitations you just displayed. Stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.',
+      'Yes, I approve the exact unchanged local scope and build pack you just displayed. Run the authorized stages, verify the actual main task and stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.',
+      'Complete and run the unchanged authorized local task, check its output against the fixture and leave the observation plan ready. Do not add features.'
+    ]},
     {id:'alpha-completion',seed:'fresh',messages:[
       '$crumb I am a solo technical founder trying a small B2B product for independent web agencies. Supplied synthetic context: two agency delivery managers say handover CSVs sometimes lack a responsible owner or due date, causing chasing. This is a scenario, not validated demand. Prepare a bounded local learning MVP: import a CSV with task,owner,due_date; identify rows missing owner or due_date; export the incomplete rows and draft a neutral follow-up. A simple runnable command-line app is appropriate for these technical users. No AI service, accounts, sends, deployment or real client data. I can observe two fitting colleagues on October 8. Research only material gaps, assess honestly and prepare the exact scope and runnable test. Do not build yet.',
       "Looks good, don't build yet. I agree with the working user, problem and evaluation you displayed, including the uncertainties. Complete reversible preparation and show the exact scope and limitations for my build decision.",

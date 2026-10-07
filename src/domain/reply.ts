@@ -20,6 +20,7 @@ export function agreesWithPresentation(quote:string,interpretation?:ReplyInterpr
   if(interpretation!==undefined){
     const excluded='(?:sending|deployment|publishing|spending|payments|accounts|messaging|external communication|extra features)';
     text=text.replace(new RegExp(`([.;]\\s*)no ${excluded}(?:(?:,\\s*|\\s+(?:and|or)\\s+)${excluded})*[.!]?$`,'u'),'$1');
+    if(/^(?:yes|i approve|i authorize)\b/u.test(text))text=text.replace(/\bstop at (?:the )?(?:(?:runnable|usable|local|approved|intended|final)\s+)*mvp\b/gu,'finish at the approved endpoint');
   }
   if(!text||/^[\u0022\u201c\u201d]|\?/u.test(text)||/\b(maybe|probably|perhaps|guess|sort of|kind of|not|no|nope|except|unless|if|but|change|adjust|different|unsure|uncertain|partly|provided|assuming|wrong|disagree|wait|stop|hold|never|don't|cannot|can't)\b/u.test(text))return false;
   if(interpretation!==undefined){

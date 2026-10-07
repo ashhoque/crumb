@@ -47,6 +47,10 @@ test('Actual scoped host agreement records review and Act without granting exclu
  const quote='Yes, I authorize building exactly the local CSV handover scope and limitations you just displayed. Only synthetic local files; no sending, deployment or extra features.';
  const interpretation={meaning:'agreement' as const,explanation:'Clear assent to the displayed current statement; external actions and extra scope remain excluded.'};
  assert.equal(agreesWithPresentation(quote),false);
+ const bounded='Yes, I approve the exact unchanged local scope and build pack you just displayed. Run the authorized stages, verify the actual main task and stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.';
+ assert.equal(agreesWithPresentation(bounded,interpretation),true);
+ assert.equal(agreesWithPresentation('Continue the unchanged approved local scope.',interpretation),true);
+ for(const denial of ['Stop at the runnable local MVP.','Yes, stop building now.','Yes, but stop at the runnable MVP.'])assert.equal(agreesWithPresentation(denial,interpretation),false);
  for(const denied of ["Looks good, don't build yet.",'Yes, but change the buyer.','Yes; no building.','Maybe; no sending.','"Yes"; no sending.'])assert.equal(agreesWithPresentation(denied,interpretation),false,denied);
  current=transitionIde(root,{operation:'present',subject:'evaluation',expectedVersion:current.version});
  current=transitionIde(root,{operation:'confirm',expectedVersion:current.version,presentationId:(current.context as IdeContext).ide.presentation!.id,quote,turnId:'synthetic_evaluation_assent',interpretation});
@@ -54,7 +58,7 @@ test('Actual scoped host agreement records review and Act without granting exclu
  current=transitionIde(root,{operation:'present',subject:'act',expectedVersion:current.version});
  const p=(current.context as IdeContext).ide.presentation!;
  assert.throws(()=>transitionIde(root,{operation:'confirm',expectedVersion:current.version,presentationId:p.id,quote:"Looks good, don't build yet.",turnId:'synthetic_act_denial',interpretation}),/Explicit agreement/);
- current=transitionIde(root,{operation:'confirm',expectedVersion:current.version,presentationId:p.id,quote,turnId:'synthetic_scoped_act_assent',interpretation});
+ current=transitionIde(root,{operation:'confirm',expectedVersion:current.version,presentationId:p.id,quote:bounded,turnId:'synthetic_scoped_act_assent',interpretation});
  assert.doesNotThrow(()=>assertAct(current.context));
  const changed=saveEvaluationUpdate(root,{expectedVersion:current.version,changes:{evaluation:{...(current.context as IdeContext).evaluation,conclusion:'Materially changed direction, not the approved evaluation.'}}});
  assert.throws(()=>assertAct(changed.context));
