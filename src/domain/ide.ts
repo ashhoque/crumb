@@ -1,10 +1,12 @@
 import { createHash } from 'node:crypto';
 import { Ajv } from 'ajv';
-import { emptyPrebuild, prebuildSchema, validatePrebuild, coverageTopics, type PrebuildContext } from './prebuild.js';
+import { emptyPrebuild, prebuildSchema, validatePrebuild, prebuildReadinessRequirements, coverageTopics, type PrebuildContext } from './prebuild.js';
 import { plain } from './conversation.js';
 import { qualitySchema, validateQuality, boundedLearning, learningTopics, researchableQuestion, evaluationHighlights, type EvaluationQuality } from './evaluation-quality.js';
 import { validateFirstUserCards, type FirstUserCard, type FirstUserDiscovery } from './first-user-discovery.js';
 import { projectFactKeys, founderFactKeys, credibleWorkingFact, type WorkingFact, type FounderWorkingContext } from './founder-intelligence.js';
+import { qualityCompletionRequirements } from './evaluation-quality.js';
+import { completionChecks, CompletionError } from './completion.js';
 
 export const subjects = ['intention', 'user', 'problem', 'evaluation', 'act'] as const;
 export type Subject = typeof subjects[number];
@@ -186,25 +188,38 @@ export function validateIde(input: unknown, pendingChange = false): asserts inpu
 }
 
 export function assertEvaluationComplete(c: IdeContext): void {
-  if (!subjects.slice(0, 3).every(s => confirmation(c, s))) throw new Error('Confirm Intention, User and Problem before completing Evaluation.');
-  if (c.investigation.redefinition) throw new Error('Resolve redefinition and reconfirm affected foundations before reviewing Evaluation.');
-  if (c.evaluation.status !== 'ready') throw new Error('Finish meaningful Evaluate before founder review.');
-  validateIde(c);
-  validateQuality(c,true);
-  const all = [...c.evaluation.coverage, ...c.investigation.coverage];
+  const missing=evaluationRequirements(c);if(missing.length)throw new CompletionError(missing);
+}
+
+export function evaluationRequirements(c:IdeContext,prospective=false) {
+  const {items,check}=completionChecks();
+  check(subjects.slice(0,3).every(s=>confirmation(c,s)),'foundation_review','ide.confirmations','Confirm Intention, User and Problem before completing Evaluation.','present_and_confirm_exact_thesis','founder');
+  check(!c.investigation.redefinition,'redefinition','investigation.redefinition','Resolve redefinition and reconfirm affected foundations before reviewing Evaluation.','present_corrected_thesis','founder');
+  check(prospective||c.evaluation.status==='ready','ready_status','evaluation.status','Finish meaningful Evaluate before founder review.','submit_complete_review');
+  try{validateIde({...c,evaluation:{...c.evaluation,status:'limited'}},true);}catch(error){
+    check(false,'draft_integrity','context',error instanceof Error?error.message:'Invalid retained context.','repair_submitted_evidence');return items;
+  }
   const bounded=boundedLearning(c),negative=c.quality?.learning.decision==='pivot_stop'||c.quality?.learning.decision==='one_gap';
-  if (all.length !== ideTopics.length || all.some(x => x.status === 'unexamined'&&(!bounded||learningTopics.some(t=>t===x.topic)))) throw new Error('Investigate the decision-relevant IDE dimensions; unknowns need relevant attempts.');
+  items.push(...prebuildReadinessRequirements(legacyView(c),{bounded,negative}),...qualityCompletionRequirements(c));
+  const all = [...c.evaluation.coverage, ...c.investigation.coverage];
+  check(all.length===ideTopics.length,'topic_set','investigation.coverage','Investigate the decision-relevant IDE dimensions; unknowns need relevant attempts.');
+  for(const topic of ideTopics){
+    const row=all.find(x=>x.topic===topic),material=!bounded||learningTopics.some(t=>t===topic);
+    check(row&&(row.status!=='unexamined'||!material),'unexamined',`coverage.${topic}`,'Investigate the decision-relevant IDE dimensions; unknowns need relevant attempts.',material?'research_or_inspect_provided_sources':'initialize_unexamined_row');
+  }
   const attempted = (ids: string[]) => ids.some(id => { const r = c.research.find(x => x.id === id); return r && r.capability !== 'unavailable' && (r.queries.length > 0 || r.inspectedSourceIds.length > 0); });
   for (const item of all) {
     if(bounded&&item.status==='unexamined')continue;
     if (item.status === 'not_relevant') continue;
     const question = c.investigation.questions.find(q => q.topic === item.topic);
-    if (!question || !attempted(question.runIds) || !question.runIds.some(id => item.runIds.includes(id))) throw new Error(`A relevant research question and attempt are required for ${item.topic}.`);
+    check(question&&attempted(question.runIds)&&question.runIds.some(id=>item.runIds.includes(id)),'topic_attempt',`investigation.questions.${item.topic}`,`A relevant research question and attempt are required for ${item.topic}.`,'retain_and_link_actual_attempt');
   }
   const requiredAlternatives=bounded?['direct','manual','do_nothing']:alternativeKinds;
-  if (requiredAlternatives.some(kind=>!c.investigation.alternatives.some(x=>x.kind===kind&&attempted(x.runIds)))) throw new Error('Investigate the competing product, manual and do-nothing alternatives; full builds require every alternative category.');
-  if (!c.investigation.counterevidence || !c.investigation.decision || c.claims.filter(x => x.important).some(x => !c.redTeam.some(r => r.claimId === x.id))) throw new Error('Evaluation needs counterevidence, a decision synthesis and challenges to important claims.');
-  if (!negative&&(!c.firstUserAvenues.length || c.evaluation.promising.length < (bounded?1:2))) throw new Error('Retain credible user avenues and qualified reasons for the decision.');
+  for(const kind of requiredAlternatives)check(c.investigation.alternatives.some(x=>x.kind===kind&&attempted(x.runIds)),'alternative',`investigation.alternatives.${kind}`,'Investigate the competing product, manual and do-nothing alternatives; full builds require every alternative category.','inspect_alternative');
+  check(c.investigation.counterevidence&&c.investigation.decision,'decision','investigation','Evaluation needs counterevidence, a decision synthesis and challenges to important claims.','retain_analysis');
+  for(const claim of c.claims.filter(x=>x.important))check(c.redTeam.some(r=>r.claimId===claim.id),'challenge',`redTeam.${claim.id}`,'Evaluation needs counterevidence, a decision synthesis and challenges to important claims.','pressure_test_claim');
+  check(negative||(c.firstUserAvenues.length&&c.evaluation.promising.length>=(bounded?1:2)),'first_users','firstUserAvenues','Retain credible user avenues and qualified reasons for the decision.','retain_reachable_route_and_decision');
+  return items;
 }
 
 export function presentationText(c: IdeContext, s: Subject): string {

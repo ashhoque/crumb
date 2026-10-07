@@ -9,7 +9,8 @@ import { brand } from '../domain/brand.js';
 import { readPrebuild, savePrebuild, saveEvaluationUpdate, saveWorkingContext, compactPrebuild, exportPrebuild, importPrebuild, transitionIde } from '../application/prebuild.js';
 import { evaluationUpdateSchema } from '../domain/evaluation-update.js';
 import { prebuildSections, renderPrebuildSummary, renderPrebuildDetail, renderStartupMaster, renderFullResearch } from './prebuild-render.js';
-import { emptyIde, ideSchema, ideState, upgradeContext } from '../domain/ide.js';
+import { emptyIde, ideSchema, ideState, upgradeContext, evaluationRequirements } from '../domain/ide.js';
+import { CompletionError } from '../domain/completion.js';
 import * as act from '../application/act.js';
 import { actPlanSchema } from '../domain/act.js';
 import { renderActSummary } from './act-render.js';
@@ -116,7 +117,7 @@ try {
         const saved=saveEvaluationUpdate(root,await readInput());
         print({version:saved.version,hash:saved.hash,context:compactPrebuild(saved),summary:renderPrebuildSummary(saved)});break;
       }
-      case 'evaluation-plan': {const s=readPrebuild(root);if(!s||s.context.contractVersion!==2)throw new Error('Use the saved intention, user and problem to begin the research plan.');print(researchPlan(s.context));break;}
+      case 'evaluation-plan': {const s=readPrebuild(root);if(!s||s.context.contractVersion!==2)throw new Error('Use the saved intention, user and problem to begin the research plan.');print({...researchPlan(s.context),completion:{version:s.version,hash:s.hash,requirements:evaluationRequirements(s.context,true),operation:'ide review',instruction:'Resolve Crumb-owned omissions with actual retained or newly investigated evidence. Submit changes/evidence/assessments atomically via ide review; status and reviewBasis are application-owned. Founder review and Act remain separate.'}});break;}
       case 'research-decision': print(planDecisionResearch(await readInput() as ResearchDecision)); break;
       case 'market-pulse': {const {planMarketPulse}=await import('../domain/market-intelligence.js');print(planMarketPulse(await readInput() as Parameters<typeof planMarketPulse>[0]));break;}
       case 'opportunity-map': {const {assessOpportunity}=await import('../domain/market-intelligence.js');print(assessOpportunity(await readInput() as Parameters<typeof assessOpportunity>[0]));break;}
@@ -217,5 +218,6 @@ try {
   }
 } catch (error) {
   console.error(error instanceof Error ? error.message : 'CEC operation failed. No success was recorded.');
+  if(error instanceof CompletionError)console.error(JSON.stringify({requirements:error.requirements,saved:false}));
   process.exitCode = 1;
 }

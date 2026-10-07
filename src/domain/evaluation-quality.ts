@@ -1,5 +1,6 @@
 import type { IdeContext, AnyPrebuild } from './ide.js';
 import { plain } from './conversation.js';
+import { completionChecks, CompletionError } from './completion.js';
 
 export const technicalTopics = ['data_apis','freshness_quality','access_licensing','rate_cost','integrations','complexity_latency','ai_deterministic','reliability_failures','security_privacy','vendor_build_buy'] as const;
 export interface EvaluationQuality {
@@ -42,15 +43,21 @@ export function validateQuality(c:IdeContext,complete=false):void {
   if(new Set(q.technical.options.map(x=>x.name)).size!==q.technical.options.length)throw new Error('Technical options need distinct names.');
   if(q.technical.recommendation&&!q.technical.options.some(x=>x.name===q.technical.recommendation!.option))throw new Error('Recommend an investigated technical option with a rationale.');
   if(!complete)return;
-  if(q.technical.coverage.length!==technicalTopics.length||q.technical.coverage.some(x=>x.status==='unexamined'))throw new Error('Investigate the material technical questions before completing Evaluate; keep researched limits explicit.');
+  const missing=qualityCompletionRequirements(c);if(missing.length)throw new CompletionError(missing);
+}
+
+export function qualityCompletionRequirements(c:IdeContext) {
+  const {items,check}=completionChecks(),q=c.quality;if(!q)return items;
+  check(q.technical.coverage.length===technicalTopics.length&&!q.technical.coverage.some(x=>x.status==='unexamined'),'technical_coverage','quality.technical.coverage','Investigate the material technical questions before completing Evaluate; keep researched limits explicit.');
   for(const row of q.technical.coverage){
     if(row.status==='not_relevant')continue;
-    const attempted=row.runIds.some(id=>{const r=c.research.find(x=>x.id===id)!;return r.capability!=='unavailable'&&(r.queries.length>0||r.inspectedSourceIds.length>0);});
-    if(!attempted)throw new Error(`Investigate ${row.topic} rather than asking the founder to design it.`);
+    const attempted=row.runIds.some(id=>{const r=c.research.find(x=>x.id===id);return r&&r.capability!=='unavailable'&&(r.queries.length>0||r.inspectedSourceIds.length>0);});
+    check(attempted,'technical_attempt',`quality.technical.coverage.${row.topic}.runIds`,`Investigate ${row.topic} rather than asking the founder to design it.`,'retain_and_link_actual_attempt');
   }
-  if(q.technical.material&&(!q.technical.recommendation||q.technical.coverage.every(x=>x.status==='not_relevant')))throw new Error('A material technical dependency needs investigated options and a reasoned recommendation.');
-  if(c.project.entry==='existing'&&!c.project.artifacts.length)throw new Error('Inspect relevant permitted repository files before concluding technical feasibility for this existing project.');
-  if(q.learning.uncertainty!=='none'&&q.learning.uncertainty!=='technical'&&q.learning.recommendation==='build_decision'&&!q.learning.experiment)throw new Error('Recommend the useful user conversations or specify the bounded learning MVP; the founder may still choose the existing Act commitment.');
+  check(!q.technical.material||(q.technical.recommendation&&!q.technical.coverage.every(x=>x.status==='not_relevant')),'technical_recommendation','quality.technical.recommendation','A material technical dependency needs investigated options and a reasoned recommendation.');
+  check(c.project.entry!=='existing'||c.project.artifacts.length,'project_inspection','project.artifacts','Inspect relevant permitted repository files before concluding technical feasibility for this existing project.','inspect_permitted_project_files');
+  check(q.learning.uncertainty==='none'||q.learning.uncertainty==='technical'||q.learning.recommendation!=='build_decision'||q.learning.experiment,'learning_scope','quality.learning','Recommend the useful user conversations or specify the bounded learning MVP; the founder may still choose the existing Act commitment.','bound_experiment_or_investigate');
+  return items;
 }
 
 export const learningTopics=['frequency','pain','buyer','reachability','competitors','user_language','habitats','workaround','technical_feasibility'] as const;

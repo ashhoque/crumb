@@ -1,5 +1,6 @@
 import { Ajv } from 'ajv';
 import type { IdeContext } from './ide.js';
+import { completionChecks, CompletionError } from './completion.js';
 
 export const coverageTopics = ['frequency', 'urgency', 'pain', 'necessity', 'prevalence', 'category_direction', 'buyer', 'existing_spend', 'reachability', 'founder_fit', 'ai_substitutes', 'dedicated_value', 'competitors', 'user_language', 'traction', 'gaps', 'adjacency', 'habitats'] as const;
 export type CoverageTopic = typeof coverageTopics[number];
@@ -209,21 +210,7 @@ export function validatePrebuild(input: unknown, policy:{bounded?:boolean;negati
     if (item.status === 'findings' && !item.claimIds.length) fail('Coverage findings need referenced evidence.');
     if (item.status === 'unknown_after_search' && !item.runIds.some(id => { const run = runs.get(id)!; return run.queries.length > 0 || run.inspectedSourceIds.length > 0; })) fail('Unknown after search requires an actual recorded attempt.');
   }
-  if (c.evaluation.status === 'ready') {
-    if (c.stage !== 'evaluate' || intent.status !== 'provided' || !c.definition.problem.text || !c.evaluation.conclusion) fail('Normal action readiness needs understood intention, a defined problem and an evaluation synthesis.');
-    if (c.evaluation.coverage.length !== coverageTopics.length || (!policy.bounded && c.evaluation.coverage.some(item => item.status === 'unexamined'))) fail('Evaluate the relevant coverage before recommending an action; unknowns need attempted research or a relevance reason.');
-    if (!c.research.some(run => run.inspectedSourceIds.length && run.stopReason !== 'unavailable')) fail('A brief assessment without inspected research is not meaningful Evaluate.');
-    for (const topic of ['competitors', 'user_language', 'habitats'] as const) {
-      const coverage = c.evaluation.coverage.find(item => item.topic === topic)!;
-      if (['not_relevant','unexamined'].includes(coverage.status)) fail('Competitor, user-language and habitat investigation are core Evaluate work. Record an attempted limitation rather than skipping them.');
-      if (!coverage.runIds.length) fail('Core Evaluate coverage needs a research receipt.');
-    }
-    const inspected = c.research.flatMap(run => run.inspectedSourceIds).map(id => sourceMap.get(id)!);
-    if (!inspected.some(s => ['discussion', 'review', 'founder'].includes(s.kind))) {
-      if (c.evaluation.coverage.find(item => item.topic === 'user_language')!.status !== 'unknown_after_search') fail('Vendor marketing alone does not establish user-language research.');
-    }
-    if (!c.competitors.length || (!policy.negative&&!c.evaluation.promising.length) || !c.evaluation.weak.length || !c.evaluation.unknowns.length) fail('Retain considered alternatives, promising/weak findings and unknowns in the synthesis.');
-  }
+  if (c.evaluation.status === 'ready') {const missing=prebuildReadinessRequirements(c,policy);if(missing.length)throw new CompletionError(missing);}
   if (c.master && ((!policy.provisionalMaster&&c.evaluation.status !== 'ready') || c.claims.filter(item => item.important).some(item => !c.redTeam.some(review => review.claimId === item.id)))) fail('A startup master requires reviewed important claims; a provisional plan is not build authorization.');
   for (const choice of c.brief.choices) {
     if(!policy.provisionalMaster&&['interview','shape_mvp','master'].includes(choice.action)&&c.evaluation.status!=='ready')fail('Finish meaningful Evaluate before legacy interview, MVP or master choices. Current provisional preparation uses the v2 contract.');
@@ -237,4 +224,22 @@ export function validatePrebuild(input: unknown, policy:{bounded?:boolean;negati
   if (sentences.length < (shortAcknowledgment ? 1 : 2) || sentences.length > 5) fail('Begin substantial replies with an executive summary of two to five short sentences. A short acknowledgment needs no padding.');
   // Include labels/optional sentence allowance; final rendering is also checked by tests.
   if (briefWordCount > (c.brief.kind === 'research' ? 174 : 124)) fail('Shorten the visible reply; retain the research in optional detail.');
+}
+
+/** These are the same readiness checks used by saves, not a second host checklist.
+ * Call only after the draft's schema/reference/provenance validation succeeds. */
+export function prebuildReadinessRequirements(c:PrebuildContext,policy:{bounded?:boolean;negative?:boolean}={}) {
+  const {items,check}=completionChecks();
+  check(c.stage==='evaluate'&&c.intention.status==='provided'&&c.definition.problem.text&&c.evaluation.conclusion,'synthesis','evaluation','Normal action readiness needs understood intention, a defined problem and an evaluation synthesis.');
+  check(c.evaluation.coverage.length===coverageTopics.length&&(policy.bounded||!c.evaluation.coverage.some(x=>x.status==='unexamined')),'coverage','evaluation.coverage','Evaluate the relevant coverage before recommending an action; unknowns need attempted research or a relevance reason.');
+  check(c.research.some(r=>r.inspectedSourceIds.length&&r.stopReason!=='unavailable'),'inspected_research','research','A brief assessment without inspected research is not meaningful Evaluate.','research_or_inspect_provided_sources');
+  for(const topic of ['competitors','user_language','habitats'] as const){
+    const row=c.evaluation.coverage.find(x=>x.topic===topic);
+    check(row&&!['not_relevant','unexamined'].includes(row.status),'core_investigation',`evaluation.coverage.${topic}`,'Competitor, user-language and habitat investigation are core Evaluate work. Record an attempted limitation rather than skipping them.','research_or_inspect_provided_sources');
+    check(row?.runIds.length,'core_receipt',`evaluation.coverage.${topic}.runIds`,'Core Evaluate coverage needs a research receipt.','retain_and_link_actual_attempt');
+  }
+  const inspected=c.research.flatMap(r=>r.inspectedSourceIds).map(id=>c.sources.find(s=>s.id===id));
+  check(inspected.some(s=>s&&['discussion','review','founder'].includes(s.kind))||c.evaluation.coverage.find(x=>x.topic==='user_language')?.status==='unknown_after_search','user_language','evaluation.coverage.user_language','Vendor marketing alone does not establish user-language research.');
+  check(c.competitors.length&&(policy.negative||c.evaluation.promising.length)&&c.evaluation.weak.length&&c.evaluation.unknowns.length,'balanced_synthesis','evaluation','Retain considered alternatives, promising/weak findings and unknowns in the synthesis.');
+  return items;
 }

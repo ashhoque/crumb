@@ -177,7 +177,15 @@ private storage or credentials. Synthetic and real provenance remain separate.
    `{"operation":"revise-foundation","expectedVersion":3,"subject":"user","text":"corrected provisional user","quote":"actual founder correction","turnId":"actual source turn"}`.
    Subjects are intention/user/problem. It preserves the founder source, invalidates
    downstream review and refuses changes after approved Act. No new assent implied.
-3. After complete investigation send `{"expectedVersion":8,"operation":"review"}`.
+3. Call `evaluation-plan` for the current version/hash and all unmet requirements.
+   Resolve Crumb-owned omissions with retained evidence or bounded actual work.
+   Submit `{"expectedVersion":8,"contextHash":"returned-hash","operation":"review","evidence":{"research":[]},"assessments":[],"changes":{}}`
+   through `ide`; omit empty optional sections. Evidence appends sources/claims/research
+   by stable IDs; assessments use {scope:business|technical,topic,status,claimIds,runIds,reason,question}
+   with status findings/unknown_after_search/not_relevant. The adapter links coverage
+   and inquiry references once. Use actual relevant attempts, never generic placeholders.
+   This existing review operation validates the prospective complete state and saves
+   atomically. Exact retries do not duplicate receipts. Read `dossier` to verify readiness.
    This checks coverage, alternatives, relevant attempts, counterevidence and
    confirmed foundations. If Evaluation was not included in the displayed thesis,
    present its current conclusion and record the founder's actual response before
@@ -195,7 +203,8 @@ host's human transcript. Never supply synthetic replies in an actual project.
 `detail --section <name> --page 1` supports why, definition, evidence, research,
 competitors, users, gaps, adjacent, habitats, sources, interview and red-team.
 The focused M3-R1 correction adds `technical` for optional feasibility detail.
-`evaluation-plan` returns responsibilities and a `quality` template. Save populated
+`evaluation-plan` returns all currently detectable completion requirements from the
+same validators used by review, plus responsibilities and a `quality` template. Save populated
 quality through normal `prebuild`; new native templates include it. Historical
 records stay readable. Once saved, quality cannot be dropped to bypass its checks.
 For a material external gap, `research-decision` accepts one decision, an evidence

@@ -16,6 +16,9 @@ import { syncConversationArtifacts } from './session.js';
 import { updateWorkingContext, credibleWorkingFact, type FounderWorkingContext } from '../domain/founder-intelligence.js';
 import { assembleEvaluationUpdate } from '../domain/evaluation-update.js';
 import { emptyQuality } from '../domain/evaluation-quality.js';
+import { evaluationRequirements } from '../domain/ide.js';
+import { CompletionError } from '../domain/completion.js';
+import { isDeepStrictEqual } from 'node:util';
 
 export function saveEvaluationUpdate(target:string,input:unknown):SavedPrebuild {
   const saved=readPrebuild(target);
@@ -125,11 +128,12 @@ function appendContext(db: SqliteConnection, context: AnyPrebuild, version: numb
   return { version, hash, recordedAt, context };
 }
 
-export interface IdeTransition { expectedVersion: number; operation: 'present' | 'confirm' | 'review' | 'present-thesis' | 'confirm-thesis' | 'revise-foundation'; subject?: Subject; text?: string; presentationId?: string; displayedText?: string; quote?: string; turnId?: string; interpretation?:ReplyInterpretation }
+export interface IdeTransition { expectedVersion: number; operation: 'present' | 'confirm' | 'review' | 'present-thesis' | 'confirm-thesis' | 'revise-foundation'; subject?: Subject; text?: string; presentationId?: string; displayedText?: string; quote?: string; turnId?: string; interpretation?:ReplyInterpretation; changes?:unknown; evidence?:unknown; assessments?:unknown; contextHash?:string }
 function transitionIdeState(target: string, input: unknown): SavedPrebuild {
   if (!input || typeof input !== 'object') throw new Error('Provide an IDE transition.');
   const r = input as IdeTransition;
-  if (!Number.isSafeInteger(r.expectedVersion) || !['present', 'confirm', 'review', 'present-thesis', 'confirm-thesis', 'revise-foundation'].includes(r.operation) || Object.keys(r).some(k => !['expectedVersion', 'operation', 'subject', 'text', 'presentationId', 'displayedText', 'quote', 'turnId','interpretation'].includes(k))) throw new Error('Invalid IDE transition.');
+  if (!Number.isSafeInteger(r.expectedVersion) || !['present', 'confirm', 'review', 'present-thesis', 'confirm-thesis', 'revise-foundation'].includes(r.operation) || Object.keys(r).some(k => !['expectedVersion', 'operation', 'subject', 'text', 'presentationId', 'displayedText', 'quote', 'turnId','interpretation','changes','evidence','assessments','contextHash'].includes(k))) throw new Error('Invalid IDE transition.');
+  if(r.operation!=='review'&&['changes','evidence','assessments','contextHash'].some(key=>key in r))throw new Error('Evidence updates belong to the review operation, never a confirmation.');
   if(r.operation==='revise-foundation'&&(!r.subject||!['intention','user','problem'].includes(r.subject)||typeof r.text!=='string'||!r.text.trim()||r.text.length>2000||typeof r.quote!=='string'||!r.quote.trim()||r.quote.length>1000||typeof r.turnId!=='string'||!r.turnId.trim()||r.turnId.length>160))throw new Error('A foundation correction needs one subject, provisional text, actual founder quote and source turn.');
   if (r.operation === 'present' && (!r.subject || !subjects.includes(r.subject))) throw new Error('Choose the confirmation subject.');
   if (['confirm','confirm-thesis'].includes(r.operation) && [r.presentationId, r.quote, r.turnId].some(x => typeof x !== 'string' || !x.trim() || x.length > 2000)) throw new Error('Confirmation needs the displayed presentation, founder reply and source turn.');
@@ -137,8 +141,17 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
   try { return db.transaction(() => {
     const saved = storedPrebuild(db);
     if (!saved || saved.context.contractVersion !== 2) throw new Error('Save the current IDE context first; legacy findings remain drafts.');
+    let c = structuredClone(saved.context);
+    if(r.operation==='review'){
+      const update=Object.fromEntries(['changes','evidence','assessments'].filter(k=>k in r).map(k=>[k,r[k as keyof IdeTransition]]));
+      c=assembleEvaluationUpdate(c,{expectedVersion:r.expectedVersion,...(Object.keys(update).length?update:{changes:{evaluation:c.evaluation}})});
+      c.evaluation.status='ready';
+      const comparable=(value:typeof c)=>{const {expectedVersion,...body}=value;return body;};
+      if(saved.context.ide.reviewBasis===evaluationBasis(saved.context)&&isDeepStrictEqual(comparable(c),comparable(saved.context)))return saved;
+    }
     if (saved.version !== r.expectedVersion) throw new Error('IDE changed in another session. Resume the current presentation.');
-    const c = structuredClone(saved.context); c.expectedVersion = saved.version;
+    if(r.operation==='review'&&(['changes','evidence','assessments'].some(key=>key in r)||r.contextHash!==undefined)&&r.contextHash!==saved.hash)throw new Error('Evaluation target/basis changed. Read this project context and submit its exact hash.');
+    c.expectedVersion = saved.version;
     if(r.operation==='revise-foundation'){
       if(confirmation(c,'act'))throw new Error('Do not change an approved build through a conversation correction.');
         const sourceId=randomUUID(),claimId=randomUUID();
@@ -151,7 +164,17 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
       }
       invalidateChanges(saved.context,c);
     }
-    if (r.operation === 'review') { assertEvaluationComplete(c); c.ide.reviewBasis = evaluationBasis(c); c.ide.presentation = null; }
+    if (r.operation === 'review') {
+      invalidateChanges(saved.context,c);
+      const missing=evaluationRequirements(c);if(missing.length)throw new CompletionError(missing);
+      // Apply the same permitted-project artifact/hash checks as a draft save.
+      if(c.project.artifacts.length){
+        if(!c.project.permissionQuote)throw new Error('Record permission for the selected project files.');
+        const inspected=inspectArtifacts(resolveProjectRoot(target),{paths:c.project.artifacts.map(x=>x.path),permissionGranted:true,permissionQuote:c.project.permissionQuote});
+        if(inspected.some((x,i)=>x.sha256!==c.project.artifacts[i]?.sha256))throw new Error('Selected project files changed. Revisit the code observations before saving.');
+      }
+      c.ide.reviewBasis = evaluationBasis(c); c.ide.presentation = null;
+    }
     if (r.operation === 'present') c.ide.presentation = { id: randomUUID(), subject: r.subject!, basis: basis(c, r.subject!), text: presentationText(c, r.subject!) };
     if (r.operation === 'present-thesis') {
       // Notes become missing provisional drafts only at this explicit review boundary.
