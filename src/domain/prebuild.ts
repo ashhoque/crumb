@@ -1,5 +1,6 @@
 import { Ajv } from 'ajv';
 import type { IdeContext } from './ide.js';
+import { completionChecks, CompletionError } from './completion.js';
 
 export const coverageTopics = ['frequency', 'urgency', 'pain', 'necessity', 'prevalence', 'category_direction', 'buyer', 'existing_spend', 'reachability', 'founder_fit', 'ai_substitutes', 'dedicated_value', 'competitors', 'user_language', 'traction', 'gaps', 'adjacency', 'habitats'] as const;
 export type CoverageTopic = typeof coverageTopics[number];
@@ -123,7 +124,7 @@ export function validatePublicUrl(value: string): void {
   for (const key of url!.searchParams.keys()) if (/^(token|access_token|api[-_]?key|authorization|password|secret|signature|x-amz-credential|x-amz-signature)$/i.test(key)) fail('Do not retain secret-bearing source URLs.');
 }
 
-export function validatePrebuild(input: unknown): asserts input is PrebuildContext {
+export function validatePrebuild(input: unknown, policy:{bounded?:boolean;negative?:boolean;provisionalMaster?:boolean}={}): asserts input is PrebuildContext {
   if (Buffer.byteLength(JSON.stringify(input) ?? '') > 262_144) fail('Keep the research dossier below 256 KiB; retain selected observations, not scraped pages.');
   if (!validateShape(input)) fail(`Invalid pre-build context: ${validateShape.errors?.slice(0, 4).map(e => `${e.instancePath || '/'} ${e.message}`).join('; ')}. Nothing was saved.`);
   const c = input as PrebuildContext;
@@ -131,7 +132,7 @@ export function validatePrebuild(input: unknown): asserts input is PrebuildConte
   const claimMap = new Map(c.claims.map(item => [item.id, item]));
   const runs = new Map(c.research.map(run => [run.id, run]));
   for (const [name, items] of [['sources', c.sources], ['claims', c.claims], ['research', c.research], ['competitors', c.competitors], ['adjacent opportunities', c.adjacent], ['habitats', c.habitats]] as const) unique(items.map(item => item.id), name);
-  const refs = (values: string[], map: Map<string, unknown>, label: string) => { unique(values, `${label} references`); for (const id of values) if (!map.has(id)) fail(`Unknown ${label} reference. Preserve evidence links before saving.`); };
+  const refs = (values: string[], map: Map<string, unknown>, label: string) => { unique(values, `${label} references`); for (const id of values) if (!map.has(id)) fail(`Unknown ${label} reference ${id}. Link only an ID retained in ${label === 'source' ? 'sources' : label === 'claim' ? 'claims' : 'habitats'}; do not substitute another evidence kind or invent a record.`); };
   for (const key of [...sourceMap.keys(), ...claimMap.keys(), ...runs.keys(), ...c.competitors.map(item => item.id), ...c.adjacent.map(item => item.id), ...c.habitats.map(item => item.id)]) if (!/^[a-zA-Z0-9][a-zA-Z0-9_-]{0,79}$/.test(key)) fail('Use plain stable identifiers for evidence references.');
   const claimRefs = (values: string[]) => refs(values, claimMap, 'claim');
   const sourceRefs = (values: string[]) => refs(values, sourceMap, 'source');
@@ -182,14 +183,14 @@ export function validatePrebuild(input: unknown): asserts input is PrebuildConte
     if (run.capability === 'unavailable' && (run.inspectedSourceIds.length || run.stopReason !== 'unavailable')) fail('Unavailable research cannot claim inspected results.');
     if (!c.synthetic && run.capability === 'synthetic_fixture') fail('Synthetic research runs cannot establish a real evaluation.');
   }
-  const checkView = (v: FindingView): void => {
+  const checkView = (v: FindingView, path:string): void => {
     claimRefs(v.claimIds);
-    if ((v.text === null) !== (v.basis === 'unknown')) fail('Unknown views retain null instead of invented findings.');
-    if (v.basis !== 'unknown' && !v.claimIds.length) fail('A finding view needs its supporting claims.');
-    if (v.basis === 'observed' && !v.claimIds.some(id => ['public_observation', 'reported_metric', 'public_proxy', 'founder_reported', 'artifact_observation'].includes(claimMap.get(id)!.basis))) fail('An assumption or inference alone is not an observed finding.');
+    if ((v.text === null) !== (v.basis === 'unknown')) fail(`Unknown views retain null instead of invented findings (${path}).`);
+    if (v.basis !== 'unknown' && !v.claimIds.length) fail(`A finding view needs its supporting claims (${path}).`);
+    if (v.basis === 'observed' && !v.claimIds.some(id => ['public_observation', 'reported_metric', 'public_proxy', 'founder_reported', 'artifact_observation'].includes(claimMap.get(id)!.basis))) fail(`An assumption or inference alone is not an observed finding (${path}).`);
   };
-  Object.values(c.definition).forEach(checkView);
-  for (const competitor of c.competitors) { Object.values(competitor.fields).forEach(checkView); claimRefs(competitor.tractionClaimIds); if (competitor.tractionClaimIds.some(id => !['reported_metric', 'public_proxy', 'unknown'].includes(claimMap.get(id)!.basis))) fail('Keep traction metrics/proxies distinct from general observations.'); }
+  for(const [key,view] of Object.entries(c.definition))checkView(view,`definition.${key}`);
+  for (const competitor of c.competitors) { for(const [key,view] of Object.entries(competitor.fields))checkView(view,`competitors.${competitor.id}.${key}`); claimRefs(competitor.tractionClaimIds); if (competitor.tractionClaimIds.some(id => !['reported_metric', 'public_proxy', 'unknown'].includes(claimMap.get(id)!.basis))) fail('Keep traction metrics/proxies distinct from general observations.'); }
   claimRefs(c.feedbackClaimIds);
   if (c.feedbackClaimIds.some(id => claimMap.get(id)!.basis !== 'founder_reported')) fail('Feedback must retain its founder-reported provenance.');
   c.adjacent.forEach(item => claimRefs(item.reasonClaimIds));
@@ -209,24 +210,10 @@ export function validatePrebuild(input: unknown): asserts input is PrebuildConte
     if (item.status === 'findings' && !item.claimIds.length) fail('Coverage findings need referenced evidence.');
     if (item.status === 'unknown_after_search' && !item.runIds.some(id => { const run = runs.get(id)!; return run.queries.length > 0 || run.inspectedSourceIds.length > 0; })) fail('Unknown after search requires an actual recorded attempt.');
   }
-  if (c.evaluation.status === 'ready') {
-    if (c.stage !== 'evaluate' || intent.status !== 'provided' || !c.definition.problem.text || !c.evaluation.conclusion) fail('Normal action readiness needs understood intention, a defined problem and an evaluation synthesis.');
-    if (c.evaluation.coverage.length !== coverageTopics.length || c.evaluation.coverage.some(item => item.status === 'unexamined')) fail('Evaluate the relevant coverage before recommending an action; unknowns need attempted research or a relevance reason.');
-    if (!c.research.some(run => run.inspectedSourceIds.length && run.stopReason !== 'unavailable')) fail('A brief assessment without inspected research is not meaningful Evaluate.');
-    for (const topic of ['competitors', 'user_language', 'habitats'] as const) {
-      const coverage = c.evaluation.coverage.find(item => item.topic === topic)!;
-      if (coverage.status === 'not_relevant') fail('Competitor, user-language and habitat investigation are core Evaluate work. Record an attempted limitation rather than skipping them.');
-      if (!coverage.runIds.length) fail('Core Evaluate coverage needs a research receipt.');
-    }
-    const inspected = c.research.flatMap(run => run.inspectedSourceIds).map(id => sourceMap.get(id)!);
-    if (!inspected.some(s => ['discussion', 'review', 'founder'].includes(s.kind))) {
-      if (c.evaluation.coverage.find(item => item.topic === 'user_language')!.status !== 'unknown_after_search') fail('Vendor marketing alone does not establish user-language research.');
-    }
-    if (!c.competitors.length || !c.evaluation.promising.length || !c.evaluation.weak.length || !c.evaluation.unknowns.length) fail('Retain considered alternatives, promising/weak findings and unknowns in the synthesis.');
-  }
-  if (c.master && (c.evaluation.status !== 'ready' || c.claims.filter(item => item.important).some(item => !c.redTeam.some(review => review.claimId === item.id)))) fail('A startup master requires a ready evaluation and red-team review of important claims.');
+  if (c.evaluation.status === 'ready') {const missing=prebuildReadinessRequirements(c,policy);if(missing.length)throw new CompletionError(missing);}
+  if (c.master && ((!policy.provisionalMaster&&c.evaluation.status !== 'ready') || c.claims.filter(item => item.important).some(item => !c.redTeam.some(review => review.claimId === item.id)))) fail('A startup master requires reviewed important claims; a provisional plan is not build authorization.');
   for (const choice of c.brief.choices) {
-    if (['interview', 'shape_mvp', 'master'].includes(choice.action) && c.evaluation.status !== 'ready') fail('Finish meaningful Evaluate before normal interview, MVP or master choices. An explicit build request remains possible.');
+    if(!policy.provisionalMaster&&['interview','shape_mvp','master'].includes(choice.action)&&c.evaluation.status!=='ready')fail('Finish meaningful Evaluate before legacy interview, MVP or master choices. Current provisional preparation uses the v2 contract.');
     if (choice.action === 'build_requested' && !c.buildRequest) fail('Do not promote Build now before an actual explicit request.');
   }
   const briefText = [c.brief.summary, ...c.brief.seeing, ...c.brief.matters, c.brief.next, ...c.brief.questions, ...c.brief.choices.map(item => item.label)].join(' ');
@@ -237,4 +224,22 @@ export function validatePrebuild(input: unknown): asserts input is PrebuildConte
   if (sentences.length < (shortAcknowledgment ? 1 : 2) || sentences.length > 5) fail('Begin substantial replies with an executive summary of two to five short sentences. A short acknowledgment needs no padding.');
   // Include labels/optional sentence allowance; final rendering is also checked by tests.
   if (briefWordCount > (c.brief.kind === 'research' ? 174 : 124)) fail('Shorten the visible reply; retain the research in optional detail.');
+}
+
+/** These are the same readiness checks used by saves, not a second host checklist.
+ * Call only after the draft's schema/reference/provenance validation succeeds. */
+export function prebuildReadinessRequirements(c:PrebuildContext,policy:{bounded?:boolean;negative?:boolean}={}) {
+  const {items,check}=completionChecks();
+  check(c.stage==='evaluate'&&c.intention.status==='provided'&&c.definition.problem.text&&c.evaluation.conclusion,'synthesis','evaluation','Normal action readiness needs understood intention, a defined problem and an evaluation synthesis.');
+  check(c.evaluation.coverage.length===coverageTopics.length&&(policy.bounded||!c.evaluation.coverage.some(x=>x.status==='unexamined')),'coverage','evaluation.coverage','Evaluate the relevant coverage before recommending an action; unknowns need attempted research or a relevance reason.');
+  check(c.research.some(r=>r.inspectedSourceIds.length&&r.stopReason!=='unavailable'),'inspected_research','research','A brief assessment without inspected research is not meaningful Evaluate.','research_or_inspect_provided_sources');
+  for(const topic of ['competitors','user_language','habitats'] as const){
+    const row=c.evaluation.coverage.find(x=>x.topic===topic);
+    check(row&&!['not_relevant','unexamined'].includes(row.status),'core_investigation',`evaluation.coverage.${topic}`,'Competitor, user-language and habitat investigation are core Evaluate work. Record an attempted limitation rather than skipping them.','research_or_inspect_provided_sources');
+    check(row?.runIds.length,'core_receipt',`evaluation.coverage.${topic}.runIds`,'Core Evaluate coverage needs a research receipt.','retain_and_link_actual_attempt');
+  }
+  const inspected=c.research.flatMap(r=>r.inspectedSourceIds).map(id=>c.sources.find(s=>s.id===id));
+  check(inspected.some(s=>s&&['discussion','review','founder'].includes(s.kind))||c.evaluation.coverage.find(x=>x.topic==='user_language')?.status==='unknown_after_search','user_language','evaluation.coverage.user_language','Vendor marketing alone does not establish user-language research.');
+  check(c.competitors.length&&(policy.negative||c.evaluation.promising.length)&&c.evaluation.weak.length&&c.evaluation.unknowns.length,'balanced_synthesis','evaluation','Retain considered alternatives, promising/weak findings and unknowns in the synthesis.');
+  return items;
 }

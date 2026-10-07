@@ -1,0 +1,30 @@
+[
+  {
+    "timestamp": "2026-10-07T04:13:02.423Z",
+    "tool": "js",
+    "arguments": {
+      "code": "let checkTab = await cua.createBrowserTab('edge','file:///<USER>/AppData/Local/Temp/crumb-closeout-ZNOoPi/final-yc-core-retest/crumb-contexts/embroidery-oct9/checker.html',{sessionName:'🧵 CSV check'});",
+      "title": "Open local checker in Edge"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "Browser Use rejected this action due to browser security policy. Reason: The browser URL policy blocks this action. Browser use cannot visit the requested page. The requested URL protocol is not allowed. Allowed protocols: \"http:\", \"https:\". The agent must not attempt to achieve the same outcome via workaround, indirect execution, raw CDP or browser commands, alternate browser surfaces, or policy circumvention. Proceed only with a materially safer alternative that does not require this blocked browser action; if none exists, stop and request user input."
+        }
+      ],
+      "isError": true,
+      "_meta": {
+        "browser_use": {},
+        "codex/browserUse": true,
+        "codex/nodeReplExecutionDurationMs": 296,
+        "codex/toolSurface": {
+          "backend": "chrome",
+          "browserFamily": "edge",
+          "browserId": "1",
+          "kind": "browserUse"
+        }
+      }
+    }
+  }
+]

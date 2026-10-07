@@ -1,0 +1,20 @@
+{
+  "candidate": "976b741300778c58a3f0e9204ce5bb5630118a64",
+  "kind": "development candidate; main unmerged",
+  "installed": "C:/Users/Ash/.agents/skills/crumb",
+  "files": {
+    "SKILL.md": "53c7a4c87fae905f7c098b5afc1b7e6d8d98006dfd970fca1e870b05a1c47c14",
+    "host/codex.md": "9de2e3a663886c1e7f953894b0359157acf6326ff6dfd6f9aef20e8196a269e0",
+    "references/research.md": "be4f74038599e3e775a0be4faaf79e5a9cb627056590c7af96beebb5361cdeba",
+    "references/local-tools.md": "72e3de4924d0300baa813e2544d19baa4cce2b492a2dec02289898fb8fe4f7df",
+    "references/act.md": "8c28e9b8f179259a89d209bb867694a2db834eb4ea00d2e2f2078bd6e2145e4e",
+    "references/modes.md": "29e30a363e9c98b27c76dd9ef4b3deafc97bde036527d834e015eba6ccfdb6db",
+    "references/learn.md": "f78046967fe8bf1c14524d38a0564ab856fdba4cc4b081fabc3bad7422c0e3aa"
+  },
+  "skill": "53c7a4c87fae905f7c098b5afc1b7e6d8d98006dfd970fca1e870b05a1c47c14",
+  "installedSkill": "53c7a4c87fae905f7c098b5afc1b7e6d8d98006dfd970fca1e870b05a1c47c14",
+  "locator": "b31d8204ba6743d3975ffe194b64ef4fe9da5c93164d6419cb5ca718293fe284",
+  "host": "9de2e3a663886c1e7f953894b0359157acf6326ff6dfd6f9aef20e8196a269e0",
+  "compiledRuntime": "fb47caf4df9b4d67903e2d10586f9bf7ec04bc2fa6b98400ca00387f1986d6f9",
+  "definition": "Sorted dist/src relative path:SHA256(content), joined by newline, SHA256"
+}

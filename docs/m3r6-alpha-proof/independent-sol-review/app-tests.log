@@ -1,0 +1,19 @@
+✔ quoted commas, escaped quotes, embedded newline and preserved text round-trip (2.3245ms)
+✔ BOM, reordered headers, CRLF, blanks, duplicates, whitespace and TBD semantics (0.2741ms)
+✔ bad headers, widths, task and quoting reject (0.4153ms)
+✔ invalid encoding and byte/record bounds reject; 5000 records accepted (12.1213ms)
+✔ formula/full-width/control prefixes reject in every field before output (1.6048ms)
+✔ exclusive output, input unchanged and deterministic bytes (17.3305ms)
+✔ handled write failure cleans only run-created files (2.593ms)
+✔ actual known-fixture CLI: exact rows, draft, no input change, deterministic rerun (193.9273ms)
+✔ CLI help/usage, invalid inputs create no output, blocked destination errors (665.7908ms)
+✔ no omissions yields header-only report; prose cannot create newline requests (66.1436ms)
+✔ observation fixtures have six tasks and exact four omissions (1.2097ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1051.2322

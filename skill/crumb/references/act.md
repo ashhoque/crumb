@@ -6,7 +6,7 @@ handoff and transition to a build-capable session. `continue-build` verifies it;
 plan property binds the current handoff, automatic-stage policy and human checkpoints.
 This is the default for new guided work. The older commands described below remain
 compatible for already-existing M2 runs, which keep manual review after every stage.
-For R1, Approve Build Pack approves the complete displayed pack and stage policy;
+For new bounded exact-scope commitments, the single Act approval covers the derived internal pack, implementation and verification within those displayed limits; use its current `scopeConfirmationId` in `act-approve` after verifying the pack. Do not ask again for internal stages or tests, or fabricate review of unseen documents. Legacy R1 commitments retain Approve Build Pack for the complete displayed pack and stage policy;
 only preapproved stages with passing exits can advance automatically. Always stop
 at intended/final MVP and explicit human checkpoints. Technical success is not
 customer validation. Do not use the legacy route to bypass the new host workflow.
@@ -57,11 +57,11 @@ build/test commands. Known setup is reused, not rerun. M0, when needed, resolves
 highest technical risk, integrations/persistence and essential safety constraints.
 M1 implements the complete journey and stops. Do not impose five milestones.
 
-Show all Building capabilities and the first stage, a short reason for the small
-scope, and "Approve build / Adjust scope / View build plan". Make the full plan
+The exact bounded Act scope is the founder-facing approval. After it is approved, prepare and inspect the unchanged internal plan without another permission ask; use the current Act receipt through `scopeConfirmationId`. Only legacy unbounded commitments need all Building capabilities and first stage shown for separate plan approval. Make the full plan
 available without requiring it in chat. After actual approval send `act-approve`:
 `{"expectedVersion":1,"planHash":"returned planHash","quote":"actual approval"}`.
-This authorizes the first stage only. Never synthesize a founder reply.
+For native R1 this approves the displayed pack and its preapproved stage policy;
+only legacy M2 authorizes the first stage alone. Never synthesize a founder reply.
 
 ## Persist and execute
 

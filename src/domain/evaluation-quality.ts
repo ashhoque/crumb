@@ -1,5 +1,6 @@
 import type { IdeContext, AnyPrebuild } from './ide.js';
 import { plain } from './conversation.js';
+import { completionChecks, CompletionError } from './completion.js';
 
 export const technicalTopics = ['data_apis','freshness_quality','access_licensing','rate_cost','integrations','complexity_latency','ai_deterministic','reliability_failures','security_privacy','vendor_build_buy'] as const;
 export interface EvaluationQuality {
@@ -10,15 +11,16 @@ export interface EvaluationQuality {
     recommendation: {option:string;reason:string}|null;
   };
   founderFit: {edge:string;limitation:string;claimIds:string[]};
-  learning: {uncertainty:'pain'|'frequency'|'workaround'|'buyer'|'switching'|'technical'|'none';reason:string;recommendation:'interviews'|'research'|'build_decision'};
+  learning: {uncertainty:'pain'|'frequency'|'workaround'|'buyer'|'switching'|'technical'|'none';reason:string;recommendation:'interviews'|'research'|'build_decision';decision?:'go'|'one_gap'|'pivot_stop';experiment?:{promise:string;capabilities:string[];cuts:string[];limitations:string;success:string;failure:string;testDate:string}};
 }
 const obj=(properties:Record<string,object>)=>({type:'object',properties,required:Object.keys(properties),additionalProperties:false});
 const str=(maxLength=1200)=>({type:'string',minLength:1,maxLength,pattern:'\\S'});
 const refs={type:'array',items:str(80),maxItems:16,uniqueItems:true};
+const learningProperties={uncertainty:{enum:['pain','frequency','workaround','buyer','switching','technical','none']},reason:str(),recommendation:{enum:['interviews','research','build_decision']},decision:{enum:['go','one_gap','pivot_stop']},experiment:obj({promise:str(500),capabilities:{type:'array',minItems:1,maxItems:3,uniqueItems:true,items:str(160)},cuts:{type:'array',minItems:1,maxItems:8,uniqueItems:true,items:str(160)},limitations:str(700),success:str(500),failure:str(500),testDate:{type:'string',pattern:'^\\d{4}-\\d{2}-\\d{2}$'}})};
 export const qualitySchema=obj({
   technical:obj({material:{type:'boolean'},summary:str(700),centralRisk:str(700),coverage:{type:'array',maxItems:technicalTopics.length,items:obj({topic:{enum:technicalTopics},status:{enum:['unexamined','findings','unknown_after_search','not_relevant']},claimIds:refs,runIds:refs,reason:str()})},options:{type:'array',maxItems:3,items:obj({name:str(120),approach:str(),tradeoff:str(),claimIds:refs})},recommendation:{anyOf:[obj({option:str(120),reason:str()}),{type:'null'}]}}),
   founderFit:obj({edge:str(),limitation:str(),claimIds:refs}),
-  learning:obj({uncertainty:{enum:['pain','frequency','workaround','buyer','switching','technical','none']},reason:str(),recommendation:{enum:['interviews','research','build_decision']}}),
+  learning:{...obj(learningProperties),required:['uncertainty','reason','recommendation']},
 });
 export function emptyQuality():EvaluationQuality {return {
   technical:{material:true,summary:'Technical feasibility has not been investigated yet.',centralRisk:'Unknown until the central capability and its dependencies are investigated.',coverage:technicalTopics.map(topic=>({topic,status:'unexamined',claimIds:[],runIds:[],reason:'Investigate if material; explain relevance otherwise.'})),options:[],recommendation:null},
@@ -30,6 +32,8 @@ export function emptyQuality():EvaluationQuality {return {
  * source-linked contract; the core never invents research or personal facts. */
 export function validateQuality(c:IdeContext,complete=false):void {
   const q=c.quality;if(!q)return;
+  if(q.learning.experiment&&(q.learning.decision!=='go'||q.learning.recommendation!=='build_decision'))throw new Error('A bounded learning MVP requires an explicit GO decision, retained uncertainty and a build recommendation.');
+  if(q.learning.decision&&q.learning.decision!=='go'&&q.learning.recommendation==='build_decision')throw new Error('ONE GAP or PIVOT/STOP cannot authorize a build decision.');
   const claims=new Set(c.claims.map(x=>x.id)),runs=new Set(c.research.map(x=>x.id));
   const check=(ids:string[],set:Set<string>)=>{if(ids.some(id=>!set.has(id)))throw new Error('Quality findings must reference retained claims/research.');};
   check(q.founderFit.claimIds,claims);
@@ -39,16 +43,25 @@ export function validateQuality(c:IdeContext,complete=false):void {
   if(new Set(q.technical.options.map(x=>x.name)).size!==q.technical.options.length)throw new Error('Technical options need distinct names.');
   if(q.technical.recommendation&&!q.technical.options.some(x=>x.name===q.technical.recommendation!.option))throw new Error('Recommend an investigated technical option with a rationale.');
   if(!complete)return;
-  if(q.technical.coverage.length!==technicalTopics.length||q.technical.coverage.some(x=>x.status==='unexamined'))throw new Error('Investigate the material technical questions before completing Evaluate; keep researched limits explicit.');
+  const missing=qualityCompletionRequirements(c);if(missing.length)throw new CompletionError(missing);
+}
+
+export function qualityCompletionRequirements(c:IdeContext) {
+  const {items,check}=completionChecks(),q=c.quality;if(!q)return items;
+  check(q.technical.coverage.length===technicalTopics.length&&!q.technical.coverage.some(x=>x.status==='unexamined'),'technical_coverage','quality.technical.coverage','Investigate the material technical questions before completing Evaluate; keep researched limits explicit.');
   for(const row of q.technical.coverage){
     if(row.status==='not_relevant')continue;
-    const attempted=row.runIds.some(id=>{const r=c.research.find(x=>x.id===id)!;return r.capability!=='unavailable'&&(r.queries.length>0||r.inspectedSourceIds.length>0);});
-    if(!attempted)throw new Error(`Investigate ${row.topic} rather than asking the founder to design it.`);
+    const attempted=row.runIds.some(id=>{const r=c.research.find(x=>x.id===id);return r&&r.capability!=='unavailable'&&(r.queries.length>0||r.inspectedSourceIds.length>0);});
+    check(attempted,'technical_attempt',`quality.technical.coverage.${row.topic}.runIds`,`Investigate ${row.topic} rather than asking the founder to design it.`,'retain_and_link_actual_attempt');
   }
-  if(q.technical.material&&(!q.technical.recommendation||q.technical.coverage.every(x=>x.status==='not_relevant')))throw new Error('A material technical dependency needs investigated options and a reasoned recommendation.');
-  if(c.project.entry==='existing'&&!c.project.artifacts.length)throw new Error('Inspect relevant permitted repository files before concluding technical feasibility for this existing project.');
-  if(q.learning.uncertainty!=='none'&&q.learning.uncertainty!=='technical'&&q.learning.recommendation==='build_decision')throw new Error('Recommend the useful user conversations; the founder may still choose the existing Act commitment.');
+  check(!q.technical.material||(q.technical.recommendation&&!q.technical.coverage.every(x=>x.status==='not_relevant')),'technical_recommendation','quality.technical.recommendation','A material technical dependency needs investigated options and a reasoned recommendation.');
+  check(c.project.entry!=='existing'||c.project.artifacts.length,'project_inspection','project.artifacts','Inspect relevant permitted repository files before concluding technical feasibility for this existing project.','inspect_permitted_project_files');
+  check(q.learning.uncertainty==='none'||q.learning.uncertainty==='technical'||q.learning.recommendation!=='build_decision'||q.learning.experiment,'learning_scope','quality.learning','Recommend the useful user conversations or specify the bounded learning MVP; the founder may still choose the existing Act commitment.','bound_experiment_or_investigate');
+  return items;
 }
+
+export const learningTopics=['frequency','pain','buyer','reachability','competitors','user_language','habitats','workaround','technical_feasibility'] as const;
+export function boundedLearning(c:IdeContext):boolean {return c.quality?.learning.decision==='go'&&!!c.quality.learning.experiment;}
 
 /** Route researchable questions back to the host, without asking the founder
  * to choose databases, vendors, communities or technical definitions. This

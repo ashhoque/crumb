@@ -1,0 +1,297 @@
+{
+  "observedAt": "2026-10-07T03:12:12.664Z",
+  "version": 14,
+  "hash": "0fedc39ceee2462e7eecacc2c55d13a5e5c9e763f92340494dbcfaa095ce0a67",
+  "requirements": [],
+  "reviewBasis": "c8ed51bf980e300ce661338c7bb64811c844e0bfdfea1d6ac42d6b5ba9e60ecc",
+  "receipts": [
+    {
+      "id": "f0a801b7-0c21-4eab-ae7e-ffbd8a013017",
+      "subject": "intention",
+      "basis": "552e78fa091272bbc9fc9daaef2f266be58463d87871f8b13c4e0c9d03172b01",
+      "presentationId": "770a0437-375f-465b-a0eb-860503a6f8f0",
+      "presentedText": "**My take:** GO to review the tiny helper rehearsal scope, not to implement: one local screen, four fixed after-cleaning slots, manual photo assignment and human confirmation. Synthetic October 9 rehearsal. Full limits and acceptance cases in scope-review.md. (Inference; source: Founder requests exact small scope for review; Crumb proposal.)\n\n**What we are building toward:** Explore whether a tiny local tool can catch missing commercial window-cleaning completion photos before departure; find strongest first use and prepare next step.\n\n**The first user:** Provisional first user: founder as departure-check supervisor of one small commercial window-cleaning crew, on repeat sites with explicit property-manager photo requirements.\n\n**Their pain:** For this property's fixed north, south, west and east after-cleaning photos, gathering onto the supervisor's laptop through the existing shared folder is easy. The painful task is checking all four required views while packing up; a missed east view caused a return. The founder reports two roughly 45-minute returns in their last ten jobs; other supervisors' experience is unknown.\n\n**Evidence so far:** CompanyCam already offers required-photo checklist fields and reference images; Core USD63/month for 1 user, Crew USD129/month for 3, billed annually. Vendor capabilities do not prove demand for this tool. (Reported; source: https://companycam.com/pricing ; https://help.companycam.com/en/articles/6828391-creating-a-checklist ; opened 2026-10-06.) This does not establish demand.\n\n**What could undo it:**\n\nHuman must identify the correct current view and usability; the helper cannot judge cleaning quality or manager acceptance. Synthetic rehearsal proves only checking behavior/usability. Session resets on reload; existing shared-folder sync is outside helper. (Inference; source: Crumb proposed limits; founder requires local images and no quality claim.)\n\n**Still unknown:**\n\nKnown fixed shot labels and easy laptop gathering. Unknown: browser, file types, actual helper usability, persistence expectations and real-job benefit. Proposed JPEG/PNG, session-only local HTML; no execution evidence. (Inference; source: Founder facts plus explicit Crumb implementation hypotheses.)\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+      "turnId": "founder-thesis-agreement-no-build",
+      "quote": "Looks good, don't build yet.",
+      "recordedAt": "2026-10-07T03:01:12.552Z"
+    },
+    {
+      "id": "08d176f1-f50d-487b-8774-704cb2eff96a",
+      "subject": "user",
+      "basis": "f664f808762dbc4669870405346a68b316d4064bc77dddb99f6ac2b32a37aa56",
+      "presentationId": "770a0437-375f-465b-a0eb-860503a6f8f0",
+      "presentedText": "**My take:** GO to review the tiny helper rehearsal scope, not to implement: one local screen, four fixed after-cleaning slots, manual photo assignment and human confirmation. Synthetic October 9 rehearsal. Full limits and acceptance cases in scope-review.md. (Inference; source: Founder requests exact small scope for review; Crumb proposal.)\n\n**What we are building toward:** Explore whether a tiny local tool can catch missing commercial window-cleaning completion photos before departure; find strongest first use and prepare next step.\n\n**The first user:** Provisional first user: founder as departure-check supervisor of one small commercial window-cleaning crew, on repeat sites with explicit property-manager photo requirements.\n\n**Their pain:** For this property's fixed north, south, west and east after-cleaning photos, gathering onto the supervisor's laptop through the existing shared folder is easy. The painful task is checking all four required views while packing up; a missed east view caused a return. The founder reports two roughly 45-minute returns in their last ten jobs; other supervisors' experience is unknown.\n\n**Evidence so far:** CompanyCam already offers required-photo checklist fields and reference images; Core USD63/month for 1 user, Crew USD129/month for 3, billed annually. Vendor capabilities do not prove demand for this tool. (Reported; source: https://companycam.com/pricing ; https://help.companycam.com/en/articles/6828391-creating-a-checklist ; opened 2026-10-06.) This does not establish demand.\n\n**What could undo it:**\n\nHuman must identify the correct current view and usability; the helper cannot judge cleaning quality or manager acceptance. Synthetic rehearsal proves only checking behavior/usability. Session resets on reload; existing shared-folder sync is outside helper. (Inference; source: Crumb proposed limits; founder requires local images and no quality claim.)\n\n**Still unknown:**\n\nKnown fixed shot labels and easy laptop gathering. Unknown: browser, file types, actual helper usability, persistence expectations and real-job benefit. Proposed JPEG/PNG, session-only local HTML; no execution evidence. (Inference; source: Founder facts plus explicit Crumb implementation hypotheses.)\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+      "turnId": "founder-thesis-agreement-no-build",
+      "quote": "Looks good, don't build yet.",
+      "recordedAt": "2026-10-07T03:01:12.553Z"
+    },
+    {
+      "id": "a751e701-496f-4f1e-a919-c7ba8c2e9030",
+      "subject": "problem",
+      "basis": "e477ec56bd8dee653917884812abe2c5b1217eacd841e059cce0f4e38ead3086",
+      "presentationId": "770a0437-375f-465b-a0eb-860503a6f8f0",
+      "presentedText": "**My take:** GO to review the tiny helper rehearsal scope, not to implement: one local screen, four fixed after-cleaning slots, manual photo assignment and human confirmation. Synthetic October 9 rehearsal. Full limits and acceptance cases in scope-review.md. (Inference; source: Founder requests exact small scope for review; Crumb proposal.)\n\n**What we are building toward:** Explore whether a tiny local tool can catch missing commercial window-cleaning completion photos before departure; find strongest first use and prepare next step.\n\n**The first user:** Provisional first user: founder as departure-check supervisor of one small commercial window-cleaning crew, on repeat sites with explicit property-manager photo requirements.\n\n**Their pain:** For this property's fixed north, south, west and east after-cleaning photos, gathering onto the supervisor's laptop through the existing shared folder is easy. The painful task is checking all four required views while packing up; a missed east view caused a return. The founder reports two roughly 45-minute returns in their last ten jobs; other supervisors' experience is unknown.\n\n**Evidence so far:** CompanyCam already offers required-photo checklist fields and reference images; Core USD63/month for 1 user, Crew USD129/month for 3, billed annually. Vendor capabilities do not prove demand for this tool. (Reported; source: https://companycam.com/pricing ; https://help.companycam.com/en/articles/6828391-creating-a-checklist ; opened 2026-10-06.) This does not establish demand.\n\n**What could undo it:**\n\nHuman must identify the correct current view and usability; the helper cannot judge cleaning quality or manager acceptance. Synthetic rehearsal proves only checking behavior/usability. Session resets on reload; existing shared-folder sync is outside helper. (Inference; source: Crumb proposed limits; founder requires local images and no quality claim.)\n\n**Still unknown:**\n\nKnown fixed shot labels and easy laptop gathering. Unknown: browser, file types, actual helper usability, persistence expectations and real-job benefit. Proposed JPEG/PNG, session-only local HTML; no execution evidence. (Inference; source: Founder facts plus explicit Crumb implementation hypotheses.)\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+      "turnId": "founder-thesis-agreement-no-build",
+      "quote": "Looks good, don't build yet.",
+      "recordedAt": "2026-10-07T03:01:12.553Z"
+    },
+    {
+      "id": "e0322a9d-1d44-451c-aa7a-66a3b68ac858",
+      "subject": "evaluation",
+      "basis": "aecf34716f72ce365f4dd684ff98040d03651cb8ea5cbaf21b1e31a1bc4e9273",
+      "presentationId": "e296c57c-d272-45ae-9455-d6a73e6cf525",
+      "presentedText": "GO for a separately authorized synthetic four-slot local helper rehearsal only. No build or execution permission yet.\n\nStandard File API/object URLs support session-only local thumbnails; no product execution Main technical uncertainty: Human misclassification or added selection clicks may erase benefit; reload intentionally clears View technical evaluation is optional.\n\nI also found a possible first-user avenue: Founder at this property. First self-rehearsal without recruitment. Check current rules before participating. View first-user avenues is optional.\n\nThe main thing still uncertain is Actual laptop speed/preference..\n\nDoes that fairly capture what we learned and the uncertainty we are carrying?",
+      "turnId": "founder-evaluation-agreement",
+      "quote": "Yes.",
+      "recordedAt": "2026-10-07T03:10:10.103Z"
+    }
+  ],
+  "displayedAct": {
+    "id": "573aadb8-7b32-462b-9937-4cb751c839be",
+    "subject": "act",
+    "basis": "138f50bd7b1db7cc8bd3104c6524d9921d688ba0895bbe5bcd802eefa9d66c32",
+    "text": "For Provisional first user: founder as departure-check supervisor of one small commercial window-cleaning crew, on repeat sites with explicit property-manager photo requirements., this is a bounded learning MVP: Show which north, south, west and east after-cleaning photo slots remain missing or unreviewed before departure.\n\nCapabilities: Four fixed named after-cleaning slots.; Manual local JPEG/PNG selection, thumbnails/filenames, replacement/removal.; MISSING/REVIEW/READY with human confirmation, reset and same-file duplicate warning..\nCuts: No uploads, backend, external libraries, analytics or network calls.; No AI classification, cleaning-quality or manager-approval claims.; No reports, exports, sending, accounts or other properties.; No persistence; originals untouched; JPEG/PNG only..\nLimits: Session-only; reload clears. Human checks view/recency/usability. Same-file warning cannot catch all duplicates. Existing shared-folder sync outside helper. Synthetic rehearsal cannot establish field adoption, avoided returns or demand.\nSuccess: Missing-east, duplicate, wrong-view human review, all-correct, reset, unreadable and reload cases behave as specified; founder sees remaining slots and checks four correct views within 90 seconds, preferring it to current process.\nFailure: False READY or missing/unreviewed slots hidden; confusing/reset/privacy behavior or more effort than plain checklist. Simplify or retain checklist.\nProposed first-user test: 2026-10-09.\nRemaining uncertainty: Test whether visual four-slot check reduces comparison effort; field usefulness remains later evidence.\n\nDo you authorize building this exact scope?"
+  },
+  "scope": {
+    "promise": "Show which north, south, west and east after-cleaning photo slots remain missing or unreviewed before departure.",
+    "capabilities": [
+      "Four fixed named after-cleaning slots.",
+      "Manual local JPEG/PNG selection, thumbnails/filenames, replacement/removal.",
+      "MISSING/REVIEW/READY with human confirmation, reset and same-file duplicate warning."
+    ],
+    "cuts": [
+      "No uploads, backend, external libraries, analytics or network calls.",
+      "No AI classification, cleaning-quality or manager-approval claims.",
+      "No reports, exports, sending, accounts or other properties.",
+      "No persistence; originals untouched; JPEG/PNG only."
+    ],
+    "limitations": "Session-only; reload clears. Human checks view/recency/usability. Same-file warning cannot catch all duplicates. Existing shared-folder sync outside helper. Synthetic rehearsal cannot establish field adoption, avoided returns or demand.",
+    "success": "Missing-east, duplicate, wrong-view human review, all-correct, reset, unreadable and reload cases behave as specified; founder sees remaining slots and checks four correct views within 90 seconds, preferring it to current process.",
+    "failure": "False READY or missing/unreviewed slots hidden; confusing/reset/privacy behavior or more effort than plain checklist. Simplify or retain checklist.",
+    "testDate": "2026-10-09"
+  },
+  "research": [
+    {
+      "id": "market_batch",
+      "question": "What competitors, user language and commercial-photo routes affect this first use?",
+      "capability": "host_research",
+      "queryBudget": 6,
+      "pageBudget": 5,
+      "budgetReason": "Reuse bounded actual investigation.",
+      "queries": [
+        {
+          "text": "CompanyCam required photos checklist pricing",
+          "materialFinding": true
+        },
+        {
+          "text": "SafetyCulture required photo checklist pricing free",
+          "materialFinding": true
+        },
+        {
+          "text": "commercial window cleaning completion photos property manager proof work",
+          "materialFinding": true
+        },
+        {
+          "text": "site.help.companycam.com checklist required photos minimum",
+          "materialFinding": true
+        },
+        {
+          "text": "site.help.safetyculture.com mandatory media evidence questions",
+          "materialFinding": true
+        },
+        {
+          "text": "International Window Cleaning Association community membership networking",
+          "materialFinding": true
+        }
+      ],
+      "inspectedSourceIds": [
+        "cc_check",
+        "cc_price",
+        "thread",
+        "sapphire",
+        "skypole"
+      ],
+      "stopReason": "coverage_sufficient",
+      "limitation": "Personal rehearsal decision only; no executed product or external validation."
+    },
+    {
+      "id": "founder_review",
+      "question": "What happened, how often, which workaround and first-user constraints apply?",
+      "capability": "provided_sources",
+      "queryBudget": 0,
+      "pageBudget": 2,
+      "budgetReason": "Reuse bounded actual investigation.",
+      "queries": [],
+      "inspectedSourceIds": [
+        "9e6cef18-cf88-4e7e-b7f0-8ee2d5a1f2b2",
+        "94df25db-9b37-42c9-9266-110ec5995e10"
+      ],
+      "stopReason": "coverage_sufficient",
+      "limitation": "Personal rehearsal decision only; no executed product or external validation."
+    },
+    {
+      "id": "technical_review",
+      "question": "Can session-only local image thumbnails and slot checking work without upload or server?",
+      "capability": "host_research",
+      "queryBudget": 0,
+      "pageBudget": 2,
+      "budgetReason": "Reuse bounded actual investigation.",
+      "queries": [],
+      "inspectedSourceIds": [
+        "mdn_files",
+        "mdn_blob"
+      ],
+      "stopReason": "coverage_sufficient",
+      "limitation": "Personal rehearsal decision only; no executed product or external validation."
+    }
+  ],
+  "sources": [
+    {
+      "id": "94df25db-9b37-42c9-9266-110ec5995e10",
+      "title": "Founder correction: problem",
+      "url": null,
+      "kind": "founder",
+      "provenance": "founder_report",
+      "access": "provided",
+      "retrievedOn": "2026-10-07",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "The missing photo was the east elevation after cleaning. It was already on the manager's written four-shot list, but we had three photos scattered between two phones. Two of our last ten jobs needed a return trip, about 45 minutes each. That's my experience, not the other supervisors'.",
+      "limitation": "Founder correction of a working hypothesis; not independent customer or payment evidence.",
+      "archived": false,
+      "independenceKey": "founder-followup-east-elevation-2026-10-06",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "9e6cef18-cf88-4e7e-b7f0-8ee2d5a1f2b2",
+      "title": "Founder correction: problem",
+      "url": null,
+      "kind": "founder",
+      "provenance": "founder_report",
+      "access": "provided",
+      "retrievedOn": "2026-10-07",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "North elevation after cleaning, south elevation after cleaning, west elevation after cleaning, and east elevation after cleaning. Gathering onto my laptop is already easy with our shared folder. The annoying part is checking every shot against the list while packing up.",
+      "limitation": "Founder correction of a working hypothesis; not independent customer or payment evidence.",
+      "archived": false,
+      "independenceKey": "founder-followup-fixed-four-shared-folder",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "cc_check",
+      "title": "CompanyCam checklist",
+      "url": "https://help.companycam.com/en/articles/6828391-creating-a-checklist",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "live",
+      "retainedText": "Required photo fields and reference images are supported.",
+      "limitation": "Inspected public evidence; not founder spending, executed product evidence or recruitment permission.",
+      "archived": false,
+      "independenceKey": "cc_check",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "cc_price",
+      "title": "CompanyCam pricing",
+      "url": "https://companycam.com/pricing",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "live",
+      "retainedText": "Core USD63/month one user; Crew USD129/month three users; billed annually.",
+      "limitation": "Inspected public evidence; not founder spending, executed product evidence or recruitment permission.",
+      "archived": false,
+      "independenceKey": "cc_price",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "thread",
+      "title": "Maintenance checklist user request",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/154cgkr/software_that_allows_quick_maintenance_checklist/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "live",
+      "retainedText": "An operator asks for on-site maintenance checklists with photos.",
+      "limitation": "Inspected public evidence; not founder spending, executed product evidence or recruitment permission.",
+      "archived": false,
+      "independenceKey": "thread",
+      "affiliation": "independent"
+    },
+    {
+      "id": "sapphire",
+      "title": "Sapphire commercial workflow",
+      "url": "https://sapphireexteriorcleaning.com/commercial",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "live",
+      "retainedText": "Before/after photos and completion communication for commercial property teams.",
+      "limitation": "Inspected public evidence; not founder spending, executed product evidence or recruitment permission.",
+      "archived": false,
+      "independenceKey": "sapphire",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "skypole",
+      "title": "Skypole IESO project",
+      "url": "https://skypole.ca/projects/commercial-window-metal-panel-cleaning-at-ieso-2635-lake-shore-blvd-w-mississauga/",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "live",
+      "retainedText": "Commercial window-cleaning photo gallery.",
+      "limitation": "Inspected public evidence; not founder spending, executed product evidence or recruitment permission.",
+      "archived": false,
+      "independenceKey": "skypole",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "mdn_files",
+      "title": "MDN local File API",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/File_API/Using_files_from_web_applications",
+      "kind": "industry",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "live",
+      "retainedText": "User-selected local files can be read and displayed as thumbnails.",
+      "limitation": "Inspected public evidence; not founder spending, executed product evidence or recruitment permission.",
+      "archived": false,
+      "independenceKey": "mdn_files",
+      "affiliation": "independent"
+    },
+    {
+      "id": "mdn_blob",
+      "title": "MDN object URLs",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL_static",
+      "kind": "industry",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "live",
+      "retainedText": "File/Blob object URLs can show images and should be revoked when finished.",
+      "limitation": "Inspected public evidence; not founder spending, executed product evidence or recruitment permission.",
+      "archived": false,
+      "independenceKey": "mdn_blob",
+      "affiliation": "independent"
+    }
+  ],
+  "firstUserAvenues": [
+    "self"
+  ]
+}

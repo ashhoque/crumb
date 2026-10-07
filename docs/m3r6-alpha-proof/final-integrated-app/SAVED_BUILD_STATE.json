@@ -1,0 +1,152 @@
+{
+  "version": 6,
+  "hash": "3fee8ce4fe6b1b1d7356a6c21a790f44fc629af84ff5117e659b63221d7d2e9c",
+  "runId": "ae20eabe-aa4a-4951-bf28-c98a2f0331e0",
+  "planHash": "e67c10f6750a37bc30a91bdaa5d41a9382e48d3c9db69bfd1d762b1236b79e8b",
+  "status": "stopped",
+  "stage": {
+    "id": "mvp",
+    "title": "Complete local task and observation fixtures",
+    "kind": "mvp",
+    "goal": "Complete draft journey and run exact known fixture; stop.",
+    "capabilities": [
+      "Validate/import a bounded local CSV",
+      "Identify and export incomplete records",
+      "Write deterministic neutral follow-up text for manual review"
+    ],
+    "writes": [
+      "handover.mjs",
+      "tests/handover.test.mjs",
+      "README.md",
+      "fixtures/handover.csv",
+      "fixtures/session-a.csv",
+      "fixtures/session-b.csv"
+    ],
+    "checks": [
+      {
+        "id": "acceptance",
+        "description": "All acceptance cases pass.",
+        "commandHint": "node --test tests/handover.test.mjs"
+      },
+      {
+        "id": "known-fixture",
+        "description": "Actual CLI exports records 2,3,4,6 and accurate neutral draft, input unchanged.",
+        "commandHint": "node handover.mjs check fixtures/handover.csv --out test-output/known-fixture"
+      }
+    ]
+  },
+  "stopAfterStageId": "mvp",
+  "pack": {
+    "directory": "build-pack/ae20eabe-aa4a-4951-bf28-c98a2f0331e0/revision-e67c10f6750a",
+    "files": [
+      {
+        "path": "build-pack/ae20eabe-aa4a-4951-bf28-c98a2f0331e0/revision-e67c10f6750a/STARTUP_MASTER.md",
+        "sha256": "445b8d6a20e7de15d27b9d46c1edf90d36c7f3d3c2fabb514f3c96d58d44a5be"
+      },
+      {
+        "path": "build-pack/ae20eabe-aa4a-4951-bf28-c98a2f0331e0/revision-e67c10f6750a/BUILD_PLAN.md",
+        "sha256": "2ce3071558f382b3ea5728a39028d6c1b24aa8a41ce08318c63142d645b24094"
+      },
+      {
+        "path": "build-pack/ae20eabe-aa4a-4951-bf28-c98a2f0331e0/revision-e67c10f6750a/GROUNDWORK.md",
+        "sha256": "3b8ffb396d63b7378c11076ffbfbee62e1c6bf13493a58a3c8d42e5fe7fad8a8"
+      },
+      {
+        "path": "build-pack/ae20eabe-aa4a-4951-bf28-c98a2f0331e0/revision-e67c10f6750a/STAGE_1.md",
+        "sha256": "d82be9e164823210d02fe60f3fb700ed79b0e9cc3d1757d3f8ba9ef1e1cf5a21"
+      },
+      {
+        "path": "build-pack/ae20eabe-aa4a-4951-bf28-c98a2f0331e0/revision-e67c10f6750a/STAGE_2.md",
+        "sha256": "8e34910fe887febea9b6a45591e6b22c5dca021c5b37af5575d671ad9cad20ad"
+      },
+      {
+        "path": "build-pack/ae20eabe-aa4a-4951-bf28-c98a2f0331e0/revision-e67c10f6750a/RED_TEAM_REVIEW.md",
+        "sha256": "bb703d7e7ead28ad9f508deb27fad96f38f56cb213beb5ff97f1c28050e816f1"
+      },
+      {
+        "path": "build-pack/ae20eabe-aa4a-4951-bf28-c98a2f0331e0/revision-e67c10f6750a/TECHNICAL_MASTER.md",
+        "sha256": "d3560919e90388c6ab80bf5556e3b16770851842314ea587425ba7544a287c83"
+      },
+      {
+        "path": "build-pack/ae20eabe-aa4a-4951-bf28-c98a2f0331e0/revision-e67c10f6750a/BUSINESS_MASTER.md",
+        "sha256": "9109141a6d4820bcb2cba2f7678eb03ca6d0a71d67764f4c3fe0d2915fe82d96"
+      }
+    ]
+  },
+  "scopeApproved": true,
+  "latestReceipt": {
+    "expectedVersion": 4,
+    "stageId": "mvp",
+    "implementation": "completed",
+    "changes": [
+      {
+        "path": "handover.mjs",
+        "kind": "modified"
+      },
+      {
+        "path": "tests/handover.test.mjs",
+        "kind": "modified"
+      },
+      {
+        "path": "README.md",
+        "kind": "created"
+      },
+      {
+        "path": "fixtures/handover.csv",
+        "kind": "created"
+      },
+      {
+        "path": "fixtures/session-a.csv",
+        "kind": "created"
+      },
+      {
+        "path": "fixtures/session-b.csv",
+        "kind": "created"
+      }
+    ],
+    "checks": [
+      {
+        "criterionId": "acceptance",
+        "label": "Full local acceptance suite",
+        "command": "Pinned Node --test tests/handover.test.mjs",
+        "executed": true,
+        "exitCode": 0,
+        "result": "passed",
+        "output": "11 tests passed, 0 failed. Includes parser, strict headers, malformed inputs, byte/record bounds, formula/control rejection, existing/blocked output failures, injected cleanup failure path, deterministic reports and drafts, no-omission output, real CLI exit codes, exact known fixture and observation dataset keys."
+      },
+      {
+        "criterionId": "known-fixture",
+        "label": "Actual synthetic user task",
+        "command": "Pinned Node handover.mjs check fixtures/handover.csv --out test-output/known-fixture",
+        "executed": true,
+        "exitCode": 0,
+        "result": "passed",
+        "output": "Accepted task records: 6. Incomplete records: 4. Exported source records 2,3,4,6 with missing_fields owner, due_date, owner;due_date, owner respectively. Read back exact report and neutral draft. Input SHA256 unchanged: B4DC8EEFD3872F39FE2592D43ED23EE52D85C8EF7C64AF425C90C1DED8CC5A13. Automated CLI test also asserts exact output bytes."
+      }
+    ],
+    "runInstructions": [
+      "From crumb-contexts/01a11409-cba8-7a70-b920-9dd26c59e8f8 run the pinned Node executable with handover.mjs check fixtures/handover.csv --out trial-output; select a fresh output directory each run.",
+      "Read README.md for input limits and the prepared October 8 synthetic observation; fuller blank record sheet is ../../FIRST-USER-OBSERVATION.md."
+    ],
+    "gaps": [
+      "Participant observation not conducted; demand, workflow advantage, repeat use and payment remain unproven.",
+      "Blank detection only: nonblank TBD/N/A and invalid dates are not validated. Conservative formula rejection is not universal spreadsheet security.",
+      "No release or deployment. Abrupt termination or filesystem cleanup failure can leave run-created files; handled cleanup errors are reported."
+    ],
+    "id": "b59c1830-5994-4383-9a2b-2c3e23a3a4d4",
+    "recordedAt": "2026-10-07T02:07:09.073Z",
+    "fileHashes": {
+      "handover.mjs": "3abe05d6140121c7c6d101d77d534aa78c001e55832d511fb5f45555ca340542",
+      "tests/handover.test.mjs": "479dedf54095fec35d8abe51bc7662be1dfe0c46a55cfb35196d45221d0eb197",
+      "README.md": "a754b0b8d37ac1b6d23c0e52197ff0bd89be1d5dcb0074cde3ba5ca864650406",
+      "fixtures/handover.csv": "b4dc8eefd3872f39fe2592d43ed23ee52d85c8ef7c64af425c90c1ded8cc5a13",
+      "fixtures/session-a.csv": "482acea6a2ba47eadf13c50caa7d2727221c8bb95d51a3d982aba7d4aa4cafe6",
+      "fixtures/session-b.csv": "41d9134c9f504e197e4316ecd21df60dc84e07d25cc2cf4641f14d3f6be6bedf"
+    },
+    "customerValidation": "not_established",
+    "release": "not_released",
+    "provenance": "host_report_with_local_file_hashes"
+  },
+  "next": "Wait for the founder's decision",
+  "customerValidation": "not_established"
+}

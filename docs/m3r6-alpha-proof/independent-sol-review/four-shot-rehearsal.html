@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src blob: data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Four-shot departure check</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; color: #19332e; background: #f5f4ed; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 36px 24px; }
+    main { max-width: 1120px; margin: auto; }
+    header { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 24px; }
+    .eyebrow { font-size: 12px; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; color: #537068; }
+    h1 { font-size: clamp(28px, 4vw, 42px); letter-spacing: -.04em; margin: 8px 0; line-height: 1.12; }
+    .intro { color: #50675f; margin: 0; max-width: 620px; line-height: 1.5; }
+    .count { font-size: 40px; font-weight: 750; white-space: nowrap; letter-spacing: -.04em; }
+    .count small { font-size: 14px; font-weight: 500; letter-spacing: 0; display: block; text-align: right; }
+    .summary { padding: 18px 22px; background: #e8e7dd; border-radius: 12px; margin-bottom: 24px; line-height: 1.6; }
+    .summary.all-ready { background: #d5eee2; }
+    .summary p { margin: 0; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    article { border: 1px solid #dbddd3; border-radius: 14px; background: #fffef9; overflow: hidden; }
+    .card-heading { padding: 18px 20px; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+    h2 { font-size: 20px; margin: 0 0 3px; }
+    .sub { font-size: 13px; color: #64766e; }
+    .badge { font-size: 11px; letter-spacing: .08em; padding: 7px 10px; border-radius: 6px; font-weight: 750; background: #f7e6d1; color: #775014; }
+    .badge.review { background: #e6eaf2; color: #435978; }
+    .badge.ready { background: #d5eee2; color: #176348; }
+    .preview { height: 210px; margin: 0 20px; background: #f0f1e9; border-radius: 8px; display: grid; place-items: center; overflow: hidden; }
+    .preview span { color: #768277; font-size: 14px; }
+    .preview img { width: 100%; height: 100%; object-fit: contain; }
+    .preview img[hidden], .preview span[hidden] { display: none; }
+    .body { padding: 15px 20px 20px; }
+    .filename { font-size: 12px; color: #62746b; min-height: 18px; overflow-wrap: anywhere; margin-bottom: 12px; }
+    .actions { display: flex; gap: 10px; align-items: center; }
+    .file-label, button { font: inherit; font-size: 14px; font-weight: 650; border-radius: 7px; padding: 10px 14px; cursor: pointer; }
+    .file-label { background: #204f43; color: white; display: inline-block; }
+    button { background: transparent; color: #546b61; border: 1px solid #d0d8ce; }
+    button:disabled { opacity: .4; cursor: default; }
+    input[type=file] { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; }
+    input[type=file]:focus-visible + .file-label, button:focus-visible, input[type=checkbox]:focus-visible { outline: 3px solid #d29039; outline-offset: 3px; }
+    .confirmation { display: flex; align-items: start; gap: 9px; margin-top: 17px; font-size: 13px; line-height: 1.5; }
+    input[type=checkbox] { width: 18px; height: 18px; margin: 1px 0; flex: none; accent-color: #204f43; }
+    .confirmation:has(input:disabled) { color: #78877d; }
+    .error { color: #9a3523; font-size: 13px; line-height: 1.4; margin: 10px 0 0; }
+    .error:empty { display: none; }
+    footer { margin: 22px 0 0; color: #617267; font-size: 12px; line-height: 1.6; }
+    footer strong { color: #3f574c; }
+    @media(max-width: 680px) { body { padding: 24px 14px; } header { align-items: start; } .count { font-size: 30px; } .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div><div class="eyebrow">Before you leave · four required views</div><h1>Every elevation accounted for.</h1><p class="intro">Choose each after-cleaning photo, check the view, then confirm it. You make the visual call.</p></div>
+    <div class="count"><span id="ready-count">0 / 4</span><small>views checked by you</small></div>
+  </header>
+  <section class="summary" id="summary" aria-live="polite" aria-atomic="true"><p id="overall"></p><p id="missing"></p><p id="review"></p></section>
+  <div class="grid" id="slots"></div>
+  <footer><strong>Local, session-only check.</strong> Selected images aren't uploaded and originals aren't changed. Closing or reloading clears your choices and confirmations.<br>You verify the elevation, current after-cleaning view and usability. This helper doesn't judge cleaning quality or manager approval. Different-file duplicates still need your visual check.</footer>
+</main>
+<script>
+  'use strict';
+  const elevations = ['North', 'South', 'West', 'East'];
+  const slots = elevations.map(name => ({ name, file: null, url: null, decoded: false, confirmed: false, error: '', revision: 0, ui: null }));
+  const sameFile = (a, b) => a.name === b.name && a.size === b.size && a.lastModified === b.lastModified && a.type === b.type;
+  function state(slot) { return !slot.file ? 'MISSING' : slot.decoded && slot.confirmed ? 'READY' : 'REVIEW'; }
+  function update() {
+    slots.forEach(slot => {
+      const ui = slot.ui;
+      const status = state(slot);
+      ui.badge.textContent = status;
+      ui.badge.className = 'badge ' + status.toLowerCase();
+      ui.filename.textContent = slot.file ? slot.file.name : 'No photo selected';
+      ui.choose.textContent = slot.file ? 'Replace photo' : 'Choose photo';
+      ui.remove.disabled = !slot.file;
+      ui.confirm.disabled = !slot.decoded;
+      ui.confirm.checked = slot.confirmed;
+      ui.error.textContent = slot.error;
+    });
+    const ready = slots.filter(s => state(s) === 'READY').length;
+    const missing = slots.filter(s => state(s) === 'MISSING').map(s => s.name);
+    const review = slots.filter(s => state(s) === 'REVIEW').map(s => s.name);
+    document.getElementById('ready-count').textContent = ready + ' / 4';
+    document.getElementById('overall').textContent = ready === 4 ? '4 of 4 required views checked by you.' : 'Check the remaining views before leaving.';
+    document.getElementById('missing').textContent = missing.length ? 'Missing: ' + missing.join(', ') + '.' : '';
+    document.getElementById('review').textContent = review.length ? 'Needs your review: ' + review.join(', ') + '.' : '';
+    document.getElementById('summary').classList.toggle('all-ready', ready === 4);
+  }
+  function clear(slot) {
+    slot.revision++;
+    if (slot.url) URL.revokeObjectURL(slot.url);
+    slot.file = null; slot.url = null; slot.decoded = false; slot.confirmed = false; slot.error = '';
+    slot.ui.image.onload = null; slot.ui.image.onerror = null;
+    slot.ui.image.removeAttribute('src'); slot.ui.image.hidden = true;
+    slot.ui.placeholder.hidden = false;
+    slot.ui.input.value = '';
+  }
+  function assign(slot, file) {
+    clear(slot);
+    if (!file) { update(); return; }
+    if (!/\.(jpe?g|png)$/i.test(file.name) || !['image/jpeg', 'image/png', ''].includes(file.type)) {
+      slot.error = 'Choose a JPEG or PNG image. This file was not assigned.'; update(); return;
+    }
+    const duplicate = slots.find(other => other !== slot && other.file && sameFile(other.file, file));
+    if (duplicate) {
+      slot.error = 'This file is already assigned to ' + duplicate.name + '. Choose a different view; this slot is still missing.'; update(); return;
+    }
+    slot.file = file;
+    const revision = slot.revision;
+    try {
+      slot.url = URL.createObjectURL(file);
+      slot.ui.image.onload = () => {
+        if (slot.revision !== revision) return;
+        slot.decoded = true; slot.ui.image.hidden = false; slot.ui.placeholder.hidden = true; update();
+      };
+      slot.ui.image.onerror = () => {
+        if (slot.revision !== revision) return;
+        clear(slot); slot.error = 'This image could not be read. Choose another JPEG or PNG; this slot is still missing.'; update();
+      };
+      slot.ui.image.src = slot.url;
+    } catch {
+      clear(slot); slot.error = 'This image could not be opened. Choose another JPEG or PNG; this slot is still missing.';
+    }
+    update();
+  }
+  slots.forEach((slot, index) => {
+    const article = document.createElement('article');
+    article.setAttribute('aria-label', slot.name + ' elevation after cleaning');
+    article.innerHTML = '<div class="card-heading"><div><h2>' + slot.name + ' elevation</h2><div class="sub">After cleaning</div></div><span class="badge">MISSING</span></div><div class="preview"><span>No photo yet</span><img hidden alt="' + slot.name + ' selected photo preview"></div><div class="body"><div class="filename"></div><div class="actions"><input type="file" id="photo-' + index + '" accept="image/jpeg,image/png,.jpg,.jpeg,.png"><label class="file-label" for="photo-' + index + '">Choose photo</label><button type="button" class="remove" aria-label="Remove ' + slot.name + ' photo">Remove</button></div><label class="confirmation"><input type="checkbox"><span>I checked this is the ' + slot.name.toLowerCase() + ' view, after cleaning, and usable.</span></label><p class="error" role="alert"></p></div>';
+    document.getElementById('slots').append(article);
+    slot.ui = { badge: article.querySelector('.badge'), filename: article.querySelector('.filename'), choose: article.querySelector('.file-label'), remove: article.querySelector('.remove'), input: article.querySelector('input[type=file]'), confirm: article.querySelector('input[type=checkbox]'), error: article.querySelector('.error'), image: article.querySelector('img'), placeholder: article.querySelector('.preview span') };
+    slot.ui.input.addEventListener('change', () => { const file = slot.ui.input.files[0]; if (file) assign(slot, file); });
+    slot.ui.remove.addEventListener('click', () => { clear(slot); update(); });
+    slot.ui.confirm.addEventListener('change', () => { slot.confirmed = slot.decoded && slot.ui.confirm.checked; update(); });
+  });
+  update();
+</script>
+</body>
+</html>

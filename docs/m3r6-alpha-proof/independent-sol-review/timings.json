@@ -1,0 +1,427 @@
+[
+  {
+    "run": "1791340579595",
+    "model": "gpt-6.1-sol",
+    "reasoning": "medium",
+    "threadCreationRpcMs": null,
+    "sessions": [
+      {
+        "id": "independent-build",
+        "turns": [
+          {
+            "turn": 1,
+            "elapsedMs": 100647,
+            "toolOperations": 11,
+            "toolTypes": {
+              "userMessage": 1,
+              "commandExecution": 6,
+              "reasoning": 6,
+              "webSearch": 4,
+              "fileChange": 1
+            },
+            "metrics": {
+              "commands": 6,
+              "failedCommands": 0,
+              "skillReads": 1,
+              "referenceReads": 2,
+              "runtimeReads": 2,
+              "sourceDiscovery": 0,
+              "webEvents": 4,
+              "searchQueries": 4
+            }
+          },
+          {
+            "turn": 2,
+            "elapsedMs": 37542,
+            "toolOperations": 2,
+            "toolTypes": {
+              "userMessage": 1,
+              "fileChange": 1,
+              "commandExecution": 1
+            },
+            "metrics": {
+              "commands": 1,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          },
+          {
+            "turn": 3,
+            "elapsedMs": 45695,
+            "toolOperations": 3,
+            "toolTypes": {
+              "userMessage": 1,
+              "reasoning": 2,
+              "commandExecution": 2,
+              "fileChange": 1
+            },
+            "metrics": {
+              "commands": 2,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 1,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          },
+          {
+            "turn": 4,
+            "elapsedMs": 6567,
+            "toolOperations": 0,
+            "toolTypes": {
+              "userMessage": 1,
+              "reasoning": 1
+            },
+            "metrics": {
+              "commands": 0,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          },
+          {
+            "turn": 5,
+            "elapsedMs": 230135,
+            "toolOperations": 11,
+            "toolTypes": {
+              "userMessage": 1,
+              "commandExecution": 7,
+              "reasoning": 8,
+              "fileChange": 3,
+              "imageView": 1
+            },
+            "metrics": {
+              "commands": 7,
+              "failedCommands": 3,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          },
+          {
+            "turn": 6,
+            "elapsedMs": 5982,
+            "toolOperations": 0,
+            "toolTypes": {
+              "userMessage": 1
+            },
+            "metrics": {
+              "commands": 0,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          },
+          {
+            "turn": 7,
+            "elapsedMs": 4021,
+            "toolOperations": 0,
+            "toolTypes": {
+              "userMessage": 1
+            },
+            "metrics": {
+              "commands": 0,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          },
+          {
+            "turn": 8,
+            "elapsedMs": 4153,
+            "toolOperations": 0,
+            "toolTypes": {
+              "userMessage": 1
+            },
+            "metrics": {
+              "commands": 0,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          },
+          {
+            "turn": 9,
+            "elapsedMs": 4780,
+            "toolOperations": 0,
+            "toolTypes": {
+              "userMessage": 1
+            },
+            "metrics": {
+              "commands": 0,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          },
+          {
+            "turn": 10,
+            "elapsedMs": 5111,
+            "toolOperations": 0,
+            "toolTypes": {
+              "userMessage": 1
+            },
+            "metrics": {
+              "commands": 0,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "run": "1791340790433",
+    "model": "gpt-6.1-sol",
+    "reasoning": "medium",
+    "threadCreationRpcMs": null,
+    "sessions": [
+      {
+        "id": "independent-existing",
+        "turns": [
+          {
+            "turn": 1,
+            "elapsedMs": 166212,
+            "toolOperations": 18,
+            "toolTypes": {
+              "userMessage": 1,
+              "commandExecution": 10,
+              "webSearch": 4,
+              "reasoning": 5,
+              "fileChange": 4
+            },
+            "metrics": {
+              "commands": 10,
+              "failedCommands": 0,
+              "skillReads": 1,
+              "referenceReads": 2,
+              "runtimeReads": 1,
+              "sourceDiscovery": 0,
+              "webEvents": 4,
+              "searchQueries": 4
+            }
+          },
+          {
+            "turn": 2,
+            "elapsedMs": 27065,
+            "toolOperations": 4,
+            "toolTypes": {
+              "userMessage": 1,
+              "commandExecution": 2,
+              "reasoning": 1,
+              "fileChange": 2
+            },
+            "metrics": {
+              "commands": 2,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          },
+          {
+            "turn": 3,
+            "elapsedMs": 40668,
+            "toolOperations": 1,
+            "toolTypes": {
+              "userMessage": 1,
+              "reasoning": 3,
+              "fileChange": 1
+            },
+            "metrics": {
+              "commands": 0,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          },
+          {
+            "turn": 4,
+            "elapsedMs": 6544,
+            "toolOperations": 0,
+            "toolTypes": {
+              "userMessage": 1,
+              "reasoning": 1
+            },
+            "metrics": {
+              "commands": 0,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "run": "1791340932180",
+    "model": "gpt-6.1-sol",
+    "reasoning": "medium",
+    "threadCreationRpcMs": 836,
+    "sessions": [
+      {
+        "id": "independent-weak",
+        "turns": [
+          {
+            "turn": 1,
+            "elapsedMs": 58768,
+            "toolOperations": 9,
+            "toolTypes": {
+              "userMessage": 1,
+              "commandExecution": 5,
+              "reasoning": 3,
+              "webSearch": 3,
+              "fileChange": 1
+            },
+            "metrics": {
+              "commands": 5,
+              "failedCommands": 0,
+              "skillReads": 1,
+              "referenceReads": 2,
+              "runtimeReads": 1,
+              "sourceDiscovery": 0,
+              "webEvents": 3,
+              "searchQueries": 3
+            }
+          },
+          {
+            "turn": 2,
+            "elapsedMs": 16060,
+            "toolOperations": 0,
+            "toolTypes": {
+              "userMessage": 1,
+              "reasoning": 1
+            },
+            "metrics": {
+              "commands": 0,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          },
+          {
+            "turn": 3,
+            "elapsedMs": 6550,
+            "toolOperations": 0,
+            "toolTypes": {
+              "userMessage": 1
+            },
+            "metrics": {
+              "commands": 0,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "run": "1791341623509",
+    "model": "gpt-6.1-sol",
+    "reasoning": "medium",
+    "threadCreationRpcMs": 803,
+    "sessions": [
+      {
+        "id": "independent-resume",
+        "turns": [
+          {
+            "turn": 1,
+            "elapsedMs": 40453,
+            "toolOperations": 7,
+            "toolTypes": {
+              "userMessage": 1,
+              "commandExecution": 7,
+              "reasoning": 1
+            },
+            "metrics": {
+              "commands": 7,
+              "failedCommands": 0,
+              "skillReads": 1,
+              "referenceReads": 0,
+              "runtimeReads": 1,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          },
+          {
+            "turn": 2,
+            "elapsedMs": 4018,
+            "toolOperations": 0,
+            "toolTypes": {
+              "userMessage": 1
+            },
+            "metrics": {
+              "commands": 0,
+              "failedCommands": 0,
+              "skillReads": 0,
+              "referenceReads": 0,
+              "runtimeReads": 0,
+              "sourceDiscovery": 0,
+              "webEvents": 0,
+              "searchQueries": 0
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

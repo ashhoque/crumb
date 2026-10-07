@@ -1,0 +1,12 @@
+{
+  "firstExit": 0,
+  "stdout": "Accepted task records: 6\nIncomplete records: 4\nDraft for manual review: <USER>\\.codex\\.chatgpt-projects\\g-p-6ac1da47a3e48191b05023e7662b2815\\crumb\\.m0-local\\independent-alpha-review\\app-new-output\\follow-up.txt\n",
+  "actual": "source_record,task,owner,due_date,missing_fields\r\n2,\"Quoted, task\",,2026-10-10,owner\r\n3,Date missing,Sam,,due_date\r\n4,Both missing,,,owner;due_date\r\n5,Whitespace,   ,2026-10-11,owner\r\n",
+  "expected": "source_record,task,owner,due_date,missing_fields\r\n2,\"Quoted, task\",,2026-10-10,owner\r\n3,Date missing,Sam,,due_date\r\n4,Both missing,,,owner;due_date\r\n5,Whitespace,   ,2026-10-11,owner\r\n",
+  "exactMatch": true,
+  "draft": "Please confirm the missing handover details below. A blank value may be intentional; please clarify where appropriate.\n\n- Quoted, task (record 2): missing owner.\n- Date missing (record 3): missing due_date.\n- Both missing (record 4): missing owner and due_date.\n- Whitespace (record 5): missing owner.\n\nThank you.\n",
+  "inputPreserved": true,
+  "overwriteExit": 1,
+  "overwriteError": "Error: EEXIST: file already exists, mkdir '<USER>\\.codex\\.chatgpt-projects\\g-p-6ac1da47a3e48191b05023e7662b2815\\crumb\\.m0-local\\independent-alpha-review\\app-new-output'\n",
+  "outputPreserved": true
+}

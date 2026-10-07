@@ -1,0 +1,8 @@
+{
+  "handover.mjs": "3abe05d6140121c7c6d101d77d534aa78c001e55832d511fb5f45555ca340542",
+  "README.md": "a754b0b8d37ac1b6d23c0e52197ff0bd89be1d5dcb0074cde3ba5ca864650406",
+  "tests/handover.test.mjs": "479dedf54095fec35d8abe51bc7662be1dfe0c46a55cfb35196d45221d0eb197",
+  "fixtures/handover.csv": "b4dc8eefd3872f39fe2592d43ed23ee52d85c8ef7c64af425c90c1ded8cc5a13",
+  "fixtures/session-a.csv": "482acea6a2ba47eadf13c50caa7d2727221c8bb95d51a3d982aba7d4aa4cafe6",
+  "fixtures/session-b.csv": "41d9134c9f504e197e4316ecd21df60dc84e07d25cc2cf4641f14d3f6be6bedf"
+}

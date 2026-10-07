@@ -73,6 +73,7 @@ export function validateActPlan(input: unknown, c: IdeContext): asserts input is
   validate<ConfirmedActionDraft>('draft', p.scope); validateConversation(p.scope);
   if (p.scope.contractVersion !== 5 || p.scope.proposal.method !== 'build') throw new Error('Act needs a v5 build scope tied to confirmed IDE.');
   if (JSON.stringify(p.capabilities.map(x=>x.name)) !== JSON.stringify(p.scope.proposal.capabilities) || !unique(p.capabilities.map(x=>x.name))) throw new Error('Use exactly the one to three displayed scope capabilities.');
+  if(c.quality?.learning.experiment&&JSON.stringify(p.capabilities.map(x=>x.name))!==JSON.stringify(c.quality.learning.experiment.capabilities))throw new Error('A bounded learning build must preserve the capabilities in the exact approved experiment. Re-present a material scope change.');
   const evaluated=evaluatedClaimIds(c);
   for (const item of p.capabilities) {
     if (item.userBasis !== basis(c,'user') || item.problemBasis !== basis(c,'problem')) throw new Error('Every capability must trace to the current confirmed user and problem.');

@@ -1,5 +1,13 @@
 # Crumb status
 
+**Current M3-R6 closed-alpha decision — PASS WITH WARNINGS, 7 October 2026.**
+The founder authorized release without another manual browser smoke. Development
+build/typecheck, targeted approval regressions and full 369/369 suite passed.
+One exact Act approval covers unchanged implementation/testing; external actions
+and material changes remain gated. Browser interaction in the restricted review
+host remains unverified. See [closeout](M3_R6_ALPHA_RELEASE_CLOSEOUT.md).
+Earlier gates below are historical; exact main verification follows the merge.
+
 **M3-R6 PASS WITH WARNINGS — Astra release gate, 6 October 2026.**
 Full Node 24.19.0 suite **352/352**; six final installed Astra Medium sessions,
 29 turns, zero assistant identity leaks. Personality, learning velocity, fresh/built

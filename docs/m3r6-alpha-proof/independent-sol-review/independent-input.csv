@@ -1,0 +1,7 @@
+task,owner,due_date
+Normal,Jules,2026-10-09
+"Quoted, task",,2026-10-10
+Date missing,Sam,
+Both missing,,
+Whitespace,   ,2026-10-11
+Complete,Lee,2026-10-12

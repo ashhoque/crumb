@@ -38,7 +38,6 @@ function claimText(c: AnyPrebuild, claim: ResearchClaim): string {
 const selectedClaims = (c: AnyPrebuild, ids: string[]): string[] => [...new Set(ids)].map(id => claimText(c, c.claims.find(item => item.id === id)!));
 
 export function interviewGuide(c: AnyPrebuild): string[] {
-  if (c.contractVersion === 2 ? !['reviewed', 'founder_reviewed'].includes(ideState(c).evaluation) : c.evaluation.status !== 'ready') return ['Finish the current user and problem evaluation before preparing interviews. Act remains locked until its explicit confirmation.'];
   return problemInterview(c).map(paragraph=>paragraph.split('\n').map(safe).join('\n'));
 }
 
@@ -103,12 +102,12 @@ export function renderPrebuildDetail(saved: SavedPrebuild, section: PrebuildSect
 export function renderStartupMaster(saved: SavedPrebuild): string {
   const c = saved.context, m = c.master;
   if (c.contractVersion === 2 && !m) {
-    if (!['reviewed', 'founder_reviewed'].includes(ideState(c).evaluation)) throw new Error('Finish the current evaluation before the opportunity brief.');
     return ['# Opportunity brief', '', 'Agreement and research do not establish customer validation.', ...paragraphs(c, 'definition'), ...paragraphs(c, 'why'), ...(c.opportunity ? ['Business model: ' + safe(c.opportunity.businessModel), 'Economics: ' + safe(c.opportunity.economics), ...interviewGuide(c), ...bullets(c.opportunity.risks)] : []), renderFullResearch(saved)].join('\n\n');
   }
-  if (!m || c.evaluation.status !== 'ready') throw new Error('Save a ready evaluation and red-team master content before opening the startup master.');
+  if(c.contractVersion===1&&(!m||c.evaluation.status!=='ready'))throw new Error('Save a ready evaluation and red-team master content before opening the startup master.');
+  if(!m)throw new Error('Save provisional master content before opening the startup master.');
   return [
-    '# Startup master', '', ...(c.contractVersion === 1 ? ['Historical M1-R2 record; not current Act permission or a new scope recommendation.'] : []), `Context revision ${saved.version}; SHA-256 ${saved.hash}.`, c.synthetic ? 'Synthetic scenario; not customer validation.' : 'Founder context and public research; not verified customer demand.', '',
+    '# Startup master', '', ...(c.contractVersion === 1 ? ['Historical M1-R2 record; not current Act permission or a new scope recommendation.'] : ideState(c).act_readiness!=='founder_confirmed'?['Provisional MVP plan; evaluation may be incomplete. This is not authorization to build.']:[]), `Context revision ${saved.version}; SHA-256 ${saved.hash}.`, c.synthetic ? 'Synthetic scenario; not customer validation.' : 'Founder context and public research; not verified customer demand.', '',
     '## Executive summary', safe(c.brief.summary), '', '## Intention and thesis', safe(c.intention.statement ?? 'Unknown'), safe(m.thesis), '',
     '## Problem, user, buyer and workaround', ...paragraphs(c, 'definition'), '',
     '## Research and market evidence', ...paragraphs(c, 'research'), '',

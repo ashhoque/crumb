@@ -96,6 +96,19 @@ separate project context before any save so the older idea is not overwritten.
 `conversation-refresh --resume` derives
 missing artifacts for older saved IDE. See [modes](modes.md) for handoff/Work Pack.
 `context` retains the older compact contract; `dossier` is full saved context.
+`evaluation-update` accepts `{expectedVersion,changes}` through `--input-file`.
+Changes contain only changed evidence sections: project, intention, definition,
+feedbackClaimIds, sources, claims, research, competitors, adjacent, habitats,
+firstUserAvenues, redTeam, evaluation, investigation, opportunity or quality.
+Sections are replaced, not appended or recursively merged; retain existing
+evidence when adding more. `evaluation-update-schema` gives those exact schemas.
+The runtime constructs stage/presentation and retains working notes, receipts,
+project identity and unrelated sections. All ordinary validation, version checks
+and material-change invalidation still apply. A reported_metric requires metric
+{name,value,unit,period,reportedBy}; metric:null is not a reported numeric metric.
+Never fill missing evidence to make a save pass. Use this boundary for formal
+evaluation rather than freehand reconstruction of the full dossier.
+
 `template` returns
 editable v2 prebuild data with the correct expectedVersion without writing. Legacy
 knowledge becomes draft foundations, with no automatic confirmations. `schema`
@@ -132,6 +145,15 @@ point every topic at a generic search. Retain findings or justified unknowns, no
 invented evidence. Use redefinition when learning changes a foundation; revise and
 reconfirm the affected statements before completing evaluation.
 
+For a bounded learning MVP, existing `quality.learning` accepts optional `decision`
+(`go` / `one_gap` / `pivot_stop`) and `experiment`: promise, 1–3 capabilities,
+cuts, limitations, success, failure and testDate (YYYY-MM-DD). Keep uncertainty and
+reason honest. An experiment requires go + build_decision. Review still checks
+all technical topics and material evidence/alternatives; unrelated business topics
+may remain unexamined rather than be falsely marked irrelevant. Full builds keep
+the full coverage gate. Negative decisions cannot enter Act and need no positive
+reasons. The Act display includes the experiment; material edits invalidate it.
+
 `inspect` accepts paths, permissionGranted:true and the actual permissionQuote.
 Only inspect covered selections; store returned path/hash pairs. Never inspect
 private storage or credentials. Synthetic and real provenance remain separate.
@@ -155,13 +177,27 @@ private storage or credentials. Synthetic and real provenance remain separate.
    `{"operation":"revise-foundation","expectedVersion":3,"subject":"user","text":"corrected provisional user","quote":"actual founder correction","turnId":"actual source turn"}`.
    Subjects are intention/user/problem. It preserves the founder source, invalidates
    downstream review and refuses changes after approved Act. No new assent implied.
-3. After complete investigation send `{"expectedVersion":8,"operation":"review"}`.
+3. Call `evaluation-plan` for the current version/hash and all unmet requirements.
+   Resolve Crumb-owned omissions with retained evidence or bounded actual work.
+   Submit `{"expectedVersion":8,"contextHash":"returned-hash","operation":"review","evidence":{"research":[]},"assessments":[],"changes":{}}`
+   through `ide`; omit empty optional sections. Evidence appends sources/claims/research
+   by stable IDs; assessments use {scope:business|technical,topic,status,claimIds,runIds,reason,question}
+   with status findings/unknown_after_search/not_relevant. The adapter links coverage
+   and inquiry references once. Use actual relevant attempts, never generic placeholders.
+   Reference namespaces are distinct: sourceIds/inspectedSourceIds contain sources[].id,
+   claimIds contain claims[].id, runIds contain research[].id, and firstUserAvenues
+   contains habitats[].id. A finding ID is not a source or habitat. On a rejected
+   reference, inspect the named ID in the submitted payload against retained records;
+   correct the link from actual evidence and retry before handing off. Never invent
+   a source or recruitment permission to satisfy a reference.
+   This existing review operation validates the prospective complete state and saves
+   atomically. Exact retries do not duplicate receipts. Read `dossier` to verify readiness.
    This checks coverage, alternatives, relevant attempts, counterevidence and
    confirmed foundations. If Evaluation was not included in the displayed thesis,
    present its current conclusion and record the founder's actual response before
-   offering interviews or the Act decision.
+   offering the Act decision. Interviews and provisional MVP documents are available before evaluation and can inform it.
 4. Present Act as its own exact commitment and wait. Only its explicit
-   assent permits a solution proposal. Declining, opening details or choosing a
+   assent permits actual scoped product work; provisional solution plans need no Act approval. Declining, opening details or choosing a
    redefinition does not confirm it. Review error messages internally and continue
    the useful conversation; don't hand validation fields to the founder.
 
@@ -173,7 +209,8 @@ host's human transcript. Never supply synthetic replies in an actual project.
 `detail --section <name> --page 1` supports why, definition, evidence, research,
 competitors, users, gaps, adjacent, habitats, sources, interview and red-team.
 The focused M3-R1 correction adds `technical` for optional feasibility detail.
-`evaluation-plan` returns responsibilities and a `quality` template. Save populated
+`evaluation-plan` returns all currently detectable completion requirements from the
+same validators used by review, plus responsibilities and a `quality` template. Save populated
 quality through normal `prebuild`; new native templates include it. Historical
 records stay readable. Once saved, quality cannot be dropped to bypass its checks.
 For a material external gap, `research-decision` accepts one decision, an evidence
@@ -214,7 +251,7 @@ explicit relevant context. Refreshed receipts must preserve opted-out subject ke
 `research` returns the full dossier. `master` returns an opportunity brief after
 review; no MVP or architecture before Act. Pre-Act opportunity fields contain only
 business model, economics, interview preparation and risks. Solution master fields
-are permitted only after Act. Legacy masters are historical, not current permission.
+may be provisional before Act; label them as hypotheses, never implementation permission. Legacy masters are historical, not current permission.
 
 ## Approved action and receipts
 

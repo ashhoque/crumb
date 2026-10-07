@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { readFileSync, readdirSync, realpathSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { inspectPath, resolveProjectRoot } from '../privacy/storage.js';
 
 export interface BootstrapRequest {
@@ -12,8 +13,17 @@ const skip = /(^|[\\/])(?:\.git|\.customer-evidence|node_modules|dist|build|cove
 const highInformation = ['README.md','README.mdx','package.json','pyproject.toml','Cargo.toml','Gemfile','pubspec.yaml','PRODUCT.md','product.md','docs/product.md'];
 const sha = (content:Buffer) => createHash('sha256').update(content).digest('hex');
 
+/** The executable checkout is infrastructure, never the selected founder app. */
+export function assertFounderProject(target:string):void {
+  const root=resolveProjectRoot(target);
+  const installation=realpathSync.native(fileURLToPath(new URL('../../../',import.meta.url)));
+  const rel=relative(installation,root);
+  if(!rel||(!rel.startsWith('..')&&!/^[A-Za-z]:/.test(rel)))throw new Error('Crumb installation files are not founder-project evidence or conversation notes. Select the actual app or a separate notes folder.');
+}
+
 /** Read at most a few small, ordinary project files. Caller synthesizes facts. */
 export function bootstrapProject(target:string, request:BootstrapRequest) {
+  assertFounderProject(target);
   if(!request || !['pricing','distribution','technical','product'].includes(request.decision) || (request.targeted!==undefined && (!Array.isArray(request.targeted)||request.targeted.length>3)) || (request.previous!==undefined && (!Array.isArray(request.previous)||request.previous.length>12)))throw new Error('Choose one project decision and at most three targeted paths.');
   const root=resolveProjectRoot(target);
   const entries=readdirSync(root,{withFileTypes:true}).filter(x=>!x.name.startsWith('.')&&!skip.test(x.name)).slice(0,60).map(x=>({name:x.name,kind:x.isDirectory()?'directory':x.isFile()?'file':'other'}));

@@ -1,4 +1,5 @@
 import { join } from 'node:path';
+import { assertFounderProject } from './project-bootstrap.js';
 import { randomUUID } from 'node:crypto';
 import { initializeProject, DATABASE_NAME } from './initialize.js';
 import { openSqlite, type SqliteConnection } from '../persistence/sqlite.js';
@@ -10,9 +11,20 @@ import type { EvaluatedActionDraft } from '../domain/contracts.js';
 import { emptyIde, validateIde, upgradeContext, resumedBrief, invalidateChanges, basis, evaluationBasis, assertEvaluationComplete, presentationText, thesisBasis, thesisText, subjects, ideState, assertAct, confirmation, type AnyPrebuild, type Subject } from '../domain/ide.js';
 import type { ConfirmedActionDraft } from '../domain/contracts.js';
 import { nextIdeStep } from '../domain/guide.js';
-import { agreesWithPresentation, type ReplyInterpretation } from '../domain/reply.js';
+import { agreesWithPresentation, agreesWithThesis, type ReplyInterpretation } from '../domain/reply.js';
 import { syncConversationArtifacts } from './session.js';
 import { updateWorkingContext, credibleWorkingFact, type FounderWorkingContext } from '../domain/founder-intelligence.js';
+import { assembleEvaluationUpdate } from '../domain/evaluation-update.js';
+import { emptyQuality } from '../domain/evaluation-quality.js';
+import { evaluationRequirements } from '../domain/ide.js';
+import { CompletionError } from '../domain/completion.js';
+import { isDeepStrictEqual } from 'node:util';
+
+export function saveEvaluationUpdate(target:string,input:unknown):SavedPrebuild {
+  const saved=readPrebuild(target);
+  const current=saved?.context.contractVersion===2?saved.context:saved?upgradeContext(saved.context):{...emptyIde(),quality:emptyQuality()};
+  return savePrebuild(target,assembleEvaluationUpdate(current,input));
+}
 
 export function storedPrebuild(db: SqliteConnection): SavedPrebuild | null {
   if (Number(db.get('PRAGMA user_version')?.['user_version']) < 2) return null;
@@ -116,11 +128,12 @@ function appendContext(db: SqliteConnection, context: AnyPrebuild, version: numb
   return { version, hash, recordedAt, context };
 }
 
-export interface IdeTransition { expectedVersion: number; operation: 'present' | 'confirm' | 'review' | 'present-thesis' | 'confirm-thesis' | 'revise-foundation'; subject?: Subject; text?: string; presentationId?: string; displayedText?: string; quote?: string; turnId?: string; interpretation?:ReplyInterpretation }
+export interface IdeTransition { expectedVersion: number; operation: 'present' | 'confirm' | 'review' | 'present-thesis' | 'confirm-thesis' | 'revise-foundation'; subject?: Subject; text?: string; presentationId?: string; displayedText?: string; quote?: string; turnId?: string; interpretation?:ReplyInterpretation; changes?:unknown; evidence?:unknown; assessments?:unknown; contextHash?:string }
 function transitionIdeState(target: string, input: unknown): SavedPrebuild {
   if (!input || typeof input !== 'object') throw new Error('Provide an IDE transition.');
   const r = input as IdeTransition;
-  if (!Number.isSafeInteger(r.expectedVersion) || !['present', 'confirm', 'review', 'present-thesis', 'confirm-thesis', 'revise-foundation'].includes(r.operation) || Object.keys(r).some(k => !['expectedVersion', 'operation', 'subject', 'text', 'presentationId', 'displayedText', 'quote', 'turnId','interpretation'].includes(k))) throw new Error('Invalid IDE transition.');
+  if (!Number.isSafeInteger(r.expectedVersion) || !['present', 'confirm', 'review', 'present-thesis', 'confirm-thesis', 'revise-foundation'].includes(r.operation) || Object.keys(r).some(k => !['expectedVersion', 'operation', 'subject', 'text', 'presentationId', 'displayedText', 'quote', 'turnId','interpretation','changes','evidence','assessments','contextHash'].includes(k))) throw new Error('Invalid IDE transition.');
+  if(r.operation!=='review'&&['changes','evidence','assessments','contextHash'].some(key=>key in r))throw new Error('Evidence updates belong to the review operation, never a confirmation.');
   if(r.operation==='revise-foundation'&&(!r.subject||!['intention','user','problem'].includes(r.subject)||typeof r.text!=='string'||!r.text.trim()||r.text.length>2000||typeof r.quote!=='string'||!r.quote.trim()||r.quote.length>1000||typeof r.turnId!=='string'||!r.turnId.trim()||r.turnId.length>160))throw new Error('A foundation correction needs one subject, provisional text, actual founder quote and source turn.');
   if (r.operation === 'present' && (!r.subject || !subjects.includes(r.subject))) throw new Error('Choose the confirmation subject.');
   if (['confirm','confirm-thesis'].includes(r.operation) && [r.presentationId, r.quote, r.turnId].some(x => typeof x !== 'string' || !x.trim() || x.length > 2000)) throw new Error('Confirmation needs the displayed presentation, founder reply and source turn.');
@@ -128,8 +141,20 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
   try { return db.transaction(() => {
     const saved = storedPrebuild(db);
     if (!saved || saved.context.contractVersion !== 2) throw new Error('Save the current IDE context first; legacy findings remain drafts.');
+    let c = structuredClone(saved.context);
+    if(r.operation==='review'){
+      if(['changes','evidence','assessments'].some(key=>key in r)||r.contextHash!==undefined){
+        const submitted=db.get('SELECT digest FROM prebuild_revisions WHERE version = ?',r.expectedVersion);
+        if(r.contextHash!==submitted?.['digest'])throw new Error('Evaluation target/basis changed. Read this project context and submit its exact hash.');
+      }
+      const update=Object.fromEntries(['changes','evidence','assessments'].filter(k=>k in r).map(k=>[k,r[k as keyof IdeTransition]]));
+      c=assembleEvaluationUpdate(c,{expectedVersion:r.expectedVersion,...(Object.keys(update).length?update:{changes:{evaluation:c.evaluation}})});
+      c.evaluation.status='ready';
+      const comparable=(value:typeof c)=>{const {expectedVersion,...body}=value;return body;};
+      if(saved.context.ide.reviewBasis===evaluationBasis(saved.context)&&isDeepStrictEqual(comparable(c),comparable(saved.context)))return saved;
+    }
     if (saved.version !== r.expectedVersion) throw new Error('IDE changed in another session. Resume the current presentation.');
-    const c = structuredClone(saved.context); c.expectedVersion = saved.version;
+    c.expectedVersion = saved.version;
     if(r.operation==='revise-foundation'){
       if(confirmation(c,'act'))throw new Error('Do not change an approved build through a conversation correction.');
         const sourceId=randomUUID(),claimId=randomUUID();
@@ -142,7 +167,17 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
       }
       invalidateChanges(saved.context,c);
     }
-    if (r.operation === 'review') { assertEvaluationComplete(c); c.ide.reviewBasis = evaluationBasis(c); c.ide.presentation = null; }
+    if (r.operation === 'review') {
+      invalidateChanges(saved.context,c);
+      const missing=evaluationRequirements(c);if(missing.length)throw new CompletionError(missing);
+      // Apply the same permitted-project artifact/hash checks as a draft save.
+      if(c.project.artifacts.length){
+        if(!c.project.permissionQuote)throw new Error('Record permission for the selected project files.');
+        const inspected=inspectArtifacts(resolveProjectRoot(target),{paths:c.project.artifacts.map(x=>x.path),permissionGranted:true,permissionQuote:c.project.permissionQuote});
+        if(inspected.some((x,i)=>x.sha256!==c.project.artifacts[i]?.sha256))throw new Error('Selected project files changed. Revisit the code observations before saving.');
+      }
+      c.ide.reviewBasis = evaluationBasis(c); c.ide.presentation = null;
+    }
     if (r.operation === 'present') c.ide.presentation = { id: randomUUID(), subject: r.subject!, basis: basis(c, r.subject!), text: presentationText(c, r.subject!) };
     if (r.operation === 'present-thesis') {
       // Notes become missing provisional drafts only at this explicit review boundary.
@@ -172,10 +207,17 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
       if(typeof r.displayedText!=='string'||r.displayedText.length>6000||normalized(r.displayedText)!==normalized(p.text))throw new Error('The text actually shown to the founder must match the recorded thesis. Present the current thesis again before requesting review.');
       if(c.ide.confirmations.some(x=>x.turnId===r.turnId))throw new Error('A founder reply cannot be reused from an earlier confirmation.');
       const quote=r.quote!.trim();
-      const agreement=agreesWithPresentation(quote,r.interpretation)||/^(yes|looks good|sounds right|that works)[,.]?\s+(?:but\s+)?(?:do not|don't)\s+build\s+yet[.!]?$/i.test(quote);
+      const agreement=agreesWithThesis(quote,r.interpretation);
       if(!agreement)throw new Error('Review the working thesis with clear agreement or a correction; this does not authorize Act.');
       for(const subject of ['intention','user','problem'] as const)c.ide.confirmations.push({id:randomUUID(),subject,basis:basis(c,subject),presentationId:p.id,presentedText:p.text,turnId:r.turnId!,quote,recordedAt:new Date().toISOString()});
-      if(c.evaluation.status==='ready'){
+      if((c.evaluation.status==='ready'||c.quality?.learning.experiment)&&!evaluationRequirements(c,true).length){
+        // The same visible complete thesis reviews Evaluation; an advisory draft
+        // status must not force reuse of the founder reply or another ceremony.
+        if(c.project.artifacts.length){
+          const actual=inspectArtifacts(resolveProjectRoot(target),{paths:c.project.artifacts.map(x=>x.path),permissionGranted:true,permissionQuote:c.project.permissionQuote});
+          if(actual.some((x,i)=>x.sha256!==c.project.artifacts[i]?.sha256))throw new Error('Selected project files changed. Revisit the code observations before review.');
+        }
+        c.evaluation.status='ready';
         try{
           assertEvaluationComplete(c);
           c.ide.reviewBasis=evaluationBasis(c);
@@ -190,7 +232,7 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
       presentationText(c, p.subject);
       if (c.ide.confirmations.some(x => x.turnId === r.turnId)) throw new Error('A founder reply cannot confirm multiple statements.');
       const quote = r.quote!.trim();
-      if (!agreesWithPresentation(quote,r.interpretation)) throw new Error(p.subject === 'act' ? 'Are you ready to commit this build cycle, or is there something you want to adjust first? Explicit agreement with the current commitment is still needed.' : 'Does that capture it, or is there one part you would change? I need clear agreement before recording this confirmation.');
+      if (!(p.subject==='evaluation'?agreesWithThesis(quote,r.interpretation):agreesWithPresentation(quote,r.interpretation))) throw new Error(p.subject === 'act' ? 'Are you ready to commit this build cycle, or is there something you want to adjust first? Explicit agreement with the current commitment is still needed.' : 'Does that capture it, or is there one part you would change? I need clear agreement before recording this confirmation.');
       c.ide.confirmations.push({ id: randomUUID(), subject: p.subject, basis: p.basis, presentationId: p.id, presentedText: p.text, turnId: r.turnId!, quote, recordedAt: new Date().toISOString() });
       c.ide.presentation = null;
     }
@@ -202,6 +244,7 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
 export function savePrebuild(target:string,input:unknown):SavedPrebuild {const saved=savePrebuildState(target,input);syncConversationArtifacts(target,saved);return saved;}
 /** Conversation notes are knowledge, never confirmation or Act permission. */
 export function saveWorkingContext(target:string,input:{expectedVersion:number;conversationId:string;start?:boolean;synthetic?:boolean;delta:Partial<Pick<FounderWorkingContext,'project'|'founder'|'inspected'|'opportunity'>>},allowResume=false):SavedPrebuild {
+  assertFounderProject(target);
   if(!input || !Number.isInteger(input.expectedVersion) || typeof input.conversationId!=='string')throw new Error('Working context needs the current revision and conversation identifier.');
   if((input.start!==undefined&&typeof input.start!=='boolean')||(input.synthetic!==undefined&&typeof input.synthetic!=='boolean'))throw new Error('Working context start flags must be boolean.');
   const saved=readPrebuild(target);

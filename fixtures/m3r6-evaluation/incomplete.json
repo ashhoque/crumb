@@ -1,0 +1,605 @@
+{
+  "project": {
+    "name": "Bench Tool Loans — synthetic learning MVP",
+    "entry": "fresh",
+    "artifacts": [],
+    "permissionQuote": null
+  },
+  "intention": {
+    "status": "provided",
+    "goal": "bootstrapped",
+    "statement": "Prepare a small B2B business experiment for independent electronics repair shops, with a local learning MVP and no build yet.",
+    "advice": "Test recording friction and current workaround before assuming a business."
+  },
+  "definition": {
+    "user": {
+      "basis": "inferred",
+      "text": "Independent electronics repair shop manager responsible for lending individually identifiable bench tools.",
+      "claimIds": [
+        "c-scenario"
+      ]
+    },
+    "buyer": {
+      "basis": "unknown",
+      "text": null,
+      "claimIds": []
+    },
+    "problem": {
+      "basis": "inferred",
+      "text": "Shop managers lose track of who has a loaned bench tool and when it should return.",
+      "claimIds": [
+        "c-scenario"
+      ]
+    },
+    "trigger": {
+      "basis": "inferred",
+      "text": "A bench tool is loaned or someone asks who has it.",
+      "claimIds": [
+        "c-scenario"
+      ]
+    },
+    "job": {
+      "basis": "inferred",
+      "text": "Record custody and due date, find outstanding loans and close returns.",
+      "claimIds": [
+        "c-scenario"
+      ]
+    },
+    "workaround": {
+      "basis": "unknown",
+      "text": null,
+      "claimIds": []
+    },
+    "pain": {
+      "basis": "inferred",
+      "text": "Unclear custody of loaned tools; severity and urgency are unverified.",
+      "claimIds": [
+        "c-scenario"
+      ]
+    },
+    "consequence": {
+      "basis": "unknown",
+      "text": null,
+      "claimIds": []
+    },
+    "frequency": {
+      "basis": "unknown",
+      "text": null,
+      "claimIds": []
+    },
+    "reason_for_belief": {
+      "basis": "inferred",
+      "text": "Synthetic reports and two fitting colleague sessions make a bounded learning test feasible, not commercially validated.",
+      "claimIds": [
+        "c-scenario"
+      ]
+    }
+  },
+  "feedbackClaimIds": [
+    "c-scenario"
+  ],
+  "sources": [
+    {
+      "id": "scenario",
+      "title": "Synthetic founder scenario",
+      "url": null,
+      "kind": "founder",
+      "provenance": "synthetic_fixture",
+      "access": "provided",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "Founder requests local tool-loan learning MVP with borrower, due date, return and outstanding list. Three shop-manager reports are supplied synthetic context. Two fitting colleagues available tomorrow. No build yet; no accounts, payments, messaging, deployment or real customer data.",
+      "limitation": "Deterministic replay fixture; not current market or customer evidence. Synthetic scenario assertions; no independently verified demand, interviews, observations or permission.",
+      "archived": false,
+      "independenceKey": "scenario",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "snipe",
+      "title": "Snipe-IT overview",
+      "url": "https://snipe-it.readme.io/docs/overview",
+      "kind": "vendor",
+      "provenance": "synthetic_fixture",
+      "access": "provided",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "Documentation describes uniquely tagged assets checked out to people and checked back in; prevents double-booking.",
+      "limitation": "Deterministic replay fixture; not current market or customer evidence. Vendor documentation establishes capability, not repair-shop adoption or demand.",
+      "archived": false,
+      "independenceKey": "snipe",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "snipe-price",
+      "title": "Snipe-IT pricing",
+      "url": "https://snipeitapp.com/pricing",
+      "kind": "vendor",
+      "provenance": "synthetic_fixture",
+      "access": "provided",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "Self-hosted software is free; basic hosting publicly lists USD 39.99 billed monthly or USD 399.99 billed annually.",
+      "limitation": "Deterministic replay fixture; not current market or customer evidence. Public listing checked October 6, 2026; not purchased; self-hosting carries setup and maintenance effort.",
+      "archived": false,
+      "independenceKey": "snipe",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "repairshopr",
+      "title": "RepairShopr electronics repair",
+      "url": "https://www.repairshopr.com/electronics-repair",
+      "kind": "vendor",
+      "provenance": "synthetic_fixture",
+      "access": "provided",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "Vendor offers repair-shop CRM, POS, invoicing, ticketing, inventory and customer-electronics asset tracking.",
+      "limitation": "Deterministic replay fixture; not current market or customer evidence. No verified bench-tool loan workflow or claim of its absence.",
+      "archived": false,
+      "independenceKey": "repairshopr",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "storage",
+      "title": "MDN localStorage",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage",
+      "kind": "industry",
+      "provenance": "synthetic_fixture",
+      "access": "provided",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "Browser localStorage persists across sessions for an origin. Direct file URL behavior is undefined; browser policy may block persistence; private-session storage is cleared when private tabs close.",
+      "limitation": "Deterministic replay fixture; not current market or customer evidence. Documentation, not a runtime test of the proposed MVP.",
+      "archived": false,
+      "independenceKey": "storage",
+      "affiliation": "unknown"
+    }
+  ],
+  "claims": [
+    {
+      "id": "c-scenario",
+      "statement": "Synthetic scenario supplies manager pain reports, colleague access and strict local-only preparation scope.",
+      "basis": "founder_reported",
+      "sourceIds": [
+        "scenario"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Synthetic fixture, not validated demand; planned sessions are not completed.",
+      "important": true,
+      "repetition": "not_applicable",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "c-snipe",
+      "statement": "Snipe-IT documents unique assets and checkout/checkin with prevention of double-booking.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "snipe"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Not target-shop adoption evidence.",
+      "important": true,
+      "repetition": "not_applicable",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "c-price",
+      "statement": "Snipe-IT basic hosted plan publicly lists USD 39.99 per month billed monthly.",
+      "basis": "reported_metric",
+      "sourceIds": [
+        "snipe-price"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Comparator reference only; no willingness-to-pay inference.",
+      "important": true,
+      "repetition": "not_applicable",
+      "metric": {
+        "name": "Basic Hosting monthly price",
+        "value": "39.99",
+        "unit": "USD/month",
+        "period": "Monthly billing listing retrieved 2026-10-06",
+        "reportedBy": "Snipe-IT"
+      },
+      "quote": null
+    },
+    {
+      "id": "c-free",
+      "statement": "Snipe-IT lists self-hosted software as free.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "snipe-price"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Operational effort remains; this is counterevidence to feature novelty.",
+      "important": true,
+      "repetition": "not_applicable",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "c-incumbent",
+      "statement": "RepairShopr markets broad repair-shop software and customer-device asset tracking.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "repairshopr"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Bench-tool loan capabilities unverified.",
+      "important": true,
+      "repetition": "not_applicable",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "c-storage",
+      "statement": "localStorage persists per origin, can be blocked and is unreliable for direct file URLs.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "storage"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "No app or runtime check exists yet.",
+      "important": true,
+      "repetition": "not_applicable",
+      "metric": null,
+      "quote": null
+    }
+  ],
+  "research": [
+    {
+      "id": "r-public",
+      "question": "Do existing alternatives or local persistence risks materially change this bounded learning MVP?",
+      "capability": "synthetic_fixture",
+      "queryBudget": 2,
+      "pageBudget": 6,
+      "budgetReason": "Only material alternatives and technical storage checks; stop before broad market/pricing study.",
+      "queries": [
+        {
+          "text": "tool checkout tracking borrower due date small business spreadsheet Snipe IT",
+          "materialFinding": true
+        },
+        {
+          "text": "site.repairshopr.com inventory tools repair shop tracking",
+          "materialFinding": true
+        }
+      ],
+      "inspectedSourceIds": [
+        "snipe",
+        "snipe-price",
+        "repairshopr",
+        "storage"
+      ],
+      "stopReason": "coverage_sufficient",
+      "limitation": "Deterministic recorded-attempt fixture; not a live search. Four distinct public pages opened; pricing page opened twice. One attempted checkout-doc URL inaccessible, overview used instead. Discussion snippets are leads only and not evidence. No verified target-shop demand."
+    }
+  ],
+  "competitors": [],
+  "adjacent": [],
+  "habitats": [],
+  "firstUserAvenues": [],
+  "redTeam": [],
+  "evaluation": {
+    "status": "limited",
+    "coverage": [
+      {
+        "topic": "pain",
+        "status": "findings",
+        "claimIds": [
+          "c-scenario"
+        ],
+        "runIds": [],
+        "reason": "Supplied synthetic pain report only."
+      },
+      {
+        "topic": "reachability",
+        "status": "findings",
+        "claimIds": [
+          "c-scenario"
+        ],
+        "runIds": [],
+        "reason": "Founder says two fitting colleagues can be observed tomorrow; permission to observe must be obtained at each session."
+      },
+      {
+        "topic": "competitors",
+        "status": "findings",
+        "claimIds": [
+          "c-snipe",
+          "c-free",
+          "c-incumbent"
+        ],
+        "runIds": [
+          "r-public"
+        ],
+        "reason": "Existing checkout and broader repair software; spreadsheet/paper are useful controls."
+      },
+      {
+        "topic": "existing_spend",
+        "status": "unknown_after_search",
+        "claimIds": [
+          "c-price"
+        ],
+        "runIds": [
+          "r-public"
+        ],
+        "reason": "Comparator price exists; target shops' current spend remains unknown."
+      }
+    ],
+    "promising": [
+      "Narrow end-to-end task and reachable fitting testers.",
+      "Local fictional-data experiment is reversible."
+    ],
+    "weak": [
+      "Supplied synthetic scenario is not verified demand.",
+      "Feature overlap with existing free software and spreadsheets.",
+      "Colleagues may give friendly answers."
+    ],
+    "unknowns": [
+      "Actual loan frequency, search time, loss and urgency.",
+      "Current workaround and reason to switch.",
+      "Buyer, budget and willingness to pay.",
+      "Repeat use and entry discipline."
+    ],
+    "contradictions": [
+      "A manager wanting visibility does not show staff will reliably record loans.",
+      "Successful scripted completion does not demonstrate fewer lost tools."
+    ],
+    "conclusion": "GO for this bounded learning experiment only. Retain behavioral uncertainty. Preparation complete; no review receipt or Act approval, and no product implementation."
+  },
+  "investigation": {
+    "coverage": [
+      {
+        "topic": "workaround",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "willingness_to_pay",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "ability_to_pay",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "switching_cost",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "founder_insight",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "founder_expertise",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "founder_access",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "technical_feasibility",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "business_model_fit",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "intention_alignment",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      }
+    ],
+    "questions": [],
+    "alternatives": [],
+    "counterevidence": null,
+    "decision": null,
+    "redefinition": null
+  },
+  "opportunity": null,
+  "quality": {
+    "technical": {
+      "material": true,
+      "summary": "Feasible in principle as a loopback-served native-browser app; no external dependencies or AI required. No code or runtime evidence yet.",
+      "centralRisk": "False persistence confidence and failure to log loans in everyday work.",
+      "coverage": [
+        {
+          "topic": "data_apis",
+          "status": "findings",
+          "claimIds": [
+            "c-scenario"
+          ],
+          "runIds": [],
+          "reason": "Manual fictional tool, borrower alias and date only; no external API or imports."
+        },
+        {
+          "topic": "freshness_quality",
+          "status": "findings",
+          "claimIds": [
+            "c-scenario",
+            "c-snipe"
+          ],
+          "runIds": [],
+          "reason": "Validate trimmed required fields and calendar date; unique tool label per physical tool; reject second active loan. Actual runtime behavior must be tested."
+        },
+        {
+          "topic": "access_licensing",
+          "status": "not_relevant",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "No third-party service, dataset or library required; choose native browser APIs."
+        },
+        {
+          "topic": "rate_cost",
+          "status": "not_relevant",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "No paid API, hosting or service; local computation only. Build labour not estimated."
+        },
+        {
+          "topic": "integrations",
+          "status": "not_relevant",
+          "claimIds": [
+            "c-scenario"
+          ],
+          "runIds": [],
+          "reason": "Excluded from exact local learning scope."
+        },
+        {
+          "topic": "complexity_latency",
+          "status": "findings",
+          "claimIds": [
+            "c-scenario"
+          ],
+          "runIds": [],
+          "reason": "Plain HTML/CSS/JavaScript with a loopback-only static server is a provisional low-complexity approach; no measured latency or implementation yet."
+        },
+        {
+          "topic": "ai_deterministic",
+          "status": "not_relevant",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Deterministic record-state transitions; no AI needed."
+        },
+        {
+          "topic": "reliability_failures",
+          "status": "findings",
+          "claimIds": [
+            "c-storage"
+          ],
+          "runIds": [
+            "r-public"
+          ],
+          "reason": "Use stable HTTP loopback origin, test read/write failures and corrupt stored data. Never display saved/returned until persistence succeeds. Check refresh and restart."
+        },
+        {
+          "topic": "security_privacy",
+          "status": "findings",
+          "claimIds": [
+            "c-scenario",
+            "c-storage"
+          ],
+          "runIds": [],
+          "reason": "Fictional borrower aliases; loopback binding, no remote assets, telemetry or credentials; render input as text. Everyone with browser-profile access can see records."
+        },
+        {
+          "topic": "vendor_build_buy",
+          "status": "findings",
+          "claimIds": [
+            "c-snipe",
+            "c-free"
+          ],
+          "runIds": [
+            "r-public"
+          ],
+          "reason": "Paper/spreadsheet provides a rehearsal control; Snipe-IT offers broader existing checkout. Tiny local prototype is justified only for this bounded workflow test."
+        }
+      ],
+      "options": [
+        {
+          "name": "Paper or spreadsheet rehearsal",
+          "approach": "Use tool/borrower/due/returned columns as a control immediately.",
+          "tradeoff": "Tests conceptual workflow without software usability or persistence.",
+          "claimIds": [
+            "c-scenario"
+          ]
+        },
+        {
+          "name": "Tiny local browser prototype",
+          "approach": "One workstation, stable loopback HTTP origin, native browser storage, no remote requests.",
+          "tradeoff": "No sync or backup; explicit storage error handling required.",
+          "claimIds": [
+            "c-storage"
+          ]
+        },
+        {
+          "name": "Existing Snipe-IT",
+          "approach": "Evaluate existing tagged-asset checkout software.",
+          "tradeoff": "Broader setup and administration than tomorrow's three-task test; no installation authorized.",
+          "claimIds": [
+            "c-snipe",
+            "c-free"
+          ]
+        }
+      ],
+      "recommendation": {
+        "option": "Tiny local browser prototype",
+        "reason": "Smallest complete proposed software flow for the requested observation; compare with their current method and stop if unnecessary."
+      }
+    },
+    "founderFit": {
+      "edge": "Synthetic founder reports access to two fitting colleagues tomorrow.",
+      "limitation": "Access and relationship do not establish independent demand or customer willingness to pay.",
+      "claimIds": [
+        "c-scenario"
+      ]
+    },
+    "learning": {
+      "uncertainty": "switching",
+      "reason": "Can the log fit the lending moment and outperform the current method? Pain frequency, severity and payment remain unknown.",
+      "recommendation": "build_decision",
+      "decision": "go",
+      "experiment": {
+        "promise": "On one local workstation, record who has an individually identified bench tool and when it is due, then find and close that loan without coaching.",
+        "capabilities": [
+          "Record a tool loan with unique tool label, borrower alias and due date.",
+          "Mark a selected outstanding loan returned.",
+          "See outstanding loans with tool, borrower and due date, earliest due first."
+        ],
+        "cuts": [
+          "No accounts or permissions.",
+          "No payments or pricing test.",
+          "No messaging or reminders.",
+          "No deployment, cloud sync or shared-device use.",
+          "No real customer data.",
+          "No barcode scanning, inventory integration or analytics."
+        ],
+        "limitations": "Single browser profile and one active tab; fictional data only. Storage may be cleared or blocked, no backup or sync. Friendly-colleague bias; two sessions test usability and workflow fit, not adoption, fewer losses, retention or demand. No product has been built or tested.",
+        "success": "Both fitting colleagues independently create, find and return the correct fictional loan; record time and all hesitation. No false saves, duplicate active tool loans or lost records after reload. Capture concrete past behavior and compare with their current method.",
+        "failure": "Either cannot complete the core flow without help, misidentifies a borrower, sees a false save or loses persisted data. If both prefer their current method or report little practical need, pause expansion and investigate pain rather than add features.",
+        "testDate": "2026-10-07"
+      }
+    }
+  }
+}

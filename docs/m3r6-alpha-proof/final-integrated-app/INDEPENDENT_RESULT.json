@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "app": "<disposable-project>\\crumb-contexts\\01a11409-cba8-7a70-b920-9dd26c59e8f8\\handover.mjs",
+  "source": "<disposable-project>\\crumb-contexts\\01a11409-cba8-7a70-b920-9dd26c59e8f8\\independent-62ca46654dee4bd5bc6281741b4cd9a7.csv",
+  "output": "<disposable-project>\\crumb-contexts\\01a11409-cba8-7a70-b920-9dd26c59e8f8\\independent-output-b30415ec8d6c4fed8f42e299cd0001da",
+  "exitCode": 0,
+  "stdout": "Accepted task records: 6\nIncomplete records: 4\nDraft for manual review: <disposable-project>\\crumb-contexts\\01a11409-cba8-7a70-b920-9dd26c59e8f8\\independent-output-b30415ec8d6c4fed8f42e299cd0001da\\follow-up.txt\n",
+  "expectedRows": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "actualRows": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "expectedReasons": [
+    "owner",
+    "due_date",
+    "owner;due_date",
+    "owner"
+  ],
+  "actualReasons": [
+    "owner",
+    "due_date",
+    "owner;due_date",
+    "owner"
+  ],
+  "inputUnchanged": true,
+  "inputHash": "23c0324e426208dce35e967051d38fa59b6ac86cdbc35c8438af4a225477ae17",
+  "overwriteRefused": true,
+  "repeatExitCode": 1,
+  "artifacts": {
+    "follow-up.txt": "dbda39e57752855b8d494ea89235cd3dfeab792cc9306ab62c6fbd863a19e44d",
+    "incomplete.csv": "f18fdeaf63a23120edd6c26c15e4da891cd211f7a3fabc714a116d53f09ac8b6"
+  }
+}

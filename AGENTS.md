@@ -5,8 +5,9 @@ cumulative historical design context, consulted only for needed compatibility/hi
 PLAN.md / STATUS.md record implementation state. Current authorized work is M3-R6
 CEO Operator Mode on m3-r6, from shipped M3-R5 main. Commit/push coherent tested
 changes; synchronize a labelled development candidate for installed live acceptance.
-M3-R6 Astra review passed with warnings; the founder authorized verified main
-merge and exact global synchronization. See M3_R6_ASTRA_RELEASE_GATE.md.
+Current work is the October 7 first-user-ready closed alpha, not the earlier
+CEO Operator release gate. Commit/push m3-r6 and sync a labelled development
+candidate for live proof. Do not merge main in this implementation phase.
 Preserve M3-R4 evidence and
 first-user work, M3-R2 fresh-chat isolation, confirmed IDE and Act gates.
 Do not begin M4 or merge a blocked revision into main. Preserve the Phase 1
@@ -22,8 +23,8 @@ work is preserved in M3_REPORT.md. Reuse confirmed IDE and the reviewed MVP.
 
 - Preserve all existing code, uncommitted work and Git history. Implement on the
   active development branch; commit and push coherent tested changes. The founder
-  conditionally authorizes main merge only after final PASS. Commit and push
-  coherent tested fixes on m3-r6; main merge requires the current passing release gate.
+  requires a separate independent review before any new main merge. Commit and push
+  coherent tested fixes on m3-r6; no main merge in this implementation phase.
   Never force-push or push a knowingly broken state. Review staged files for
   private data first. Do not create a replacement application.
 - Use Node 24.19.0, the existing lockfile and npm. cec.ps1 check selects the pinned
@@ -46,8 +47,10 @@ work is preserved in M3_REPORT.md. Reuse confirmed IDE and the reviewed MVP.
 - Respect customer stacks and instructions. Unknown customer environments get
   proportionate groundwork; known working setup is reused. Do not copy Crumb's
   runtime/database or install unnecessary dependencies into a customer application.
-- Execute only the approved stage with the current handoff; record actual results,
-  stop for review, and never equate passing tests with customer validation.
+- Execute only the approved scope with the current handoff; record actual results.
+  Native R1 packs may advance their preapproved stages after passing exits; stop
+  at declared human/final checkpoints. Legacy M2 retains per-stage review.
+  Never equate passing tests with customer validation.
 - No autonomous outreach, spending, deployment, billing, broad UI work or autonomous agent
   delegation. Freeform host behavior still needs founder evaluation.
 

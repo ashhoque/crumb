@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "speechOnly": true,
+  "sessions": [
+    {
+      "session": "alpha-completion",
+      "turns": 5,
+      "opening": "The useful test here is whether flagging incomplete handovers saves chasing—not whether we can parse a CSV. I’ll pin down a small local scope and an October 8 observation session, keeping those two reports clearly separate from validated demand.",
+      "leaks": []
+    },
+    {
+      "session": "alpha-completion-build-resume",
+      "turns": 3,
+      "opening": "I’ll finish the CSV checker within the approved local scope, exercise it with synthetic handover data, and leave a concrete observation plan beside the runnable MVP.",
+      "leaks": []
+    },
+    {
+      "session": "alpha-completion-finalize",
+      "turns": 3,
+      "opening": "I’ll check what the checker actually produced, carry those results into a first-user session plan, and isolate the dependency that still needs you.",
+      "leaks": []
+    }
+  ]
+}

@@ -20,6 +20,16 @@ a move and advances it. The founder can override the business judgment.
 
 ## Agency and the fastest credible learning path
 
+The October 7 closed-alpha target is one first-user journey, not completion of
+every earlier R6 proposal: context → bounded pulse → one user/≤3 ranked pains →
+GO / ONE GAP / PIVOT → reachable users and neutral interview kit → provisional
+MVP plan → specific authorization → runnable tested product → observed feedback.
+Do the worthwhile authorized work for the current objective before yielding.
+Public evidence supports hypotheses, not demand. A bounded learning MVP can carry
+behavioral uncertainty; its exact promise, capabilities, cuts, limitations and
+observable success/failure must be shown before approval. Negative decisions need
+no manufactured positive findings. Source, technical, privacy and Act guards remain.
+
 Reuse → infer tentatively → inspect → research → ask. Infer provisional customer
 and problem from credible sourced context; do not repeat intake because formal
 fields are empty. Missing firsthand context warrants one combined plain-language
@@ -54,8 +64,8 @@ permissions. A prepared artifact or founder enthusiasm does not imply approval.
 Preserve five internal consent/dependency subjects: Intention, User, Problem,
 Evaluation and Act. Their bases, review receipts and invalidation keep consent
 honest. They do not require five visible sequential confirmation conversations.
-Normal UX uses provisional foundations, research, one bundled working-thesis review
-and separate Act approval. Present decisive evidence and uncertainty before or with
+Normal UX uses provisional foundations, research, one complete bundled working-thesis/Evaluation review
+and one separate exact-scope Act approval. For unchanged bounded scope, that Act approval covers the derived internal plan, implementation, tests, actual core-flow verification and ordinary fixes. No repeated internal stage/pack permission is required. Material promise, scope, privacy/data, access, external action or publication changes require another decision. Legacy commitments retain their original pack review. Present decisive evidence and uncertainty before or with
 the thesis. Display the exact recorded thesis; bind review to that visible wording
 and current basis. Material corrections invalidate affected review. “Looks good,
 don't build yet” can approve the thesis/foundations, never Act. Formal Evaluation

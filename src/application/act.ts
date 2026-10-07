@@ -8,13 +8,13 @@ import { storedLearn } from '../persistence/learn-store.js';
 import { assertBuildSession } from './session.js';
 import { inspectPath, PRIVATE_DIRECTORY, resolveProjectRoot } from '../privacy/storage.js';
 import { inspectArtifacts, selectedPath, selectedFileHash, sha256 } from '../privacy/artifacts.js';
-import { assertAct, basis, type IdeContext } from '../domain/ide.js';
+import { assertAct, basis, confirmation, presentationText, type IdeContext } from '../domain/ide.js';
 import { unique, validateActPlan, validateStageResult, type ActRecord, type ActPlan, type SavedAct, type StageReceipt } from '../domain/act.js';
 import { buildPackFiles, writeBuildPack, verifyBuildPack } from './build-pack.js';
 
 export function compactAct(s:SavedAct):object {
   const r=s.record,stage=r.plan.stages[r.currentStage]!;
-  return {version:s.version,hash:s.hash,runId:r.id,planHash:r.planHash,status:r.status,stage,stopAfterStageId:r.plan.stopAfterStageId,pack:r.pack,scopeApproved:r.approval!==null,latestReceipt:r.receipts.at(-1)??null,next:r.status==='proposed'?'Show scope and obtain approval':r.status==='authorized'?'Obtain current stage handoff; edit, test and record only that stage':r.status==='awaiting_review'?'Founder reviews the result before any continuation':"Wait for the founder's decision",customerValidation:'not_established'};
+  return {version:s.version,hash:s.hash,runId:r.id,planHash:r.planHash,status:r.status,stage,stopAfterStageId:r.plan.stopAfterStageId,pack:r.pack,scopeApproved:r.approval!==null,latestReceipt:r.receipts.at(-1)??null,next:r.status==='proposed'?'Verify current scope and plan authorization before build':r.status==='authorized'?'Obtain current stage handoff; edit, test and record only that stage':r.status==='awaiting_review'?'Founder reviews the result before any continuation':"Wait for the founder's decision",customerValidation:'not_established'};
 }
 
 export function stored(db: SqliteConnection): SavedAct | null {
@@ -105,9 +105,15 @@ function quote(r:Record<string,unknown>):string {
   return r['quote'].trim();
 }
 export function approveActPlan(target:string,input:unknown):SavedAct {
-  const r=request(input,['expectedVersion','planHash','quote']);const approvalQuote=quote(r);
+  const r=request(input,['expectedVersion','planHash','quote','scopeConfirmationId']);
   return store(target,(db,root)=>{
-    const s=current(db,Number(r['expectedVersion']));eligible(db,s.record);
+    const s=current(db,Number(r['expectedVersion'])),c=eligible(db,s.record);
+    let approvalQuote:string;
+    if(r['scopeConfirmationId']!==undefined){
+      const receipt=confirmation(c,'act');
+      if(r['quote']!==undefined||!s.record.plan.execution||!c.quality?.learning.experiment||!receipt||receipt.id!==r['scopeConfirmationId']||receipt.id!==s.record.plan.scope.decision.confirmationId||receipt.presentedText!==presentationText(c,'act'))throw new Error('Use the current exact-scope Act receipt; a legacy or changed commitment needs founder review.');
+      approvalQuote=receipt.quote;
+    }else approvalQuote=quote(r);
     if(s.record.status!=='proposed'||s.record.planHash!==r['planHash']) throw new Error('Approve the exact displayed plan before starting a build.');
     if(s.record.plan.execution){assertBuildSession(root,s.record.plan.execution.handoffHash);if(!s.record.pack)throw new Error('Generate and review the complete Build Pack before approval.');verifyBuildPack(root,s.record.pack);}
     unchanged(root,s.record);s.record.approval={quote:approvalQuote,recordedAt:new Date().toISOString()};s.record.status='authorized';

@@ -1,0 +1,130 @@
+{
+  "version": 5,
+  "hash": "ff499d916a5e31692411b8df58863df6225886c86fc78b2236f3472971bba940",
+  "runId": "c5dee9a9-b56a-4faa-9ee8-57f5fc658e49",
+  "planHash": "d4ba8613da86074e1dd48f3e947805883a70c988c2c32f381500ea6ae0e69b67",
+  "status": "stopped",
+  "stage": {
+    "id": "mvp",
+    "title": "Runnable local MVP",
+    "kind": "mvp",
+    "goal": "Complete exact CSV contract and run synthetic task.",
+    "capabilities": [
+      "Import and validate bounded CSV",
+      "Identify and export incomplete rows",
+      "Draft a neutral follow-up"
+    ],
+    "writes": [
+      "handover_check.py",
+      "README.md",
+      "tests/test_handover_check.py"
+    ],
+    "checks": [
+      {
+        "id": "acceptance",
+        "description": "Run focused suite covering exact CSV, limits, path safety and atomic output failure.",
+        "commandHint": "C:\\Python311\\python.exe -m unittest discover -s tests -v"
+      },
+      {
+        "id": "task",
+        "description": "Execute synthetic fixture; inspect both outputs and confirm input hash unchanged.",
+        "commandHint": "Run checker on preparation/fixtures/handover.csv into new local output."
+      }
+    ]
+  },
+  "stopAfterStageId": "mvp",
+  "pack": {
+    "directory": "build-pack/c5dee9a9-b56a-4faa-9ee8-57f5fc658e49/revision-d4ba8613da86",
+    "files": [
+      {
+        "path": "build-pack/c5dee9a9-b56a-4faa-9ee8-57f5fc658e49/revision-d4ba8613da86/STARTUP_MASTER.md",
+        "sha256": "a9fd17ee68a9c1cf5f0015e381634796abd7f35035030e6f6eeff28d70a44617"
+      },
+      {
+        "path": "build-pack/c5dee9a9-b56a-4faa-9ee8-57f5fc658e49/revision-d4ba8613da86/BUILD_PLAN.md",
+        "sha256": "335548dea890cb105b12074f590809e86238ace7c3e5acdb7ca6d6660662f367"
+      },
+      {
+        "path": "build-pack/c5dee9a9-b56a-4faa-9ee8-57f5fc658e49/revision-d4ba8613da86/GROUNDWORK.md",
+        "sha256": "04143678ceb2cedd602c330b45406a920870fc15538141937c51752ccdb2fb54"
+      },
+      {
+        "path": "build-pack/c5dee9a9-b56a-4faa-9ee8-57f5fc658e49/revision-d4ba8613da86/STAGE_1.md",
+        "sha256": "ed76f129dc94bffd78f4ecf40f00ee3de4401923a3bf95ca018e814e72cef863"
+      },
+      {
+        "path": "build-pack/c5dee9a9-b56a-4faa-9ee8-57f5fc658e49/revision-d4ba8613da86/RED_TEAM_REVIEW.md",
+        "sha256": "5f00249beb3c93e59dfee9a3468a2c4fd6ee7ab1ab4881635c18aff39ad109b3"
+      },
+      {
+        "path": "build-pack/c5dee9a9-b56a-4faa-9ee8-57f5fc658e49/revision-d4ba8613da86/TECHNICAL_MASTER.md",
+        "sha256": "727c8d7ecae33d26641bde521044ea4da1c3644fb55c44578f8a68e26da1a883"
+      },
+      {
+        "path": "build-pack/c5dee9a9-b56a-4faa-9ee8-57f5fc658e49/revision-d4ba8613da86/BUSINESS_MASTER.md",
+        "sha256": "5ec4f5258708230572243ba808df3b71b19bf9494e39dc763e2707fa52b0071d"
+      }
+    ]
+  },
+  "scopeApproved": true,
+  "latestReceipt": {
+    "expectedVersion": 3,
+    "stageId": "mvp",
+    "implementation": "completed",
+    "changes": [
+      {
+        "path": "handover_check.py",
+        "kind": "created"
+      },
+      {
+        "path": "README.md",
+        "kind": "created"
+      },
+      {
+        "path": "tests/test_handover_check.py",
+        "kind": "created"
+      }
+    ],
+    "checks": [
+      {
+        "criterionId": "acceptance",
+        "label": "Focused acceptance suite",
+        "command": "C:\\Python311\\python.exe -B -m unittest discover -s tests -v",
+        "executed": true,
+        "exitCode": 0,
+        "result": "passed",
+        "output": "18 tests passed in 0.807s. Covers exact exception/draft output, BOM/CRLF/multiline quoting, malformed input, unsafe prefixes/controls, 1 MiB and 10,000 record boundaries, path escape/aliasing, existing outputs and injected write/publish failures."
+      },
+      {
+        "criterionId": "task",
+        "label": "Actual synthetic handover task",
+        "command": "C:\\Python311\\python.exe -B crumb-contexts/01a113e4-7fec-7091-8c45-c5c6357e8969/handover_check.py --input preparation/fixtures/handover.csv --out-dir output/smoke-001",
+        "executed": true,
+        "exitCode": 0,
+        "result": "passed",
+        "output": "Scanned 6; incomplete 4. Inspected incomplete.csv: records 2,3,4,5; reasons owner,due_date,owner;due_date,owner. Neutral draft inspected and matches expected text. Source SHA256 before/after 1f4f08167c691329e8ef51172cbf710c8ee04fe5d7951dcd34d77007434949be; unchanged."
+      }
+    ],
+    "runInstructions": [
+      "From disposable workspace root run C:\\Python311\\python.exe -B crumb-contexts/01a113e4-7fec-7091-8c45-c5c6357e8969/handover_check.py --input preparation/fixtures/handover.csv --out-dir output/try-001. Choose a new output name.",
+      "Review output/try-001/incomplete.csv and follow_up.txt. Reuse output directory to confirm visible overwrite refusal.",
+      "October 8 observation plan: preparation/OCTOBER-8-TEST.md. No sessions or sends occurred."
+    ],
+    "gaps": [
+      "Synthetic supported-input correctness only; no customer validation, repeat use, semantic value validation or willingness-to-pay evidence.",
+      "Founder review of the actual runnable MVP remains pending. Stop at MVP; no exposure, deployment or additional product work."
+    ],
+    "id": "a3bb73e9-4e11-4a5d-94b4-a0a2786cf327",
+    "recordedAt": "2026-10-07T01:28:45.397Z",
+    "fileHashes": {
+      "handover_check.py": "eec42db97b57c3be6c1dc1519d27fe7bd6b4f1bd6aec9d64b379e90e507d726d",
+      "README.md": "f80b2281215c0c53767fa948047e0d52983ac0a16a5b232ffbf467c649551b37",
+      "tests/test_handover_check.py": "2b705e56d3636264b074e6d60ea58bcd66ddcdb05fbc00173dd65cb6d762e52c"
+    },
+    "customerValidation": "not_established",
+    "release": "not_released",
+    "provenance": "host_report_with_local_file_hashes"
+  },
+  "next": "Wait for the founder's decision",
+  "customerValidation": "not_established"
+}

@@ -1,0 +1,2 @@
+# Keep captured artifact bytes and hashes stable across Windows checkouts.
+* -text whitespace=cr-at-eol

@@ -1,0 +1,1134 @@
+{
+  "contractVersion": 2,
+  "expectedVersion": 1,
+  "synthetic": true,
+  "stage": "evaluate",
+  "project": {
+    "name": "Print shop proof-reference learning prototype",
+    "entry": "fresh",
+    "artifacts": [],
+    "permissionQuote": null
+  },
+  "preferredName": null,
+  "intention": {
+    "status": "provided",
+    "goal": "bootstrapped",
+    "statement": "Build a small B2B business for independent print shops, starting with a bounded local learning experiment.",
+    "advice": "Test workflow clarity before commercial claims; no implementation without separate scoped approval."
+  },
+  "definition": {
+    "user": {
+      "text": "Owner/operator of an independent print shop personally coordinating emailed PDF proofs and production handoffs.",
+      "claimIds": [
+        "scope",
+        "handoff"
+      ],
+      "basis": "inferred"
+    },
+    "buyer": {
+      "text": "Independent shop owner, provisionally; budget and purchasing authority untested.",
+      "claimIds": [
+        "scope"
+      ],
+      "basis": "inferred"
+    },
+    "problem": {
+      "text": "The owner has to search email to tell which proof version still needs a decision and what changes were requested.",
+      "claimIds": [
+        "pain_report",
+        "handoff",
+        "version"
+      ],
+      "basis": "inferred"
+    },
+    "trigger": {
+      "text": "A proof is awaiting a decision before production handoff.",
+      "claimIds": [
+        "handoff",
+        "version"
+      ],
+      "basis": "inferred"
+    },
+    "job": {
+      "text": "Identify the exact reference awaiting a decision and record an unambiguous approve/reject note.",
+      "claimIds": [
+        "scope",
+        "version"
+      ],
+      "basis": "inferred"
+    },
+    "workaround": {
+      "text": "Email numbered PDF proofs and retain approval replies.",
+      "claimIds": [
+        "email_ok"
+      ],
+      "basis": "observed"
+    },
+    "pain": {
+      "text": "Approval status may be buried in email; a second tracker may add work.",
+      "claimIds": [
+        "handoff",
+        "business_gap"
+      ],
+      "basis": "inferred"
+    },
+    "consequence": {
+      "text": "Delayed awareness may delay handoff; no cost quantified.",
+      "claimIds": [
+        "handoff"
+      ],
+      "basis": "inferred"
+    },
+    "frequency": {
+      "text": null,
+      "claimIds": [],
+      "basis": "unknown"
+    },
+    "reason_for_belief": {
+      "text": "Synthetic reports suggest a hypothesis; public anecdotes and satisfied email users support testing and challenge demand.",
+      "claimIds": [
+        "pain_report",
+        "handoff",
+        "email_ok"
+      ],
+      "basis": "inferred"
+    }
+  },
+  "feedbackClaimIds": [],
+  "sources": [
+    {
+      "id": "founder",
+      "title": "Current synthetic founder request",
+      "url": null,
+      "kind": "founder",
+      "provenance": "synthetic_fixture",
+      "access": "provided",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "provided",
+      "retainedText": "Small B2B business for independent print shops. Three synthetic pain reports, two fitting colleagues tomorrow. Enter proof reference, approve/reject with note, see outstanding approvals. No hosting, accounts, messages, payments, deployment or real customer data. Do not build yet.",
+      "limitation": "Synthetic scope/context only; no validation or Act consent.",
+      "archived": false,
+      "independenceKey": "founder",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "printavo",
+      "title": "Printavo: Multiple Approvals and Automation",
+      "url": "https://updates.printavo.com/multiple-approvals-automation-59338",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "live",
+      "retainedText": "Separate quote/artwork approvals; automated approval requests and status changes.",
+      "limitation": "Vendor capability statement, no runtime test; pricing page fetch failed.",
+      "archived": false,
+      "independenceKey": "printavo",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "proofavo",
+      "title": "Proofavo User Manual",
+      "url": "https://proofavo.com/manual",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": "2026-08-14",
+      "delivery": "live",
+      "retainedText": "Version/file-specific approval. Free plan: 3 active projects; Starter USD29.90/month for 25 active projects; Professional USD79.90/month for unlimited active projects. Customer review link needs no account.",
+      "limitation": "Vendor-published offer/specification, not checkout or actual buyer spend.",
+      "archived": false,
+      "independenceKey": "proofavo",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "printing",
+      "title": "Printing approval discussion",
+      "url": "https://www.reddit.com/r/Printing/comments/1pe06e1/how_do_you_all_handle_client_approvals_without/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": "2025-12-04",
+      "delivery": "live",
+      "retainedText": "Commenters describe numbered PDF proofs and retained approval emails; some find email adequate. Other comments promote their own tools.",
+      "limitation": "Unverified identities and mixed promotions; no direct interviews.",
+      "archived": false,
+      "independenceKey": "printing",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "commercial",
+      "title": "CommercialPrinting proof discussion",
+      "url": "https://www.reddit.com/r/CommercialPrinting/comments/17ab924/proof_approvalshow_do_you_do_it/",
+      "kind": "discussion",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": "2023-10-18",
+      "delivery": "live",
+      "retainedText": "Emailed PDF workarounds. An owner/operator commenter describes delay seeing payment and approval events while in the shop; others find email adequate.",
+      "limitation": "Old anecdotes, unverified fit, no prevalence measure.",
+      "archived": false,
+      "independenceKey": "commercial",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "govisually",
+      "title": "GoVisually pricing",
+      "url": "https://govisually.com/pricing/",
+      "kind": "vendor",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "live",
+      "retainedText": "Review/approval tool with active projects, external reviewers and storage.",
+      "limitation": "Precise offer excluded: repeated price blocks and monthly/annual controls did not establish selected billing interval.",
+      "archived": false,
+      "independenceKey": "govisually",
+      "affiliation": "vendor"
+    },
+    {
+      "id": "storage",
+      "title": "MDN localStorage",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage",
+      "kind": "industry",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": "2026-07-28",
+      "delivery": "live",
+      "retainedText": "Browser policy can deny storage; file URL behavior undefined; storage persists across sessions.",
+      "limitation": "Documentation only, no runtime checks.",
+      "archived": false,
+      "independenceKey": "storage",
+      "affiliation": "unknown"
+    },
+    {
+      "id": "node",
+      "title": "Node HTTP documentation",
+      "url": "https://nodejs.org/api/http.html",
+      "kind": "industry",
+      "provenance": "public",
+      "access": "inspected",
+      "retrievedOn": "2026-10-06",
+      "publishedOn": null,
+      "delivery": "live",
+      "retainedText": "Node provides HTTP server APIs.",
+      "limitation": "Current documentation; pinned runtime compatibility not tested.",
+      "archived": false,
+      "independenceKey": "node",
+      "affiliation": "unknown"
+    }
+  ],
+  "claims": [
+    {
+      "id": "scope",
+      "statement": "Preparation only; do not build yet; synthetic data and local-only boundaries.",
+      "basis": "founder_reported",
+      "sourceIds": [
+        "founder"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Synthetic request, not build consent.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "access",
+      "statement": "Two fitting colleagues are available tomorrow in the synthetic scenario.",
+      "basis": "founder_reported",
+      "sourceIds": [
+        "founder"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "No verified appointments or completed interviews; relationship bias.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "pain_report",
+      "statement": "Three reports of chasing emailed PDF approvals are explicitly synthetic.",
+      "basis": "founder_reported",
+      "sourceIds": [
+        "founder"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "No real firsthand validation.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "incumbent",
+      "statement": "Printavo documents artwork approval automation.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "printavo"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Vendor assertion, no runtime verification.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "version",
+      "statement": "Proofavo documents approval tied to a specific version/file.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "proofavo"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Vendor specification.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "price",
+      "statement": "Proofavo lists Starter USD29.90/workspace/month for 25 active projects, plus a 3-project free plan.",
+      "basis": "reported_metric",
+      "sourceIds": [
+        "proofavo"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "List price, not actual target shop spend.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "email_ok",
+      "statement": "Some public printing commenters find email approval adequate.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "printing",
+        "commercial"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Unverified anecdotes, not prevalence.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "handoff",
+      "statement": "One CommercialPrinting commenter reports delay seeing approval/payment events while in the shop.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "commercial"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Old single account; not evidence a tracker removes delays.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "storage_risk",
+      "statement": "MDN documents storage policy failures and undefined file URL storage behavior.",
+      "basis": "public_observation",
+      "sourceIds": [
+        "storage"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Documentation only.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "design",
+      "statement": "A memory-only browser session served over loopback can test reference/decision clarity without PDF access, external APIs or identity claims.",
+      "basis": "inference",
+      "sourceIds": [
+        "founder",
+        "storage",
+        "node",
+        "proofavo"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Proposed design; no implementation or tests.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    },
+    {
+      "id": "business_gap",
+      "statement": "Real demand, frequency, time saved, buyer budget and willingness to maintain a second tracker remain unknown.",
+      "basis": "inference",
+      "sourceIds": [
+        "founder",
+        "printing",
+        "commercial"
+      ],
+      "supports": [],
+      "challenges": [],
+      "limitation": "Public examples and synthetic context cannot establish demand.",
+      "important": true,
+      "repetition": "single",
+      "metric": null,
+      "quote": null
+    }
+  ],
+  "research": [
+    {
+      "id": "pulse",
+      "question": "Is a bounded local reference/decision experiment worth testing, and what could invalidate its promise?",
+      "capability": "host_research",
+      "queryBudget": 3,
+      "pageBudget": 8,
+      "budgetReason": "Bounded batch for alternatives, counterevidence and local technical limits.",
+      "queries": [
+        {
+          "text": "print shop proof approval email workflow Printavo approval",
+          "materialFinding": true
+        },
+        {
+          "text": "print shop proof approval email reddit",
+          "materialFinding": true
+        },
+        {
+          "text": "online proofing approval pricing small print shop GoVisually",
+          "materialFinding": true
+        }
+      ],
+      "inspectedSourceIds": [
+        "printavo",
+        "proofavo",
+        "printing",
+        "commercial",
+        "govisually",
+        "storage",
+        "node"
+      ],
+      "stopReason": "coverage_sufficient",
+      "limitation": "Seven successful opened sources plus failed Printavo pricing fetch. No outreach/customer validation; GoVisually billing interval not established."
+    }
+  ],
+  "competitors": [],
+  "adjacent": [],
+  "habitats": [
+    {
+      "id": "printing_research",
+      "kind": "online",
+      "place": "https://www.reddit.com/r/Printing/comments/1pe06e1/how_do_you_all_handle_client_approvals_without/",
+      "observedClaimIds": [
+        "email_ok"
+      ],
+      "likelyUsers": "Self-described printing practitioners; fit unverified.",
+      "relevance": "Email approval workflow and counterexamples.",
+      "participation": {
+        "route": null,
+        "verified": false,
+        "sourceIds": [
+          "printing"
+        ]
+      },
+      "limitation": "Research only; posting/recruitment rules not inspected and no outreach permission."
+    },
+    {
+      "id": "commercial_research",
+      "kind": "online",
+      "place": "https://www.reddit.com/r/CommercialPrinting/comments/17ab924/proof_approvalshow_do_you_do_it/",
+      "observedClaimIds": [
+        "handoff",
+        "email_ok"
+      ],
+      "likelyUsers": "Self-described printing practitioners; fit unverified.",
+      "relevance": "Email approval workflow and counterexamples.",
+      "participation": {
+        "route": null,
+        "verified": false,
+        "sourceIds": [
+          "commercial"
+        ]
+      },
+      "limitation": "Research only; posting/recruitment rules not inspected and no outreach permission."
+    }
+  ],
+  "firstUserAvenues": [],
+  "redTeam": [],
+  "master": null,
+  "buildRequest": null,
+  "evaluation": {
+    "status": "in_progress",
+    "coverage": [
+      {
+        "topic": "frequency",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Public queries found anecdotes/vendor claims, insufficient to quantify this for the target segment."
+      },
+      {
+        "topic": "urgency",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Public queries found anecdotes/vendor claims, insufficient to quantify this for the target segment."
+      },
+      {
+        "topic": "pain",
+        "status": "findings",
+        "claimIds": [
+          "handoff",
+          "pain_report"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Bounded findings; actual buyer spending/fit and real demand remain untested."
+      },
+      {
+        "topic": "necessity",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "prevalence",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Public queries found anecdotes/vendor claims, insufficient to quantify this for the target segment."
+      },
+      {
+        "topic": "category_direction",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "buyer",
+        "status": "findings",
+        "claimIds": [
+          "scope"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Bounded findings; actual buyer spending/fit and real demand remain untested."
+      },
+      {
+        "topic": "existing_spend",
+        "status": "findings",
+        "claimIds": [
+          "price"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Bounded findings; actual buyer spending/fit and real demand remain untested."
+      },
+      {
+        "topic": "reachability",
+        "status": "findings",
+        "claimIds": [
+          "access"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Bounded findings; actual buyer spending/fit and real demand remain untested."
+      },
+      {
+        "topic": "founder_fit",
+        "status": "findings",
+        "claimIds": [
+          "access"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Bounded findings; actual buyer spending/fit and real demand remain untested."
+      },
+      {
+        "topic": "ai_substitutes",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "dedicated_value",
+        "status": "findings",
+        "claimIds": [
+          "version",
+          "business_gap"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Bounded findings; actual buyer spending/fit and real demand remain untested."
+      },
+      {
+        "topic": "competitors",
+        "status": "findings",
+        "claimIds": [
+          "incumbent",
+          "version",
+          "price"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Bounded findings; actual buyer spending/fit and real demand remain untested."
+      },
+      {
+        "topic": "user_language",
+        "status": "findings",
+        "claimIds": [
+          "handoff",
+          "email_ok"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Bounded findings; actual buyer spending/fit and real demand remain untested."
+      },
+      {
+        "topic": "traction",
+        "status": "unknown_after_search",
+        "claimIds": [],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Public queries found anecdotes/vendor claims, insufficient to quantify this for the target segment."
+      },
+      {
+        "topic": "gaps",
+        "status": "findings",
+        "claimIds": [
+          "business_gap"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Bounded findings; actual buyer spending/fit and real demand remain untested."
+      },
+      {
+        "topic": "adjacency",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "habitats",
+        "status": "findings",
+        "claimIds": [
+          "handoff",
+          "email_ok"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Bounded findings; actual buyer spending/fit and real demand remain untested."
+      }
+    ],
+    "promising": [
+      "A small reversible usability experiment can test the proposed interaction."
+    ],
+    "weak": [
+      "Separate tracking can duplicate email; established free/paid alternatives exist."
+    ],
+    "unknowns": [
+      "Real frequency, switching, saved labour, buyer budget and payment.",
+      "Local role-play cannot establish fewer follow-ups or authenticated approvals."
+    ],
+    "contradictions": [
+      "Some public commenters are satisfied with email; the test must allow a no-value result."
+    ],
+    "conclusion": "GO for a bounded local learning experiment only, conditional on founder review and separate exact build approval; not proven demand or production readiness."
+  },
+  "brief": {
+    "kind": "review",
+    "summary": "GO for a bounded local learning experiment only, conditional on founder review and separate exact build approval; not proven demand or production readiness.",
+    "seeing": [
+      "Public alternatives exist; synthetic context remains unvalidated."
+    ],
+    "matters": [
+      "Version clarity and duplicate entry are material."
+    ],
+    "next": "Review thesis and exact experiment; do not build yet.",
+    "questions": [],
+    "choices": []
+  },
+  "opportunity": null,
+  "discovery": {
+    "channels": "online",
+    "region": null,
+    "outcome": "not_run",
+    "runIds": [],
+    "limitation": "No first-user discovery has been run for this context yet."
+  },
+  "investigation": {
+    "coverage": [
+      {
+        "topic": "workaround",
+        "status": "findings",
+        "claimIds": [
+          "email_ok"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Provisional experiment finding; no completed customer/runtime test."
+      },
+      {
+        "topic": "willingness_to_pay",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "ability_to_pay",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "switching_cost",
+        "status": "findings",
+        "claimIds": [
+          "business_gap",
+          "email_ok"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Provisional experiment finding; no completed customer/runtime test."
+      },
+      {
+        "topic": "founder_insight",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "founder_expertise",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "founder_access",
+        "status": "findings",
+        "claimIds": [
+          "access"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Provisional experiment finding; no completed customer/runtime test."
+      },
+      {
+        "topic": "technical_feasibility",
+        "status": "findings",
+        "claimIds": [
+          "design",
+          "storage_risk"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Provisional experiment finding; no completed customer/runtime test."
+      },
+      {
+        "topic": "business_model_fit",
+        "status": "unexamined",
+        "claimIds": [],
+        "runIds": [],
+        "reason": "Not examined yet."
+      },
+      {
+        "topic": "intention_alignment",
+        "status": "findings",
+        "claimIds": [
+          "scope"
+        ],
+        "runIds": [
+          "pulse"
+        ],
+        "reason": "Provisional experiment finding; no completed customer/runtime test."
+      }
+    ],
+    "questions": [
+      {
+        "topic": "competitors",
+        "runIds": [
+          "pulse"
+        ],
+        "relevance": "Existing approvals and free substitutes can invalidate standalone value."
+      },
+      {
+        "topic": "user_language",
+        "runIds": [
+          "pulse"
+        ],
+        "relevance": "Check actual email practices and satisfaction counterexamples."
+      },
+      {
+        "topic": "habitats",
+        "runIds": [
+          "pulse"
+        ],
+        "relevance": "Printing discussions offer research, not verified recruitment permission."
+      },
+      {
+        "topic": "technical_feasibility",
+        "runIds": [
+          "pulse"
+        ],
+        "relevance": "Bound local serving, persistence, identity and data risks."
+      }
+    ],
+    "alternatives": [
+      {
+        "kind": "direct",
+        "competitorIds": [],
+        "runIds": [
+          "pulse"
+        ],
+        "conclusion": "Proofavo offers versions/approvals with free and paid plans; GoVisually broader review."
+      },
+      {
+        "kind": "incumbent",
+        "competitorIds": [],
+        "runIds": [
+          "pulse"
+        ],
+        "conclusion": "Printavo offers automated artwork approvals; satisfied users are outside first-user hypothesis."
+      },
+      {
+        "kind": "manual",
+        "competitorIds": [],
+        "runIds": [
+          "pulse"
+        ],
+        "conclusion": "Numbered PDF and retained reply satisfies some public commenters."
+      },
+      {
+        "kind": "spreadsheet",
+        "competitorIds": [],
+        "runIds": [],
+        "conclusion": "Provisional reference/status/note table is a zero-build comparator; no observed usage claim."
+      },
+      {
+        "kind": "do_nothing",
+        "competitorIds": [],
+        "runIds": [
+          "pulse"
+        ],
+        "conclusion": "Keep email if a tracker adds duplicate entry."
+      }
+    ],
+    "counterevidence": "Some public commenters are satisfied with email; the test must allow a no-value result.",
+    "decision": "GO for a bounded local learning experiment only, conditional on founder review and separate exact build approval; not proven demand or production readiness.",
+    "redefinition": null
+  },
+  "ide": {
+    "generations": {
+      "intention": 0,
+      "user": 0,
+      "problem": 0,
+      "evaluation": 0,
+      "act": 0
+    },
+    "confirmations": [],
+    "presentation": null,
+    "reviewBasis": null
+  },
+  "workingContext": {
+    "conversationId": "evaluation-repro-session",
+    "project": {
+      "customer": {
+        "value": "Owner/operator of an independent print shop personally coordinating emailed PDF proofs and production handoffs.",
+        "status": "inferred",
+        "confidence": "medium",
+        "source": "Current founder request; synthetic context"
+      },
+      "problem": {
+        "value": "The owner has to search email to tell which proof version still needs a decision and what changes were requested.",
+        "status": "inferred",
+        "confidence": "medium",
+        "source": "Current founder request; synthetic context"
+      },
+      "product": {
+        "value": "Bounded local proof-reference approval tracker; a learning prototype, not a production approval system.",
+        "status": "inferred",
+        "confidence": "medium",
+        "source": "Current founder request; synthetic context"
+      },
+      "validation": {
+        "value": "Three owner reports and access to two fitting colleagues are synthetic scenario context; no real interviews, use, commitment or payment.",
+        "status": "known",
+        "confidence": "medium",
+        "source": "Current founder request; synthetic context"
+      },
+      "decision": {
+        "value": "GO for a bounded usability/workflow experiment, conditional on founder review and separate exact build authorization.",
+        "status": "inferred",
+        "confidence": "medium",
+        "source": "Current founder request; synthetic context"
+      },
+      "market_pulse": {
+        "value": "Printavo automates artwork approvals; Proofavo pins approvals to versions and lists Starter USD29.90/month for 25 active projects. Email also satisfies some public commenters.",
+        "status": "known",
+        "confidence": "medium",
+        "source": "https://proofavo.com/manual; https://updates.printavo.com/multiple-approvals-automation-59338"
+      },
+      "risk": {
+        "value": "Local role-play cannot test customer response rates, less chasing, verified identity, file integrity, repeat use or willingness to pay.",
+        "status": "inferred",
+        "confidence": "medium",
+        "source": "Current founder request; synthetic context"
+      },
+      "next_move": {
+        "value": "Prepare exact scope and runnable test for 2026-10-07; present thesis for review, leaving build permission pending.",
+        "status": "inferred",
+        "confidence": "medium",
+        "source": "Current founder request; synthetic context"
+      }
+    },
+    "founder": {
+      "objective": {
+        "value": "Prepare a small B2B business experiment for independent print shops; investigate and scope a local learning prototype before requesting build permission.",
+        "status": "known",
+        "confidence": "medium",
+        "source": "Current founder request; synthetic context"
+      },
+      "constraints": {
+        "value": "Do not build yet. No PDF hosting, accounts, messages, payments, deployment or real customer data. Two fitting colleagues available tomorrow (synthetic founder statement).",
+        "status": "known",
+        "confidence": "medium",
+        "source": "Current founder request; synthetic context"
+      }
+    },
+    "inspected": [],
+    "opportunity": null
+  },
+  "quality": {
+    "technical": {
+      "material": true,
+      "summary": "Proposed dependency-free HTML/CSS/JS served on IPv4 loopback by pinned Node; memory only. No implementation or runtime tests yet.",
+      "centralRisk": "A typed label cannot verify file contents or reviewer identity. Local role-play cannot establish fewer follow-ups.",
+      "coverage": [
+        {
+          "topic": "data_apis",
+          "status": "not_relevant",
+          "claimIds": [
+            "scope"
+          ],
+          "runIds": [],
+          "reason": "No APIs, imports or customer datasets."
+        },
+        {
+          "topic": "freshness_quality",
+          "status": "findings",
+          "claimIds": [
+            "design",
+            "version"
+          ],
+          "runIds": [
+            "pulse"
+          ],
+          "reason": "Typed labels can be wrong; show exact immutable ref beside decision; validate blanks/duplicates."
+        },
+        {
+          "topic": "access_licensing",
+          "status": "not_relevant",
+          "claimIds": [
+            "scope"
+          ],
+          "runIds": [],
+          "reason": "No third-party PDF content or account access; original local interface."
+        },
+        {
+          "topic": "rate_cost",
+          "status": "not_relevant",
+          "claimIds": [
+            "scope"
+          ],
+          "runIds": [],
+          "reason": "No external provider, payment or dependency; founder/session time is a cost, unpriced."
+        },
+        {
+          "topic": "integrations",
+          "status": "not_relevant",
+          "claimIds": [
+            "scope"
+          ],
+          "runIds": [],
+          "reason": "No integrations or messages; one local operator."
+        },
+        {
+          "topic": "complexity_latency",
+          "status": "findings",
+          "claimIds": [
+            "design"
+          ],
+          "runIds": [
+            "pulse"
+          ],
+          "reason": "Deterministic three-state transitions; max 20 records; performance unmeasured."
+        },
+        {
+          "topic": "ai_deterministic",
+          "status": "findings",
+          "claimIds": [
+            "design"
+          ],
+          "runIds": [
+            "pulse"
+          ],
+          "reason": "No AI needed for status transitions/filtering."
+        },
+        {
+          "topic": "reliability_failures",
+          "status": "findings",
+          "claimIds": [
+            "design",
+            "storage_risk"
+          ],
+          "runIds": [
+            "pulse"
+          ],
+          "reason": "Planned checks: duplicate decision, invalid input, notes, reset and refresh data loss; no tests run."
+        },
+        {
+          "topic": "security_privacy",
+          "status": "findings",
+          "claimIds": [
+            "scope",
+            "design"
+          ],
+          "runIds": [
+            "pulse"
+          ],
+          "reason": "Synthetic labels only; literal text; no URL/file access, persistence or identity claims; loopback only."
+        },
+        {
+          "topic": "vendor_build_buy",
+          "status": "findings",
+          "claimIds": [
+            "incumbent",
+            "version",
+            "price"
+          ],
+          "runIds": [
+            "pulse"
+          ],
+          "reason": "Free/paid existing tools are commercial counterevidence; local build tests narrower interaction."
+        }
+      ],
+      "options": [
+        {
+          "name": "Local memory-only tracker",
+          "approach": "Loopback static server; immutable refs; mandatory decision notes; pending/rejected groups; reset.",
+          "tradeoff": "No persistence, remote review or customer identity; tests clarity only.",
+          "claimIds": [
+            "design",
+            "scope"
+          ]
+        },
+        {
+          "name": "Table rehearsal",
+          "approach": "Use identical fictional reference/status/note tasks before build authorization.",
+          "tradeoff": "Cheap workflow test, not executable UI interaction.",
+          "claimIds": [
+            "scope"
+          ]
+        },
+        {
+          "name": "Existing tool",
+          "approach": "Compare documented approvals without signing up/uploading.",
+          "tradeoff": "Useful benchmark; outside local experiment boundary.",
+          "claimIds": [
+            "incumbent",
+            "version",
+            "price"
+          ]
+        }
+      ],
+      "recommendation": {
+        "option": "Local memory-only tracker",
+        "reason": "Suitable as bounded usability experiment after authorization; allow duplicate-entry failure."
+      }
+    },
+    "founderFit": {
+      "edge": "Synthetic reports of prior shop work and two fitting colleagues.",
+      "limitation": "No real validation, verified expertise or proprietary advantage established.",
+      "claimIds": [
+        "access",
+        "pain_report"
+      ]
+    },
+    "learning": {
+      "uncertainty": "switching",
+      "reason": "Can a fitting owner use this tracker and name an existing step it replaces? Pain/frequency remain unvalidated.",
+      "recommendation": "build_decision",
+      "decision": "go",
+      "experiment": {
+        "promise": "In a local synthetic session, a print-shop owner can enter an exact proof reference, record approve/reject with a note, and identify pending approvals and rejected items needing changes.",
+        "capabilities": [
+          "Enter one immutable fictional proof reference per record; reject blank/duplicate refs; max 20 session records.",
+          "Approve or reject a pending reference with a required note; reference and decision cannot be overwritten.",
+          "See Pending approvals and Rejected/change-needed groups, counts and decision notes; reset session."
+        ],
+        "cuts": [
+          "PDF upload, hosting, viewing, parsing or file verification",
+          "Accounts, identity verification, remote review and sharing",
+          "Messages, reminders and integrations",
+          "Payments, commercial price test and deployment",
+          "Real customer data, disk/browser persistence and analytics",
+          "Revision management, reopening, production authorization and legal approval records"
+        ],
+        "limitations": "One operator/browser tab; memory only, refresh clears data. References are labels, not verified files. Decisions are simulated or manually recorded, not authenticated approvals. Cannot prove less chasing, saved labour, willingness to pay, repeat use, production safety or demand. Synthetic reports and access are not validation.",
+        "success": "On 2026-10-07 both fitting colleagues add/approve/reject and identify the remaining pending ref without task-specific help in <=3 minutes; neither confuses rejection with approval. At least one maps it to a concrete past workflow and names an existing step it would replace. Provisional continuation signal only.",
+        "failure": "Stop for wrong-ref approval, rejection/approval confusion or false production confidence. Rework/park if either needs task-specific help or both report duplicate entry with no replaceable step. Pain without tracker value suggests separately investigating handoff/reminders.",
+        "testDate": "2026-10-07"
+      }
+    }
+  }
+}

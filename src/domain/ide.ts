@@ -1,10 +1,12 @@
 import { createHash } from 'node:crypto';
 import { Ajv } from 'ajv';
-import { emptyPrebuild, prebuildSchema, validatePrebuild, coverageTopics, type PrebuildContext } from './prebuild.js';
+import { emptyPrebuild, prebuildSchema, validatePrebuild, prebuildReadinessRequirements, coverageTopics, type PrebuildContext } from './prebuild.js';
 import { plain } from './conversation.js';
-import { qualitySchema, validateQuality, researchableQuestion, evaluationHighlights, type EvaluationQuality } from './evaluation-quality.js';
+import { qualitySchema, validateQuality, boundedLearning, learningTopics, researchableQuestion, evaluationHighlights, type EvaluationQuality } from './evaluation-quality.js';
 import { validateFirstUserCards, type FirstUserCard, type FirstUserDiscovery } from './first-user-discovery.js';
 import { projectFactKeys, founderFactKeys, credibleWorkingFact, type WorkingFact, type FounderWorkingContext } from './founder-intelligence.js';
+import { qualityCompletionRequirements } from './evaluation-quality.js';
+import { completionChecks, CompletionError } from './completion.js';
 
 export const subjects = ['intention', 'user', 'problem', 'evaluation', 'act'] as const;
 export type Subject = typeof subjects[number];
@@ -144,6 +146,7 @@ export function ideState(c: IdeContext): { intention: string; target_user: strin
 }
 export function assertAct(c: AnyPrebuild): asserts c is IdeContext {
   if (c.contractVersion !== 2) throw new Error('Complete confirmed IDE and explicit Act confirmation; legacy readiness is historical.');
+  if(c.quality?.learning.decision&&c.quality.learning.decision!=='go')throw new Error('Act is locked: resolve ONE GAP or PIVOT/STOP before a GO commitment.');
   const state = ideState(c);
   for (const key of ['intention', 'target_user', 'problem_definition'] as const) if (state[key] !== 'founder_confirmed') throw new Error(`Act is locked: founder-confirmed ${key} is required.`);
   if (state.evaluation !== 'founder_reviewed') throw new Error('Act is locked: founder-reviewed evaluation is required.');
@@ -166,7 +169,7 @@ export function validateIde(input: unknown, pendingChange = false): asserts inpu
   if (Buffer.byteLength(JSON.stringify(input) ?? '') > 307_200) throw new Error('Keep IDE context below 300 KiB.');
   if (!shape(input)) throw new Error(`Invalid IDE context: ${shape.errors?.slice(0, 4).map(e => `${e.instancePath} ${e.message}`).join('; ')}`);
   const c = input as unknown as IdeContext;
-  validatePrebuild(legacyView(c));
+  validatePrebuild(legacyView(c),{bounded:boundedLearning(c),negative:c.quality?.learning.decision==='pivot_stop'||c.quality?.learning.decision==='one_gap',provisionalMaster:true});
   validateQuality(c);
   validateFirstUserCards(c);
   if (c.workingContext && (JSON.stringify(c.workingContext).length>6500 || Object.values({...c.workingContext.project,...c.workingContext.founder}).some(f=>f?.status==='inferred'&&f.confidence==='high') || c.workingContext.inspected.some(x=>/(^|[\\/])(?:\.git|\.customer-evidence|\.env)(?:[\\/]|$)/i.test(x.path)))) throw new Error('Working context must stay compact, confidence-aware and free of private paths.');
@@ -175,8 +178,7 @@ export function validateIde(input: unknown, pendingChange = false): asserts inpu
   const byTurn=new Map<string,Confirmation[]>();for(const receipt of c.ide.confirmations)byTurn.set(receipt.turnId,[...(byTurn.get(receipt.turnId)??[]),receipt]);
   if ([...byTurn.values()].some(group=>group.length>1&&(![3,4].includes(group.length)||new Set(group.map(r=>r.subject)).size!==group.length||!['intention','user','problem',...(group.length===4?['evaluation']:[])].every(s=>group.some(r=>r.subject===s))||new Set(group.map(r=>r.presentationId)).size!==1||new Set(group.map(r=>r.presentedText)).size!==1||new Set(group.map(r=>r.quote)).size!==1)) || new Set(c.ide.confirmations.map(r => r.id)).size !== c.ide.confirmations.length) throw new Error('Confirmation replies and receipt identities cannot be reused outside one displayed thesis.');
   if (c.ide.confirmations.some(r => !Number.isFinite(Date.parse(r.recordedAt)))) throw new Error('Confirmation receipts need valid times.');
-  if (!pendingChange && (c.master || c.brief.choices.some(x => ['shape_mvp', 'build_requested'].includes(x.action)))) assertAct(c);
-  if (!pendingChange && c.brief.choices.some(x => ['interview', 'master'].includes(x.action)) && !['reviewed', 'founder_reviewed'].includes(ideState(c).evaluation)) throw new Error('Finish evaluation before interview or opportunity-brief choices.');
+  if (!pendingChange && c.brief.choices.some(x => x.action === 'build_requested')) assertAct(c);
   const claims = new Set(c.claims.map(x => x.id)), runs = new Set(c.research.map(x => x.id)), alternatives = new Set(c.competitors.map(x => x.id));
   const checkRefs = (ids: string[], known: Set<string>) => { if (new Set(ids).size !== ids.length || ids.some(id => !known.has(id))) throw new Error('IDE investigation references must be unique and present.'); };
   for (const item of c.investigation.coverage) { checkRefs(item.claimIds, claims); checkRefs(item.runIds, runs); if (item.status === 'findings' && !item.claimIds.length) throw new Error('Coverage findings need claims.'); }
@@ -186,22 +188,38 @@ export function validateIde(input: unknown, pendingChange = false): asserts inpu
 }
 
 export function assertEvaluationComplete(c: IdeContext): void {
-  if (!subjects.slice(0, 3).every(s => confirmation(c, s))) throw new Error('Confirm Intention, User and Problem before completing Evaluation.');
-  if (c.investigation.redefinition) throw new Error('Resolve redefinition and reconfirm affected foundations before reviewing Evaluation.');
-  if (c.evaluation.status !== 'ready') throw new Error('Finish meaningful Evaluate before founder review.');
-  validateIde(c);
-  validateQuality(c,true);
+  const missing=evaluationRequirements(c);if(missing.length)throw new CompletionError(missing);
+}
+
+export function evaluationRequirements(c:IdeContext,prospective=false) {
+  const {items,check}=completionChecks();
+  check(subjects.slice(0,3).every(s=>confirmation(c,s)),'foundation_review','ide.confirmations','Confirm Intention, User and Problem before completing Evaluation.','present_and_confirm_exact_thesis','founder');
+  check(!c.investigation.redefinition,'redefinition','investigation.redefinition','Resolve redefinition and reconfirm affected foundations before reviewing Evaluation.','present_corrected_thesis','founder');
+  check(prospective||c.evaluation.status==='ready','ready_status','evaluation.status','Finish meaningful Evaluate before founder review.','submit_complete_review');
+  try{validateIde({...c,evaluation:{...c.evaluation,status:'limited'}},true);}catch(error){
+    check(false,'draft_integrity','context',error instanceof Error?error.message:'Invalid retained context.','repair_submitted_evidence');return items;
+  }
+  const bounded=boundedLearning(c),negative=c.quality?.learning.decision==='pivot_stop'||c.quality?.learning.decision==='one_gap';
+  items.push(...prebuildReadinessRequirements(legacyView(c),{bounded,negative}),...qualityCompletionRequirements(c));
   const all = [...c.evaluation.coverage, ...c.investigation.coverage];
-  if (all.length !== ideTopics.length || all.some(x => x.status === 'unexamined')) throw new Error('Investigate all relevant IDE dimensions; unknowns need relevant attempts.');
+  check(all.length===ideTopics.length,'topic_set','investigation.coverage','Investigate the decision-relevant IDE dimensions; unknowns need relevant attempts.');
+  for(const topic of ideTopics){
+    const row=all.find(x=>x.topic===topic),material=!bounded||learningTopics.some(t=>t===topic);
+    check(row&&(row.status!=='unexamined'||!material),'unexamined',`coverage.${topic}`,'Investigate the decision-relevant IDE dimensions; unknowns need relevant attempts.',material?'research_or_inspect_provided_sources':'initialize_unexamined_row');
+  }
   const attempted = (ids: string[]) => ids.some(id => { const r = c.research.find(x => x.id === id); return r && r.capability !== 'unavailable' && (r.queries.length > 0 || r.inspectedSourceIds.length > 0); });
   for (const item of all) {
+    if(bounded&&item.status==='unexamined')continue;
     if (item.status === 'not_relevant') continue;
     const question = c.investigation.questions.find(q => q.topic === item.topic);
-    if (!question || !attempted(question.runIds) || !question.runIds.some(id => item.runIds.includes(id))) throw new Error(`A relevant research question and attempt are required for ${item.topic}.`);
+    check(question&&attempted(question.runIds)&&question.runIds.some(id=>item.runIds.includes(id)),'topic_attempt',`investigation.questions.${item.topic}`,`A relevant research question and attempt are required for ${item.topic}.`,'retain_and_link_actual_attempt');
   }
-  if (c.investigation.alternatives.length !== alternativeKinds.length || c.investigation.alternatives.some(x => !attempted(x.runIds))) throw new Error('Investigate the competing product, service, manual, spreadsheet, AI and do-nothing alternatives.');
-  if (!c.investigation.counterevidence || !c.investigation.decision || c.claims.filter(x => x.important).some(x => !c.redTeam.some(r => r.claimId === x.id))) throw new Error('Evaluation needs counterevidence, a decision synthesis and challenges to important claims.');
-  if (!c.firstUserAvenues.length || c.evaluation.promising.length < 2) throw new Error('Retain credible user avenues and at least two qualified reasons for the decision.');
+  const requiredAlternatives=bounded?['direct','manual','do_nothing']:alternativeKinds;
+  for(const kind of requiredAlternatives)check(c.investigation.alternatives.some(x=>x.kind===kind&&attempted(x.runIds)),'alternative',`investigation.alternatives.${kind}`,'Investigate the competing product, manual and do-nothing alternatives; full builds require every alternative category.','inspect_alternative');
+  check(c.investigation.counterevidence&&c.investigation.decision,'decision','investigation','Evaluation needs counterevidence, a decision synthesis and challenges to important claims.','retain_analysis');
+  for(const claim of c.claims.filter(x=>x.important))check(c.redTeam.some(r=>r.claimId===claim.id),'challenge',`redTeam.${claim.id}`,'Evaluation needs counterevidence, a decision synthesis and challenges to important claims.','pressure_test_claim');
+  check(negative||(c.firstUserAvenues.length&&c.evaluation.promising.length>=(bounded?1:2)),'first_users','firstUserAvenues','Retain credible user avenues and qualified reasons for the decision.','retain_reachable_route_and_decision');
+  return items;
 }
 
 export function presentationText(c: IdeContext, s: Subject): string {
@@ -225,5 +243,8 @@ export function presentationText(c: IdeContext, s: Subject): string {
   if (c.ide.reviewBasis !== evaluationBasis(c)) throw new Error('Finish and review the current evaluation first.');
   if (s === 'evaluation') return [text(c.evaluation.conclusion), '', ...evaluationHighlights(c).map(x=>clean(x)), '', c.evaluation.unknowns[0] ? `The main thing still uncertain is ${clean(c.evaluation.unknowns[0])}.` : '', '', 'Does that fairly capture what we learned and the uncertainty we are carrying?'].filter(Boolean).join('\n\n');
   if (!confirmation(c, 'evaluation')) throw new Error('The founder must review Evaluation before the commitment decision.');
+  if(c.quality?.learning.decision&&c.quality.learning.decision!=='go')throw new Error('No build commitment for ONE GAP or PIVOT/STOP.');
+  const experiment=c.quality?.learning.experiment;
+  if(experiment)return `For ${text(c.definition.user.text)}, this is a bounded learning MVP: ${text(experiment.promise)}\n\nCapabilities: ${experiment.capabilities.map(text).join('; ')}.\nCuts: ${experiment.cuts.map(text).join('; ')}.\nLimits: ${text(experiment.limitations)}\nSuccess: ${text(experiment.success)}\nFailure: ${text(experiment.failure)}\nProposed first-user test: ${experiment.testDate}.\nRemaining uncertainty: ${text(c.quality!.learning.reason)}\nBuilding includes internal build stages, local tests, actual core-flow verification and ordinary fixes within this scope. Material scope, privacy, access or external-action changes need a new decision.\n\nDo you authorize building this exact scope?`;
   return `${c.preferredName ? `${text(c.preferredName.value)}, here` : 'Here'} is the build commitment: ${text(c.intention.statement)}\n\nFor ${text(c.definition.user.text)}, we would address ${text(c.definition.problem.text)}\n\n${c.evaluation.promising.slice(0,2).map(text).join(' ')} Remaining uncertainty: ${text(c.evaluation.unknowns[0]??null)}\n\nAre you ready to commit a build cycle to this?`;
 }
