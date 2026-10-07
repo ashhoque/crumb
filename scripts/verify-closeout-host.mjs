@@ -53,10 +53,11 @@ async function turn(threadId,text,first=false){
   return done;
 }
 function createFixture(id,seed='evaluated'){
-  if(id==='alpha-resume'){
+  if(id==='alpha-resume'||id==='alpha-repair-resume'){
     const selected=process.argv.find(x=>x.startsWith('--resume-fixture='))?.slice(17);
     const folder=selected&&resolve(selected),rel=folder&&relative(tmpdir(),folder);
-    if(!folder||!rel||rel.startsWith('..')||/^[A-Za-z]:/.test(rel)||basename(folder)!=='alpha-built'||!existsSync(folder))throw new Error('Resume only the existing disposable alpha-built test fixture inside the temporary directory.');
+    const expected=id==='alpha-resume'?'alpha-built':'alpha-repair';
+    if(!folder||!rel||rel.startsWith('..')||/^[A-Za-z]:/.test(rel)||basename(folder)!==expected||!existsSync(folder))throw new Error(`Resume only the existing disposable ${expected} test fixture inside the temporary directory.`);
     return folder;
   }
   const folder=join(fixtureDir,id);mkdirSync(folder);
@@ -139,6 +140,7 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'alpha-repair-resume',messages:['$crumb Continue the same tool-loan project from its saved evaluation and prepared scope. Do not build or contact anyone. Where are we, and what is actually still blocking the next useful move?']},
     {id:'alpha-repair',seed:'fresh',messages:[
       '$crumb I want a small B2B business for independent electronics repair shops. In this synthetic scenario three shop managers I know report losing track of loaned bench tools; this is supplied test context, not verified demand. Prepare a small local learning MVP: record a tool loan with borrower and due date, mark it returned, and see outstanding loans. No accounts, payments, messaging, deployment or real customer data. I can observe two fitting colleagues trying it tomorrow. Investigate only material gaps, retain an honest evaluation, and prepare a concise scope and runnable test plan. Do not build yet.',
       "Looks good, don't build yet. I agree with the working user, problem and evaluation you displayed. Finish the reversible preparation and show the exact local scope and limitations for my build decision.",
