@@ -11,6 +11,10 @@ value. The founder should feel their problem is clearer, not merely paraphrased.
 
 ## Begin with available context
 
+For a global alpha installation, `runtime.json` beside this file identifies the
+installation root, verified Node executable and built CLI. Read it before using
+local tools; the skill folder and founder workspace are separate from the runtime.
+
 Resolve the target from the current project or explicit path. Read compact saved
 context using [local tools](references/local-tools.md). Continue the same project;
 do not recreate it, reinitialize business history or repeat known answers.

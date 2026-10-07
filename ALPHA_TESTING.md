@@ -1,96 +1,71 @@
-# Try Crumb (alpha)
+# Try Crumb (closed alpha on Windows)
 
-Crumb is a Codex skill that helps clarify an idea, research alternatives, and choose
-a small next step. This alpha uses the existing M1-R2 skill and local runtime.
-It is not a standalone chatbot. Allow about 10–15 minutes for a first trial.
+Receive **setup.bat** and double-click it. Keep the window open through the five
+installation stages. Codex CLI opens in that same window with `$crumb` already
+activated in its first message. Tell Crumb what you want to work on.
 
-## 1. Get ready
+## Already-installed prerequisites
 
-You need Git, a signed-in Codex app or Codex CLI with repository skill support,
-and **Node 24.19.0** with npm **9 or newer** (the development pin is npm 9.6.7).
-Select the exact Node version in `.node-version`; other versions are rejected by
-the existing runtime. If you use a version manager, install/select that version.
-Otherwise get the matching installer from [Node releases](https://nodejs.org/en/download/archive).
-Codex access/usage is provided by your own account; setup does not supply it.
+Git, Node **24.19.0**, npm **9+**, and authenticated working **Codex CLI** must be
+available on PATH. This branch pins Node exactly and uses its built-in SQLite.
+Having only the desktop app without the `codex` command is insufficient. Missing
+or incompatible prerequisites produce an error; setup does not install them or
+change global runtimes. GitHub and npm registry access must work. If the repo is
+private, Git authentication/access must already work without login prompts.
 
-In a terminal:
+## Installation
 
-```sh
-git clone https://github.com/ashhoque/crumb.git
-cd crumb
-npm run setup
-```
+Setup clones the latest `alpha-testing-layer` into the account's Windows local
+application-data directory under `CrumbAlpha/runtime`. Clean existing installs
+update by fast-forward fetch/merge. It runs the existing `npm run setup`: locked
+dependencies with lifecycle scripts disabled, TypeScript build, and Node/SQLite
+`doctor`. Detailed command output goes to `CrumbAlpha/setup.log`.
 
-Setup installs lockfile dependencies without package lifecycle scripts, builds
-the existing runtime, and checks Node/SQLite. It needs npm registry access on first
-install. It changes only this clone's ignored `node_modules/` and `dist/` folders;
-it does not install a global skill, change PATH, or initialize your project.
-Rerun the same command after pulling updates. The local runtime check does not
-verify Codex discovery, research access, or conversational quality.
+Only Crumb is installed in the OS account's global `.agents/skills/crumb`, with a
+runtime locator and ownership hashes. Other skills are untouched. An unrelated
+existing Crumb skill or modified owned files cause an error and are preserved.
+Missing owned files and interrupted unmodified updates can be repaired by rerunning.
+Concurrent installers are prevented. No administrator permissions are required.
 
-## 2. Open and use the skill
+**This M1-R2 branch has no required MCP servers.** Its skill invokes the local CLI;
+no MCP service, credentials or registration are needed. Setup checks the copied
+files, then starts the actual Codex app-server and requires the exact installed
+skill to be enabled with `user` scope from a separate workspace. It also asks
+Codex to parse its effective configuration. It prints **Crumb is ready!** only
+when all installation checks pass, then launches Codex CLI with a Crumb welcome.
 
-Open **the cloned `crumb` folder** as a project in Codex and start a new chat.
-CLI users can run `codex` from that folder. Send:
+The initial workspace is `CrumbAlpha/workspace`, separate from the runtime source.
+A process-local override trusts only this workspace for the launch. Normal tool
+approval and sandbox settings remain in effect. Setup never rewrites `config.toml`.
+Inherited `CODEX_HOME` remains in effect for configuration and authentication;
+global skills use the OS home independently of `CODEX_HOME`. Codex may maintain
+its own normal session files. See [official skill locations](https://learn.chatgpt.com/docs/build-skills)
+and [CLI commands](https://learn.chatgpt.com/docs/developer-commands?surface=cli).
 
-```text
-$crumb Run the discovery probe only.
-```
+## Test and send feedback
 
-Expected reply: `CRUMB_M1R2_SKILL_LOADED`, with pre-build evaluation available.
-This probe should not create project data. Then try:
+Try an idea or a clearly labeled synthetic example. Ask “View competitors” or
+“Why?”, correct an assumption, and check whether the next step fits your goal.
+For an existing project, name its actual absolute folder and files Crumb may read.
+Ordinary tool/folder permissions can still apply during use; installation does
+not disable them. Keep the runtime folder while using the skill.
 
-```text
-$crumb Let's try a synthetic example. I want a personal tool to compare stocks,
-because I keep forgetting why I preferred one over another. Help me clarify
-the problem before deciding what to build.
-```
+[Send alpha feedback](https://github.com/ashhoque/crumb/issues/new?template=alpha-feedback.yml)
+or reply to your inviter. Include what you tried, expected and got. Errors stay
+visible until acknowledged. After a network interruption, double-click setup again.
+Nothing is sent automatically. Do not attach credentials or customer databases.
 
-Continue naturally. Try “View competitors”, “Why?”, or correct an assumption.
-Look for a clearer problem, inspectable sources, and a next step that fits your goal.
-Crumb should distinguish synthetic examples, real public findings, and unknowns.
-Research depends on your host's available tools and permissions.
+This branch retains M1-R2 limits: no raw confidential imports, automated outreach,
+spending, deployment, or second tracked build cycle. Technical checks and public
+research do not establish customer demand.
 
-For your own existing project, keep this Codex chat open and explicitly name its
-absolute folder, for example:
+## Maintainer verification
 
-```text
-$crumb Use my existing project at /absolute/path/to/my-project. Read its README
-and relevant code, preserve its stack, and help me decide what matters next.
-```
-
-Replace the path (on Windows, use your actual `C:\...` folder). Crumb is scoped
-to this clone; opening another repository alone does not install it there.
-The host must have access to your selected folder; approve any required folder
-access in Codex. Normal use can add an ignored `.customer-evidence/` workspace
-and protective `.gitignore` rules in the selected target. Use a disposable folder
-for a synthetic trial. Keep this clone while using Crumb; the skill relies on its runtime.
-
-## 3. Send feedback
-
-[Open alpha feedback](https://github.com/ashhoque/crumb/issues/new?template=alpha-feedback.yml).
-A GitHub account is required. Include what you tried, expected, and got, plus
-whether setup worked and whether the conversation helped. Run `git rev-parse --short HEAD`
-to identify your checkout. A redacted excerpt or screenshot is optional.
-If you cannot use GitHub, send those same details directly to the friend who invited you.
-Do not attach credentials, customer notes, or `.customer-evidence/` databases.
-Nothing is sent automatically; there is no telemetry or feedback upload.
-
-## If something gets stuck
-
-- Wrong Node: run `node --version`, select 24.19.0, and rerun setup in the same terminal.
-- Install fails: check npm registry/network access and rerun setup; keep the error for feedback.
-- Skill missing: confirm Codex opened this clone, start a fresh chat/reopen the project,
-  and check `.agents/skills/crumb/SKILL.md` exists. As a fallback, ask Codex to read that
-  file explicitly and use its instructions, keeping this clone as the installation root.
-- Runtime trouble: `npm run crumb -- doctor` checks the local runtime again.
-  This command is a diagnostic, not the conversational skill.
-
-For developer verification, `npm run check` builds and runs the offline suite.
-An optional `npm run check:host` probes the installed Codex CLI using your normal
-account and may consume usage. The manual probe above is enough for a first trial.
-The [milestone trial guide](M1_R2_TEST_GUIDE.md) has deeper scenarios.
-
-Current limits: no raw confidential customer-data import, automated outreach,
-spending, deployment, or second tracked build cycle. Public research and passing
-tests do not establish customer demand. Build scope remains reviewable before execution.
+`npm run check` runs offline regressions and installer file tests.
+`node scripts/verify-alpha-install.mjs` probes native Codex in an isolated fixture
+without copying authentication. This Windows Codex build uses the real OS home
+even with HOME/USERPROFILE overrides, so the fixture proves **repo discovery**,
+not global user discovery. Production installation still requires `user` discovery.
+`scripts/verify-alpha-bootstrap.ps1` exercises the Windows bootstrap with synthetic
+command adapters, not a live GitHub download or an interactive model response.
+See [verification results](docs/ALPHA_INSTALLER_VERIFICATION.md).

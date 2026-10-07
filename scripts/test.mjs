@@ -7,6 +7,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const tests = readdirSync(join(root, 'dist/tests')).filter(name => name.endsWith('.test.js')).sort().map(name => join(root, 'dist/tests', name));
 if (tests.length === 0) throw new Error('Build the M0 tests before running them.');
 tests.push(join(root, 'scripts/setup.test.mjs'));
+tests.push(join(root, 'scripts/install-alpha.test.mjs'));
 const preload = pathToFileURL(join(root, 'scripts/offline-guard.mjs')).href;
 const result = spawnSync(process.execPath, ['--test', '--test-reporter=tap', ...tests], {
   cwd: root, stdio: 'inherit', windowsHide: true,

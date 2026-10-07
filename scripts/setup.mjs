@@ -20,7 +20,7 @@ export function setup({ version = process.versions.node, npmCli = process.env.np
     if (result.error) throw new Error(`${label} failed: ${result.error.message}`);
     if (result.status !== 0) throw new Error(`${label} failed (exit ${result.status ?? 'unknown'}). Fix the error above, then rerun npm run setup.`);
   }
-  console.log('\nCrumb is ready locally. Open this clone in Codex, start a new chat, and send:\n$crumb Run the discovery probe only.\nThen follow ALPHA_TESTING.md. No global skill or target project was installed.');
+  console.log('\nLocal runtime build and doctor passed. The Windows setup.bat additionally installs and verifies the global skill before launching Codex.');
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {

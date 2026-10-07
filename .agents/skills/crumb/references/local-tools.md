@@ -1,8 +1,11 @@
 # Local tools for Crumb M1-R2
 
 The founder speaks naturally. You operate these tools and present their meaning,
-not JSON, IDs or internal validation fields. Installation root is the repository
-containing this skill; target is the founder's explicitly selected existing folder.
+not JSON, IDs or internal validation fields. For a global alpha installation, read
+`../runtime.json` relative to this reference: `root` is the installation repository,
+`node` is the verified executable, and `cli` is the built local tool entry point.
+For a repository-local development skill, installation root is the repository
+containing this skill. Target is the founder's explicitly selected existing folder.
 Never initialize a different project to get around an existing cycle or error.
 
 ## Runtime and current context
