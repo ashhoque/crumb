@@ -222,7 +222,7 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
       presentationText(c, p.subject);
       if (c.ide.confirmations.some(x => x.turnId === r.turnId)) throw new Error('A founder reply cannot confirm multiple statements.');
       const quote = r.quote!.trim();
-      if (!agreesWithPresentation(quote,r.interpretation)) throw new Error(p.subject === 'act' ? 'Are you ready to commit this build cycle, or is there something you want to adjust first? Explicit agreement with the current commitment is still needed.' : 'Does that capture it, or is there one part you would change? I need clear agreement before recording this confirmation.');
+      if (!(p.subject==='evaluation'?agreesWithThesis(quote,r.interpretation):agreesWithPresentation(quote,r.interpretation))) throw new Error(p.subject === 'act' ? 'Are you ready to commit this build cycle, or is there something you want to adjust first? Explicit agreement with the current commitment is still needed.' : 'Does that capture it, or is there one part you would change? I need clear agreement before recording this confirmation.');
       c.ide.confirmations.push({ id: randomUUID(), subject: p.subject, basis: p.basis, presentationId: p.id, presentedText: p.text, turnId: r.turnId!, quote, recordedAt: new Date().toISOString() });
       c.ide.presentation = null;
     }

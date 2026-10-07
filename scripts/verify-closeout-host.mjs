@@ -146,7 +146,7 @@ try{
       "Looks good, don't build yet. I agree with the working user, problem and evaluation you displayed, including the uncertainties. Complete reversible preparation and show the exact scope and limitations for my build decision.",
       'Yes, I authorize building exactly the local CSV handover scope and limitations you just displayed. Only synthetic local files; no sending, deployment or extra features.',
       'Continue the unchanged approved local scope. Run the application against a small known CSV and check the exported rows and draft. Prepare the first-user observation plan.',
-      'Finish the unchanged authorized work and verify the actual main task. If there is a genuine unsatisfied approval boundary, show its exact scope rather than assuming consent.'
+      'Yes, I approve the exact unchanged local scope and build pack you just displayed. Run the authorized stages, verify the actual main task and stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.'
     ]},
     {id:'alpha-repair-resume',messages:['$crumb Continue the same tool-loan project from its saved evaluation and prepared scope. Do not build or contact anyone. Where are we, and what is actually still blocking the next useful move?']},
     {id:'alpha-repair',seed:'fresh',messages:[

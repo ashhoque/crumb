@@ -10,6 +10,7 @@ import {evaluationRequirements,assertAct,confirmation,type IdeContext} from '../
 import {CompletionError} from '../src/domain/completion.js';
 import {learningTopics} from '../src/domain/evaluation-quality.js';
 import {competitorFields} from '../src/domain/prebuild.js';
+import {agreesWithPresentation} from '../src/domain/reply.js';
 
 function draft(root:string){
  const first=saveWorkingContext(root,{expectedVersion:0,start:true,synthetic:true,conversationId:'completion_fixture_session',delta:{}});
@@ -38,6 +39,25 @@ test('Recorded incomplete closeout exposes all material omissions together and w
  assert.ok(missing.every(x=>x.owner==='crumb'));
  assert.throws(()=>transitionIde(root,{operation:'review',expectedVersion:saved.version}),error=>error instanceof CompletionError&&error.requirements.length>10);
  assert.equal(readPrebuild(root)!.hash,saved.hash);assert.throws(()=>assertAct(c));
+});
+
+test('Actual scoped host agreement records review and Act without granting excluded actions; refusal and changed basis still block',t=>{
+ const root=temporaryProject(t),saved=draft(root);
+ let current=transitionIde(root,{...completion(saved.context as IdeContext,saved.version,saved.hash),contextHash:saved.hash} as Parameters<typeof transitionIde>[1]);
+ const quote='Yes, I authorize building exactly the local CSV handover scope and limitations you just displayed. Only synthetic local files; no sending, deployment or extra features.';
+ const interpretation={meaning:'agreement' as const,explanation:'Clear assent to the displayed current statement; external actions and extra scope remain excluded.'};
+ assert.equal(agreesWithPresentation(quote),false);
+ for(const denied of ["Looks good, don't build yet.",'Yes, but change the buyer.','Yes; no building.','Maybe; no sending.','"Yes"; no sending.'])assert.equal(agreesWithPresentation(denied,interpretation),false,denied);
+ current=transitionIde(root,{operation:'present',subject:'evaluation',expectedVersion:current.version});
+ current=transitionIde(root,{operation:'confirm',expectedVersion:current.version,presentationId:(current.context as IdeContext).ide.presentation!.id,quote,turnId:'synthetic_evaluation_assent',interpretation});
+ assert.throws(()=>assertAct(current.context));
+ current=transitionIde(root,{operation:'present',subject:'act',expectedVersion:current.version});
+ const p=(current.context as IdeContext).ide.presentation!;
+ assert.throws(()=>transitionIde(root,{operation:'confirm',expectedVersion:current.version,presentationId:p.id,quote:"Looks good, don't build yet.",turnId:'synthetic_act_denial',interpretation}),/Explicit agreement/);
+ current=transitionIde(root,{operation:'confirm',expectedVersion:current.version,presentationId:p.id,quote,turnId:'synthetic_scoped_act_assent',interpretation});
+ assert.doesNotThrow(()=>assertAct(current.context));
+ const changed=saveEvaluationUpdate(root,{expectedVersion:current.version,changes:{evaluation:{...(current.context as IdeContext).evaluation,conclusion:'Materially changed direction, not the approved evaluation.'}}});
+ assert.throws(()=>assertAct(changed.context));
 });
 
 test('Supported review atomically links actual fixture attempts, completes, reads and resumes; retries are no-ops',t=>{
