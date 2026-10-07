@@ -64,3 +64,9 @@ TOML override and `$crumb` prompt through a synthetic npm entry point. After ato
 skill/manifest replacement and missing-file repair checks were added, the focused
 installer/setup tests passed 7/7 (exit 0). The full suite had passed 147/147 before
 that final atomic-copy adjustment. No interactive authenticated welcome is claimed.
+Post-publication fresh download proof: actual GitHub clone of alpha-testing-layer
+at adc7fee into a disposable path with spaces, followed by the published npm setup:
+exit 0. setup.bat, install-alpha.mjs and launch-alpha.mjs were retrieved from GitHub;
+locked dependency install, TypeScript build and Windows SQLite doctor passed in
+that fresh clone. This still excludes global skill registration and interactive
+Codex launch under a separate real account.
