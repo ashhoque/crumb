@@ -11,6 +11,7 @@ import {CompletionError} from '../src/domain/completion.js';
 import {learningTopics} from '../src/domain/evaluation-quality.js';
 import {competitorFields} from '../src/domain/prebuild.js';
 import {agreesWithPresentation} from '../src/domain/reply.js';
+import {continueBuild} from '../src/application/session.js';
 
 function draft(root:string){
  const first=saveWorkingContext(root,{expectedVersion:0,start:true,synthetic:true,conversationId:'completion_fixture_session',delta:{}});
@@ -60,6 +61,14 @@ test('Actual scoped host agreement records review and Act without granting exclu
  assert.throws(()=>transitionIde(root,{operation:'confirm',expectedVersion:current.version,presentationId:p.id,quote:"Looks good, don't build yet.",turnId:'synthetic_act_denial',interpretation}),/Explicit agreement/);
  current=transitionIde(root,{operation:'confirm',expectedVersion:current.version,presentationId:p.id,quote:bounded,turnId:'synthetic_scoped_act_assent',interpretation});
  assert.doesNotThrow(()=>assertAct(current.context));
+ const continuation={phrase:'Continue the Crumb build.',host:{host:'codex',sharedProjectFiles:true,canExecute:true},paths:[],permissionQuote:bounded};
+ assert.throws(()=>continueBuild(root,{...continuation,host:'codex',sharedProjectFiles:true,canExecute:true}),/build continuation/);
+ assert.throws(()=>continueBuild(root,{...continuation,paths:['../../preparation/BUILD-DECISION.md']}),/path|relative|escape/i);
+ const file=join(root,'continue.json');writeFileSync(file,JSON.stringify(continuation));
+ const cli=fileURLToPath(new URL('../src/cli/main.js',import.meta.url));
+ const continued=spawnSync(process.execPath,[cli,'internal','continue-build',root,'--input-file',file],{encoding:'utf8'});
+ assert.equal(continued.status,0,continued.stderr);assert.equal(JSON.parse(continued.stdout).mode,'build');
+ assert.equal(JSON.parse(continued.stdout).executionApproved,false);
  const changed=saveEvaluationUpdate(root,{expectedVersion:current.version,changes:{evaluation:{...(current.context as IdeContext).evaluation,conclusion:'Materially changed direction, not the approved evaluation.'}}});
  assert.throws(()=>assertAct(changed.context));
 });

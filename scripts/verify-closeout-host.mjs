@@ -54,10 +54,10 @@ async function turn(threadId,text,first=false){
   return done;
 }
 function createFixture(id,seed='evaluated'){
-  if(id==='alpha-resume'||id==='alpha-repair-resume'||id==='alpha-completion-resume'){
+  if(id==='alpha-resume'||id==='alpha-repair-resume'||id==='alpha-completion-resume'||id==='alpha-completion-build-resume'){
     const selected=process.argv.find(x=>x.startsWith('--resume-fixture='))?.slice(17);
     const folder=selected&&resolve(selected),rel=folder&&relative(tmpdir(),folder);
-    const expected=id==='alpha-resume'?'alpha-built':id==='alpha-completion-resume'?'alpha-completion':'alpha-repair';
+    const expected=id==='alpha-resume'?'alpha-built':id.startsWith('alpha-completion')?'alpha-completion':'alpha-repair';
     if(!folder||!rel||rel.startsWith('..')||/^[A-Za-z]:/.test(rel)||basename(folder)!==expected||!existsSync(folder))throw new Error(`Resume only the existing disposable ${expected} test fixture inside the temporary directory.`);
     return folder;
   }
@@ -103,7 +103,7 @@ async function start(id,seed='evaluated',existingFolder){
   const folder=existingFolder??createFixture(id,seed);
   const liveWeb=process.argv.includes('--live-web');
   const requestedModel=selectedModel;
-  const implementationPolicy=['alpha-build','alpha-repair','alpha-completion','alpha-completion-resume'].includes(id)?'Product code writes are permitted only inside this disposable project after the actual founder reply authorizes the exact displayed scope and existing Act checks pass. No permission is supplied by this test instruction.':'No product code implementation.';
+  const implementationPolicy=['alpha-build','alpha-repair','alpha-completion','alpha-completion-resume','alpha-completion-build-resume'].includes(id)?'Product code writes are permitted only inside this disposable project after the actual founder reply authorizes the exact displayed scope and existing Act checks pass. No permission is supplied by this test instruction.':'No product code implementation.';
   const installedConfig=await request('config/read',{cwd:folder});
   const hostInstructions=installedConfig.config.developer_instructions??'';
   results.hostIdentityInstructions=hostInstructions;
@@ -141,6 +141,11 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'alpha-completion-build-resume',messages:[
+      '$crumb Continue the same CSV handover-checker project. My approval of the exact displayed local scope and limitations is unchanged: I authorize building that bounded local MVP now. Finish the authorized work, run the real task and leave its observation plan ready. Stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.',
+      'Yes, I approve the exact unchanged local build pack and stage policy you just displayed. Run the authorized stages and verify the application against the known fixture. Stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.',
+      'Complete the unchanged authorized scope and verify the actual user task. Give me the runnable artifact and prepared observation plan. Do not add features.'
+    ]},
     {id:'alpha-completion-resume',messages:[
       '$crumb Continue the same agency CSV handover-checker project from its saved evaluation and prepared scope. Do not build or contact anyone yet. Show the current exact local commitment and its limitations; reuse the existing investigation.',
       'Yes, I authorize building exactly the current local CSV handover commitment and limitations you just displayed. Stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.',

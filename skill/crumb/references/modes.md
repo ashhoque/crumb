@@ -34,8 +34,13 @@ another chat, uploads files or accesses unrelated private files.
 
 ## Build continuation
 
-On **Continue the Crumb build.**, run `continue-build` with that phrase, host
-capabilities, permitted selected source paths and actual permission quote.
+After scoped Act assent, run `continue-build` in this already build-capable host;
+the founder need not type a special phrase or open another session. Its exact request
+is `{"phrase":"Continue the Crumb build.","host":{"host":"codex","sharedProjectFiles":true,"canExecute":true},"paths":[],"permissionQuote":"actual scoped founder permission"}`.
+The host capabilities are nested for this operation. Paths are relative to the
+Core target's saved projectReference, never `../` escapes. Fresh projects with no
+existing code use an empty paths array. Existing apps require permitted actual
+source files in that bound root, not installation or note documents as app evidence.
 The core reads/verifies both context and handoff, confirms current revision/Act,
 and inspects only selected files. Existing repositories require inspection.
 No restatement of intention/user/problem/research is needed. Missing or stale
