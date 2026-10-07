@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "app": "<disposable-project>\\crumb-contexts\\01a113e4-7fec-7091-8c45-c5c6357e8969\\handover_check.py",
+  "source": "<disposable-project>\\independent-b7018bcfcd6b4dbaaf43a9648ce543ca.csv",
+  "output": "<disposable-project>\\independent-output-ee25a98b6b3f42adacf804b23b514b37",
+  "exitCode": 0,
+  "stdout": "Scanned: 6; incomplete: 4\n<disposable-project>\\independent-output-ee25a98b6b3f42adacf804b23b514b37\\incomplete.csv\n<disposable-project>\\independent-output-ee25a98b6b3f42adacf804b23b514b37\\follow_up.txt\n",
+  "expectedRows": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "actualRows": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "expectedReasons": [
+    "owner",
+    "due_date",
+    "owner;due_date",
+    "owner"
+  ],
+  "actualReasons": [
+    "owner",
+    "due_date",
+    "owner;due_date",
+    "owner"
+  ],
+  "inputUnchanged": true,
+  "inputHash": "97d1b383267d28efb10edaeaeb994b80a2c7c9be47bca91cd447527022de1767",
+  "overwriteRefused": true,
+  "repeatExitCode": 2,
+  "artifacts": {
+    "follow_up.txt": "723c2e92df62809ac027b4bf705fe4a1abff5256e5e4f990cf6e2aaa6215978e",
+    "incomplete.csv": "cd8b32e9400567516d24a134416be3f6196fc9924c01d08cecd32eaf8e38c42c"
+  },
+  "verification": "Actual delivered command-line application executed; no browser/UI claim."
+}

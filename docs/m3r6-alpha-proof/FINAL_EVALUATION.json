@@ -1,0 +1,1458 @@
+{
+  "version": 10,
+  "hash": "d2d00f02533b11f413784db9f1fbc293f159fee8b6a1b722442e98a8b481394b",
+  "requirements": [],
+  "context": {
+    "contractVersion": 2,
+    "expectedVersion": 9,
+    "synthetic": true,
+    "stage": "evaluate",
+    "project": {
+      "name": "Current project",
+      "entry": "unknown",
+      "artifacts": [],
+      "permissionQuote": null
+    },
+    "preferredName": null,
+    "intention": {
+      "status": "provided",
+      "goal": "custom",
+      "statement": "Learn whether a small local CSV handover checker helps independent web agencies; prepare scope and October 8 test, do not build yet.",
+      "advice": "Keep the first reversible test aligned with the stated objective and constraints."
+    },
+    "definition": {
+      "user": {
+        "text": "Technical delivery managers at independent web agencies who receive task handover CSVs; two fitting colleagues are reportedly available October 8.",
+        "claimIds": [
+          "84790c58-5698-4687-ba2d-5aaab1a3ce0b"
+        ],
+        "basis": "inferred"
+      },
+      "buyer": {
+        "text": null,
+        "claimIds": [],
+        "basis": "unknown"
+      },
+      "problem": {
+        "text": "Handover CSVs sometimes omit a responsible owner or due date, leaving delivery managers to chase clarification.",
+        "claimIds": [
+          "92c4913c-208f-4556-8e13-a88896debba9"
+        ],
+        "basis": "inferred"
+      },
+      "trigger": {
+        "text": null,
+        "claimIds": [],
+        "basis": "unknown"
+      },
+      "job": {
+        "text": null,
+        "claimIds": [],
+        "basis": "unknown"
+      },
+      "workaround": {
+        "text": null,
+        "claimIds": [],
+        "basis": "unknown"
+      },
+      "pain": {
+        "text": null,
+        "claimIds": [],
+        "basis": "unknown"
+      },
+      "consequence": {
+        "text": null,
+        "claimIds": [],
+        "basis": "unknown"
+      },
+      "frequency": {
+        "text": null,
+        "claimIds": [],
+        "basis": "unknown"
+      },
+      "reason_for_belief": {
+        "text": null,
+        "claimIds": [],
+        "basis": "unknown"
+      }
+    },
+    "feedbackClaimIds": [],
+    "sources": [
+      {
+        "id": "smartsheet",
+        "title": "Free project handover templates",
+        "url": "https://www.smartsheet.com/content/project-handover-templates",
+        "kind": "vendor",
+        "provenance": "public",
+        "access": "inspected",
+        "retrievedOn": "2026-10-06",
+        "publishedOn": null,
+        "delivery": "live",
+        "retainedText": "Free downloadable checklist templates include owner, due date and status.",
+        "limitation": "Vendor templates do not prove agency use or outcomes.",
+        "archived": false,
+        "independenceKey": "smartsheet",
+        "affiliation": "vendor"
+      },
+      {
+        "id": "pmtoolbox",
+        "title": "Handoff Readiness Checker",
+        "url": "https://thepmtoolbox.com/tools/handoff-readiness-checker",
+        "kind": "vendor",
+        "provenance": "public",
+        "access": "inspected",
+        "retrievedOn": "2026-10-06",
+        "publishedOn": null,
+        "delivery": "live",
+        "retainedText": "Page offers CSV/XLSX handoff review inside the browser, checks ownership and other handoff attributes, and says nothing is uploaded.",
+        "limitation": "Marketing capability inspected; product not executed; price and adoption unverified.",
+        "archived": false,
+        "independenceKey": "pmtoolbox",
+        "affiliation": "vendor"
+      },
+      {
+        "id": "owasp",
+        "title": "CSV Injection",
+        "url": "https://community.owasp.org/attacks/CSV_Injection",
+        "kind": "industry",
+        "provenance": "public",
+        "access": "inspected",
+        "retrievedOn": "2026-10-06",
+        "publishedOn": null,
+        "delivery": "live",
+        "retainedText": "Spreadsheet programs can interpret CSV cells as formulas; no universal CSV sanitization is safe for all consumers.",
+        "limitation": "General security guidance, no test of our proposed implementation.",
+        "archived": false,
+        "independenceKey": "owasp",
+        "affiliation": "unknown"
+      },
+      {
+        "id": "rfc4180",
+        "title": "Common CSV format",
+        "url": "https://www.rfc-editor.org/info/rfc4180/",
+        "kind": "industry",
+        "provenance": "public",
+        "access": "inspected",
+        "retrievedOn": "2026-10-06",
+        "publishedOn": null,
+        "delivery": "live",
+        "retainedText": "CSV fields containing commas, double quotes or line breaks should be quoted; internal double quotes doubled; consistent field counts.",
+        "limitation": "Informational RFC; interoperability varies.",
+        "archived": false,
+        "independenceKey": "rfc4180",
+        "affiliation": "unknown"
+      },
+      {
+        "id": "nodefs",
+        "title": "Node file system docs",
+        "url": "https://nodejs.org/api/fs.html",
+        "kind": "vendor",
+        "provenance": "public",
+        "access": "inspected",
+        "retrievedOn": "2026-10-06",
+        "publishedOn": null,
+        "delivery": "live",
+        "retainedText": "Exclusive wx file opening fails if the path exists; docs advise handling direct operation errors rather than prior access checks.",
+        "limitation": "Current docs show v26; supplied local runtime reports v24.19.0. Relevant established APIs require actual local verification.",
+        "archived": false,
+        "independenceKey": "nodefs",
+        "affiliation": "vendor"
+      },
+      {
+        "id": "wrapup",
+        "title": "How do you guys handle project wrap up?",
+        "url": "https://www.reddit.com/r/agencynewbies/comments/1s99g1q/how_do_you_guys_handle_project_wrap_up/",
+        "kind": "discussion",
+        "provenance": "public",
+        "access": "inspected",
+        "retrievedOn": "2026-10-06",
+        "publishedOn": null,
+        "delivery": "live",
+        "retainedText": "Author describes inconsistent project wrap-up and asks for a documented process or checklist, including later repeated client questions.",
+        "limitation": "Anonymous individual account; adjacent handover pain, not CSV blank-owner evidence. Research only; recruitment rules unreviewed.",
+        "archived": false,
+        "independenceKey": "wrapup",
+        "affiliation": "unknown"
+      },
+      {
+        "id": "asanaforum",
+        "title": "CSV Import Help please",
+        "url": "https://www.reddit.com/r/Asana/comments/11ymbms/csv_import_help_please/",
+        "kind": "discussion",
+        "provenance": "public",
+        "access": "inspected",
+        "retrievedOn": "2026-10-06",
+        "publishedOn": null,
+        "delivery": "live",
+        "retainedText": "Author asks how to import a due-date range from CSV when concatenation fails.",
+        "limitation": "Historical March 2023 anecdote; not a current Asana defect or evidence of our target pain.",
+        "archived": false,
+        "independenceKey": "asanaforum",
+        "affiliation": "unknown"
+      },
+      {
+        "id": "scenario",
+        "title": "Current supplied synthetic founder scenario",
+        "url": null,
+        "kind": "founder",
+        "provenance": "synthetic_fixture",
+        "access": "provided",
+        "retrievedOn": "2026-10-06",
+        "publishedOn": null,
+        "delivery": "provided",
+        "retainedText": "Solo technical founder; independent web agencies; two synthetic manager reports of blank owners/dates causing chasing; two fitting colleagues reportedly available October 8. Prepare local CLI and exact test; do not build yet; no services, accounts, sends, deployment or real data.",
+        "limitation": "Synthetic scenario only, no actual interviews, recruits, validation or implementation permission.",
+        "archived": false,
+        "independenceKey": "current-synthetic-scenario",
+        "affiliation": "unknown"
+      }
+    ],
+    "claims": [
+      {
+        "id": "84790c58-5698-4687-ba2d-5aaab1a3ce0b",
+        "statement": "Technical delivery managers at independent web agencies who receive task handover CSVs; two fitting colleagues are reportedly available October 8.",
+        "basis": "assumption",
+        "sourceIds": [],
+        "supports": [],
+        "challenges": [],
+        "limitation": "Provisional working note attributed to Current founder request; synthetic scenario, no verified candidates; not independently verified.",
+        "important": true,
+        "repetition": "not_applicable",
+        "metric": null,
+        "quote": null
+      },
+      {
+        "id": "92c4913c-208f-4556-8e13-a88896debba9",
+        "statement": "Handover CSVs sometimes omit a responsible owner or due date, leaving delivery managers to chase clarification.",
+        "basis": "assumption",
+        "sourceIds": [],
+        "supports": [],
+        "challenges": [],
+        "limitation": "Provisional working note attributed to Supplied synthetic reports from two managers; not validated demand; not independently verified.",
+        "important": true,
+        "repetition": "not_applicable",
+        "metric": null,
+        "quote": null
+      },
+      {
+        "id": "scope",
+        "statement": "The supplied synthetic founder requests preparation only for a local deterministic CSV CLI and reports two fitting colleagues available October 8; no build, services, sends or real data authorized.",
+        "basis": "founder_reported",
+        "sourceIds": [
+          "scenario"
+        ],
+        "supports": [],
+        "challenges": [],
+        "limitation": "Page observation or attributed scenario, not independently verified demand.",
+        "important": false,
+        "repetition": "not_applicable",
+        "metric": null,
+        "quote": null
+      },
+      {
+        "id": "templates",
+        "statement": "Free Smartsheet handover templates already include owner, due date and status.",
+        "basis": "public_observation",
+        "sourceIds": [
+          "smartsheet"
+        ],
+        "supports": [],
+        "challenges": [],
+        "limitation": "Page observation or attributed scenario, not independently verified demand.",
+        "important": false,
+        "repetition": "not_applicable",
+        "metric": null,
+        "quote": null
+      },
+      {
+        "id": "checker",
+        "statement": "PM Toolbox advertises in-browser local CSV/XLSX handoff review including ownership checks.",
+        "basis": "public_observation",
+        "sourceIds": [
+          "pmtoolbox"
+        ],
+        "supports": [],
+        "challenges": [],
+        "limitation": "Page observation or attributed scenario, not independently verified demand.",
+        "important": false,
+        "repetition": "not_applicable",
+        "metric": null,
+        "quote": null
+      },
+      {
+        "id": "formula",
+        "statement": "CSV exports may execute spreadsheet formulas; robust quoting alone does not universally remove formula risks.",
+        "basis": "public_observation",
+        "sourceIds": [
+          "owasp"
+        ],
+        "supports": [],
+        "challenges": [],
+        "limitation": "Page observation or attributed scenario, not independently verified demand.",
+        "important": false,
+        "repetition": "not_applicable",
+        "metric": null,
+        "quote": null
+      },
+      {
+        "id": "csvformat",
+        "statement": "Quoted commas, multiline fields and escaped double quotes require a real CSV parser rather than splitting on commas.",
+        "basis": "inference",
+        "sourceIds": [
+          "rfc4180"
+        ],
+        "supports": [],
+        "challenges": [],
+        "limitation": "Reasoned feasibility or experiment hypothesis; not a runtime test or validation.",
+        "important": false,
+        "repetition": "not_applicable",
+        "metric": null,
+        "quote": null
+      },
+      {
+        "id": "fileerrors",
+        "statement": "Exclusive output creation and direct operation error handling can prevent accidental file overwrite; local correctness remains untested.",
+        "basis": "inference",
+        "sourceIds": [
+          "nodefs"
+        ],
+        "supports": [],
+        "challenges": [],
+        "limitation": "Reasoned feasibility or experiment hypothesis; not a runtime test or validation.",
+        "important": false,
+        "repetition": "not_applicable",
+        "metric": null,
+        "quote": null
+      },
+      {
+        "id": "language",
+        "statement": "An anonymous agency forum author asks for a consistent project wrap-up checklist and reports repeated client questions after handover.",
+        "basis": "public_observation",
+        "sourceIds": [
+          "wrapup"
+        ],
+        "supports": [],
+        "challenges": [],
+        "limitation": "Page observation or attributed scenario, not independently verified demand.",
+        "important": false,
+        "repetition": "not_applicable",
+        "metric": null,
+        "quote": null
+      },
+      {
+        "id": "importfriction",
+        "statement": "A historical Asana user reports CSV due-date-range import confusion.",
+        "basis": "public_observation",
+        "sourceIds": [
+          "asanaforum"
+        ],
+        "supports": [],
+        "challenges": [],
+        "limitation": "Page observation or attributed scenario, not independently verified demand.",
+        "important": false,
+        "repetition": "not_applicable",
+        "metric": null,
+        "quote": null
+      },
+      {
+        "id": "feasible",
+        "statement": "A bounded deterministic local CLI needs no model, service, remote API or persisted database; CSV correctness, safe export and usability remain the central risks.",
+        "basis": "inference",
+        "sourceIds": [
+          "scenario",
+          "rfc4180",
+          "nodefs",
+          "owasp"
+        ],
+        "supports": [],
+        "challenges": [],
+        "limitation": "Reasoned feasibility or experiment hypothesis; not a runtime test or validation.",
+        "important": false,
+        "repetition": "not_applicable",
+        "metric": null,
+        "quote": null
+      },
+      {
+        "id": "learninggo",
+        "statement": "A two-colleague synthetic comparison can test task usability and relative review effort, but cannot validate real chasing reduction, retention or payment.",
+        "basis": "inference",
+        "sourceIds": [
+          "scenario",
+          "smartsheet",
+          "pmtoolbox"
+        ],
+        "supports": [],
+        "challenges": [],
+        "limitation": "Reasoned feasibility or experiment hypothesis; not a runtime test or validation.",
+        "important": false,
+        "repetition": "not_applicable",
+        "metric": null,
+        "quote": null
+      }
+    ],
+    "research": [
+      {
+        "id": "alternatives",
+        "question": "Can existing tools or spreadsheets already cover handover ownership and due dates?",
+        "capability": "host_research",
+        "queryBudget": 2,
+        "pageBudget": 3,
+        "budgetReason": "Only material gaps for a bounded local learning experiment.",
+        "queries": [
+          {
+            "text": "agency project handover missing task owner due dates spreadsheet handoff",
+            "materialFinding": true
+          },
+          {
+            "text": "site.asana.com csv import assignee due date",
+            "materialFinding": true
+          }
+        ],
+        "inspectedSourceIds": [
+          "smartsheet",
+          "pmtoolbox",
+          "asanaforum"
+        ],
+        "stopReason": "coverage_sufficient",
+        "limitation": "No actual product use, customer interview or commercial validation; public evidence is limited."
+      },
+      {
+        "id": "safety",
+        "question": "What CSV parsing, formula and output reliability constraints matter for a local export?",
+        "capability": "host_research",
+        "queryBudget": 1,
+        "pageBudget": 3,
+        "budgetReason": "Only material gaps for a bounded local learning experiment.",
+        "queries": [
+          {
+            "text": "site.owasp.org CSV injection",
+            "materialFinding": true
+          }
+        ],
+        "inspectedSourceIds": [
+          "owasp",
+          "rfc4180",
+          "nodefs"
+        ],
+        "stopReason": "coverage_sufficient",
+        "limitation": "No actual product use, customer interview or commercial validation; public evidence is limited."
+      },
+      {
+        "id": "userwords",
+        "question": "Do agency users describe handover or chasing problems, and where is a research habitat?",
+        "capability": "host_research",
+        "queryBudget": 2,
+        "pageBudget": 1,
+        "budgetReason": "Only material gaps for a bounded local learning experiment.",
+        "queries": [
+          {
+            "text": "site.reddit.com agency project handover missing owners deadlines chasing client spreadsheet",
+            "materialFinding": true
+          },
+          {
+            "text": "site.teamwork.com agency project handover checklist responsibilities due dates",
+            "materialFinding": true
+          }
+        ],
+        "inspectedSourceIds": [
+          "wrapup"
+        ],
+        "stopReason": "coverage_sufficient",
+        "limitation": "No actual product use, customer interview or commercial validation; public evidence is limited."
+      },
+      {
+        "id": "provided",
+        "question": "What does the supplied scenario permit and what learning route is available?",
+        "capability": "synthetic_fixture",
+        "queryBudget": 0,
+        "pageBudget": 1,
+        "budgetReason": "Only material gaps for a bounded local learning experiment.",
+        "queries": [],
+        "inspectedSourceIds": [
+          "scenario"
+        ],
+        "stopReason": "coverage_sufficient",
+        "limitation": "No actual product use, customer interview or commercial validation; public evidence is limited."
+      }
+    ],
+    "competitors": [
+      {
+        "id": "pm-toolbox",
+        "name": "PM Toolbox Handoff Readiness Checker",
+        "categories": [
+          "direct"
+        ],
+        "fields": {
+          "target": {
+            "text": "Receiving teams reviewing project handoff/closure.",
+            "claimIds": [
+              "checker"
+            ],
+            "basis": "observed"
+          },
+          "workflow": {
+            "text": "Choose CSV/XLSX handoff checklist in browser; optional issue and contract lists.",
+            "claimIds": [
+              "checker"
+            ],
+            "basis": "observed"
+          },
+          "positioning": {
+            "text": "Handoff readiness questions from the receiving team's perspective.",
+            "claimIds": [
+              "checker"
+            ],
+            "basis": "observed"
+          },
+          "pricing": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "capabilities": {
+            "text": "Advertised local browser processing and ownership checks; not executed here.",
+            "claimIds": [
+              "checker"
+            ],
+            "basis": "observed"
+          },
+          "love": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "hate": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "complexity": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "onboarding": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "missing_workflows": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "switching": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "underserved": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "gaps": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          }
+        },
+        "tractionClaimIds": []
+      },
+      {
+        "id": "smartsheet-template",
+        "name": "Smartsheet handover templates",
+        "categories": [
+          "manual",
+          "indirect"
+        ],
+        "fields": {
+          "target": {
+            "text": "Project managers and stakeholders across industries.",
+            "claimIds": [
+              "templates"
+            ],
+            "basis": "observed"
+          },
+          "workflow": {
+            "text": "Download and populate handover checklist.",
+            "claimIds": [
+              "templates"
+            ],
+            "basis": "observed"
+          },
+          "positioning": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "pricing": {
+            "text": "Free downloadable templates; this is not paid platform pricing.",
+            "claimIds": [
+              "templates"
+            ],
+            "basis": "observed"
+          },
+          "capabilities": {
+            "text": "Owner, due date, status and other handover fields.",
+            "claimIds": [
+              "templates"
+            ],
+            "basis": "observed"
+          },
+          "love": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "hate": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "complexity": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "onboarding": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "missing_workflows": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "switching": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "underserved": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          },
+          "gaps": {
+            "text": null,
+            "claimIds": [],
+            "basis": "unknown"
+          }
+        },
+        "tractionClaimIds": []
+      }
+    ],
+    "adjacent": [],
+    "habitats": [
+      {
+        "id": "colleagues",
+        "kind": "professional",
+        "place": "Two fitting agency colleagues reportedly available October 8",
+        "observedClaimIds": [
+          "scope"
+        ],
+        "likelyUsers": "Technical delivery managers; fit and attendance are supplied scenario assertions.",
+        "relevance": "Narrow direct observation route without public recruitment.",
+        "participation": {
+          "route": "Founder-controlled invitation; draft in MVP-SCOPE.md. No sends authorized.",
+          "verified": false,
+          "sourceIds": [
+            "scenario"
+          ]
+        },
+        "limitation": "Not verified recruits or consent; relationship bias. Synthetic-only session."
+      }
+    ],
+    "firstUserAvenues": [
+      "colleagues"
+    ],
+    "redTeam": [
+      {
+        "claimId": "84790c58-5698-4687-ba2d-5aaab1a3ce0b",
+        "evidence": "Only supplied synthetic statements establish exact user/pain; public sources show adjacent issues and existing alternatives.",
+        "inference": "A narrow learning experiment is reasonable, commercial demand is unknown.",
+        "assumption": "Fitting colleagues actually perform CSV handover review and can use a CLI.",
+        "contradiction": "Existing spreadsheet or browser tools may make another checker unnecessary.",
+        "disproof": "Both colleagues prefer their current method or cannot complete the task unaided.",
+        "cheapestLearning": "October 8 synthetic baseline comparison and neutral past-behavior questions."
+      },
+      {
+        "claimId": "92c4913c-208f-4556-8e13-a88896debba9",
+        "evidence": "Only supplied synthetic statements establish exact user/pain; public sources show adjacent issues and existing alternatives.",
+        "inference": "A narrow learning experiment is reasonable, commercial demand is unknown.",
+        "assumption": "Fitting colleagues actually perform CSV handover review and can use a CLI.",
+        "contradiction": "Existing spreadsheet or browser tools may make another checker unnecessary.",
+        "disproof": "Both colleagues prefer their current method or cannot complete the task unaided.",
+        "cheapestLearning": "October 8 synthetic baseline comparison and neutral past-behavior questions."
+      }
+    ],
+    "master": null,
+    "buildRequest": null,
+    "evaluation": {
+      "status": "ready",
+      "coverage": [
+        {
+          "topic": "competitors",
+          "status": "findings",
+          "claimIds": [
+            "templates",
+            "checker"
+          ],
+          "runIds": [
+            "alternatives"
+          ],
+          "reason": "Direct and spreadsheet substitutes exist; no execution or adoption verified."
+        },
+        {
+          "topic": "user_language",
+          "status": "findings",
+          "claimIds": [
+            "language",
+            "importfriction"
+          ],
+          "runIds": [
+            "userwords",
+            "alternatives"
+          ],
+          "reason": "Public discussion describes adjacent handover and import friction; no exact target pain recurrence established."
+        },
+        {
+          "topic": "habitats",
+          "status": "findings",
+          "claimIds": [
+            "language",
+            "scope"
+          ],
+          "runIds": [
+            "userwords",
+            "provided"
+          ],
+          "reason": "Agency forum is a research habitat only; supplied colleague access is the narrow pilot route."
+        },
+        {
+          "topic": "dedicated_value",
+          "status": "findings",
+          "claimIds": [
+            "learninggo"
+          ],
+          "runIds": [
+            "alternatives",
+            "provided"
+          ],
+          "reason": "Dedicated value remains a hypothesis tested against spreadsheets."
+        },
+        {
+          "topic": "founder_fit",
+          "status": "findings",
+          "claimIds": [
+            "scope"
+          ],
+          "runIds": [
+            "provided"
+          ],
+          "reason": "Scenario-reported technical ability and colleague availability, no proven advantage."
+        },
+        {
+          "topic": "frequency",
+          "status": "unknown_after_search",
+          "claimIds": [],
+          "runIds": [
+            "userwords"
+          ],
+          "reason": "Search found adjacent wrap-up friction, not frequency of CSV omissions. Supplied 'sometimes' is synthetic, unquantified; frequency remains a pilot question."
+        },
+        {
+          "topic": "urgency",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "pain",
+          "status": "findings",
+          "claimIds": [
+            "92c4913c-208f-4556-8e13-a88896debba9",
+            "language"
+          ],
+          "runIds": [
+            "provided",
+            "userwords"
+          ],
+          "reason": "Synthetic reports describe chasing; public discussion supports adjacent handover confusion only. Severity/cost unvalidated."
+        },
+        {
+          "topic": "necessity",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "prevalence",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "category_direction",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "buyer",
+          "status": "findings",
+          "claimIds": [
+            "scope",
+            "language"
+          ],
+          "runIds": [
+            "provided",
+            "userwords"
+          ],
+          "reason": "Agency owner/delivery lead is a provisional buyer hypothesis, not identified budget authority or willingness to pay."
+        },
+        {
+          "topic": "existing_spend",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "reachability",
+          "status": "findings",
+          "claimIds": [
+            "scope"
+          ],
+          "runIds": [
+            "provided"
+          ],
+          "reason": "Two fitting colleagues are reportedly available October 8 in the synthetic scenario; no participation or permission invented."
+        },
+        {
+          "topic": "ai_substitutes",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "traction",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "gaps",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "adjacency",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        }
+      ],
+      "promising": [
+        "A narrow deterministic promise and reportedly reachable fitting colleagues allow a fast reversible usability study."
+      ],
+      "weak": [
+        "Only synthetic pain reports; free templates and an advertised local checker may be sufficient."
+      ],
+      "unknowns": [
+        "Real pain frequency and chasing cost",
+        "CLI workflow advantage and subsequent use",
+        "Buyer, price and willingness to pay"
+      ],
+      "contradictions": [
+        "Existing handover tools undermine any assumption of a unique feature gap."
+      ],
+      "conclusion": "GO only for the bounded October 8 learning experiment. Preparation is complete; founder review and separate exact build approval remain required. Demand and runtime correctness are unproven."
+    },
+    "brief": {
+      "kind": "research",
+      "summary": "GO only for the bounded October 8 learning experiment. Preparation is complete; founder review and separate exact build approval remain required. Demand and runtime correctness are unproven. Review and build permission remain separate.",
+      "seeing": [],
+      "matters": [],
+      "next": "Continue the current evaluation and its required review; this save is not build approval.",
+      "questions": [],
+      "choices": []
+    },
+    "opportunity": null,
+    "discovery": {
+      "channels": "online",
+      "region": null,
+      "outcome": "not_run",
+      "runIds": [],
+      "limitation": "No first-user discovery has been run for this context yet."
+    },
+    "investigation": {
+      "coverage": [
+        {
+          "topic": "workaround",
+          "status": "findings",
+          "claimIds": [
+            "templates",
+            "checker",
+            "learninggo"
+          ],
+          "runIds": [
+            "alternatives",
+            "provided"
+          ],
+          "reason": "Existing templates/local checker and manual review are concrete alternatives. Pilot must compare usual spreadsheet review, whose actual effort is unknown."
+        },
+        {
+          "topic": "willingness_to_pay",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "ability_to_pay",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "switching_cost",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "founder_insight",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "founder_expertise",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "founder_access",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "technical_feasibility",
+          "status": "findings",
+          "claimIds": [
+            "feasible",
+            "csvformat",
+            "fileerrors",
+            "formula"
+          ],
+          "runIds": [
+            "safety",
+            "provided"
+          ],
+          "reason": "Deterministic local processing is reasonable, but CSV handling, safety and CLI behavior must be tested after approval."
+        },
+        {
+          "topic": "business_model_fit",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        },
+        {
+          "topic": "intention_alignment",
+          "status": "unexamined",
+          "claimIds": [],
+          "runIds": [],
+          "reason": "Not examined yet."
+        }
+      ],
+      "questions": [
+        {
+          "topic": "competitors",
+          "runIds": [
+            "alternatives"
+          ],
+          "relevance": "What existing substitutes already cover handover ownership and dates?"
+        },
+        {
+          "topic": "user_language",
+          "runIds": [
+            "userwords",
+            "alternatives"
+          ],
+          "relevance": "Do public agency users describe handover or CSV review friction?"
+        },
+        {
+          "topic": "habitats",
+          "runIds": [
+            "userwords",
+            "provided"
+          ],
+          "relevance": "Where can we observe fitting users within this bounded scenario?"
+        },
+        {
+          "topic": "dedicated_value",
+          "runIds": [
+            "alternatives",
+            "provided"
+          ],
+          "relevance": "Does a standalone checker add value over templates?"
+        },
+        {
+          "topic": "founder_fit",
+          "runIds": [
+            "provided"
+          ],
+          "relevance": "What reported access or technical ability helps this experiment?"
+        },
+        {
+          "topic": "frequency",
+          "runIds": [
+            "userwords"
+          ],
+          "relevance": "How often do agency handovers omit an owner or due date?"
+        },
+        {
+          "topic": "pain",
+          "runIds": [
+            "provided",
+            "userwords"
+          ],
+          "relevance": "What consequence follows an incomplete handover?"
+        },
+        {
+          "topic": "buyer",
+          "runIds": [
+            "provided",
+            "userwords"
+          ],
+          "relevance": "Who controls a decision to adopt this local review tool?"
+        },
+        {
+          "topic": "reachability",
+          "runIds": [
+            "provided"
+          ],
+          "relevance": "What fitting users can the founder observe soon?"
+        },
+        {
+          "topic": "workaround",
+          "runIds": [
+            "alternatives",
+            "provided"
+          ],
+          "relevance": "Can spreadsheet or existing-tool review solve this adequately?"
+        },
+        {
+          "topic": "technical_feasibility",
+          "runIds": [
+            "safety",
+            "provided"
+          ],
+          "relevance": "Can the central promise be delivered without service/model dependencies?"
+        }
+      ],
+      "alternatives": [
+        {
+          "kind": "direct",
+          "competitorIds": [
+            "pm-toolbox"
+          ],
+          "runIds": [
+            "alternatives"
+          ],
+          "conclusion": "PM Toolbox advertises local browser handoff review; no test or unique CLI advantage established."
+        },
+        {
+          "kind": "spreadsheet",
+          "competitorIds": [
+            "smartsheet-template"
+          ],
+          "runIds": [
+            "alternatives"
+          ],
+          "conclusion": "Free Smartsheet templates include owner/due date; ordinary blank filtering is the pilot baseline."
+        },
+        {
+          "kind": "manual",
+          "competitorIds": [],
+          "runIds": [
+            "provided"
+          ],
+          "conclusion": "Manually identify omissions and write clarification; viable baseline whose time and error rate remain unmeasured."
+        },
+        {
+          "kind": "do_nothing",
+          "competitorIds": [],
+          "runIds": [
+            "provided"
+          ],
+          "conclusion": "Accept incomplete rows and chase later; scenario consequence only, not measured loss."
+        }
+      ],
+      "counterevidence": "Free templates and an advertised local browser checker already cover handover structure; public user pain is adjacent, not proof of CSV owner/date demand.",
+      "decision": "GO for a bounded learning MVP only, keep build hold.",
+      "redefinition": null
+    },
+    "ide": {
+      "generations": {
+        "intention": 1,
+        "user": 1,
+        "problem": 1,
+        "evaluation": 2,
+        "act": 2
+      },
+      "confirmations": [
+        {
+          "id": "48eaa9d9-2f50-4366-925a-b6cc6f191ba4",
+          "subject": "intention",
+          "basis": "96f3f6191c6d361325a0f925a5d3d55d35e7c98416e52549526dd4977644d9a3",
+          "presentationId": "09599ba8-b788-4642-bb66-be519e3d5a54",
+          "presentedText": "**My take:** GO for a bounded learning experiment only. No validated demand, price, retention or build authorization; technical execution is still untested. (Inference; source: Current founder scope and public alternatives inspected 2026-10-06.)\n\n**What we are building toward:** Learn whether a small local CSV handover checker helps independent web agencies; prepare scope and October 8 test, do not build yet.\n\n**The first user:** Technical delivery managers at independent web agencies who receive task handover CSVs; two fitting colleagues are reportedly available October 8.\n\n**Their pain:** Handover CSVs sometimes omit a responsible owner or due date, leaving delivery managers to chase clarification.\n\n**Evidence so far:** Smartsheet offers free handover templates with owner/due date. PM Toolbox advertises a local-browser CSV/XLSX handoff checker. Existing-tool competition is concrete; differentiated demand remains unknown. (Inference; source: https://www.smartsheet.com/content/project-handover-templates ; https://thepmtoolbox.com/tools/handoff-readiness-checker.) This does not establish demand.\n\n**What could undo it:**\n\nBlank checks cannot verify accountability or valid dates. CSV formulas require rejection safeguards. CLI friction and colleague bias may erase apparent value. Two synthetic reports are not customer validation. (Inference; source: Scenario; https://community.owasp.org/attacks/CSV_Injection.)\n\n**Still unknown:**\n\nWhether this pain changes real behavior and who will pay to solve it.\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+          "turnId": "user-turn-4",
+          "quote": "Looks good, don't build yet. I agree with the working user, problem and evaluation you displayed, including the uncertainties. Complete reversible preparation and show the exact scope and limitations for my build decision.",
+          "recordedAt": "2026-10-07T01:50:44.377Z"
+        },
+        {
+          "id": "b32fbccd-8617-4eef-ac94-adfd1b07fdce",
+          "subject": "user",
+          "basis": "932e2274bb68500d124feb84b50ea3b3aaa3fd93d703935ed65d83b8625d551e",
+          "presentationId": "09599ba8-b788-4642-bb66-be519e3d5a54",
+          "presentedText": "**My take:** GO for a bounded learning experiment only. No validated demand, price, retention or build authorization; technical execution is still untested. (Inference; source: Current founder scope and public alternatives inspected 2026-10-06.)\n\n**What we are building toward:** Learn whether a small local CSV handover checker helps independent web agencies; prepare scope and October 8 test, do not build yet.\n\n**The first user:** Technical delivery managers at independent web agencies who receive task handover CSVs; two fitting colleagues are reportedly available October 8.\n\n**Their pain:** Handover CSVs sometimes omit a responsible owner or due date, leaving delivery managers to chase clarification.\n\n**Evidence so far:** Smartsheet offers free handover templates with owner/due date. PM Toolbox advertises a local-browser CSV/XLSX handoff checker. Existing-tool competition is concrete; differentiated demand remains unknown. (Inference; source: https://www.smartsheet.com/content/project-handover-templates ; https://thepmtoolbox.com/tools/handoff-readiness-checker.) This does not establish demand.\n\n**What could undo it:**\n\nBlank checks cannot verify accountability or valid dates. CSV formulas require rejection safeguards. CLI friction and colleague bias may erase apparent value. Two synthetic reports are not customer validation. (Inference; source: Scenario; https://community.owasp.org/attacks/CSV_Injection.)\n\n**Still unknown:**\n\nWhether this pain changes real behavior and who will pay to solve it.\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+          "turnId": "user-turn-4",
+          "quote": "Looks good, don't build yet. I agree with the working user, problem and evaluation you displayed, including the uncertainties. Complete reversible preparation and show the exact scope and limitations for my build decision.",
+          "recordedAt": "2026-10-07T01:50:44.378Z"
+        },
+        {
+          "id": "0bd5a7de-b49f-4dd8-9697-4fdeb1f6793c",
+          "subject": "problem",
+          "basis": "d1687f91940c6553308f7d70256236f27be87f64366637bc19f67e32c5b871aa",
+          "presentationId": "09599ba8-b788-4642-bb66-be519e3d5a54",
+          "presentedText": "**My take:** GO for a bounded learning experiment only. No validated demand, price, retention or build authorization; technical execution is still untested. (Inference; source: Current founder scope and public alternatives inspected 2026-10-06.)\n\n**What we are building toward:** Learn whether a small local CSV handover checker helps independent web agencies; prepare scope and October 8 test, do not build yet.\n\n**The first user:** Technical delivery managers at independent web agencies who receive task handover CSVs; two fitting colleagues are reportedly available October 8.\n\n**Their pain:** Handover CSVs sometimes omit a responsible owner or due date, leaving delivery managers to chase clarification.\n\n**Evidence so far:** Smartsheet offers free handover templates with owner/due date. PM Toolbox advertises a local-browser CSV/XLSX handoff checker. Existing-tool competition is concrete; differentiated demand remains unknown. (Inference; source: https://www.smartsheet.com/content/project-handover-templates ; https://thepmtoolbox.com/tools/handoff-readiness-checker.) This does not establish demand.\n\n**What could undo it:**\n\nBlank checks cannot verify accountability or valid dates. CSV formulas require rejection safeguards. CLI friction and colleague bias may erase apparent value. Two synthetic reports are not customer validation. (Inference; source: Scenario; https://community.owasp.org/attacks/CSV_Injection.)\n\n**Still unknown:**\n\nWhether this pain changes real behavior and who will pay to solve it.\n\nDoes this capture the direction you agree with, including the doubts? Agreeing lets us keep investigating; it does not approve building.",
+          "turnId": "user-turn-4",
+          "quote": "Looks good, don't build yet. I agree with the working user, problem and evaluation you displayed, including the uncertainties. Complete reversible preparation and show the exact scope and limitations for my build decision.",
+          "recordedAt": "2026-10-07T01:50:44.378Z"
+        },
+        {
+          "id": "866ea07b-fc1a-4b67-ae8a-7616fcf2d54d",
+          "subject": "evaluation",
+          "basis": "40b679dae7b6e1507145edca1864312ee1629cea041b92fb7b6ae2fab1c18651",
+          "presentationId": "362f5e70-8c51-4959-9f5a-e5e1a3529be9",
+          "presentedText": "GO only for the bounded October 8 learning experiment. Preparation is complete; founder review and separate exact build approval remain required. Demand and runtime correctness are unproven.\n\nReasonably feasible as a small deterministic local Node CLI; no code written or product tests run Main technical uncertainty: CSV parsing/export mistakes or CLI friction could negate the promise View technical evaluation is optional.\n\nI also found a possible first-user avenue: Two fitting agency colleagues reportedly available October 8. Narrow direct observation route without public recruitment. Participation rules/access still need checking. View first-user avenues is optional.\n\nThe main thing still uncertain is Real pain frequency and chasing cost.\n\nDoes that fairly capture what we learned and the uncertainty we are carrying?",
+          "turnId": "user-turn-7",
+          "quote": "Yes, I approve the exact unchanged local scope and build pack you just displayed. Run the authorized stages, verify the actual main task and stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.",
+          "recordedAt": "2026-10-07T01:56:02.344Z"
+        },
+        {
+          "id": "80368c9e-e786-4bf1-9f1b-aa8f9f6c941e",
+          "subject": "act",
+          "basis": "021e9a1cc319e3f9bfb2636449a075a9b4073837ad1141d2279e930a629ad809",
+          "presentationId": "89d3c18b-f5da-47c0-a221-c17905c094c0",
+          "presentedText": "For Technical delivery managers at independent web agencies who receive task handover CSVs; two fitting colleagues are reportedly available October 8., this is a bounded learning MVP: From a supported synthetic task,owner,due_date CSV, export exactly the blank-owner/date rows and a neutral draft without uploading data or changing input.\n\nCapabilities: Validate/import a bounded local CSV; Identify and export incomplete records; Write deterministic neutral follow-up text for manual review.\nCuts: AI and network services; Accounts, integrations and databases; Sending and deployment; Real client data; GUI, scheduling and billing; Date inference, automatic ownership and overdue checks.\nLimits: Only blank owner/date detection; no actual accountability/date validity verification. Synthetic colleague sessions have relationship bias. No runtime tests or demand validation yet. Reject risky formula/control prefixes and malformed inputs; no overwrite.\nSuccess: Both colleagues independently identify all omissions, export and review a draft within five minutes without task coaching; at least one is 25% faster than their usual approach and chooses a specific next use.\nFailure: Any missed/extra row or unsafe draft; coaching required; neither sees an advantage over a spreadsheet. Park standalone CLI if both prefer their current approach.\nProposed first-user test: 2026-10-08.\nRemaining uncertainty: Determine whether this checker improves handover review over the current spreadsheet; retain pain and repeat-use uncertainty.\n\nDo you authorize building this exact scope?",
+          "turnId": "01a11417-ae9b-7111-8aca-5a17221e44b0:user:2",
+          "quote": "Yes, I approve the exact unchanged local build pack and stage policy you just displayed. Run the authorized stages and verify the application against the known fixture. Stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.",
+          "recordedAt": "2026-10-07T02:02:16.663Z"
+        }
+      ],
+      "presentation": null,
+      "reviewBasis": "071c30da4ed0b31a7d157405732a5f5f4a8e76bc0927bf510bc7e9b6e3dfdbeb"
+    },
+    "workingContext": {
+      "conversationId": "01a11409-cba8-7a70-b920-9dd26c59e8f8",
+      "project": {
+        "customer": {
+          "value": "Technical delivery managers at independent web agencies who receive task handover CSVs; two fitting colleagues are reportedly available October 8.",
+          "status": "known",
+          "confidence": "high",
+          "source": "Current founder request; synthetic scenario, no verified candidates"
+        },
+        "problem": {
+          "value": "Handover CSVs sometimes omit a responsible owner or due date, leaving delivery managers to chase clarification.",
+          "status": "known",
+          "confidence": "high",
+          "source": "Supplied synthetic reports from two managers; not validated demand"
+        },
+        "product": {
+          "value": "Provisional local command-line checker: import task,owner,due_date; flag blank owner/date; export incomplete rows and neutral follow-up text.",
+          "status": "inferred",
+          "confidence": "medium",
+          "source": "Current founder scope"
+        },
+        "decision": {
+          "value": "GO for a bounded learning experiment only. No validated demand, price, retention or build authorization; technical execution is still untested.",
+          "status": "inferred",
+          "confidence": "medium",
+          "source": "Current founder scope and public alternatives inspected 2026-10-06"
+        },
+        "market_pulse": {
+          "value": "Smartsheet offers free handover templates with owner/due date. PM Toolbox advertises a local-browser CSV/XLSX handoff checker. Existing-tool competition is concrete; differentiated demand remains unknown.",
+          "status": "inferred",
+          "confidence": "medium",
+          "source": "https://www.smartsheet.com/content/project-handover-templates ; https://thepmtoolbox.com/tools/handoff-readiness-checker"
+        },
+        "risk": {
+          "value": "Blank checks cannot verify accountability or valid dates. CSV formulas require rejection safeguards. CLI friction and colleague bias may erase apparent value. Two synthetic reports are not customer validation.",
+          "status": "inferred",
+          "confidence": "medium",
+          "source": "Scenario; https://community.owasp.org/attacks/CSV_Injection"
+        },
+        "validation": {
+          "value": "2026-10-08: two reported fitting colleagues attempt synthetic handover review against their usual spreadsheet approach. Observe completion, correctness, hesitation, time and a specific next-use choice; do not infer payment.",
+          "status": "inferred",
+          "confidence": "medium",
+          "source": "Founder availability plus proposed observation plan"
+        },
+        "next_move": {
+          "value": "Resolve the assessment evidence-link save failure before offering current build approval. Proposed exact scope and limitations are available for review; implementation stays on hold.",
+          "status": "inferred",
+          "confidence": "medium",
+          "source": "Failed assessment save; current founder request: do not build yet"
+        },
+        "stage": {
+          "value": "Intention, user and problem agreed; full evaluation save failed on evidence references. No build permission or product code. Proposed build commitment prepared in BUILD-DECISION.md.",
+          "status": "known",
+          "confidence": "high",
+          "source": "Actual founder agreement this turn; successful foundation receipts and failed assessment save"
+        },
+        "first_user_learning": {
+          "value": "Public agency wrap-up discussion supports adjacent handover/checklist friction only. Two fitting colleagues remain supplied synthetic assertions; observation planned October 8 with no sends or real data.",
+          "status": "inferred",
+          "confidence": "medium",
+          "source": "https://www.reddit.com/r/agencynewbies/comments/1s99g1q/how_do_you_guys_handle_project_wrap_up/ ; current scenario"
+        }
+      },
+      "founder": {
+        "objective": {
+          "value": "Learn whether a small local CSV handover checker helps independent web agencies; prepare scope and October 8 test, do not build yet.",
+          "status": "known",
+          "confidence": "high",
+          "source": "Current founder request; synthetic scenario"
+        },
+        "constraints": {
+          "value": "Solo technical founder. Local CLI only; no AI service, accounts, sends, deployment or real client data. Product implementation is not authorized.",
+          "status": "known",
+          "confidence": "high",
+          "source": "Current founder request"
+        }
+      },
+      "inspected": [],
+      "opportunity": null
+    },
+    "quality": {
+      "technical": {
+        "material": true,
+        "summary": "Reasonably feasible as a small deterministic local Node CLI; no code written or product tests run.",
+        "centralRisk": "CSV parsing/export mistakes or CLI friction could negate the promise.",
+        "coverage": [
+          {
+            "topic": "data_apis",
+            "status": "findings",
+            "claimIds": [
+              "feasible"
+            ],
+            "runIds": [
+              "provided",
+              "safety"
+            ],
+            "reason": "Synthetic local CSV is the only data source; no API or model required."
+          },
+          {
+            "topic": "freshness_quality",
+            "status": "findings",
+            "claimIds": [
+              "feasible"
+            ],
+            "runIds": [
+              "provided",
+              "safety"
+            ],
+            "reason": "Blank-only checks cannot verify ownership or valid/current dates; malformed CSV must fail explicitly."
+          },
+          {
+            "topic": "access_licensing",
+            "status": "findings",
+            "claimIds": [
+              "feasible"
+            ],
+            "runIds": [
+              "provided",
+              "safety"
+            ],
+            "reason": "No external dataset, integration or paid dependency planned; use only disposable synthetic data and supplied runtime."
+          },
+          {
+            "topic": "rate_cost",
+            "status": "findings",
+            "claimIds": [
+              "feasible"
+            ],
+            "runIds": [
+              "provided",
+              "safety"
+            ],
+            "reason": "No network calls or metered service; founder implementation time remains the main cost."
+          },
+          {
+            "topic": "integrations",
+            "status": "findings",
+            "claimIds": [
+              "feasible"
+            ],
+            "runIds": [
+              "provided",
+              "safety"
+            ],
+            "reason": "No integrations in this bounded scope; local file paths only."
+          },
+          {
+            "topic": "complexity_latency",
+            "status": "findings",
+            "claimIds": [
+              "feasible"
+            ],
+            "runIds": [
+              "provided",
+              "safety"
+            ],
+            "reason": "Bound to 1 MiB/5,000 records; one parser and deterministic draft. Latency not benchmarked."
+          },
+          {
+            "topic": "ai_deterministic",
+            "status": "findings",
+            "claimIds": [
+              "feasible"
+            ],
+            "runIds": [
+              "provided",
+              "safety"
+            ],
+            "reason": "Blank detection and a neutral template are deterministic; AI adds unnecessary variability."
+          },
+          {
+            "topic": "reliability_failures",
+            "status": "findings",
+            "claimIds": [
+              "feasible",
+              "csvformat",
+              "fileerrors"
+            ],
+            "runIds": [
+              "provided",
+              "safety"
+            ],
+            "reason": "Test quoting, encoding, malformed records, exclusive output creation and write cleanup after authorization; no tests run yet."
+          },
+          {
+            "topic": "security_privacy",
+            "status": "findings",
+            "claimIds": [
+              "feasible",
+              "formula"
+            ],
+            "runIds": [
+              "provided",
+              "safety"
+            ],
+            "reason": "Local-only synthetic files; reject formula/control prefixes, refuse overwrites; no automatic opening or sends."
+          },
+          {
+            "topic": "vendor_build_buy",
+            "status": "findings",
+            "claimIds": [
+              "feasible"
+            ],
+            "runIds": [
+              "provided",
+              "safety"
+            ],
+            "reason": "Compare manual spreadsheet filtering and advertised PM Toolbox checker; local CLI chosen to test this founder's narrow interface hypothesis, not proven superiority."
+          }
+        ],
+        "options": [
+          {
+            "name": "Local CLI",
+            "approach": "One local import/check/export path with deterministic text draft.",
+            "tradeoff": "Fits technical users but requires command setup and reliable CSV handling.",
+            "claimIds": [
+              "scope",
+              "feasible"
+            ]
+          },
+          {
+            "name": "Spreadsheet/manual",
+            "approach": "Filter blank owner/date fields and draft clarification manually.",
+            "tradeoff": "No new software; repetitive checking remains user work, which might be acceptable.",
+            "claimIds": [
+              "templates",
+              "scope"
+            ]
+          },
+          {
+            "name": "Existing browser checker",
+            "approach": "Inspect PM Toolbox as a potential substitute for handoff review.",
+            "tradeoff": "Broader advertised coverage; actual usability and exact export/draft fit untested.",
+            "claimIds": [
+              "checker"
+            ]
+          }
+        ],
+        "recommendation": {
+          "option": "Local CLI",
+          "reason": "Test the explicit narrow CLI hypothesis locally against the spreadsheet; do not add services. Existing alternatives challenge commercial value."
+        }
+      },
+      "founderFit": {
+        "edge": "Reported technical founder and access to two fitting colleagues reduce setup and recruitment effort for this scenario.",
+        "limitation": "Synthetic access assertion, no actual participation, buyer access, domain expertise or sales advantage verified.",
+        "claimIds": [
+          "scope"
+        ]
+      },
+      "learning": {
+        "uncertainty": "workaround",
+        "reason": "Determine whether this checker improves handover review over the current spreadsheet; retain pain and repeat-use uncertainty.",
+        "recommendation": "build_decision",
+        "decision": "go",
+        "experiment": {
+          "promise": "From a supported synthetic task,owner,due_date CSV, export exactly the blank-owner/date rows and a neutral draft without uploading data or changing input.",
+          "capabilities": [
+            "Validate/import a bounded local CSV",
+            "Identify and export incomplete records",
+            "Write deterministic neutral follow-up text for manual review"
+          ],
+          "cuts": [
+            "AI and network services",
+            "Accounts, integrations and databases",
+            "Sending and deployment",
+            "Real client data",
+            "GUI, scheduling and billing",
+            "Date inference, automatic ownership and overdue checks"
+          ],
+          "limitations": "Only blank owner/date detection; no actual accountability/date validity verification. Synthetic colleague sessions have relationship bias. No runtime tests or demand validation yet. Reject risky formula/control prefixes and malformed inputs; no overwrite.",
+          "success": "Both colleagues independently identify all omissions, export and review a draft within five minutes without task coaching; at least one is 25% faster than their usual approach and chooses a specific next use.",
+          "failure": "Any missed/extra row or unsafe draft; coaching required; neither sees an advantage over a spreadsheet. Park standalone CLI if both prefer their current approach.",
+          "testDate": "2026-10-08"
+        }
+      }
+    }
+  }
+}
