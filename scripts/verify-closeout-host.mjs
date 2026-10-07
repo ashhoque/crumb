@@ -54,7 +54,7 @@ async function turn(threadId,text,first=false){
   return done;
 }
 function createFixture(id,seed='evaluated'){
-  if(id==='alpha-resume'||id==='alpha-repair-resume'||id==='alpha-completion-resume'||id==='alpha-completion-build-resume'){
+  if(id==='alpha-resume'||id==='alpha-repair-resume'||id==='alpha-completion-resume'||id==='alpha-completion-build-resume'||id==='alpha-completion-finalize'){
     const selected=process.argv.find(x=>x.startsWith('--resume-fixture='))?.slice(17);
     const folder=selected&&resolve(selected),rel=folder&&relative(tmpdir(),folder);
     const expected=id==='alpha-resume'?'alpha-built':id.startsWith('alpha-completion')?'alpha-completion':'alpha-repair';
@@ -141,6 +141,11 @@ try{
   save();console.log('Installed Codex MCP: all ten read tools called.');
   }
   const sessions=[
+    {id:'alpha-completion-finalize',messages:[
+      '$crumb Continue the same built CSV handover-checker project from its saved stage and actual outputs. Give me the verified result, runnable command and ready first-user observation plan, then the one real dependency. Reuse current evidence and checks. Do not rebuild, expand, contact or deploy.',
+      'So what do these checks actually prove about the business? Keep it short.',
+      "Looks good. Don't build any more or contact anyone. Stop here."
+    ]},
     {id:'alpha-completion-build-resume',messages:[
       '$crumb Continue the same CSV handover-checker project. My approval of the exact displayed local scope and limitations is unchanged: I authorize building that bounded local MVP now. Finish the authorized work, run the real task and leave its observation plan ready. Stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.',
       'Yes, I approve the exact unchanged local build pack and stage policy you just displayed. Run the authorized stages and verify the application against the known fixture. Stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.',

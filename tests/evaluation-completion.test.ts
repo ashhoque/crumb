@@ -45,9 +45,13 @@ test('Recorded incomplete closeout exposes all material omissions together and w
 test('Actual scoped host agreement records review and Act without granting excluded actions; refusal and changed basis still block',t=>{
  const root=temporaryProject(t),saved=draft(root);
  let current=transitionIde(root,{...completion(saved.context as IdeContext,saved.version,saved.hash),contextHash:saved.hash} as Parameters<typeof transitionIde>[1]);
- const quote='Yes, I authorize building exactly the local CSV handover scope and limitations you just displayed. Only synthetic local files; no sending, deployment or extra features.';
+ const recordedQuote='Yes, I authorize building exactly the local CSV handover scope and limitations you just displayed. Only synthetic local files; no sending, deployment or extra features.';
+ // The literal live wording tests the recognizer; the transaction keeps this
+ // unrelated fixture's own tool-loan scope rather than claiming CSV consent.
+ const quote=recordedQuote.replace('CSV handover','tool-loan');
  const interpretation={meaning:'agreement' as const,explanation:'Clear assent to the displayed current statement; external actions and extra scope remain excluded.'};
  assert.equal(agreesWithPresentation(quote),false);
+ assert.equal(agreesWithPresentation(recordedQuote,interpretation),true);
  const bounded='Yes, I approve the exact unchanged local scope and build pack you just displayed. Run the authorized stages, verify the actual main task and stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.';
  assert.equal(agreesWithPresentation(bounded,interpretation),true);
  assert.equal(agreesWithPresentation('Continue the unchanged approved local scope.',interpretation),true);
@@ -82,6 +86,7 @@ test('Supported review atomically links actual fixture attempts, completes, read
  assert.equal(c.evaluation.coverage.find(x=>x.topic==='buyer')!.status,'unknown_after_search');
  assert.deepEqual(c.evaluation.coverage.find(x=>x.topic==='habitats')!.runIds,c.investigation.questions.find(x=>x.topic==='habitats')!.runIds);
  assert.equal(c.research.find(x=>x.id==='fixture-habitat')!.inspectedSourceIds.length,0);
+ assert.throws(()=>transitionIde(root,{...request,contextHash:'0'.repeat(64)} as Parameters<typeof transitionIde>[1]),/target\/basis changed/);
  const repeat=transitionIde(root,request as Parameters<typeof transitionIde>[1]);assert.equal(repeat.version,completed.version);assert.equal(repeat.hash,completed.hash);
  assert.equal(c.research.filter(x=>x.id==='fixture-habitat').length,1);
  const resumed=saveWorkingContext(root,{expectedVersion:completed.version,conversationId:'completion_fresh_session',delta:{}},true);

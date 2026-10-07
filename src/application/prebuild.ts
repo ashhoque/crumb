@@ -143,6 +143,10 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
     if (!saved || saved.context.contractVersion !== 2) throw new Error('Save the current IDE context first; legacy findings remain drafts.');
     let c = structuredClone(saved.context);
     if(r.operation==='review'){
+      if(['changes','evidence','assessments'].some(key=>key in r)||r.contextHash!==undefined){
+        const submitted=db.get('SELECT digest FROM prebuild_revisions WHERE version = ?',r.expectedVersion);
+        if(r.contextHash!==submitted?.['digest'])throw new Error('Evaluation target/basis changed. Read this project context and submit its exact hash.');
+      }
       const update=Object.fromEntries(['changes','evidence','assessments'].filter(k=>k in r).map(k=>[k,r[k as keyof IdeTransition]]));
       c=assembleEvaluationUpdate(c,{expectedVersion:r.expectedVersion,...(Object.keys(update).length?update:{changes:{evaluation:c.evaluation}})});
       c.evaluation.status='ready';
@@ -150,7 +154,6 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
       if(saved.context.ide.reviewBasis===evaluationBasis(saved.context)&&isDeepStrictEqual(comparable(c),comparable(saved.context)))return saved;
     }
     if (saved.version !== r.expectedVersion) throw new Error('IDE changed in another session. Resume the current presentation.');
-    if(r.operation==='review'&&(['changes','evidence','assessments'].some(key=>key in r)||r.contextHash!==undefined)&&r.contextHash!==saved.hash)throw new Error('Evaluation target/basis changed. Read this project context and submit its exact hash.');
     c.expectedVersion = saved.version;
     if(r.operation==='revise-foundation'){
       if(confirmation(c,'act'))throw new Error('Do not change an approved build through a conversation correction.');
