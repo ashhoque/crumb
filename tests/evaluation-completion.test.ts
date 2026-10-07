@@ -61,6 +61,10 @@ test('Actual scoped host agreement records review and Act without granting exclu
  const interpretation={meaning:'agreement' as const,explanation:'Clear assent to the displayed current statement; external actions and extra scope remain excluded.'};
  assert.equal(agreesWithPresentation(quote),false);
  assert.equal(agreesWithPresentation(recordedQuote,interpretation),true);
+ const resumedPermission='$crumb Continue the same CSV handover-checker project. My approval of the exact displayed local scope and limitations is unchanged: I authorize building that bounded local MVP now. Finish the authorized work, run the real task and leave its observation plan ready. Stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.';
+ assert.equal(agreesWithPresentation(resumedPermission,interpretation),true);
+ assert.equal(agreesWithPresentation(resumedPermission+' Do not build yet.',interpretation),false);
+ assert.equal(agreesWithPresentation(resumedPermission+' Only if we change the scope.',interpretation),false);
  const bounded='Yes, I approve the exact unchanged local scope and build pack you just displayed. Run the authorized stages, verify the actual main task and stop at the runnable local MVP. Only synthetic local data; no sending, deployment or extra features.';
  assert.equal(agreesWithPresentation(bounded,interpretation),true);
  assert.equal(agreesWithPresentation('Continue the unchanged approved local scope.',interpretation),true);
