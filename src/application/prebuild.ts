@@ -11,7 +11,7 @@ import type { EvaluatedActionDraft } from '../domain/contracts.js';
 import { emptyIde, validateIde, upgradeContext, resumedBrief, invalidateChanges, basis, evaluationBasis, assertEvaluationComplete, presentationText, thesisBasis, thesisText, subjects, ideState, assertAct, confirmation, type AnyPrebuild, type Subject } from '../domain/ide.js';
 import type { ConfirmedActionDraft } from '../domain/contracts.js';
 import { nextIdeStep } from '../domain/guide.js';
-import { agreesWithPresentation, type ReplyInterpretation } from '../domain/reply.js';
+import { agreesWithPresentation, agreesWithThesis, type ReplyInterpretation } from '../domain/reply.js';
 import { syncConversationArtifacts } from './session.js';
 import { updateWorkingContext, credibleWorkingFact, type FounderWorkingContext } from '../domain/founder-intelligence.js';
 import { assembleEvaluationUpdate } from '../domain/evaluation-update.js';
@@ -181,7 +181,7 @@ function transitionIdeState(target: string, input: unknown): SavedPrebuild {
       if(typeof r.displayedText!=='string'||r.displayedText.length>6000||normalized(r.displayedText)!==normalized(p.text))throw new Error('The text actually shown to the founder must match the recorded thesis. Present the current thesis again before requesting review.');
       if(c.ide.confirmations.some(x=>x.turnId===r.turnId))throw new Error('A founder reply cannot be reused from an earlier confirmation.');
       const quote=r.quote!.trim();
-      const agreement=agreesWithPresentation(quote,r.interpretation)||/^(yes|looks good|sounds right|that works)[,.]?\s+(?:but\s+)?(?:do not|don't)\s+build\s+yet[.!]?$/i.test(quote);
+      const agreement=agreesWithThesis(quote,r.interpretation);
       if(!agreement)throw new Error('Review the working thesis with clear agreement or a correction; this does not authorize Act.');
       for(const subject of ['intention','user','problem'] as const)c.ide.confirmations.push({id:randomUUID(),subject,basis:basis(c,subject),presentationId:p.id,presentedText:p.text,turnId:r.turnId!,quote,recordedAt:new Date().toISOString()});
       if(c.evaluation.status==='ready'){

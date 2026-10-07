@@ -1,5 +1,13 @@
 export interface ReplyInterpretation { meaning:'agreement'; explanation:string }
 
+/** A refusal to build is compatible with reviewing the thesis. Preserve every
+ * other qualification/correction, and never use this recognizer for Act. */
+export function agreesWithThesis(quote:string,interpretation?:ReplyInterpretation):boolean {
+  const review=quote.normalize('NFKC').replace(/[\u2018\u2019`]/g,"'")
+    .replace(/\b(?:but\s+)?(?:do not|don't)\s+build\s+yet\b[.!]?/giu,'');
+  return agreesWithPresentation(review,interpretation);
+}
+
 /** The conversational host supplies semantic judgment for replies outside the
  * conservative offline recognizer. It never replaces the current presentation,
  * source turn or prerequisite checks. No model/provider is embedded here. */

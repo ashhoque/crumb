@@ -7,7 +7,8 @@ import {spawnSync} from 'node:child_process';
 import {temporaryProject} from './helpers.js';
 import {evaluationUpdateSchema} from '../src/domain/evaluation-update.js';
 import {type IdeContext,assertAct,confirmation} from '../src/domain/ide.js';
-import {readPrebuild,saveEvaluationUpdate} from '../src/application/prebuild.js';
+import {readPrebuild,saveEvaluationUpdate,savePrebuild,transitionIde} from '../src/application/prebuild.js';
+import {agreesWithPresentation,agreesWithThesis} from '../src/domain/reply.js';
 import {ideFixture,prepareIde} from './ide-fixtures.js';
 
 test('Actual host evaluation failures remain rejected; supported update writes, reads and resumes without manufactured receipts',t=>{
@@ -48,6 +49,25 @@ test('Actual host evaluation failures remain rejected; supported update writes, 
  const forged=run('evaluation-update',{expectedVersion:3,changes:{ide:original.ide}});
  assert.equal(forged.status,1);assert.match(forged.stderr,/additional properties/);
  assert.equal(readPrebuild(root)!.version,3);
+});
+
+test('Actual extended thesis agreement saves exact review while the same reply denies Act',t=>{
+ const quote="Looks good, don't build yet. I agree with the working user, problem and evaluation you displayed. Finish the reversible preparation and show the exact local scope and limitations for my build decision.";
+ assert.equal(agreesWithPresentation(quote),false);
+ assert.equal(agreesWithThesis(quote),true);
+ for(const denied of ["Don't build yet.","Looks good, don't build yet, but change the user.","Maybe, don't build yet.","Looks good, don't build yet unless we change the problem."])
+   assert.equal(agreesWithThesis(denied),false,denied);
+ const root=temporaryProject(t);savePrebuild(root,ideFixture());
+ const shown=transitionIde(root,{operation:'present-thesis',expectedVersion:readPrebuild(root)!.version});
+ const p=(shown.context as IdeContext).ide.presentation!;
+ const request={operation:'confirm-thesis',expectedVersion:shown.version,presentationId:p.id,displayedText:p.text,quote,turnId:'actual_synthetic_extended_review'};
+ const file=join(root,'confirm-thesis.json');writeFileSync(file,JSON.stringify(request));
+ const result=spawnSync(process.execPath,[fileURLToPath(new URL('../src/cli/main.js',import.meta.url)),'internal','ide',root,'--input-file',file],{encoding:'utf8'});
+ assert.equal(result.status,0,result.stderr);
+ const saved=readPrebuild(root)!.context as IdeContext;
+ assert.ok(confirmation(saved,'evaluation'));
+ assert.ok(saved.ide.confirmations.every(r=>r.quote===quote&&r.presentedText===p.text));
+ assert.throws(()=>assertAct(saved));
 });
 
 test('Evaluation updates invalidate approved bases instead of carrying permission to a changed thesis',t=>{
