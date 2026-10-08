@@ -1,0 +1,878 @@
+{
+  "baseline": {
+    "repository": "C:/Users/Ash/Documents/Codex/2026-10-07/make-this/work/crumb",
+    "branch": "user-interview-mvp",
+    "head": "cff44c88bc942ce09f53229d082f926306bb03d6",
+    "clean": true,
+    "node": "24.19.0",
+    "installedSource": "C:/Users/Ash/.codex/.chatgpt-projects/g-p-6ac1da47a3e48191b05023e7662b2815/crumb",
+    "installedSourceClean": true,
+    "supportEmail": "ashhoque0@gmail.com",
+    "installedRuntimeHash": "21bd110acb08985b8a0b9b94016152b9c8da61dd8fdb6ff595a33451d44bc075",
+    "eightInstalledFilesMatchRecordedCandidate": true
+  },
+  "failure": {
+    "scope": "standalone codex app-server fresh cold sandbox setup",
+    "category": "helper_unknown_error",
+    "message": "setup refresh had errors",
+    "cause": "runtime read/execute validation fails while updating the ACL on active node_repl.exe; Windows sharing violation os error 32",
+    "beforeCrumbLogic": true,
+    "ordinaryNodeFilesystemWorks": true,
+    "freshNativeDesktopFilesystemWorks": true,
+    "standaloneNodeReplAlsoFailsColdSetup": true
+  },
+  "resolution": {
+    "approach": "Use the fresh native desktop host for installed-host live acceptance; preserve existing product implementation and sandbox verification",
+    "productPatch": false,
+    "fallbackAdded": false,
+    "unusedFallbackProposalSavedLocally": true
+  },
+  "verification": {
+    "baselineBuildExit": 0,
+    "baselineFocusedTests": {
+      "passed": 45,
+      "failed": 0
+    },
+    "baselineFullSuite": {
+      "passed": 390,
+      "failed": 0,
+      "durationMs": 193968.8789
+    },
+    "externalCommunication": false
+  },
+  "sessions": {
+    "nativeSmoke": "01a11919-f7d6-7b72-b1f3-f39ab80ea80d",
+    "founder": "01a1191b-4104-76f3-8f1b-3b61dda2e06a",
+    "team": "01a1191b-4ee4-7080-9e98-9ea1d8ead9fa",
+    "nativeSmokeResult": [
+      {
+        "id": "01a11919-fa4f-72d2-9b7f-ed50e3b6faeb",
+        "durationMs": 16733,
+        "tools": [
+          {
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$smokePath = Join-Path (Get-Location) '\"'tmp/crumb-file-helper-smoke/SMOKE.txt'\nNew-Item -ItemType Directory -Force -Path (Split-Path -Parent \"'$smokePath) | Out-Null\n[System.IO.File]::WriteAllText($smokePath, \"crumb native desktop smoke`n\", [System.Text.UTF8Encoding]::new($false))\n$existsBefore = Test-Path -LiteralPath $smokePath\n$content = [System.IO.File]::ReadAllText($smokePath)\n$hash = (Get-FileHash -LiteralPath $smokePath -Algorithm SHA256).Hash\nRemove-Item -LiteralPath $smokePath\n$deleted = -not (Test-Path -LiteralPath $smokePath)\n[pscustomobject]@{Path=$smokePath;ExistsBefore=$existsBefore;Content=$content;SHA256=$hash;DeletionVerified=$deleted} | ConvertTo-Json'",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1628,
+            "output": {
+              "text": "{\r\n  \"Path\": \"C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-live-smoke\\\\tmp\\\\crumb-file-helper-smoke\\\\SMOKE.txt\",\r\n  \"ExistsBefore\": true,\r\n  \"Content\": \"crumb native desktop smoke\\n\",\r\n  \"SHA256\": \"B1F17B9D17B118833D694FA833A954D25B5F68A36D704AE5D028C8716D83BBC5\",\r\n  \"DeletionVerified\": true\r\n}\r\n",
+              "truncated": false
+            }
+          }
+        ],
+        "final": [
+          "**PASS**\n\n- Tool calls: `functions.exec` → `tools.exec_command` (PowerShell), exit code 0.\n- Path: `C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-live-smoke\\tmp\\crumb-file-helper-smoke\\SMOKE.txt`\n- Existence verified; readback matched `crumb native desktop smoke\\n`.\n- SHA256: `B1F17B9D17B118833D694FA833A954D25B5F68A36D704AE5D028C8716D83BBC5`\n- Deletion verified: **yes**.\n- Latency: **1,949 ms** overall; terminal execution **1,629 ms**.\n- Setup errors: **none**. Fallback unnecessary."
+        ]
+      }
+    ]
+  },
+  "status": "USER INTERVIEW LIVE DELIVERY PASS WITH WARNINGS",
+  "artifactVerification": [
+    {
+      "folder": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-interviews",
+      "canonical": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\work\\docknote-notes\\crumb-interviews\\0034ff7f-51f5-4d2f-b3a7-635b75f52269",
+      "requestId": "0034ff7f-51f5-4d2f-b3a7-635b75f52269",
+      "project": "Docknote",
+      "path": "founder",
+      "founderName": "Sam",
+      "returnEmail": "sam@example.com",
+      "supportEmail": "ashhoque0@gmail.com",
+      "questions": 5,
+      "routeCount": 3,
+      "verified": true,
+      "approval": false,
+      "submission": false,
+      "completedInterviews": 0,
+      "artifacts": [
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-interviews\\REQUEST.md",
+          "sha256": "d1fa3e2bb5da71ef946f941a58e3082153315db3e4167d9e92caa5ec5fc9e858"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-interviews\\REQUEST.json",
+          "sha256": "4b7727eec2b05d74186813903ad03decc9338ed8613205d92cf2ee12202165ce"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-interviews\\ROUTES.csv",
+          "sha256": "1509f0890ff88cba790fe53feede94cb40e22fa053c8b75d8523be2dc26cd841"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-interviews\\FOUNDER-EMAIL-BODY.txt",
+          "sha256": "2d8c97bf8750c8cb3ed5c11118cd2b15f81f5fe2332de8c27a78542f3dd2b278"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-interviews\\FOUNDER-EMAIL.json",
+          "sha256": "9703081b815acedde2f099c0a6ce4f2411c008045bbbee25320f0372b25c15e0"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-interviews\\FOUNDER-EMAIL.md",
+          "sha256": "095ef08702e49ea41ac75fb85bf8bce01e41e3496b360c591abe3dc3b5e938a8"
+        }
+      ],
+      "mail": {
+        "from": "sam@example.com",
+        "to": "sam@example.com",
+        "subject": "[Crumb User Interviews] Docknote — Provisional first user: workshop manager handling returns and release-to-hire at an independent Glasgow equipment rental shop. Owner or depot manager is a possible buyer, unverified. — 0034ff7f-51f5-4d2f-b3a7-635b75f52269",
+        "replyThread": true,
+        "sent": false
+      }
+    },
+    {
+      "folder": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-team-interview-acceptance\\outputs\\team-ready",
+      "canonical": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-team-interview-acceptance\\work\\proofledger-notes-20261007\\crumb-interviews\\ba95658e-4600-4c8e-b351-647a151604ac",
+      "requestId": "ba95658e-4600-4c8e-b351-647a151604ac",
+      "project": "Proofledger",
+      "path": "team",
+      "founderName": "Alex",
+      "returnEmail": "alex@example.com",
+      "supportEmail": "ashhoque0@gmail.com",
+      "questions": 5,
+      "routeCount": 3,
+      "verified": true,
+      "approval": false,
+      "submission": false,
+      "completedInterviews": 0,
+      "artifacts": [
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-team-interview-acceptance\\outputs\\team-ready\\REQUEST.md",
+          "sha256": "eed3910ae34a9bbe574509df02c5410f3ca25c842fffc844d517e42b2925d822"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-team-interview-acceptance\\outputs\\team-ready\\REQUEST.json",
+          "sha256": "66df76ab9b46ad712b6b9a6b91406e6c9b0ba21151b784da14473a08ea8e4e53"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-team-interview-acceptance\\outputs\\team-ready\\ROUTES.csv",
+          "sha256": "cdd68e689ee21042255dd6d1d9cd7b203432b0380ca3731f6cb29032d8f1f1aa"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-team-interview-acceptance\\outputs\\team-ready\\EMAIL-BODY.md",
+          "sha256": "a9f07fabd83f5205157881fffc53d01a3267ccedace7af0ca5cfab2cad2b175a"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-team-interview-acceptance\\outputs\\team-ready\\EMAIL-PREVIEW.json",
+          "sha256": "773ef412e29a34e966b1f365842bcbf30d6f838adde0ac47b483b6b2ec58d84b"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-team-interview-acceptance\\outputs\\team-ready\\EMAIL-PREVIEW.txt",
+          "sha256": "8076bd3a3e7beb5078be38c6eb52f599b14da0106caf1d44b082bd825e8d0948"
+        }
+      ],
+      "mail": {
+        "from": "alex@example.com",
+        "to": "ashhoque0@gmail.com",
+        "subject": "[Crumb User Interviews] Proofledger — Production managers or owner-operators personally coordinating PDF proof approvals at independent commercial print shops in Manchester. — ba95658e-4600-4c8e-b351-647a151604ac",
+        "replyThread": true,
+        "sent": false
+      }
+    },
+    {
+      "folder": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-team-draft",
+      "canonical": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\work\\docknote-notes\\crumb-interviews\\ec6d3e0b-3021-4401-8a73-59d72e0d8ebc",
+      "requestId": "ec6d3e0b-3021-4401-8a73-59d72e0d8ebc",
+      "project": "Docknote",
+      "path": "team",
+      "founderName": "Sam",
+      "returnEmail": "sam@example.com",
+      "supportEmail": "ashhoque0@gmail.com",
+      "questions": 5,
+      "routeCount": 3,
+      "verified": true,
+      "approval": false,
+      "submission": false,
+      "completedInterviews": 0,
+      "artifacts": [
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-team-draft\\REQUEST.md",
+          "sha256": "d4cc1a285b5dddf71da4a8a4fb3377f1e581e5a271e6d99ffbd4419d15cd2fbd"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-team-draft\\REQUEST.json",
+          "sha256": "5f2391ee187d8d0f461b33215f0dd963bb2669a7cd075c669220c2e69af14970"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-team-draft\\ROUTES.csv",
+          "sha256": "1509f0890ff88cba790fe53feede94cb40e22fa053c8b75d8523be2dc26cd841"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-team-draft\\TEAM-EMAIL-BODY.txt",
+          "sha256": "a90ff0e346d6548526fec8a722edbba8cca781cd565c22b2bfff391dfc0e0169"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-team-draft\\TEAM-EMAIL.json",
+          "sha256": "7d7fdfcea41fdee09b52dc9d9f155e37210dcd6507c3d051834dc21802089096"
+        },
+        {
+          "path": "C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\outputs\\docknote-team-draft\\TEAM-EMAIL.md",
+          "sha256": "c012585bc23cd404f63a90bb9517cbb62c48ef6b877cdb1015f0351c45b18c29"
+        }
+      ],
+      "mail": {
+        "from": "sam@example.com",
+        "to": "ashhoque0@gmail.com",
+        "subject": "[Crumb User Interviews] Docknote — Provisional first user: workshop manager handling returns and release-to-hire at an independent Glasgow equipment rental shop. Owner or depot manager is a possible buyer, unverified. — ec6d3e0b-3021-4401-8a73-59d72e0d8ebc",
+        "replyThread": true,
+        "sent": false
+      }
+    }
+  ],
+  "liveRuns": {
+    "founder_final": [
+      {
+        "id": "01a11920-55bb-77c1-8f25-c52a05432768",
+        "status": "completed",
+        "durationMs": 101825,
+        "toolCalls": [
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$founderInputPath = '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/pack-input.json'; \"'$teamInput = Get-Content -LiteralPath $founderInputPath -Raw | ConvertFrom-Json; $teamInput.path = '\"'team'; \"'$teamInput.outreach = '\"'UNSENT DRAFT — Hello, I am contacting you from Crumb on behalf of Sam, who is researching how independent hire workshops handle returned equipment. Would someone who manages returns and ready-to-hire checks be open to a voluntary 20-minute conversation about the last item you handled, what was difficult, and how you dealt with it? This is research, with no product demo or sales pitch. It is fine to decline. We will not record or publish identifiable comments without permission. This wording is a draft only; no outreach or identity disclosure is authorized.'; \"'$teamInput.constraints = $teamInput.constraints + '\"' Separate draft-only team-path Gmail-unavailable acceptance case. Preserve existing founder-led package unchanged. No approval or submission records; do not connect Gmail or contact prospects.'; [System.IO.File]::WriteAllText('C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/team-pack-input.json', (\"'$teamInput | ConvertTo-Json -Depth 20), [System.Text.UTF8Encoding]::new($false)); $founderFolder = '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes/crumb-interviews/0034ff7f-51f5-4d2f-b3a7-635b75f52269'; foreach (\"'$founderFile in @('\"'REQUEST.md','REQUEST.json','ROUTES.csv')) { Get-FileHash -LiteralPath (Join-Path \"'$founderFolder $founderFile) -Algorithm SHA256 | Select-Object Path,Hash | ConvertTo-Json -Compress }; & '\"'C:/Users/Ash/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' 'C:/Users/Ash/.codex/.chatgpt-projects/g-p-6ac1da47a3e48191b05023e7662b2815/crumb/dist/src/cli/main.js' internal interview-pack 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes' --input-file 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/team-pack-input.json'\"",
+            "status": "failed",
+            "exitCode": 1,
+            "durationMs": 966,
+            "error": {
+              "text": "{\"Path\":\"C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-founder-interview-acceptance\\\\work\\\\docknote-notes\\\\crumb-interviews\\\\0034ff7f-51f5-4d2f-b3a7-635b75f52269\\\\REQUEST.md\",\"Hash\":\"D1FA3E2BB5DA71EF946F941A58E3082153315DB3E4167D9E92CAA5EC5FC9E858\"}\r\n{\"Path\":\"C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-founder-interview-acceptance\\\\work\\\\docknote-notes\\\\crumb-interviews\\\\0034ff7f-51f5-4d2f-b3a7-635b75f52269\\\\REQUEST.json\",\"Hash\":\"4B7727EEC2B05D74186813903AD03DECC9338ED8613205D92CF2EE12202165CE\"}\r\n{\"Path\":\"C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-founder-interview-acceptance\\\\work\\\\docknote-notes\\\\crumb-interviews\\\\0034ff7f-51f5-4d2f-b3a7-635b75f52269\\\\ROUTES.csv\",\"Hash\":\"1509F0890FF88CBA790FE53FEEDE94CB40E22FA053C8B75D8523BE2DC26CD841\"}\r\nUse bounded, nonempty interview context; no control characters.\n",
+              "truncated": false
+            }
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$teamInputPath = '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/team-pack-input.json'; \"'$teamInput = Get-Content -LiteralPath $teamInputPath -Raw | ConvertFrom-Json; $teamInput.constraints = '\"'Separate synthetic draft-only team-path Gmail-unavailable test; preserve founder-led package unchanged. All preparation stays in this chat workspace. No implementation, sends, deployment, spending, prospect contact, approval or submission records. No interviews occurred. Do not connect Gmail. sam@example.com is founder supplied, not independently verified. Restricted and unchecked routes are not authorized recruitment routes. No identity disclosure is approved. Team assistance is human-assisted alpha with no guarantees of recruitment, completion or turnaround. Return notes by same-thread reply or paste/upload here; retain participant statements, interviewer interpretation and Crumb inference separately. Capture date, fit, interviewer, recruitment source, occurrence evidence and quote consent. No unrelated private information.'; [System.IO.File]::WriteAllText(\"'$teamInputPath, ($teamInput | ConvertTo-Json -Depth 20), [System.Text.UTF8Encoding]::new($false)); & '\"'C:/Users/Ash/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' 'C:/Users/Ash/.codex/.chatgpt-projects/g-p-6ac1da47a3e48191b05023e7662b2815/crumb/dist/src/cli/main.js' internal interview-pack 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes' --input-file 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/team-pack-input.json'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1299
+          },
+          {
+            "type": "fileChange",
+            "name": null,
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$teamFolder = '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes/crumb-interviews/ec6d3e0b-3021-4401-8a73-59d72e0d8ebc'; \"'$teamRequest = Get-Content -LiteralPath (Join-Path $teamFolder '\"'REQUEST.json') -Raw | ConvertFrom-Json; Get-Content -LiteralPath (Join-Path \"'$teamFolder '\"'REQUEST.md') -Raw; Get-Content -LiteralPath (Join-Path \"'$teamFolder '\"'ROUTES.csv') -Raw; \"'$teamRequest.request | Select-Object id,path,returnEmail,emailSource,supportEmail,identityDisclosure | ConvertTo-Json; $previewOutput = & '\"'C:/Users/Ash/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' 'C:/Users/Ash/.codex/.chatgpt-projects/g-p-6ac1da47a3e48191b05023e7662b2815/crumb/dist/src/cli/main.js' internal interview-email 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes' --input-file 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/team-email-preview-input.json'; if (\"'$LASTEXITCODE -ne 0) { throw '\"'Team preview failed' }; \"'$teamPreview = ($previewOutput -join \"`n\") | ConvertFrom-Json; [System.IO.File]::WriteAllText('\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/team-email-preview-result.json', (\"'$teamPreview | ConvertTo-Json -Depth 20), [System.Text.UTF8Encoding]::new($false)); $teamPreview | Select-Object status,sent,scopeHash | ConvertTo-Json; $teamPreview.mail | ConvertTo-Json -Depth 5; Get-ChildItem -LiteralPath $teamFolder -File | Select-Object Name,Length | ConvertTo-Json'",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 950
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$teamFolder = '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes/crumb-interviews/ec6d3e0b-3021-4401-8a73-59d72e0d8ebc'; \"'$teamOutputs = '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-team-draft'; New-Item -ItemType Directory -Path \"'$teamOutputs -ErrorAction Stop | Out-Null; $teamRequest = Get-Content -LiteralPath (Join-Path $teamFolder '\"'REQUEST.json') -Raw | ConvertFrom-Json; \"'$teamPreview = Get-Content -LiteralPath '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/team-email-preview-result.json' -Raw | ConvertFrom-Json; if (\"'$teamRequest.request.path -ne '\"'team' -or \"'$teamPreview.mail.to -ne $teamRequest.request.supportEmail -or $teamRequest.request.returnEmail -ne '\"'sam@example.com' -or \"'$teamPreview.sent -ne $false -or $teamPreview.status -ne '\"'draft_only' -or -not \"'$teamPreview.mail.body.Contains('\"'Return findings and any follow-up questions by replying to this thread.') -or -not \"'$teamPreview.mail.body.Contains('\"'Return email: sam@example.com')) { throw 'Team draft verification failed' }; foreach (\"'$requestFile in @('\"'REQUEST.md','REQUEST.json','ROUTES.csv')) { Copy-Item -LiteralPath (Join-Path \"'$teamFolder $requestFile) -Destination (Join-Path $teamOutputs $requestFile); if ((Get-FileHash -LiteralPath (Join-Path $teamFolder $requestFile)).Hash -ne (Get-FileHash -LiteralPath (Join-Path $teamOutputs $requestFile)).Hash) { throw '\"'Request copy differs' } }; \"'$emailText = '\"'From: ' + \"'$teamPreview.mail.from + \"`nTo: \" + $teamPreview.mail.to + \"`nSubject: \" + $teamPreview.mail.subject + \"`n`n\" + $teamPreview.mail.body; [System.IO.File]::WriteAllText((Join-Path $teamOutputs '\"'TEAM-EMAIL.md'), \"'$emailText, [System.Text.UTF8Encoding]::new($false)); [System.IO.File]::WriteAllText((Join-Path $teamOutputs '\"'TEAM-EMAIL-BODY.txt'), \"'$teamPreview.mail.body, [System.Text.UTF8Encoding]::new($false)); [System.IO.File]::WriteAllText((Join-Path $teamOutputs '\"'TEAM-EMAIL.json'), (\"'$teamPreview.mail | ConvertTo-Json -Depth 10), [System.Text.UTF8Encoding]::new($false)); $savedBody = Get-Content -LiteralPath (Join-Path $teamOutputs '\"'TEAM-EMAIL-BODY.txt') -Raw; if (\"'$savedBody -cne $teamPreview.mail.body) { throw '\"'Saved body differs' }; \"'$founderFolder = '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes/crumb-interviews/0034ff7f-51f5-4d2f-b3a7-635b75f52269'; \"'$expectedFounderHashes = @{'\"'REQUEST.md'='d1fa3e2bb5da71ef946f941a58e3082153315db3e4167d9e92caa5ec5fc9e858';'REQUEST.json'='4b7727eec2b05d74186813903ad03decc9338ed8613205d92cf2ee12202165ce';'ROUTES.csv'='1509f0890ff88cba790fe53feede94cb40e22fa053c8b75d8523be2dc26cd841'}; foreach (\"'$founderFile in $expectedFounderHashes.Keys) { if ((Get-FileHash -LiteralPath (Join-Path $founderFolder $founderFile)).Hash.ToLowerInvariant() -ne $expectedFounderHashes[$founderFile]) { throw '\"'Founder request changed' } }; \"'$fileReceipts = foreach ($outputFile in @('\"'REQUEST.md','REQUEST.json','ROUTES.csv','TEAM-EMAIL.md','TEAM-EMAIL-BODY.txt','TEAM-EMAIL.json')) { \"'$outputPath = Join-Path $teamOutputs $outputFile; $originalPath = if ($outputFile -in @('\"'REQUEST.md','REQUEST.json','ROUTES.csv')) { Join-Path \"'$teamFolder $outputFile } else { $null }; [pscustomobject]@{file=$outputFile;originalPath=$originalPath;outputPath=$outputPath;sha256=(Get-FileHash -LiteralPath $outputPath -Algorithm SHA256).Hash.ToLowerInvariant()} }; $verification = [pscustomobject]@{requestId=$teamRequest.request.id;path='\"'team';status=\"'$teamPreview.status;sent=$teamPreview.sent;configuredSupportRecipient=$teamRequest.request.supportEmail;mailRecipient=$teamPreview.mail.to;returnEmail=$teamRequest.request.returnEmail;emailSource=$teamRequest.request.emailSource;sameThreadReplyInstructions=$true;bodyMatchesSupportedPreview=$true;founderArtifactsUnchanged=$true;approvalOperationCalled=$false;submissionOperationCalled=$false;completedInterviews=0;files=$fileReceipts}; [System.IO.File]::WriteAllText((Join-Path $teamOutputs '\"'VERIFICATION.json'), (\"'$verification | ConvertTo-Json -Depth 10), [System.Text.UTF8Encoding]::new($false)); Get-Content -LiteralPath (Join-Path $teamOutputs '\"'VERIFICATION.json') -Raw; Get-Content -LiteralPath (Join-Path \"'$teamOutputs '\"'TEAM-EMAIL.md') -TotalCount 7\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1604
+          },
+          {
+            "type": "mcpToolCall",
+            "name": "open_in_codex",
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": 5
+          },
+          {
+            "type": "mcpToolCall",
+            "name": "open_in_codex",
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": 4
+          },
+          {
+            "type": "mcpToolCall",
+            "name": "open_in_codex",
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": 4
+          },
+          {
+            "type": "mcpToolCall",
+            "name": "open_in_codex",
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": 4
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"rg --files --hidden 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes' -g '*interview*' -g '*approval*' -g '*submission*' -g '*result*' -g '*email*' -g '*request*' -g '*REQUEST*'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1218
+          }
+        ],
+        "final": [
+          "The separate team draft is ready. Your founder-led package remains unchanged.\n\nVerified: recipient **ashhoque0@gmail.com** matches the configured support address; return address is **sam@example.com**; the full body includes same-thread reply instructions. Status remains **draft_only**, **sent:false**.\n\nSaved and opened:\n\n| File | SHA-256 |\n|---|---|\n| [REQUEST.md](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-team-draft/REQUEST.md) | `d4cc1a285b5dddf71da4a8a4fb3377f1e581e5a271e6d99ffbd4419d15cd2fbd` |\n| [REQUEST.json](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-team-draft/REQUEST.json) | `5f2391ee187d8d0f461b33215f0dd963bb2669a7cd075c669220c2e69af14970` |\n| [Complete addressed email](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-team-draft/TEAM-EMAIL.md) | `c012585bc23cd404f63a90bb9517cbb62c48ef6b877cdb1015f0351c45b18c29` |\n| [Full outgoing body](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-team-draft/TEAM-EMAIL-BODY.txt) | `a90ff0e346d6548526fec8a722edbba8cca781cd565c22b2bfff391dfc0e0169` |\n\n[Verification file](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-team-draft/VERIFICATION.json) records original and delivery paths, all hashes, and the checks.\n\nNo approval or submission records were created. Nothing was sent, no prospects were contacted, and completed interviews remain **zero**."
+        ]
+      },
+      {
+        "id": "01a1191f-2c30-7c30-9c04-e6a232321325",
+        "status": "completed",
+        "durationMs": 58947,
+        "toolCalls": [
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$packFolder = '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes/crumb-interviews/0034ff7f-51f5-4d2f-b3a7-635b75f52269'; foreach (\"'$packFile in @('\"'REQUEST.md','REQUEST.json','ROUTES.csv')) { Get-FileHash -LiteralPath (Join-Path \"'$packFolder $packFile) -Algorithm SHA256 | Select-Object Path,Hash | ConvertTo-Json -Compress }; $requestDocument = Get-Content -LiteralPath (Join-Path $packFolder '\"'REQUEST.json') -Raw | ConvertFrom-Json; \"'$requestDocument.request | Select-Object id,path,returnEmail,emailSource,identityDisclosure | ConvertTo-Json; Get-Content -LiteralPath (Join-Path $packFolder '\"'REQUEST.md') -Raw; Get-Content -LiteralPath (Join-Path \"'$packFolder '\"'ROUTES.csv') -Raw\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1226
+          },
+          {
+            "type": "fileChange",
+            "name": null,
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"& 'C:/Users/Ash/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' 'C:/Users/Ash/.codex/.chatgpt-projects/g-p-6ac1da47a3e48191b05023e7662b2815/crumb/dist/src/cli/main.js' internal interview-email 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes' --input-file 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/email-preview-input.json'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 994
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$previewOutput = & '\"'C:/Users/Ash/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' 'C:/Users/Ash/.codex/.chatgpt-projects/g-p-6ac1da47a3e48191b05023e7662b2815/crumb/dist/src/cli/main.js' internal interview-email 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes' --input-file 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/email-preview-input.json'; if (\"'$LASTEXITCODE -ne 0) { throw '\"'Preview failed' }; \"'$previewData = ($previewOutput -join \"`n\") | ConvertFrom-Json; if ($previewData.sent -ne $false -or $previewData.status -ne '\"'draft_only' -or \"'$previewData.mail.to -ne '\"'sam@example.com') { throw 'Unexpected preview state' }; \"'$outputFolder = '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-interviews'; \"'$bodyPath = Join-Path $outputFolder '\"'FOUNDER-EMAIL-BODY.txt'; \"'$emailPath = Join-Path $outputFolder '\"'FOUNDER-EMAIL.md'; \"'$mailPath = Join-Path $outputFolder '\"'FOUNDER-EMAIL.json'; [System.IO.File]::WriteAllText(\"'$bodyPath, $previewData.mail.body, [System.Text.UTF8Encoding]::new($false)); $emailText = '\"'From: ' + \"'$previewData.mail.from + \"`nTo: \" + $previewData.mail.to + \"`nSubject: \" + $previewData.mail.subject + \"`n`n\" + $previewData.mail.body; [System.IO.File]::WriteAllText($emailPath, $emailText, [System.Text.UTF8Encoding]::new($false)); [System.IO.File]::WriteAllText($mailPath, ($previewData.mail | ConvertTo-Json -Depth 10), [System.Text.UTF8Encoding]::new($false)); [System.IO.File]::WriteAllText('\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/email-preview-result.json', (\"'$previewData | ConvertTo-Json -Depth 10), [System.Text.UTF8Encoding]::new($false)); $savedBody = Get-Content -LiteralPath $bodyPath -Raw; if ($savedBody -cne $previewData.mail.body) { throw '\"'Saved body differs from preview' }; \"'$savedMail = Get-Content -LiteralPath $mailPath -Raw | ConvertFrom-Json; if ($savedMail.body -cne $previewData.mail.body) { throw '\"'Saved mail differs from preview' }; Get-Content -LiteralPath \"'$emailPath -TotalCount 8; foreach ($outgoingPath in @($bodyPath,$emailPath,$mailPath)) { Get-FileHash -LiteralPath $outgoingPath -Algorithm SHA256 | Select-Object Path,Hash | ConvertTo-Json -Compress }; [pscustomobject]@{status=$previewData.status;sent=$previewData.sent;recipient=$savedMail.to;bodyMatchesPreview=$true;requestId='\"'0034ff7f-51f5-4d2f-b3a7-635b75f52269'} | ConvertTo-Json\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1093
+          },
+          {
+            "type": "mcpToolCall",
+            "name": "open_in_codex",
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": 5
+          }
+        ],
+        "final": [
+          "Your complete founder email is addressed to **sam@example.com** and remains **unsent**.\n\n- [Complete addressed email](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-interviews/FOUNDER-EMAIL.md), saved and opened.\n- [Exact outgoing body](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-interviews/FOUNDER-EMAIL-BODY.txt), ready to copy.\n\nI verified all three request artifacts against their hashes and confirmed the saved body exactly matches the supported preview. It includes the routes and restrictions, invitation, five questions, decision signals and completed-interview notes template.\n\nAfter an interview, paste or upload the completed template here with request ID `0034ff7f-51f5-4d2f-b3a7-635b75f52269`. If you later send the package, you can reply in that email thread and bring those notes here; Gmail is currently disconnected.\n\nNo approval was recorded, no candidates were contacted, and no interview has occurred."
+        ]
+      },
+      {
+        "id": "01a1191b-4318-70f1-894e-10f9fa083408",
+        "status": "completed",
+        "durationMs": 236234,
+        "toolCalls": [
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:/Users/Ash/.agents/skills/crumb/SKILL.md'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1331
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:/Users/Ash/.agents/skills/crumb/runtime.json'; Get-Content -LiteralPath 'C:/Users/Ash/.agents/skills/crumb/references/interview-delivery.md'; Get-Content -LiteralPath 'C:/Users/Ash/.agents/skills/crumb/references/research.md'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1378
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:/Users/Ash/.agents/skills/crumb/references/local-tools.md'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1530
+          },
+          {
+            "type": "webSearch",
+            "name": null,
+            "command": null,
+            "status": null,
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "webSearch",
+            "name": null,
+            "command": null,
+            "status": null,
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"& 'C:/Users/Ash/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' 'C:/Users/Ash/.codex/.chatgpt-projects/g-p-6ac1da47a3e48191b05023e7662b2815/crumb/dist/src/cli/main.js' internal evaluation-update-schema 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1948
+          },
+          {
+            "type": "webSearch",
+            "name": null,
+            "command": null,
+            "status": null,
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "fileChange",
+            "name": null,
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"New-Item -ItemType Directory -Path 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes' -ErrorAction Stop | Out-Null; & 'C:/Users/Ash/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' 'C:/Users/Ash/.codex/.chatgpt-projects/g-p-6ac1da47a3e48191b05023e7662b2815/crumb/dist/src/cli/main.js' internal working-context 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes' --input-file 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/start.json'\"",
+            "status": "failed",
+            "exitCode": 1,
+            "durationMs": 1802,
+            "error": {
+              "text": "EPERM: operation not permitted, realpath 'C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-founder-interview-acceptance\\work\\docknote-notes'\n",
+              "truncated": false
+            }
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"& 'C:/Users/Ash/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' 'C:/Users/Ash/.codex/.chatgpt-projects/g-p-6ac1da47a3e48191b05023e7662b2815/crumb/dist/src/cli/main.js' internal working-context 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes' --input-file 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/start.json'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1020
+          },
+          {
+            "type": "webSearch",
+            "name": null,
+            "command": null,
+            "status": null,
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "webSearch",
+            "name": null,
+            "command": null,
+            "status": null,
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "webSearch",
+            "name": null,
+            "command": null,
+            "status": null,
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "fileChange",
+            "name": null,
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"& 'C:/Users/Ash/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' 'C:/Users/Ash/.codex/.chatgpt-projects/g-p-6ac1da47a3e48191b05023e7662b2815/crumb/dist/src/cli/main.js' internal evaluation-update 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes' --input-file 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/evidence.json'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1107
+          },
+          {
+            "type": "fileChange",
+            "name": null,
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"& 'C:/Users/Ash/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' 'C:/Users/Ash/.codex/.chatgpt-projects/g-p-6ac1da47a3e48191b05023e7662b2815/crumb/dist/src/cli/main.js' internal interview-pack 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes' --input-file 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/pack-input.json'\"",
+            "status": "failed",
+            "exitCode": 1,
+            "durationMs": 916,
+            "error": {
+              "text": "Public contact must actually appear in the retained source.\n",
+              "truncated": false
+            }
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$packRequest = Get-Content -LiteralPath '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/pack-input.json' -Raw | ConvertFrom-Json; \"'$packRequest.routes[0].contact = '\"'workshop@frasertoolhire.co.uk'; \"'$packRequest.routes[1].contact = '\"'office@smailengineers.co.uk'; [System.IO.File]::WriteAllText('C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/pack-input.json', (\"'$packRequest | ConvertTo-Json -Depth 20), [System.Text.UTF8Encoding]::new($false)); & '\"'C:/Users/Ash/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' 'C:/Users/Ash/.codex/.chatgpt-projects/g-p-6ac1da47a3e48191b05023e7662b2815/crumb/dist/src/cli/main.js' internal interview-pack 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes' --input-file 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/pack-input.json'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 945
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$packFolder = '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes/crumb-interviews/1f39a13a-174b-4dec-9d57-03ca4d35863a'; foreach (\"'$packFile in @('\"'REQUEST.md','REQUEST.json','ROUTES.csv')) { Write-Output \"'$packFile; Get-Content -LiteralPath (Join-Path $packFolder $packFile) -Raw; Get-FileHash -LiteralPath (Join-Path $packFolder $packFile) -Algorithm SHA256 | Select-Object Path,Hash | ConvertTo-Json -Compress }'",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1180
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$packRequest = Get-Content -LiteralPath '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/pack-input.json' -Raw | ConvertFrom-Json; \"'$packRequest.problem = '\"'handling returned equipment and confirming it is ready to hire again'; [System.IO.File]::WriteAllText('C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/pack-input.json', (\"'$packRequest | ConvertTo-Json -Depth 20), [System.Text.UTF8Encoding]::new($false)); & '\"'C:/Users/Ash/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node.exe' 'C:/Users/Ash/.codex/.chatgpt-projects/g-p-6ac1da47a3e48191b05023e7662b2815/crumb/dist/src/cli/main.js' internal interview-pack 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes' --input-file 'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/pack-input.json'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 946
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$sourceFolder = '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/work/docknote-notes/crumb-interviews/0034ff7f-51f5-4d2f-b3a7-635b75f52269'; \"'$deliverableFolder = '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-interviews'; New-Item -ItemType Directory -Path \"'$deliverableFolder -ErrorAction Stop | Out-Null; $fileReceipt = foreach ($fileName in @('\"'REQUEST.md','REQUEST.json','ROUTES.csv')) { \"'$originalPath = Join-Path $sourceFolder $fileName; $originalText = Get-Content -LiteralPath $originalPath -Raw; Write-Output \"READ $fileName ($($originalText.Length) characters)\"; Copy-Item -LiteralPath $originalPath -Destination (Join-Path $deliverableFolder $fileName); $originalHash = (Get-FileHash -LiteralPath $originalPath -Algorithm SHA256).Hash.ToLowerInvariant(); $copyPath = Join-Path $deliverableFolder $fileName; $copyHash = (Get-FileHash -LiteralPath $copyPath -Algorithm SHA256).Hash.ToLowerInvariant(); if ($originalHash -ne $copyHash) { throw '\"'Copy differs from generated original' }; [pscustomobject]@{file=\"'$fileName;originalPath=$originalPath;outputPath=$copyPath;sha256=$originalHash} }; $fileReceipt | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath (Join-Path $deliverableFolder '\"'PATHS-AND-HASHES.json') -Encoding utf8; Get-Content -LiteralPath (Join-Path \"'$deliverableFolder '\"'PATHS-AND-HASHES.json') -Raw; \"'$savedRequest = Get-Content -LiteralPath (Join-Path $sourceFolder '\"'REQUEST.json') -Raw | ConvertFrom-Json; \"'$savedRequest.request.questions; $savedRequest.request.resultTemplate; Import-Csv -LiteralPath (Join-Path $sourceFolder '\"'ROUTES.csv') | Select-Object Name,Participation,Role | ConvertTo-Json; Get-Content -LiteralPath (Join-Path \"'$sourceFolder '\"'REQUEST.md') -TotalCount 16\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1245
+          },
+          {
+            "type": "mcpToolCall",
+            "name": "open_in_codex",
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": 6
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$manifestPath = '\"'C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-interviews/PATHS-AND-HASHES.json'; \"'$manifestEntries = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json; @($manifestEntries | Where-Object { $_ -isnot [string] }) | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $manifestPath -Encoding utf8; Get-Content -LiteralPath $manifestPath -Raw'",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1183
+          }
+        ],
+        "final": [
+          "The interview package is ready and read back: neutral invitation, five past-behavior questions, notes template, and strengthening/weakening signals. Missing signoffs remain a hypothesis; [HSE guidance](https://www.hse.gov.uk/work-equipment-machinery/inspection.htm) doesn’t require records for every simple check.\n\nThree opened starting points are included: [Fraser](https://frasertoolhire.co.uk/contact-us/) in Hamilton and [Smail](https://www.smailengineers.co.uk/) require recruitment permission checks; [Martin](https://www.martinplanthire.co.uk/about-us) is research-only.\n\nThese delivery copies match the generated originals byte-for-byte:\n\n| File | SHA-256 |\n|---|---|\n| [REQUEST.md](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-interviews/REQUEST.md) | `d1fa3e2bb5da71ef946f941a58e3082153315db3e4167d9e92caa5ec5fc9e858` |\n| [REQUEST.json](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-interviews/REQUEST.json) | `4b7727eec2b05d74186813903ad03decc9338ed8613205d92cf2ee12202165ce` |\n| [ROUTES.csv](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-interviews/ROUTES.csv) | `1509f0890ff88cba790fe53feede94cb40e22fa053c8b75d8523be2dc26cd841` |\n\n[Original and delivery paths with hashes](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-founder-interview-acceptance/outputs/docknote-interviews/PATHS-AND-HASHES.json).\n\nEverything remains synthetic preparation: no contact, sending, submission or completed interviews. Team help is human-assisted alpha, without guaranteed recruitment, completion or turnaround; choosing it does not authorize outreach.\n\n**Ask: Do you want to run these interviews yourself, or should Crumb's team take them off your plate and email you what we learn?**"
+        ]
+      }
+    ],
+    "team_final": [
+      {
+        "id": "01a11920-2ae7-7552-aaf7-fb0f9fe9dae6",
+        "status": "completed",
+        "durationMs": 116943,
+        "toolCalls": [
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$taskEmailInput = Get-Content -LiteralPath '\"'work\\\\team-interview-input.json' -Raw | ConvertFrom-Json; \"'$taskEmailInput.returnEmail = '\"'alex@example.com'; \"'$taskEmailInput.emailSource = '\"'founder_supplied'; \"'$taskEmailInput.constraints = $taskEmailInput.constraints.Replace('\"'return email not supplied and must remain null','return email alex@example.com supplied by founder for this synthetic case; not independently verified').Replace('Return email unknown','Founder-supplied return email alex@example.com'); \"'$taskEmailInput | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath '\"'work\\\\team-email-input.json' -Encoding utf8; & 'C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe' 'C:\\\\Users\\\\Ash\\\\.codex\\\\.chatgpt-projects\\\\g-p-6ac1da47a3e48191b05023e7662b2815\\\\crumb\\\\dist\\\\src\\\\cli\\\\main.js' internal interview-pack 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\proofledger-notes-20261007' --input-file 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\team-email-input.json'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1088
+          },
+          {
+            "type": "fileChange",
+            "name": null,
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"& 'C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe' 'C:\\\\Users\\\\Ash\\\\.codex\\\\.chatgpt-projects\\\\g-p-6ac1da47a3e48191b05023e7662b2815\\\\crumb\\\\dist\\\\src\\\\cli\\\\main.js' internal interview-email 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\proofledger-notes-20261007' --input-file 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\email-preview-input.json' | Set-Content -LiteralPath 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\email-preview.json' -Encoding utf8; Get-Content -LiteralPath 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\email-preview.json' -Raw\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 860
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$taskFinalPack = '\"'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\proofledger-notes-20261007\\\\crumb-interviews\\\\ba95658e-4600-4c8e-b351-647a151604ac'; \"'$taskFinalOutput = '\"'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\outputs\\\\team-ready'; New-Item -ItemType Directory -Path \"'$taskFinalOutput -Force | Out-Null; foreach ($taskFinalFile in @('\"'REQUEST.md','REQUEST.json','ROUTES.csv')) { Copy-Item -LiteralPath (Join-Path \"'$taskFinalPack $taskFinalFile) -Destination (Join-Path $taskFinalOutput $taskFinalFile); Get-Content -LiteralPath (Join-Path $taskFinalOutput $taskFinalFile) -Raw | Out-Null }; $taskPreview = Get-Content -LiteralPath '\"'work\\\\email-preview.json' -Raw | ConvertFrom-Json; \"'$taskUtf8 = New-Object System.Text.UTF8Encoding($false); [System.IO.File]::WriteAllText((Join-Path $taskFinalOutput '\"'EMAIL-BODY.md'), \"'$taskPreview.mail.body, $taskUtf8); [System.IO.File]::WriteAllText((Join-Path $taskFinalOutput '\"'EMAIL-PREVIEW.txt'), \"'$taskPreview.displayedText, $taskUtf8); Copy-Item -LiteralPath '\"'work\\\\email-preview.json' -Destination (Join-Path \"'$taskFinalOutput '\"'EMAIL-PREVIEW.json'); \"'$taskVerifyRequest = Get-Content -LiteralPath (Join-Path $taskFinalOutput '\"'REQUEST.json') -Raw | ConvertFrom-Json; if (\"'$taskVerifyRequest.request.project -ne '\"'Proofledger' -or \"'$taskVerifyRequest.request.path -ne '\"'team' -or \"'$taskVerifyRequest.request.returnEmail -ne '\"'alex@example.com' -or \"'$taskVerifyRequest.request.emailSource -ne '\"'founder_supplied') { throw 'Request verification failed' }; if (\"'$taskPreview.mail.to -ne $taskVerifyRequest.request.supportEmail -or $taskPreview.sent -ne $false -or $taskPreview.status -ne '\"'draft_only' -or \"'$taskPreview.mail.subject -notmatch '\"'Proofledger') { throw 'Preview verification failed' }; if ([System.IO.File]::ReadAllText((Join-Path \"'$taskFinalOutput '\"'EMAIL-BODY.md')) -cne \"'$taskPreview.mail.body -or [System.IO.File]::ReadAllText((Join-Path $taskFinalOutput '\"'EMAIL-PREVIEW.txt')) -cne \"'$taskPreview.displayedText) { throw '\"'Exact text verification failed' }; \"'$taskHashList = foreach ($taskHashName in @('\"'REQUEST.md','REQUEST.json','ROUTES.csv','EMAIL-BODY.md','EMAIL-PREVIEW.txt','EMAIL-PREVIEW.json')) { \"'$taskHashRecord = Get-FileHash -LiteralPath (Join-Path $taskFinalOutput $taskHashName) -Algorithm SHA256; \"$($taskHashRecord.Hash.ToLower())  $taskHashName\" }; $taskHashList += \"request-content-sha256: $($taskVerifyRequest.hash)\"; $taskHashList += \"approval-scope-sha256: $($taskPreview.scopeHash)\"; [System.IO.File]::WriteAllLines((Join-Path $taskFinalOutput '\"'SHA256SUMS.txt'), [string[]]\"'$taskHashList, $taskUtf8); Get-Content -LiteralPath (Join-Path $taskFinalOutput '\"'SHA256SUMS.txt'); Write-Output 'Verified: exact preview/body, configured recipient, Proofledger project/subject, founder-supplied return address, draft_only, sent=false.'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1293
+          },
+          {
+            "type": "mcpToolCall",
+            "name": "open_in_codex",
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": 8
+          },
+          {
+            "type": "mcpToolCall",
+            "name": "open_in_codex",
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": 6
+          },
+          {
+            "type": "mcpToolCall",
+            "name": "open_in_codex",
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": 8
+          },
+          {
+            "type": "mcpToolCall",
+            "name": "open_in_codex",
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": 5
+          }
+        ],
+        "final": [
+          "The complete draft is saved and verified. **Proofledger** appears in the request and subject; the recipient comes from the configured support value. Gmail is unavailable. Nothing was sent, approved, submitted or contacted.\n\n[Request Markdown](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-team-interview-acceptance/outputs/team-ready/REQUEST.md) · [Request JSON](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-team-interview-acceptance/outputs/team-ready/REQUEST.json) · [Routes CSV](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-team-interview-acceptance/outputs/team-ready/ROUTES.csv) · [Complete email body](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-team-interview-acceptance/outputs/team-ready/EMAIL-BODY.md) · [Exact preview](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-team-interview-acceptance/outputs/team-ready/EMAIL-PREVIEW.txt) · [SHA-256 hashes](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-team-interview-acceptance/outputs/team-ready/SHA256SUMS.txt)\n\nThe file tabs are queued to open when this chat is shown. All three candidate routes remain **check_rules**, so none qualifies for recruitment authorization. The preview’s From field uses your supplied synthetic address; it does not represent a connected account.\n\n:::writing{variant=\"email\" id=\"68413\" recipient=\"ashhoque0@gmail.com\" subject=\"[Crumb User Interviews] Proofledger — Production managers or owner-operators personally coordinating PDF proof approvals at independent commercial print shops in Manchester. — ba95658e-4600-4c8e-b351-647a151604ac\"}\nReturn findings and any follow-up questions by replying to this thread.\n\n# Proofledger: interview package\n\nRequest ID: ba95658e-4600-4c8e-b351-647a151604ac\nDate: 2026-10-08T01:28:38.352Z\nFounder: Alex\nReturn email: alex@example.com\n\n## Working hypothesis\nProblem: Production managers may lose track of client PDF proofs awaiting approval, leaving jobs stalled unnoticed.\nUser: Production managers or owner-operators personally coordinating PDF proof approvals at independent commercial print shops in Manchester.\nTop ranked pain: Hypothesis: unnoticed pending approval causes chasing and schedule disruption. Frequency, consequences and current workaround unknown.\nThesis: A modest paid B2B business may exist if independent shops repeatedly suffer costly approval visibility failures that their existing email, job board or print MIS does not adequately prevent.\nWhy now: Zero users or interviews in the synthetic scenario. Public sources show approval gates and existing alternatives, but cannot establish actual local pain or willingness to pay. Aim for 2–4 completed real interviews, not contacts or scheduled calls.\n\nGoal: approximately 2–4 completed real interviews, not contacts, replies or scheduled calls. More only if conflict, poor fit, distinct segments, a new pain or a remaining decision gap warrants it. No automatic GO from interview count.\n\n## Starting points\n\n- Taylored Print commercial printing: https://www.tayloredprint.co.uk/commercial-printers-manchester\n  Observed fit: Family-run Stockport printer offers litho and digital commercial work, brochures and catalogues. Public phone 0161 410 9838 and info@tayloredprint.co.uk; invites questions.\n  Public contact: 0161 410 9838\n  both; participation: check_rules. Greater Manchester extension, not Manchester city. Independence is self-described family ownership; production role, PDF approvals, software and pain unverified. Contact-page fetch failed; phone/email are on opened service page. Public business enquiries only; first request permission/routing to the relevant operator. No interview-specific permission found; check before recruitment, respect refusals, no bulk contact, no quote-form misuse.\n  Source limitation: Greater Manchester extension, not Manchester city. Independence is self-described family ownership; production role, PDF approvals, software and pain unverified. Contact-page fetch failed; phone/email are on opened service page.\n\n- Premier Print Management contact: https://www.premierprintltd.co.uk/contact-us\n  Observed fit: Family-owned Manchester printer in Eccles advertises digital printing, brochures, flyers and letterheads. General enquiry form, public phone 0161 787 7900 and deborah@premierprintltd.co.uk.\n  Public contact: 0161 787 7900\n  both; participation: check_rules. Eccles/Greater Manchester extension. Print-management branding may mean outsourced production; screen for in-house responsibility. No named production manager, delay evidence or interview permission. Public business enquiries only; first request permission/routing to the relevant operator. No interview-specific permission found; check before recruitment, respect refusals, no bulk contact, no quote-form misuse.\n  Source limitation: Eccles/Greater Manchester extension. Print-management branding may mean outsourced production; screen for in-house responsibility. No named production manager, delay evidence or interview permission.\n\n- Xpress Print & Design: https://print-xpress.co.uk/\n  Observed fit: Family-run Bolton business advertises commercial offset and digital printing. Public business phone 01204 655888 and info@print-xpress.co.uk; general contact invitation.\n  Public contact: 01204 655888\n  both; participation: check_rules. Greater Manchester extension. Site has technical errors and a placeholder email: ignore placeholder. Role, approvals and operational details unverified; no research recruitment rules. Public business enquiries only; first request permission/routing to the relevant operator. No interview-specific permission found; check before recruitment, respect refusals, no bulk contact, no quote-form misuse.\n  Source limitation: Greater Manchester extension. Site has technical errors and a placeholder email: ignore placeholder. Role, approvals and operational details unverified; no research recruitment rules.\n\n## Exact outreach draft\nHello, I'm Alex, a solo founder researching how independent commercial printers coordinate client proof approvals. Could you point me to the person who handles production scheduling and PDF proofs, and ask whether they'd be open to a 20-minute conversation about a recent job? I want to understand what works and what gets difficult; this is research, not a sales pitch, and there's no need to try anything. If this isn't relevant or welcome, I'll leave it there. Thank you, Alex.\n\nIdentity may be disclosed: no\nConstraints: SYNTHETIC LIVE ACCEPTANCE ONLY: Alex, product, stage and goal are scenario inputs, not real founder evidence or consent. Actual opened public sources remain public observations. Local preparation only; no product implementation, sending, deployment, spending, prospect contact or request submission. Gmail unavailable; return email alex@example.com supplied by founder for this synthetic case; not independently verified. No interviews completed. All routes check_rules, research starting points only; obtain route permission before recruitment. Eccles, Stockport and Bolton extend beyond Manchester city. Team option is human-assisted alpha with unknown availability and no guaranteed recruitment, completion or turnaround. No private customer PDFs or identifiers; anonymised examples only. No demo or pitch during interviews. Team-led preparation selected in this dry run only; no approval to send, share externally or recruit. Project name: Proofledger.\nChoosing the team is not permission to contact anyone. Research-only, restricted and unchecked routes are not approved recruitment routes.\n\n## Interview guide\n\nLet's learn about their experience with: Production managers may lose track of client PDF proofs awaiting approval, leaving jobs stalled unnoticed. Talk about their life and listen; this is not a product pitch.\n\n1. What is the hardest part about Production managers may lose track of client PDF proofs awaiting approval, leaving jobs stalled unnoticed?\n2. When was the last time you encountered this issue?\n3. Why was this problem hard?\n4. What, if anything, have you done to solve it?\n5. What don't you love about the solutions you tried?\n\nFollow their answer, one question at a time. If timing is unclear, ask how often it happened recently. If the consequence is unclear, ask what happened afterward. If a workaround is mentioned, ask what it cost in time or effort and who else was involved.\n\nAdapted from Eric Migicovsky's YC user-interview guidance: https://www.ycombinator.com/blog/startup-school-week-1-recap-kevin-hale-and-eric-migicovsky/. A guide is not a sent invitation, completed interview or customer validation.\n\nDo not pitch. Follow concrete past behavior and interesting answers. Avoid hypothetical features; compliments are weak evidence. Public posts, simulated interviews and invented personas are not completed interviews.\n\n## Decision signals\nStrengthens: Across 2–4 fitting interviews, recent concrete incidents recur, pending approvals were genuinely overlooked, participants can trace lost time or schedule consequences, and current workarounds require repeated labour despite existing tools. Identify actual buyer and past software purchasing behaviour. No automatic GO by interview count.\nWeakens: Approval waits are visible and managed; recent costly incidents are absent; client response speed rather than visibility is the bottleneck; existing MIS/portal or simple job board handles it adequately; duplicate data entry outweighs value; no budget owner or credible past purchasing behaviour.\n\n## Return notes\n\nReply to the email thread with this request ID, or paste/upload this completed template here. Separate participant statements, interviewer interpretation and Crumb inference. Do not include unrelated private information.\n\n## Interview metadata\nRequest ID / interview number / date / participant identifier / why they fit / recruitment source / interviewer:\nOccurred (not merely scheduled), and how this was established:\n## Participant statements (paraphrase unless quotation consent is recorded)\nHardest part / last encounter / why hard / what tried / disliked alternatives:\nFrequency or recency / time, money, risk or frustration:\nImportant quote and consent, if any:\n## Interviewer interpretation\nSupporting evidence / contradicting evidence / highest-order pain / limitations:\n## Crumb inference (filled on return)\nGO / ONE GAP / PIVOT or STOP, rationale / MVP-scope change / follow-up:\n\n\nCrumb's team is human-assisted during the alpha. Recruitment, completed interviews and turnaround aren't guaranteed. The normal goal is 2–4 completed real interviews; requests and scheduled calls aren't evidence.\n:::\n\n**Dry-run approval question:** Would you approve sharing this exact Proofledger package with ashhoque0@gmail.com solely to request interview assistance, with findings returned in the same thread to alex@example.com, while keeping prospect outreach, identity disclosure, product work, publication and spending excluded?"
+        ]
+      },
+      {
+        "id": "01a1191f-0cb6-7493-9d71-d29c08051c52",
+        "status": "completed",
+        "durationMs": 49502,
+        "toolCalls": [
+          {
+            "type": "fileChange",
+            "name": null,
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"& 'C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe' 'C:\\\\Users\\\\Ash\\\\.codex\\\\.chatgpt-projects\\\\g-p-6ac1da47a3e48191b05023e7662b2815\\\\crumb\\\\dist\\\\src\\\\cli\\\\main.js' internal evaluation-update 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\proofledger-notes-20261007' --input-file 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\project-name.json'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1153
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$taskTeamInput = Get-Content -LiteralPath '\"'work\\\\interview-input.json' -Raw | ConvertFrom-Json; \"'$taskTeamInput.expectedVersion = 3; $taskTeamInput.contextHash = '\"'4b08f3654e5ee2300e859bd9d5dece4e10c309b424ee741807d0c939b83d7a2f'; \"'$taskTeamInput.path = '\"'team'; \"'$taskTeamInput.constraints += '\"' Team-led preparation selected in this dry run only; no approval to send, share externally or recruit. Project name: Proofledger.'; \"'$taskTeamInput | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath '\"'work\\\\team-interview-input.json' -Encoding utf8; & 'C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe' 'C:\\\\Users\\\\Ash\\\\.codex\\\\.chatgpt-projects\\\\g-p-6ac1da47a3e48191b05023e7662b2815\\\\crumb\\\\dist\\\\src\\\\cli\\\\main.js' internal interview-pack 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\proofledger-notes-20261007' --input-file 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\team-interview-input.json'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1114
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$taskTeamPack = '\"'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\proofledger-notes-20261007\\\\crumb-interviews\\\\04886df5-a9d3-410c-89d1-bb71b23bb144'; \"'$taskTeamOutputs = '\"'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\outputs\\\\team'; New-Item -ItemType Directory -Path \"'$taskTeamOutputs -Force | Out-Null; foreach ($taskTeamFile in @('\"'REQUEST.md','REQUEST.json','ROUTES.csv')) { Copy-Item -LiteralPath (Join-Path \"'$taskTeamPack $taskTeamFile) -Destination (Join-Path $taskTeamOutputs $taskTeamFile); Get-Content -LiteralPath (Join-Path $taskTeamOutputs $taskTeamFile) -Raw | Out-Null }; $taskTeamRequest = Get-Content -LiteralPath (Join-Path $taskTeamOutputs '\"'REQUEST.json') -Raw | ConvertFrom-Json; Write-Output \\\"Project: \"'$($taskTeamRequest.request.project); Path: $($taskTeamRequest.request.path); Return email null: $($null -eq $taskTeamRequest.request.returnEmail)\"; Get-Content -LiteralPath (Join-Path $taskTeamOutputs '\"'REQUEST.md') -TotalCount 8; 'Draft subject: Proofledger — interview request — Manchester commercial print production managers — 04886df5-a9d3-410c-89d1-bb71b23bb144' | Set-Content -LiteralPath (Join-Path \"'$taskTeamOutputs '\"'EMAIL-SUBJECT.txt') -Encoding utf8; Get-Content -LiteralPath (Join-Path \"'$taskTeamOutputs '\"'EMAIL-SUBJECT.txt'); \"'$taskTeamBrief = Get-Content -LiteralPath '\"'outputs\\\\INTERVIEW-GUIDE.md' -Raw; \"'$taskTeamBrief.Replace('\"'28df1f92-3d4e-4245-9a05-5e734f523edd','04886df5-a9d3-410c-89d1-bb71b23bb144') | Set-Content -LiteralPath (Join-Path \"'$taskTeamOutputs '\"'INTERVIEW-GUIDE.md') -Encoding utf8\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1256
+          }
+        ],
+        "final": [
+          "The team-led draft now names **Proofledger**, including the [draft subject](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-team-interview-acceptance/outputs/team/EMAIL-SUBJECT.txt). I generated and read back [REQUEST.md](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-team-interview-acceptance/outputs/team/REQUEST.md), [REQUEST.json](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-team-interview-acceptance/outputs/team/REQUEST.json), and [ROUTES.csv](C:/Users/Ash/Documents/Codex/2026-10-07/crumb-team-interview-acceptance/outputs/team/ROUTES.csv).\n\nNothing has been sent or submitted, and nobody has been contacted.\n\n**Quick ask: What email should Crumb's team send the interview findings to?**"
+        ]
+      },
+      {
+        "id": "01a1191b-51d6-7190-86b5-9211054dc15e",
+        "status": "completed",
+        "durationMs": 231407,
+        "toolCalls": [
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\Ash\\\\.agents\\\\skills\\\\crumb\\\\SKILL.md'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1407
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\Ash\\\\.agents\\\\skills\\\\crumb\\\\runtime.json'; Get-Content -LiteralPath 'C:\\\\Users\\\\Ash\\\\.agents\\\\skills\\\\crumb\\\\references\\\\interview-delivery.md'; Get-Content -LiteralPath 'C:\\\\Users\\\\Ash\\\\.agents\\\\skills\\\\crumb\\\\references\\\\research.md'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1405
+          },
+          {
+            "type": "webSearch",
+            "name": null,
+            "command": null,
+            "status": null,
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'C:\\\\Users\\\\Ash\\\\.agents\\\\skills\\\\crumb\\\\references\\\\local-tools.md'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1375
+          },
+          {
+            "type": "webSearch",
+            "name": null,
+            "command": null,
+            "status": null,
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"New-Item -ItemType Directory -Path 'work\\\\proofledger-notes-20261007','outputs' -Force | Out-Null; & 'C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe' 'C:\\\\Users\\\\Ash\\\\.codex\\\\.chatgpt-projects\\\\g-p-6ac1da47a3e48191b05023e7662b2815\\\\crumb\\\\dist\\\\src\\\\cli\\\\main.js' internal evaluation-update-schema 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\proofledger-notes-20261007'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1964
+          },
+          {
+            "type": "webSearch",
+            "name": null,
+            "command": null,
+            "status": null,
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "webSearch",
+            "name": null,
+            "command": null,
+            "status": null,
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "webSearch",
+            "name": null,
+            "command": null,
+            "status": null,
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "fileChange",
+            "name": null,
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"& 'C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe' 'C:\\\\Users\\\\Ash\\\\.codex\\\\.chatgpt-projects\\\\g-p-6ac1da47a3e48191b05023e7662b2815\\\\crumb\\\\dist\\\\src\\\\cli\\\\main.js' internal working-context 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\proofledger-notes-20261007' --input-file 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\start.json'\"",
+            "status": "failed",
+            "exitCode": 1,
+            "durationMs": 1643,
+            "error": {
+              "text": "EPERM: operation not permitted, realpath 'C:\\Users\\Ash\\Documents\\Codex\\2026-10-07\\crumb-team-interview-acceptance\\work\\proofledger-notes-20261007'\n",
+              "truncated": false
+            }
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"& 'C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe' 'C:\\\\Users\\\\Ash\\\\.codex\\\\.chatgpt-projects\\\\g-p-6ac1da47a3e48191b05023e7662b2815\\\\crumb\\\\dist\\\\src\\\\cli\\\\main.js' internal working-context 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\proofledger-notes-20261007' --input-file 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\start.json'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1007
+          },
+          {
+            "type": "fileChange",
+            "name": null,
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"& 'C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe' 'C:\\\\Users\\\\Ash\\\\.codex\\\\.chatgpt-projects\\\\g-p-6ac1da47a3e48191b05023e7662b2815\\\\crumb\\\\dist\\\\src\\\\cli\\\\main.js' internal evaluation-update 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\proofledger-notes-20261007' --input-file 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\evidence.json'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1080
+          },
+          {
+            "type": "fileChange",
+            "name": null,
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"& 'C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe' 'C:\\\\Users\\\\Ash\\\\.codex\\\\.chatgpt-projects\\\\g-p-6ac1da47a3e48191b05023e7662b2815\\\\crumb\\\\dist\\\\src\\\\cli\\\\main.js' internal interview-pack 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\proofledger-notes-20261007' --input-file 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\interview-input.json'\"",
+            "status": "failed",
+            "exitCode": 1,
+            "durationMs": 812,
+            "error": {
+              "text": "Public contact must actually appear in the retained source.\n",
+              "truncated": false
+            }
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$taskInput = Get-Content -LiteralPath '\"'work\\\\interview-input.json' -Raw | ConvertFrom-Json; \"'$taskInput.routes[0].contact = '\"'0161 410 9838'; \"'$taskInput.routes[1].contact = '\"'0161 787 7900'; \"'$taskInput.routes[2].contact = '\"'01204 655888'; \"'$taskInput | ConvertTo-Json -Depth 20 | Set-Content -LiteralPath '\"'work\\\\interview-input.json' -Encoding utf8; & 'C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\node\\\\bin\\\\node.exe' 'C:\\\\Users\\\\Ash\\\\.codex\\\\.chatgpt-projects\\\\g-p-6ac1da47a3e48191b05023e7662b2815\\\\crumb\\\\dist\\\\src\\\\cli\\\\main.js' internal interview-pack 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\proofledger-notes-20261007' --input-file 'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\interview-input.json'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1069
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command \"Get-Content -LiteralPath 'work\\\\proofledger-notes-20261007\\\\crumb-interviews\\\\28df1f92-3d4e-4245-9a05-5e734f523edd\\\\REQUEST.md'; Get-Content -LiteralPath 'work\\\\proofledger-notes-20261007\\\\crumb-interviews\\\\28df1f92-3d4e-4245-9a05-5e734f523edd\\\\REQUEST.json'; Get-Content -LiteralPath 'work\\\\proofledger-notes-20261007\\\\crumb-interviews\\\\28df1f92-3d4e-4245-9a05-5e734f523edd\\\\ROUTES.csv'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1179
+          },
+          {
+            "type": "fileChange",
+            "name": null,
+            "command": null,
+            "status": "completed",
+            "exitCode": null,
+            "durationMs": null
+          },
+          {
+            "type": "commandExecution",
+            "name": null,
+            "command": "\"C:\\\\Users\\\\Ash\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\native\\\\powershell\\\\pwsh.exe\" -Command '$taskPack = '\"'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\work\\\\proofledger-notes-20261007\\\\crumb-interviews\\\\28df1f92-3d4e-4245-9a05-5e734f523edd'; foreach (\"'$taskFile in @('\"'REQUEST.md','REQUEST.json','ROUTES.csv')) { Copy-Item -LiteralPath (Join-Path \"'$taskPack $taskFile) -Destination (Join-Path '\"'C:\\\\Users\\\\Ash\\\\Documents\\\\Codex\\\\2026-10-07\\\\crumb-team-interview-acceptance\\\\outputs' \"'$taskFile); $taskOriginalHash = (Get-FileHash -LiteralPath (Join-Path $taskPack $taskFile)).Hash; $taskOutputHash = (Get-FileHash -LiteralPath (Join-Path '\"'outputs' \"'$taskFile)).Hash; Write-Output \"$taskFile exact copy: $($taskOriginalHash -eq $taskOutputHash)\" }; $taskRequest = Get-Content -LiteralPath '\"'outputs\\\\REQUEST.json' -Raw | ConvertFrom-Json; Write-Output \\\"Return email null: \"'$($null -eq $taskRequest.request.returnEmail)\"; Write-Output \"Routes: $($taskRequest.request.routes.Count)\"; Get-Content -LiteralPath '\"'outputs\\\\INTERVIEW-GUIDE.md'\"",
+            "status": "completed",
+            "exitCode": 0,
+            "durationMs": 1239
+          }
+        ],
+        "final": [
+          "My take: test whether approvals get **overlooked**, rather than simply taking time. [Print Reach already tracks approval status](https://support.printreach.com/hc/en-us/articles/360053894213-Proofs); local pain and willingness to pay remain unknown.\n\nThe complete draft package is prepared and read back:\n\n- [REQUEST.md](outputs/REQUEST.md)\n- [REQUEST.json](outputs/REQUEST.json)\n- [ROUTES.csv](outputs/ROUTES.csv)\n- [Interview guide and research brief](outputs/INTERVIEW-GUIDE.md)\n\nThree opened starting points: [Taylored Print](https://www.tayloredprint.co.uk/commercial-printers-manchester), [Premier Print Management](https://www.premierprintltd.co.uk/contact-us), and [Xpress Print & Design](https://print-xpress.co.uk/). They extend into Greater Manchester; participant fit and recruitment permission still need checking.\n\nThe package includes a neutral invitation, five past-behavior questions, notes template, and strengthening/weakening signals for 2–4 interviews. Nothing was sent or submitted; no interviews occurred, and return email remains blank. Team assistance is human-assisted alpha, without guaranteed recruitment, completion or turnaround.\n\n**Ask: Do you want to run these interviews yourself, or should Crumb's team take them off your plate and email you what we learn?**"
+        ]
+      }
+    ]
+  },
+  "warnings": [
+    "Standalone app-server acceptance sessions still fail cold native sandbox refresh because active node_repl.exe is locked. Native desktop sessions succeed; no global runtime process was killed, ACL relaxed or setup check suppressed.",
+    "Native Node Core writes initially encountered EPERM realpath; scoped normal-filesystem execution was approved and succeeded, retaining all Core path/privacy/source checks.",
+    "Guarded invalid contact/request inputs were corrected once from actual retained data; no fabricated contacts or weakened validators.",
+    "Recruitment permission remains unchecked for several public routes; no prospect contact is authorized by this dry run.",
+    "Gmail was unavailable; ready-to-send artifacts were verified, not a live Gmail connector draft or send.",
+    "Inputs and conversations are synthetic; no real interview demand, response rate, team capacity or founder value is established."
+  ],
+  "delivery": {
+    "development": "pending evidence commit/push",
+    "main": "pending authorized merge and full-suite verification",
+    "global": "baseline candidate verified in_sync; final exact main synchronization pending"
+  }
+}

@@ -1,5 +1,17 @@
 # Crumb status
 
+**User interview MVP live delivery — PASS WITH WARNINGS, 7 October 2026.**
+Candidate `cff44c88` passes build/typecheck, focused 45/45 and full 390/390 tests.
+Fresh GPT-6.1 Sol Medium native desktop chats created and read back actual founder,
+team and Gmail-unavailable packages with hashes and complete unsent email bodies.
+The support recipient is configured correctly; no contact, approval, submission
+or completed interview occurred. The old standalone app-server runner still fails
+Windows runtime ACL refresh on a locked executable; native desktop execution works,
+with scoped normal-filesystem execution needed for Node realpath access. No product
+rewrite or fallback is shipped. Evidence: `docs/interview-mvp-proof/native-live-delivery.json`.
+The founder authorized merge after these gates; resulting-main verification and
+exact installed-main synchronization are recorded separately on delivery.
+
 **Current M3-R6 closed-alpha decision — PASS WITH WARNINGS, 7 October 2026.**
 The founder authorized release without another manual browser smoke. Development
 build/typecheck, targeted approval regressions and full 369/369 suite passed.
