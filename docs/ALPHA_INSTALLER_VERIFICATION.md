@@ -70,3 +70,13 @@ exit 0. setup.bat, install-alpha.mjs and launch-alpha.mjs were retrieved from Gi
 locked dependency install, TypeScript build and Windows SQLite doctor passed in
 that fresh clone. This still excludes global skill registration and interactive
 Codex launch under a separate real account.
+Distribution follow-up: anonymous HTTPS Git access to the alpha branch failed
+with Git requesting a username. Receiving setup.bat alone therefore does not
+provide repository access. A minimal 74,895-byte runtime ZIP was prepared outside
+the repository: only src, contracts, the Crumb skill, four setup/launch scripts,
+Node pin, TypeScript config, package manifest and lockfile. Extraction followed
+by actual npm setup/build/SQLite doctor passed on Windows (exit 0). This package
+has not been made public. Anonymous distribution requires approval to publish
+this bounded runtime artifact, or granting each tester access to the source repo.
+Removed --depth=1 from update fetch so later commits retain ancestry for the
+existing fast-forward merge. All nine native synthetic bootstrap checks passed.

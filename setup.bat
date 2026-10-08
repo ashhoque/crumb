@@ -34,7 +34,7 @@ try {
         $branch = & git -C $repo branch --show-current 2>> $script:CrumbLog
         $dirty = & git -C $repo status --porcelain --untracked-files=normal 2>> $script:CrumbLog
         if ($LASTEXITCODE -ne 0 -or $branch -ne 'alpha-testing-layer' -or $dirty) { throw 'Existing runtime contains user changes or another branch; preserving it.' }
-        Invoke-CrumbCommand git @('-C', $repo, 'fetch', '--depth=1', 'origin', 'alpha-testing-layer')
+        Invoke-CrumbCommand git @('-C', $repo, 'fetch', 'origin', 'alpha-testing-layer')
         Invoke-CrumbCommand git @('-C', $repo, 'merge', '--ff-only', 'FETCH_HEAD')
     } else {
         $download = Join-Path $base ('download-' + [guid]::NewGuid().ToString('N'))
