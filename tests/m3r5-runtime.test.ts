@@ -42,7 +42,7 @@ test('M3-R5 installed locator provides reusable contracts and detects stale runt
   const path=join(root,'.agents/skills/crumb/runtime.json'),runtime=JSON.parse(readFileSync(path,'utf8'));
   assert.equal(runtime.node,process.execPath);
   assert.ok(runtime.operations['confirm-thesis'].input.displayedText);
-  assert.equal(run().status,0);
+  const verified=run();assert.equal(verified.status,0,verified.stderr);
   runtime.cli='missing-core.js';writeFileSync(path,JSON.stringify(runtime));
   assert.match(run().stderr,/locator differs/);
 });
